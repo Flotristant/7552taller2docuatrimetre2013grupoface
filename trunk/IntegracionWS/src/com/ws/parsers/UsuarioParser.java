@@ -1,6 +1,6 @@
 package com.ws.parsers;
 
-import java.util.Map;
+import java.util.HashMap;
 
 public class UsuarioParser implements Parser {
 
@@ -17,7 +17,7 @@ public class UsuarioParser implements Parser {
 	}
 
 	@Override
-	public Map<String, String> obtenerCampos() {
+	public HashMap<String, String> obtenerCampos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
