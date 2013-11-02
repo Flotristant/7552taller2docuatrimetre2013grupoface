@@ -2,10 +2,14 @@ package com.ws.handler;
 
 import org.w3c.dom.Document;
 
-public interface Handler {
+import com.db.querys.QueryBuilder;
+
+public abstract class Handler {
 	
-	public String guardarDatos(Document doc);
-	public String actualizarDatos(Document doc);
-	public String borrarDatos(Document doc);
-	public String seleccionarDatos(Document doc);
+	QueryBuilder queryBuilder;
+	
+	public abstract String guardarDatos(Document doc);
+	public abstract String actualizarDatos(Document doc);
+	public abstract String borrarDatos(Document doc);
+	public abstract String seleccionarDatos(Document doc);
 }

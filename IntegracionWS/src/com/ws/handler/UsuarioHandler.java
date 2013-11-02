@@ -1,9 +1,19 @@
 package com.ws.handler;
 
+import java.util.Map;
+
 import org.w3c.dom.Document;
 
-public class UsuarioHandler implements Handler {
+import com.db.querys.UsuarioQueryBuilder;
+import com.ws.parsers.UsuarioParser;
+import com.ws.tags.UsuarioTags;
 
+public class UsuarioHandler extends Handler {
+	
+	public UsuarioHandler() {
+		this.queryBuilder = new UsuarioQueryBuilder();
+	}
+	
 	@Override
 	public String guardarDatos(Document doc) {
 		// TODO Auto-generated method stub
@@ -24,8 +34,11 @@ public class UsuarioHandler implements Handler {
 
 	@Override
 	public String seleccionarDatos(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
+		UsuarioParser parser = new UsuarioParser(doc);
+		Map<String, String > campos = parser.obtenerCampos();
+		String query = this.queryBuilder.getAllById(campos.get(UsuarioTags.ID_TAG));
+		
+		return query;
 	}
 
 }
