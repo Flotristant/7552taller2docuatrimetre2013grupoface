@@ -31,7 +31,7 @@ public class IntegracionWS {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			Handler handler = getHandler(root);
-			return handler.seleccionarDatos(xml);
+			return handler.seleccionarDatos(doc);
 			
 		} catch (Exception e) {
 			return e.getMessage();
@@ -43,7 +43,6 @@ public class IntegracionWS {
 		DocumentBuilder docBuilder;
 		docBuilder = docFactory.newDocumentBuilder();
 		return docBuilder.parse(new InputSource(new StringReader(xml)));
-
 	}
 	
 	private Handler getHandler(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {

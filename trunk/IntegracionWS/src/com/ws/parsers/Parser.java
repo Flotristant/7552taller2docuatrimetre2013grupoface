@@ -2,15 +2,14 @@ package com.ws.parsers;
 
 import java.util.Map;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
 
 public abstract class Parser {
 	
-	Node root;
+	Document doc;
 	
-	public Parser(NodeList root) {
-		this.root = root.item(0);
+	public Parser(Document doc) {
+		this.doc = doc;
 	}
 	
 	public Boolean esJoin() {
