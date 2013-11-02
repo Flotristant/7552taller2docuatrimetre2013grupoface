@@ -31,7 +31,7 @@ public class IntegracionWS {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			Handler handler = getHandler(root);
-			return handler.seleccionarDatos(root);
+			return handler.seleccionarDatos(xml);
 			
 		} catch (Exception e) {
 			return e.getMessage();

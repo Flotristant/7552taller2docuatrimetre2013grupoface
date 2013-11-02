@@ -5,25 +5,25 @@ import org.w3c.dom.NodeList;
 public class UsuarioHandler implements Handler {
 
 	@Override
-	public String guardarDatos(NodeList root) {
+	public String guardarDatos(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String actualizarDatos(NodeList root) {
+	public String actualizarDatos(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String borrarDatos(NodeList root) {
+	public String borrarDatos(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String seleccionarDatos(NodeList root) {
+	public String seleccionarDatos(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}
