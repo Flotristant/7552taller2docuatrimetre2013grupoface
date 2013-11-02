@@ -2,11 +2,17 @@ package com.ws.parsers;
 
 import java.util.HashMap;
 
-public class UsuarioParser implements Parser {
+import org.w3c.dom.NodeList;
+
+public abstract class UsuarioParser extends Parser {
+
+	public UsuarioParser(NodeList root) {
+		super(root);
+	}
 
 	@Override
 	public Boolean esJoin() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
