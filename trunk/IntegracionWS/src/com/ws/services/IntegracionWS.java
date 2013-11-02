@@ -34,7 +34,7 @@ public class IntegracionWS {
 			return handler.seleccionarDatos(doc);
 			
 		} catch (Exception e) {
-			return e.getMessage();
+			return e.getMessage() + "XML: " + xml;
 		}
 	}
 	
