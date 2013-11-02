@@ -1,9 +1,11 @@
 package com.ws.handler;
 
+import org.w3c.dom.NodeList;
+
 public interface Handler {
 	
-	public String guardarDatos();
-	public String actualizarDatos();
-	public String borrarDatos();
-	public String seleccionarDatos();
+	public String guardarDatos(NodeList root);
+	public String actualizarDatos(NodeList root);
+	public String borrarDatos(NodeList root);
+	public String seleccionarDatos(NodeList root);
 }
