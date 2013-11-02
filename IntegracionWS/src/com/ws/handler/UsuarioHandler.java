@@ -22,7 +22,7 @@ public class UsuarioHandler implements Handler {
 
 	@Override
 	public String seleccionarDatos() {
-		// TODO Auto-generated method stub
+		
 		return "UsuarioHandler";
 	}
 
