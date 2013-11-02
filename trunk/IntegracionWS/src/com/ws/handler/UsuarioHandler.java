@@ -5,7 +5,7 @@ public class UsuarioHandler implements Handler {
 	@Override
 	public String guardarDatos() {
 		// TODO Auto-generated method stub
-		return null;
+		return "UsuarioHandler";
 	}
 
 	@Override
@@ -21,9 +21,9 @@ public class UsuarioHandler implements Handler {
 	}
 
 	@Override
-	public String elegirDatos() {
+	public String seleccionarDatos() {
 		// TODO Auto-generated method stub
-		return null;
+		return "UsuarioHandler";
 	}
 
 }

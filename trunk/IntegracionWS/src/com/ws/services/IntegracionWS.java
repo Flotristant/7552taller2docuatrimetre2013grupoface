@@ -7,40 +7,49 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.ws.handler.Handler;
+
 public class IntegracionWS {
 		
+	private static String HANDLER_PACKAGE = "com.ws.handler." ;
+	private static String HANDLER_SUFIX = "Handler";
+	private static String XML_ROOT_TAG = "WS"; 
+	
     public String guardarDatos() {
         String xml = "<WS><Actividad><IdAmbito>id</IdAmbito>    </Actividad>    </WS>";
         return xml;
     }
 	
 	public String seleccionarDatos(String xml) {
-		
+		Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			return handler.seleccionarDatos();
+			
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+	
+	private Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
-		try {
-			docBuilder = docFactory.newDocumentBuilder();
-		} catch (ParserConfigurationException e) {
-			
-			return "ParserConfigurationException";
-		}
-		Element doc;
-		try {
-			doc = (Element) docBuilder.parse(new InputSource(new StringReader(xml)));
-		} catch (SAXException e) {
-			return "SAXException";
-		} catch (IOException e) {
-			return "IOException";
-		} catch (Exception e) {
-			return "Exception";
-		}
+		docBuilder = docFactory.newDocumentBuilder();
+		return docBuilder.parse(new InputSource(new StringReader(xml)));
 
-        NodeList nodes = doc.getElementsByTagName("Usuario");
-        return "<WS>Hola</WS>";
 	}
+	
+	private Handler getHandler(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		String handlerName = HANDLER_PACKAGE + root.item(0).getFirstChild().getNodeName() + HANDLER_SUFIX ;
+		Class<?> hClass = Class.forName(handlerName);
+		return (Handler) hClass.newInstance();
+	}
+	
 }
