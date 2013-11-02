@@ -1,29 +1,31 @@
 package com.ws.handler;
 
+import org.w3c.dom.NodeList;
+
 public class UsuarioHandler implements Handler {
 
 	@Override
-	public String guardarDatos() {
-		// TODO Auto-generated method stub
-		return "UsuarioHandler";
-	}
-
-	@Override
-	public String actualizarDatos() {
+	public String guardarDatos(NodeList root) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String borrarDatos() {
+	public String actualizarDatos(NodeList root) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String seleccionarDatos() {
-		
-		return "UsuarioHandler";
+	public String borrarDatos(NodeList root) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String seleccionarDatos(NodeList root) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
