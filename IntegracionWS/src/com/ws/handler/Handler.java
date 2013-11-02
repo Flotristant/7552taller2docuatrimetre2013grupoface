@@ -1,11 +1,11 @@
 package com.ws.handler;
 
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
 
 public interface Handler {
 	
-	public String guardarDatos(String xml);
-	public String actualizarDatos(String xml);
-	public String borrarDatos(String xml);
-	public String seleccionarDatos(String xml);
+	public String guardarDatos(Document doc);
+	public String actualizarDatos(Document doc);
+	public String borrarDatos(Document doc);
+	public String seleccionarDatos(Document doc);
 }

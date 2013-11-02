@@ -2,12 +2,12 @@ package com.ws.parsers;
 
 import java.util.HashMap;
 
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
 
 public abstract class UsuarioParser extends Parser {
 
-	public UsuarioParser(NodeList root) {
-		super(root);
+	public UsuarioParser(Document doc) {
+		super(doc);
 	}
 
 	@Override
