@@ -6,6 +6,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 public class MensajeQueryBuilder extends QueryBuilder {
+	
 	public static String getMensajesByMiembro(String idmiembro){ // Mover a getAllByAttributes
 		
 		DetachedCriteria criteria = DetachedCriteria.forEntityName("Mensajes","mensajes");
