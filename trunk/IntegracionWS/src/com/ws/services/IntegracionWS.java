@@ -20,9 +20,35 @@ public class IntegracionWS {
 	private static String HANDLER_SUFIX = "Handler";
 	private static String XML_ROOT_TAG = "WS"; 
 	
-    public String guardarDatos() {
-        String xml = "<WS><Actividad><IdAmbito>id</IdAmbito>    </Actividad>    </WS>";
-        return xml;
+
+    public String guardarDatos(String xml) {
+    	Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			return handler.guardarDatos(doc);
+			
+		} catch (Exception e) {
+			return e.getMessage() + "XML: " + xml;
+		}
+    
+    }
+    
+    public String actualizarDatos(String xml) {
+    	
+    	Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			return handler.actualizarDatos(doc);
+			
+		} catch (Exception e) {
+			return e.getMessage() + "XML: " + xml;
+		}
+    	
+    	
     }
 	
 	public String seleccionarDatos(String xml) {
@@ -38,6 +64,8 @@ public class IntegracionWS {
 		}
 	}
 	
+	
+	
 	private Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
@@ -45,10 +73,12 @@ public class IntegracionWS {
 		return docBuilder.parse(new InputSource(new StringReader(xml)));
 	}
 	
+	
 	private Handler getHandler(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		String handlerName = HANDLER_PACKAGE + root.item(0).getFirstChild().getNodeName() + HANDLER_SUFIX ;
 		Class<?> hClass = Class.forName(handlerName);
 		return (Handler) hClass.newInstance();
 	}
+		
 	
 }
