@@ -12,6 +12,7 @@ import com.ws.tags.UsuarioTags;
 
 public class UsuarioHandler extends Handler {
 	
+	
 	public UsuarioHandler() {
 		this.queryBuilder = new UsuarioQueryBuilder();
 	}
@@ -20,24 +21,40 @@ public class UsuarioHandler extends Handler {
 	public String guardarDatos(Document doc) {
 		
 		UsuarioParser parser = new UsuarioParser(doc);
-		Map<String, String > campos = parser.obtenerCampos();
-		Usuario usuario = this.convertirEntidadUsuario(campos);
+		Usuario usuario = parser.getEntidadUsuario();
 		
-		//TODO invocaci�n al WS de saveOrUpdate de bbdd
+		//service = new DataService();
+		//IData port = service.getDataPort();
+		//port.beginTransaccion();
 		//port.saveOrUpdate("Usuario",usuario);
+		//port.commit //if ok
+		//port.rollback()//if not
+		
 		
 		return null;	
 	}
 
 	@Override
 	public String actualizarDatos(Document doc) {
-		UsuarioParser parser = new UsuarioParser(doc);
-		Map<String, String > campos = parser.obtenerCampos();
-		Usuario usuario = this.convertirEntidadUsuario(campos);
-		usuario.setId(campos.get(UsuarioTags.ID_TAG));
 		
-		//TODO invocaci�n al WS de saveOrUpdate de bbdd
+		UsuarioParser parser = new UsuarioParser(doc);
+		//service = new DataService();
+		//IData port = service.getDataPort();
+		//port.beginTransaccion();
+		String query = this.queryBuilder.getAllById(parser.getIdUsuario());
+		Usuario usuario = null;
+		//usuario =port.query(query);
+		if(usuario == null) {
+			//TODO: return an error message
+			return "";
+		}
+		usuario = parser.getEntidadUsuario();
+		usuario.setUsuarioId(Long.parseLong(parser.getIdUsuario()));
+		
+		
 		//port.saveOrUpdate("Usuario",usuario);
+		//port.commit //if ok
+		//port.rollback()//if not
 		
 		
 		return null;
@@ -72,23 +89,6 @@ public class UsuarioHandler extends Handler {
 		return query;
 	}
 	
-	
-	private Usuario convertirEntidadUsuario(Map<String, String > campos){
-		Usuario usuario = new Usuario();
-		usuario.setUsername(campos.get(UsuarioTags.USERNANME_TAG));
-		usuario.setPassword (campos.get(UsuarioTags.PASSWORD_TAG));
-		usuario.setNombre(campos.get(UsuarioTags.NOMBRE_TAG));
-		usuario.setApellido(campos.get(UsuarioTags.APELLIDO_TAG));
-		usuario.setPadron(campos.get(UsuarioTags.PADRON_TAG));
-		usuario.setEmail(campos.get(UsuarioTags.EMAIL_TAG));
-		usuario.setFechaNacimiento(campos.get(UsuarioTags.FECHANAC_TAG));
-		usuario.setHabilitado(campos.get(UsuarioTags.HABILITADO_TAG));
-		usuario.setActivado(campos.get(UsuarioTags.ACTIVADO_TAG));
-		
-		return usuario;
-		
-	}
-
 	
 	protected Map<String, String> getCampos(Document doc) {
 		UsuarioParser parser = new UsuarioParser(doc);

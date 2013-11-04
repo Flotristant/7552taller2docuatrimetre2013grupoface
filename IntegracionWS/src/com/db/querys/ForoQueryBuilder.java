@@ -1,6 +1,6 @@
 package com.db.querys;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
@@ -17,7 +17,7 @@ public class ForoQueryBuilder extends QueryBuilder{
 	}
 
 	@Override
-	public String getAllByAttributes(HashMap<String, String> attributes) {
+	public String getAllByAttributes(Map<String, String> attributes) {
 		// TODO Auto-generated method stub
 		return null;
 	}
