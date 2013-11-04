@@ -27,6 +27,12 @@ public class MensajeQueryBuilder extends QueryBuilder {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String removeById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }
