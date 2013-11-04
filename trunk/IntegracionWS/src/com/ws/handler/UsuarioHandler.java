@@ -3,12 +3,9 @@ package com.ws.handler;
 import java.util.List;
 import java.util.Map;
 
-import javax.xml.bind.ParseConversionEvent;
-
 import org.w3c.dom.Document;
 
 import com.db.querys.UsuarioQueryBuilder;
-import com.sun.xml.internal.ws.wsdl.writer.document.Port;
 import com.ws.parsers.UsuarioParser;
 import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
@@ -26,7 +23,7 @@ public class UsuarioHandler extends Handler {
 		Map<String, String > campos = parser.obtenerCampos();
 		Usuario usuario = this.convertirEntidadUsuario(campos);
 		
-		//TODO invocación al WS de saveOrUpdate de bbdd
+		//TODO invocaciï¿½n al WS de saveOrUpdate de bbdd
 		//port.saveOrUpdate("Usuario",usuario);
 		
 		return null;	
@@ -39,7 +36,7 @@ public class UsuarioHandler extends Handler {
 		Usuario usuario = this.convertirEntidadUsuario(campos);
 		usuario.setId(campos.get(UsuarioTags.ID_TAG));
 		
-		//TODO invocación al WS de saveOrUpdate de bbdd
+		//TODO invocaciï¿½n al WS de saveOrUpdate de bbdd
 		//port.saveOrUpdate("Usuario",usuario);
 		
 		
@@ -70,7 +67,7 @@ public class UsuarioHandler extends Handler {
 	@Override
 	public String seleccionarDatos(Document doc) {
 		Map<String, String > campos = this.getCampos(doc);
-		String query = this.queryBuilder.getAllById(campos.get(UsuarioTags.ID_TAG));
+		String query = this.queryBuilder.getAllByAttributes(campos);
 		
 		return query;
 	}
