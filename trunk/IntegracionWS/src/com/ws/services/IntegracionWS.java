@@ -28,7 +28,6 @@ public class IntegracionWS {
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			Handler handler = getHandler(root);
 			return handler.guardarDatos(doc);
-			
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
 		}
@@ -57,7 +56,6 @@ public class IntegracionWS {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			return getHandler(root).seleccionarDatos(doc);
-			
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
 		}

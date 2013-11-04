@@ -1,5 +1,6 @@
 package com.db.querys;
 
+
 import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;

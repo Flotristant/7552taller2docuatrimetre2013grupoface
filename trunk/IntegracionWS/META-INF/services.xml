@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service>
-        <description>Web service encargado de crear nuevas entidades</description>
+        <description>Web service encargado de realizar las operaciones de persistencia, recuperación, consultas y eliminación de datos.</description>
         <messageReceivers>
                 <messageReceiver mep="http://www.w3.org/2004/08/wsdl/in-out"
                         class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
