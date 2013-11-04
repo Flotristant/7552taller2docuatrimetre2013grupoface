@@ -24,7 +24,7 @@ public class UsuarioParser extends Parser {
 	    if (childNodes != null) {
 	        for (int i = 0; i < childNodes.getLength(); i++) {
         	   Element el = (Element) childNodes.item(i);
-        	   campos.put(el.getNodeName(), el.getNodeValue());
+        	   campos.put(el.getNodeName(), el.getTextContent());
 	        }
 	    }
 		return campos;
