@@ -13,8 +13,8 @@ public abstract class QueryBuilder {
 		String xml = xstream.toXML(crit);		
 		return xml;
 	}
-	
+		
 	public abstract String getAllById(String id);
 	public abstract String getAllByAttributes(HashMap<String, String> attributes);
-	
+	public abstract String removeById(String id);
 }

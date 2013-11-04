@@ -64,8 +64,21 @@ public class IntegracionWS {
 		}
 	}
 	
+
+	public String eliminarUsuario(String xml) {
+		Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			//return the error or successfull message
+			return handler.borrarDatos(doc);			
+		} catch (Exception e) {
+			return e.getMessage() + "XML: " + xml;
+		}
+	}
 	
-	
+
 	private Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
