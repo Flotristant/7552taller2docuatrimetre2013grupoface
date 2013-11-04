@@ -1,6 +1,6 @@
 package com.db.querys;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
 
@@ -15,6 +15,6 @@ public abstract class QueryBuilder {
 	}
 		
 	public abstract String getAllById(String id);
-	public abstract String getAllByAttributes(HashMap<String, String> attributes);
+	public abstract String getAllByAttributes(Map<String, String> attributes);
 	public abstract String removeById(String id);
 }

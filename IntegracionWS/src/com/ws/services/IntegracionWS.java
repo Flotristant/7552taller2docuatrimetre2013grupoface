@@ -56,8 +56,7 @@ public class IntegracionWS {
 		try {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
-			Handler handler = getHandler(root);
-			return handler.seleccionarDatos(doc);
+			return getHandler(root).seleccionarDatos(doc);
 			
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
@@ -65,7 +64,7 @@ public class IntegracionWS {
 	}
 	
 
-	public String eliminarUsuario(String xml) {
+	public String eliminarDatos(String xml) {
 		Document doc;
 		try {
 			doc = getXMLDocument(xml);

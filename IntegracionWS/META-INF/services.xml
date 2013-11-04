@@ -8,5 +8,6 @@
         <parameter name="ServiceClass">com.ws.services.IntegracionWS</parameter>
         <operation name="guardarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
         <operation name="seleccionarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
-        <operation name=" actualizarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
+        <operation name="actualizarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
+        <operation name="eliminarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
 </service>
