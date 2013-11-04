@@ -21,7 +21,7 @@ public class UsuarioTestIntegration {
 	}
 	
 	private String createDeleteUserXML() {
-		return "<?xml version=\"1.0\"?><WS><Usuario><id>\"1\"></id></Usuario></WS>";
+		return "<?xml version=\"1.0\"?><WS><Usuario><id>1</id></Usuario></WS>";
 	}
 
 }
