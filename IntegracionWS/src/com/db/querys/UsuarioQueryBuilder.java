@@ -13,7 +13,7 @@ public class UsuarioQueryBuilder extends QueryBuilder{
 	public String getAllById(String id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
 		criteria.add(Restrictions.idEq(id));
-		return QueryBuilder.getXMLfromCriteria(criteria);
+		return QueryBuilder.getSerializedCriteria(criteria);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class UsuarioQueryBuilder extends QueryBuilder{
 	public String removeById(String id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
 		criteria.add(Restrictions.idEq(id));
-		String xml = QueryBuilder.getXMLfromCriteria(criteria);
+		String xml = QueryBuilder.getSerializedCriteria(criteria);
 		return xml;
 	}
 }
