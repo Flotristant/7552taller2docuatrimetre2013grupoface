@@ -13,7 +13,7 @@ public class ForoQueryBuilder extends QueryBuilder{
 	public String getAllById(String id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
 		criteria.add(Restrictions.idEq(id));
-		return QueryBuilder.getXMLfromCriteria(criteria);
+		return QueryBuilder.getSerializedCriteria(criteria);
 	}
 
 	@Override

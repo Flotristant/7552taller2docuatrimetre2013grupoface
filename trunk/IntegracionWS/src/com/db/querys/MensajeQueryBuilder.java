@@ -12,7 +12,7 @@ public class MensajeQueryBuilder extends QueryBuilder {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName("Mensajes","mensajes");
 		criteria.createAlias("mensajes.miembro","miembro");
 		criteria.add(Restrictions.eq("miembro.nombre",idmiembro));
-		return QueryBuilder.getXMLfromCriteria(criteria);
+		return QueryBuilder.getSerializedCriteria(criteria);
 		
 	}
 
