@@ -78,6 +78,21 @@ public class UsuarioParser extends Parser {
 		
 	}
 	
+	public ar.fiuba.redsocedu.datalayer.ws.Usuario toDatabaseUser(Usuario usuario) {
+		ar.fiuba.redsocedu.datalayer.ws.Usuario user = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
+		user.setNombre(usuario.getNombre());
+		user.setApellido(usuario.getApellido());
+		user.setPadron(usuario.getPadron());
+		user.setFechaNac(usuario.getFechaNac());
+		user.setActivado(usuario.isActivado());
+		user.setHabilitado(usuario.isHabilitado());
+		user.setEmail(usuario.getEmail());
+		user.setPassword(usuario.getPassword());
+		user.setUsername(usuario.getUsername());
+		user.setUsuarioId(usuario.getUsuarioId());
+		return user;
+	}
+	
 	public String getIdUsuario(){
 		
 		return this.campos.get(UsuarioTags.ID_TAG);
