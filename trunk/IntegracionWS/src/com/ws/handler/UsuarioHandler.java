@@ -84,9 +84,8 @@ public class UsuarioHandler extends Handler {
 		
 		List<ReturnedObject> usuarios = null; 
 		usuarios = port.query(query);
-		if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {
-			//TODO: return an error message
-			return "";
+		if(usuarios == null || usuarios.isEmpty()) {
+			return "";  //TODO que se devuelve en el caso de no econtrar nada... vacio?
 		}
 		return UsuarioSerializer.getXMLfromUsuario(usuarios);
 	}
