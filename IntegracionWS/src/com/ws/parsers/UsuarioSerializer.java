@@ -11,6 +11,12 @@ import com.ws.pojos.Usuario;
 
 public class UsuarioSerializer {
 	
+	
+	/*
+	 * Esta clase permite manipular la forma en la que el Xstream arma el xml
+	 * En este caso el XMLGregorianblahblah tiene un metodo especial que devuelve
+	 * la fecha muy linda, uso ese.
+	 */
 	private static class XMLCalendarConverter extends AbstractSingleValueConverter {
 
 		@SuppressWarnings("rawtypes")
@@ -35,8 +41,7 @@ public class UsuarioSerializer {
 	
 	public static String getXMLfromUsuario(Usuario miusuario ){
 		XStream xstream = new XStream();
-		xstream.alias("usuario", Usuario.class);
-		xstream.processAnnotations(Usuario.class);
+		xstream.alias("usuario", Usuario.class);    //Para que no ponga los nombre de clase, se ponene alias (queda mejor el XML)
 		xstream.registerConverter(new XMLCalendarConverter());
 		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
 		String xml = xstream.toXML(miusuario);		
@@ -46,11 +51,25 @@ public class UsuarioSerializer {
 	public static String getXMLfromUsuario(Collection<?> misusuarios ){
 		XStream xstream = new XStream();
 		xstream.alias("usuario", Usuario.class);
-		xstream.processAnnotations(Usuario.class);
 		xstream.registerConverter(new XMLCalendarConverter());
 		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
 		String xml = xstream.toXML(misusuarios);		
 		return xml;
 	}
+	
+// El siguiente es un ejemplo de como queda la salida de un usuario en XML
+//
+//	  <usuario>
+//	    <usuarioId>12</usuarioId>
+//	    <activado>true</activado>
+//	    <apellido>sanchez</apellido>
+//	    <email>ap@fiuba.edu.ar</email>
+//	    <fechaNac>1986-05-05</fechaNac>
+//	    <habilitado>true</habilitado>
+//	    <nombre>Alfonso</nombre>
+//	    <padron>999999</padron>
+//	    <password>123456</password>
+//	    <username>Pepe</username>
+//	  </usuario>
 	
 }
