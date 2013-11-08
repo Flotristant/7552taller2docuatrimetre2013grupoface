@@ -27,11 +27,16 @@ public class UsuarioHandler extends Handler {
 	@Override
 	public String guardarDatos(Document doc) {
 		UsuarioParser parser = new UsuarioParser(doc);
-		port.beginTransaction();
-		Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
-		port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
-		port.commit();//if ok
-		port.rollback();//if not
+		try{
+			port.beginTransaction();
+			Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
+			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
+			port.commit();
+		}
+		catch(ClientTransportException e) {
+			port.rollback();
+			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+		}
 	
 		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());	
 	}
@@ -39,20 +44,25 @@ public class UsuarioHandler extends Handler {
 	@Override
 	public String actualizarDatos(Document doc) {	
 		UsuarioParser parser = new UsuarioParser(doc);
-		port.beginTransaction();
-		String query = this.queryBuilder.getAllById(parser.getIdUsuario());
-		List<ReturnedObject> usuarios = null; 
-		usuarios =port.query(query);
-		if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {			
+		try {
+			port.beginTransaction();
+			String query = this.queryBuilder.getAllById(parser.getIdUsuario());
+			List<ReturnedObject> usuarios = null; 
+			usuarios =port.query(query);
+			if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {			
+				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+			}
+			Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
+			usuario.setUsuarioId(Long.parseLong(parser.getIdUsuario()));
+			
+			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
+			port.commit();			
+		}
+		catch(ClientTransportException e) {
+			port.rollback();
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 		}
-		Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
-		usuario.setUsuarioId(Long.parseLong(parser.getIdUsuario()));
-		
-		port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
-		port.commit();//if ok
-		port.rollback();//if not    //que onda este rollback sin un try catch ni nada...?
-		return null;
+		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
 	}
 
 	@Override
@@ -69,7 +79,6 @@ public class UsuarioHandler extends Handler {
 			Usuario removingUsuario = (Usuario)usuarios.get(0);
 			port.delete("ar.fiuba.redsocedu.datalayer.dtos.Usuario",removingUsuario);
 			port.commit();//if ok
-			//TODO: return ok message
 		} catch(ClientTransportException e) {
 			port.rollback();//if not
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
