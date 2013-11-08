@@ -26,6 +26,14 @@ public interface IData {
 
     /**
      * 
+     */
+    @WebMethod
+    @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
+    @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
+    public void beginTransaction();
+
+    /**
+     * 
      * @param object
      * @param entityName
      */
@@ -45,14 +53,6 @@ public interface IData {
     @RequestWrapper(localName = "rollback", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Rollback")
     @ResponseWrapper(localName = "rollbackResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.RollbackResponse")
     public void rollback();
-
-    /**
-     * 
-     */
-    @WebMethod
-    @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
-    @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
-    public void beginTransaction();
 
     /**
      * 
