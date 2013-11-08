@@ -11,6 +11,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.ws.parsers.UsuarioParser;
+import com.ws.parsers.UsuarioSerializer;
 import com.ws.tags.UsuarioTags;
 
 public class UsuarioHandler extends Handler {
@@ -81,7 +82,13 @@ public class UsuarioHandler extends Handler {
 		Map<String, String > campos = this.getCampos(doc);
 		String query = this.queryBuilder.getAllByAttributes(campos);
 		
-		return query;
+		List<ReturnedObject> usuarios = null; 
+		usuarios = port.query(query);
+		if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {
+			//TODO: return an error message
+			return "";
+		}
+		return UsuarioSerializer.getXMLfromUsuario(usuarios);
 	}
 	
 	

@@ -1,7 +1,6 @@
 package com.db.querys;
 
 import java.util.Map;
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -18,8 +17,10 @@ public class UsuarioQueryBuilder extends QueryBuilder{
 
 	@Override
 	public String getAllByAttributes(Map<String, String> attributes) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
+		criteria.add(Restrictions.allEq(attributes));   //todos los atributos pasados por parámtero deben matchear
+		return QueryBuilder.getSerializedCriteria(criteria);
 	}
 	
 	@Override
