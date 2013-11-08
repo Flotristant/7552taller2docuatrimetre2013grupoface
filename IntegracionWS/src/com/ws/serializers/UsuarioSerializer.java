@@ -1,4 +1,4 @@
-package com.ws.parsers;
+package com.ws.serializers;
 
 import java.util.Collection;
 
@@ -39,7 +39,7 @@ public class UsuarioSerializer {
 	}
 	
 	
-	public static String getXMLfromUsuario(Usuario miusuario ){
+	public static String getXMLfromPojo(Usuario miusuario ){
 		XStream xstream = new XStream();
 		xstream.alias("usuario", Usuario.class);    //Para que no ponga los nombre de clase, se ponene alias (queda mejor el XML)
 		xstream.registerConverter(new XMLCalendarConverter());
@@ -48,7 +48,7 @@ public class UsuarioSerializer {
 		return xml;
 	}
 	
-	public static String getXMLfromUsuario(Collection<?> misusuarios ){
+	public static String getXMLfromPojo(Collection<?> misusuarios ){
 		XStream xstream = new XStream();
 		xstream.alias("usuario", Usuario.class);
 		xstream.registerConverter(new XMLCalendarConverter());
