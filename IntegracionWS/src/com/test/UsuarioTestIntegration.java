@@ -30,7 +30,7 @@ public class UsuarioTestIntegration {
 	}
 	
 	private String createSelectUserXML() {
-		return "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba</username></Usuario></WS>";
+		return "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba</username><password>123</password><activado>True</activado><habilitado>True</habilitado></Usuario></WS>";
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class UsuarioTestIntegration {
 	}
 	
 	private String createCreateUserXML() {
-		return "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba</username><nombre>Lalo</nombre><apellido>Landa</apellido></Usuario></WS>";
+		return "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba</username><password>123</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
 	}
 	
 	@Test
@@ -52,10 +52,10 @@ public class UsuarioTestIntegration {
 	}
 	
 	private String createUpdateUserXML() {
-		return "<?xml version=\"1.0\"?><WS><Usuario><id>1</id><username>usuario_prueba</username><nombre>Lalo</nombre><apellido>Landa</apellido></Usuario></WS>";
+		return "<?xml version=\"1.0\"?><WS><Usuario><id>1</id><username>usuario_prueba3</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
+		
 	}
 	
-	
-	
+
 
 }

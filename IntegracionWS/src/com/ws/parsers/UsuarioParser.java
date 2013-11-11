@@ -93,9 +93,9 @@ public class UsuarioParser extends Parser {
 		return user;
 	}
 	
-	public String getIdUsuario(){
+	public Long getIdUsuario(){
 		
-		return this.campos.get(UsuarioTags.ID_TAG);
+		return Long.parseLong(this.campos.get(UsuarioTags.ID_TAG));
 	}
 	
 	

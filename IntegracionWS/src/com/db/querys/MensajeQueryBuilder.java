@@ -17,7 +17,7 @@ public class MensajeQueryBuilder extends QueryBuilder {
 	}
 
 	@Override
-	public String getAllById(String id) {
+	public String getAllById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,7 +29,7 @@ public class MensajeQueryBuilder extends QueryBuilder {
 	}
 
 	@Override
-	public String removeById(String id) {
+	public String removeById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

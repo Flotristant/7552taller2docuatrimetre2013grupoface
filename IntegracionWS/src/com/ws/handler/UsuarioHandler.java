@@ -14,7 +14,6 @@ import com.utils.NotificacionFactory;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.serializers.UsuarioSerializer;
-import com.ws.tags.UsuarioTags;
 
 public class UsuarioHandler extends Handler {
 	
@@ -53,7 +52,7 @@ public class UsuarioHandler extends Handler {
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
 			Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
-			usuario.setUsuarioId(Long.parseLong(parser.getIdUsuario()));
+			usuario.setUsuarioId(parser.getIdUsuario());
 			
 			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
 			port.commit();			
@@ -67,10 +66,10 @@ public class UsuarioHandler extends Handler {
 
 	@Override
 	public String borrarDatos(Document doc) {
-		Map<String, String> campos = getCampos(doc);
+		UsuarioParser parser = new UsuarioParser(doc);
 		try {
 			port.beginTransaction();
-			String query = this.queryBuilder.getAllById(campos.get(UsuarioTags.ID_TAG));
+			String query = this.queryBuilder.getAllById(parser.getIdUsuario());
 			List<ReturnedObject> usuarios = null; 
 			usuarios = port.query(query);
 			if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {

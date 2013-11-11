@@ -10,7 +10,7 @@ public class ForoQueryBuilder extends QueryBuilder{
 	private static final String CLASS_NAME = "Foros";
 
 	@Override
-	public String getAllById(String id) {
+	public String getAllById(Long id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
 		criteria.add(Restrictions.idEq(id));
 		return QueryBuilder.getSerializedCriteria(criteria);
@@ -23,7 +23,7 @@ public class ForoQueryBuilder extends QueryBuilder{
 	}
 
 	@Override
-	public String removeById(String id) {
+	public String removeById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
