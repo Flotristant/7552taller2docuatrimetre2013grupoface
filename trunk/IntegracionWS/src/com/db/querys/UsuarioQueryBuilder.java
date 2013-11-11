@@ -6,10 +6,10 @@ import org.hibernate.criterion.Restrictions;
 
 public class UsuarioQueryBuilder extends QueryBuilder{
 
-	private static final String CLASS_NAME = "User";
+	private static final String CLASS_NAME = "ar.fiuba.redsocedu.datalayer.dtos.Usuario";
 
 	@Override
-	public String getAllById(String id) {
+	public String getAllById(Long id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
 		criteria.add(Restrictions.idEq(id));
 		return QueryBuilder.getSerializedCriteria(criteria);
@@ -24,7 +24,7 @@ public class UsuarioQueryBuilder extends QueryBuilder{
 	}
 	
 	@Override
-	public String removeById(String id) {
+	public String removeById(Long id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
 		criteria.add(Restrictions.idEq(id));
 		String xml = QueryBuilder.getSerializedCriteria(criteria);

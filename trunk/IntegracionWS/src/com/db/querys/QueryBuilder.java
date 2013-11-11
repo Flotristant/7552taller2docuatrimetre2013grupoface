@@ -69,7 +69,7 @@ public abstract class QueryBuilder {
         return new String( Base64Coder.encode( baos.toByteArray() ) );
     }
 		
-	public abstract String getAllById(String id);
+	public abstract String getAllById(Long id);
 	public abstract String getAllByAttributes(Map<String, String> attributes);
-	public abstract String removeById(String id);
+	public abstract String removeById(Long id);
 }
