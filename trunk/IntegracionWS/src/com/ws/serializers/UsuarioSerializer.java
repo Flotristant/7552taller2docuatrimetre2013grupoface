@@ -1,13 +1,16 @@
 package com.ws.serializers;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import ar.fiuba.redsocedu.datalayer.ws.Usuario;
+
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.basic.AbstractSingleValueConverter;
-import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
 
 public class UsuarioSerializer {
@@ -28,8 +31,15 @@ public class UsuarioSerializer {
         public String toString(Object obj){
         	
         	if (obj == null) return "";
+        	
         	XMLGregorianCalendarImpl fechaimp = (XMLGregorianCalendarImpl) obj;
-        	return fechaimp.toXMLFormat();
+        	
+        	Calendar calendar = fechaimp.toGregorianCalendar();
+        	
+        	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss");
+        	String dateString = formatter.format(calendar.getTime());
+        	
+        	return dateString;
         	
         }
 
@@ -39,38 +49,48 @@ public class UsuarioSerializer {
 		}
 	}
 	
+	/**
+	 * Metodo que mapea todos los nombres de atributo desde los pojos de DB
+	 * hacia los objetos de modelo. 
+	 * @param xstream
+	 */
+	private static void setAttributeMappings(XStream xstream){
+		
+		//El nombre de la clase (atributo raiz) sera
+		xstream.alias(UsuarioTags.CLASS_TAG, Usuario.class);
+		
+		//Mapeos de los nombres de atributo
+		xstream.aliasField(UsuarioTags.ID_TAG, Usuario.class, "usuarioId");
+		xstream.aliasField(UsuarioTags.ACTIVADO_TAG, Usuario.class, "activado");
+		xstream.aliasField(UsuarioTags.APELLIDO_TAG, Usuario.class, "apellido");
+		xstream.aliasField(UsuarioTags.EMAIL_TAG, Usuario.class, "email");
+		xstream.aliasField(UsuarioTags.FECHANAC_TAG, Usuario.class, "fechaNac");
+		xstream.aliasField(UsuarioTags.HABILITADO_TAG, Usuario.class, "habilitado");
+		xstream.aliasField(UsuarioTags.NOMBRE_TAG, Usuario.class, "nombre");
+		xstream.aliasField(UsuarioTags.PADRON_TAG, Usuario.class, "padron");
+		xstream.aliasField(UsuarioTags.PASSWORD_TAG, Usuario.class, "password");
+		xstream.aliasField(UsuarioTags.USERNANME_TAG, Usuario.class, "username");
+		
+		//alias implementacion interfaz
+		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
+		
+		//Conversor de la clase XMLGregorian para que devuelva la fecha en el formato indicado
+		xstream.registerConverter(new XMLCalendarConverter());
+	}
+	
 	
 	public static String getXMLfromPojo(Usuario miusuario ){
 		XStream xstream = new XStream();
-		xstream.alias(UsuarioTags.CLASS_TAG, Usuario.class);    //Para que no ponga los nombre de clase, se ponene alias (queda mejor el XML)
-		xstream.registerConverter(new XMLCalendarConverter());
-		xstream.alias(UsuarioTags.FECHANAC_TAG, XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
+		setAttributeMappings(xstream);
 		String xml = xstream.toXML(miusuario);		
 		return xml;
 	}
 	
 	public static String getXMLfromPojo(Collection<?> misusuarios ){
 		XStream xstream = new XStream();
-		xstream.alias(UsuarioTags.CLASS_TAG, Usuario.class);
-		xstream.registerConverter(new XMLCalendarConverter());
-		xstream.alias(UsuarioTags.FECHANAC_TAG, XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
+		setAttributeMappings(xstream);
 		String xml = xstream.toXML(misusuarios);		
 		return xml;
 	}
-	
-// El siguiente es un ejemplo de como queda la salida de un usuario en XML
-//
-//	  <usuario>
-//	    <usuarioId>12</usuarioId>
-//	    <activado>true</activado>
-//	    <apellido>sanchez</apellido>
-//	    <email>ap@fiuba.edu.ar</email>
-//	    <fechaNac>1986-05-05</fechaNac>
-//	    <habilitado>true</habilitado>
-//	    <nombre>Alfonso</nombre>
-//	    <padron>999999</padron>
-//	    <password>123456</password>
-//	    <username>Pepe</username>
-//	  </usuario>
-	
+		
 }

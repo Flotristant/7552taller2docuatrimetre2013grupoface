@@ -4,11 +4,13 @@ package com.ws.handler;
 import java.util.Map;
 import javax.xml.datatype.XMLGregorianCalendar;
 import org.w3c.dom.Document;
+
+import ar.fiuba.redsocedu.datalayer.ws.Usuario;
+
 import com.db.querys.UsuarioQueryBuilder;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.UsuarioParser;
-import com.ws.pojos.Usuario;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.serializers.UsuarioSerializer;
 
