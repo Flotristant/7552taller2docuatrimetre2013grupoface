@@ -18,8 +18,8 @@ public class UsuarioSerializer {
 	
 	/*
 	 * Esta clase permite manipular la forma en la que el Xstream arma el xml
-	 * En este caso el XMLGregorianblahblah tiene un metodo especial que devuelve
-	 * la fecha muy linda, uso ese.
+	 * En este caso el XMLGregorianblahblah tiene que ajustarse a la fecha necesria
+	 * por eso se manipula su salida. de ser necesario se sacará esta clase y hará publica.
 	 */
 	private static class XMLCalendarConverter extends AbstractSingleValueConverter {
 
