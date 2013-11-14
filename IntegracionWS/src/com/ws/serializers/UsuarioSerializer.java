@@ -78,19 +78,23 @@ public class UsuarioSerializer {
 		xstream.registerConverter(new XMLCalendarConverter());
 	}
 	
+	private static String addSuperTags (String body){
+		
+		return "<WS>"+body+"</WS>";
+	}
 	
 	public static String getXMLfromPojo(Usuario miusuario ){
 		XStream xstream = new XStream();
 		setAttributeMappings(xstream);
 		String xml = xstream.toXML(miusuario);		
-		return xml;
+		return addSuperTags(xml);
 	}
 	
 	public static String getXMLfromPojo(Collection<?> misusuarios ){
 		XStream xstream = new XStream();
 		setAttributeMappings(xstream);
 		String xml = xstream.toXML(misusuarios);		
-		return xml;
+		return addSuperTags(xml);
 	}
 		
 }
