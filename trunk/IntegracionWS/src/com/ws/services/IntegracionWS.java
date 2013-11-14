@@ -17,8 +17,8 @@ import com.ws.handler.Handler;
 public class IntegracionWS {
 		
 	private static String HANDLER_PACKAGE = "com.ws.handler." ;
-	private static String HANDLER_SUFIX = "Handler";
-	//private static String HANDLER_SUFIX = "HandlerMock";
+	//private static String HANDLER_SUFIX = "Handler";
+	private static String HANDLER_SUFIX = "HandlerMock";
 	private static String XML_ROOT_TAG = "WS"; 
 	
 
@@ -77,7 +77,7 @@ public class IntegracionWS {
 	}
 	
 
-	private Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
+	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
 		docBuilder = docFactory.newDocumentBuilder();

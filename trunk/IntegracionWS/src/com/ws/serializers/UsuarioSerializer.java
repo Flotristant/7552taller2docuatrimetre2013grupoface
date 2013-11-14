@@ -8,6 +8,7 @@ import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.basic.AbstractSingleValueConverter;
 import com.ws.pojos.Usuario;
+import com.ws.tags.UsuarioTags;
 
 public class UsuarioSerializer {
 	
@@ -41,18 +42,18 @@ public class UsuarioSerializer {
 	
 	public static String getXMLfromPojo(Usuario miusuario ){
 		XStream xstream = new XStream();
-		xstream.alias("usuario", Usuario.class);    //Para que no ponga los nombre de clase, se ponene alias (queda mejor el XML)
+		xstream.alias(UsuarioTags.CLASS_TAG, Usuario.class);    //Para que no ponga los nombre de clase, se ponene alias (queda mejor el XML)
 		xstream.registerConverter(new XMLCalendarConverter());
-		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
+		xstream.alias(UsuarioTags.FECHANAC_TAG, XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
 		String xml = xstream.toXML(miusuario);		
 		return xml;
 	}
 	
 	public static String getXMLfromPojo(Collection<?> misusuarios ){
 		XStream xstream = new XStream();
-		xstream.alias("usuario", Usuario.class);
+		xstream.alias(UsuarioTags.CLASS_TAG, Usuario.class);
 		xstream.registerConverter(new XMLCalendarConverter());
-		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
+		xstream.alias(UsuarioTags.FECHANAC_TAG, XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
 		String xml = xstream.toXML(misusuarios);		
 		return xml;
 	}

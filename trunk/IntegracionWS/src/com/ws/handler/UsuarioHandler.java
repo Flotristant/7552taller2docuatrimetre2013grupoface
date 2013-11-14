@@ -28,7 +28,7 @@ public class UsuarioHandler extends Handler {
 		UsuarioParser parser = new UsuarioParser(doc);
 		try{
 			port.beginTransaction();
-			Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
+			Usuario usuario = this.toDatabaseUser(parser.getEntidadUsuario());
 			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
 			port.commit();
 		}
@@ -51,7 +51,7 @@ public class UsuarioHandler extends Handler {
 			if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {			
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
-			Usuario usuario = parser.toDatabaseUser(parser.getEntidadUsuario());
+			Usuario usuario = this.toDatabaseUser(parser.getEntidadUsuario());
 			usuario.setUsuarioId(parser.getIdUsuario());
 			
 			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
@@ -102,6 +102,26 @@ public class UsuarioHandler extends Handler {
 	protected Map<String, String> getCampos(Document doc) {
 		UsuarioParser parser = new UsuarioParser(doc);
 		return parser.obtenerCampos();
+	}
+	
+	/**
+	 * Este método transforma el usuario de la capa de Negocio en un usuario de la capa de BD.
+	 * @param usuario
+	 * @return
+	 */
+	public Usuario toDatabaseUser(com.ws.pojos.Usuario usuario) {
+		ar.fiuba.redsocedu.datalayer.ws.Usuario user = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
+		user.setNombre(usuario.getNombre());
+		user.setApellido(usuario.getApellido());
+		user.setPadron(usuario.getPadron());
+		user.setFechaNac(usuario.getFechaNac());
+		user.setActivado(usuario.isActivado());
+		user.setHabilitado(usuario.isHabilitado());
+		user.setEmail(usuario.getEmail());
+		user.setPassword(usuario.getPassword());
+		user.setUsername(usuario.getUsername());
+		user.setUsuarioId(usuario.getUsuarioId());
+		return user;
 	}
 
 }
