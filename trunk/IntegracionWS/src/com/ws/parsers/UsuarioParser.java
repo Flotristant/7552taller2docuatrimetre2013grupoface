@@ -48,6 +48,10 @@ public class UsuarioParser extends Parser {
 		return this.campos;
 	} 
 	
+	/**
+	 * Este método retorna una instancia de usuario que representa el Usuario en la capa de Negocio.
+	 * @return
+	 */
 	public Usuario getEntidadUsuario(){
 		Usuario usuario = new Usuario();
 	
@@ -57,6 +61,7 @@ public class UsuarioParser extends Parser {
 		usuario.setApellido(this.campos.get(UsuarioTags.APELLIDO_TAG));
 		usuario.setPadron(this.campos.get(UsuarioTags.PADRON_TAG));
 		usuario.setEmail(this.campos.get(UsuarioTags.EMAIL_TAG));
+		usuario.setUsuarioId(Long.parseLong(this.campos.get(UsuarioTags.ID_TAG)));
 		
 		//Conversion de fecha a XMLGregorianCalendar
 		XMLGregorianCalendar fecha;
@@ -76,21 +81,6 @@ public class UsuarioParser extends Parser {
 		
 		return usuario;
 		
-	}
-	
-	public ar.fiuba.redsocedu.datalayer.ws.Usuario toDatabaseUser(Usuario usuario) {
-		ar.fiuba.redsocedu.datalayer.ws.Usuario user = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
-		user.setNombre(usuario.getNombre());
-		user.setApellido(usuario.getApellido());
-		user.setPadron(usuario.getPadron());
-		user.setFechaNac(usuario.getFechaNac());
-		user.setActivado(usuario.isActivado());
-		user.setHabilitado(usuario.isHabilitado());
-		user.setEmail(usuario.getEmail());
-		user.setPassword(usuario.getPassword());
-		user.setUsername(usuario.getUsername());
-		user.setUsuarioId(usuario.getUsuarioId());
-		return user;
 	}
 	
 	public Long getIdUsuario(){
