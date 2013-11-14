@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "DataService", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", wsdlLocation = "file:/C:/Users/Catu/Documents/Facultad/Taller%20de%20Programacion%20II/7552taller2docuatrimetre2013grupoface/IntegracionWS/WEB-INF/rsedatos.wsdl")
+@WebServiceClient(name = "DataService", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", wsdlLocation = "file:/C:/Users/Catu/Desktop/IntegracionWS/WEB-INF/rsedatos.wsdl")
 public class DataService
     extends Service
 {
@@ -30,9 +30,9 @@ public class DataService
         try {
             URL baseUrl;
             baseUrl = ar.fiuba.redsocedu.datalayer.ws.DataService.class.getResource(".");
-            url = new URL(baseUrl, "file:/C:/Users/Catu/Documents/Facultad/Taller%20de%20Programacion%20II/7552taller2docuatrimetre2013grupoface/IntegracionWS/WEB-INF/rsedatos.wsdl");
+            url = new URL(baseUrl, "file:/home/florencia/workspace/7552taller2docuatrimetre2013grupoface/IntegracionWS/WEB-INF/rsedatos.wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'file:/C:/Users/Catu/Documents/Facultad/Taller%20de%20Programacion%20II/7552taller2docuatrimetre2013grupoface/IntegracionWS/WEB-INF/rsedatos.wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'file:/home/florencia/workspace/7552taller2docuatrimetre2013grupoface/IntegracionWS/WEB-INF/rsedatos.wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         DATASERVICE_WSDL_LOCATION = url;

@@ -63,6 +63,25 @@ public class UsuarioHandlerMock extends Handler {
 		return UsuarioSerializer.getXMLfromPojo(miusuario);
 	}
 	
+//	@Override
+//	public String seleccionarDatos(Document doc) {
+//		UsuarioParser parser = new UsuarioParser(doc);
+//		Usuario miusuario  = parser.getEntidadUsuario();
+//
+//		miusuario.setEmail("ap@fiuba.edu.ar");
+//		miusuario.setPadron("1234");
+//		
+//		XMLGregorianCalendar fecha = new XMLGregorianCalendarImpl();
+//		fecha.setYear(1986);
+//		fecha.setMonth(5);
+//		fecha.setDay(5);
+//		
+//		miusuario.setFechaNac(fecha);
+//		miusuario.setUsuarioId(12L);
+//		
+//		return UsuarioSerializer.getXMLfromPojo(miusuario);
+//	}
+	
 	
 	protected Map<String, String> getCampos(Document doc) {
 		UsuarioParser parser = new UsuarioParser(doc);
