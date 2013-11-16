@@ -26,14 +26,6 @@ public interface IData {
 
     /**
      * 
-     */
-    @WebMethod
-    @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
-    @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
-    public void beginTransaction();
-
-    /**
-     * 
      * @param object
      * @param entityName
      */
@@ -50,23 +42,25 @@ public interface IData {
      * 
      */
     @WebMethod
+    @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
+    @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
+    public void beginTransaction();
+
+    /**
+     * 
+     */
+    @WebMethod
     @RequestWrapper(localName = "rollback", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Rollback")
     @ResponseWrapper(localName = "rollbackResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.RollbackResponse")
     public void rollback();
 
     /**
      * 
-     * @param object
-     * @param entityName
      */
     @WebMethod
-    @RequestWrapper(localName = "delete", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Delete")
-    @ResponseWrapper(localName = "deleteResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.DeleteResponse")
-    public void delete(
-        @WebParam(name = "entityName", targetNamespace = "")
-        String entityName,
-        @WebParam(name = "object", targetNamespace = "")
-        Object object);
+    @RequestWrapper(localName = "commit", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Commit")
+    @ResponseWrapper(localName = "commitResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.CommitResponse")
+    public void commit();
 
     /**
      * 
@@ -84,10 +78,16 @@ public interface IData {
 
     /**
      * 
+     * @param object
+     * @param entityName
      */
     @WebMethod
-    @RequestWrapper(localName = "commit", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Commit")
-    @ResponseWrapper(localName = "commitResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.CommitResponse")
-    public void commit();
+    @RequestWrapper(localName = "delete", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Delete")
+    @ResponseWrapper(localName = "deleteResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.DeleteResponse")
+    public void delete(
+        @WebParam(name = "entityName", targetNamespace = "")
+        String entityName,
+        @WebParam(name = "object", targetNamespace = "")
+        Object object);
 
 }

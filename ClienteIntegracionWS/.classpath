@@ -2,6 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/endorsed/geronimo-jaxws_2.2_spec-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/endorsed/geronimo-saaj_1.3_spec-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/endorsed/jaxb-api-2.1.jar"/>
 	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/apache-mime4j-core-0.7.2.jar"/>
@@ -69,8 +72,5 @@
 	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/xml-resolver-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/XmlSchema-1.4.7.jar"/>
-	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/endorsed/geronimo-jaxws_2.2_spec-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/endorsed/geronimo-saaj_1.3_spec-1.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/axis2-1.6.2/lib/endorsed/jaxb-api-2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
