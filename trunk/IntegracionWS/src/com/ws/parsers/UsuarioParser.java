@@ -61,7 +61,9 @@ public class UsuarioParser extends Parser {
 		usuario.setApellido(this.campos.get(UsuarioTags.APELLIDO_TAG));
 		usuario.setPadron(this.campos.get(UsuarioTags.PADRON_TAG));
 		usuario.setEmail(this.campos.get(UsuarioTags.EMAIL_TAG));
-		usuario.setUsuarioId(Long.parseLong(this.campos.get(UsuarioTags.ID_TAG)));
+		if(this.campos.get(UsuarioTags.ID_TAG) != null) {
+			usuario.setUsuarioId(Long.parseLong(this.campos.get(UsuarioTags.ID_TAG)));
+		}
 		
 		//Conversion de fecha a XMLGregorianCalendar
 		XMLGregorianCalendar fecha;

@@ -1,0 +1,240 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+				  xmlns:ns1="http://org.apache.axis2/xsd" 
+				  xmlns:ns="http://services.ws.com" 
+				  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
+				  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+				  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+				  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+				  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+				  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://services.ws.com">
+    <wsdl:types>
+        <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.ws.com">
+            <xs:element name="guardarDatos">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="guardarDatosResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="actualizarDatos">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="actualizarDatosResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="seleccionarDatos">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="seleccionarDatosResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="eliminarDatos">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="eliminarDatosResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="seleccionarDatosRequest">
+        <wsdl:part name="parameters" element="ns:seleccionarDatos"/>
+    </wsdl:message>
+    <wsdl:message name="seleccionarDatosResponse">
+        <wsdl:part name="parameters" element="ns:seleccionarDatosResponse"/>
+    </wsdl:message>
+    <wsdl:message name="actualizarDatosRequest">
+        <wsdl:part name="parameters" element="ns:actualizarDatos"/>
+    </wsdl:message>
+    <wsdl:message name="actualizarDatosResponse">
+        <wsdl:part name="parameters" element="ns:actualizarDatosResponse"/>
+    </wsdl:message>
+    <wsdl:message name="guardarDatosRequest">
+        <wsdl:part name="parameters" element="ns:guardarDatos"/>
+    </wsdl:message>
+    <wsdl:message name="guardarDatosResponse">
+        <wsdl:part name="parameters" element="ns:guardarDatosResponse"/>
+    </wsdl:message>
+    <wsdl:message name="eliminarDatosRequest">
+        <wsdl:part name="parameters" element="ns:eliminarDatos"/>
+    </wsdl:message>
+    <wsdl:message name="eliminarDatosResponse">
+        <wsdl:part name="parameters" element="ns:eliminarDatosResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="integracionPortType">
+        <wsdl:operation name="seleccionarDatos">
+            <wsdl:input message="ns:seleccionarDatosRequest" wsaw:Action="urn:seleccionarDatos"/>
+            <wsdl:output message="ns:seleccionarDatosResponse" wsaw:Action="urn:seleccionarDatosResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="actualizarDatos">
+            <wsdl:input message="ns:actualizarDatosRequest" wsaw:Action="urn:actualizarDatos"/>
+            <wsdl:output message="ns:actualizarDatosResponse" wsaw:Action="urn:actualizarDatosResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="guardarDatos">
+            <wsdl:input message="ns:guardarDatosRequest" wsaw:Action="urn:guardarDatos"/>
+            <wsdl:output message="ns:guardarDatosResponse" wsaw:Action="urn:guardarDatosResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="eliminarDatos">
+            <wsdl:input message="ns:eliminarDatosRequest" wsaw:Action="urn:eliminarDatos"/>
+            <wsdl:output message="ns:eliminarDatosResponse" wsaw:Action="urn:eliminarDatosResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="integracionSoap11Binding" type="ns:integracionPortType">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="seleccionarDatos">
+            <soap:operation soapAction="urn:seleccionarDatos" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualizarDatos">
+            <soap:operation soapAction="urn:actualizarDatos" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="guardarDatos">
+            <soap:operation soapAction="urn:guardarDatos" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="eliminarDatos">
+            <soap:operation soapAction="urn:eliminarDatos" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="integracionSoap12Binding" type="ns:integracionPortType">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="seleccionarDatos">
+            <soap12:operation soapAction="urn:seleccionarDatos" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualizarDatos">
+            <soap12:operation soapAction="urn:actualizarDatos" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="guardarDatos">
+            <soap12:operation soapAction="urn:guardarDatos" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="eliminarDatos">
+            <soap12:operation soapAction="urn:eliminarDatos" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="integracionHttpBinding" type="ns:integracionPortType">
+        <http:binding verb="POST"/>
+        <wsdl:operation name="seleccionarDatos">
+            <http:operation location="seleccionarDatos"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="actualizarDatos">
+            <http:operation location="actualizarDatos"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="guardarDatos">
+            <http:operation location="guardarDatos"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="eliminarDatos">
+            <http:operation location="eliminarDatos"/>
+            <wsdl:input>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content type="application/xml" part="parameters"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="integracion">
+        <wsdl:port name="integracionHttpSoap11Endpoint" binding="ns:integracionSoap11Binding">
+            <soap:address location="http://localhost:8080/axis2/services/integracion.integracionHttpSoap11Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="integracionHttpSoap12Endpoint" binding="ns:integracionSoap12Binding">
+            <soap12:address location="http://localhost:8080/axis2/services/integracion.integracionHttpSoap12Endpoint/"/>
+        </wsdl:port>
+        <wsdl:port name="integracionHttpEndpoint" binding="ns:integracionHttpBinding">
+            <http:address location="http://localhost:8080/axis2/services/integracion.integracionHttpEndpoint/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
