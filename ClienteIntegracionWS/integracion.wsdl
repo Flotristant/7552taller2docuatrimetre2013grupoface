@@ -9,20 +9,6 @@
 				  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://services.ws.com">
     <wsdl:types>
         <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.ws.com">
-            <xs:element name="guardarDatos">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element name="guardarDatosResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
             <xs:element name="actualizarDatos">
                 <xs:complexType>
                     <xs:sequence>
@@ -59,6 +45,20 @@
                 </xs:complexType>
             </xs:element>
             <xs:element name="eliminarDatosResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="guardarDatos">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="guardarDatosResponse">
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element minOccurs="0" name="return" nillable="true" type="xs:string"/>
