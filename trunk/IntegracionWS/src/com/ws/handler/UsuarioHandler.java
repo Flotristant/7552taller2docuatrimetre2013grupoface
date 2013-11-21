@@ -3,6 +3,7 @@ package com.ws.handler;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
@@ -15,8 +16,10 @@ import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.serializers.UsuarioSerializer;
 
+
 public class UsuarioHandler extends Handler {
 	
+	private static final Logger log = Logger.getLogger(UsuarioHandler.class);
 	
 	public UsuarioHandler() {
 		super();
@@ -87,15 +90,24 @@ public class UsuarioHandler extends Handler {
 
 	@Override
 	public String seleccionarDatos(Document doc) {
+		
 		Map<String, String > campos = this.getCampos(doc);
 		String query = this.queryBuilder.getAllByAttributes(campos);
-		
+		log.debug(query);
+		try {
+		port.beginTransaction();
 		List<ReturnedObject> usuarios = null; 
 		usuarios = port.query(query);
 		if(usuarios == null || usuarios.isEmpty()) {
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
 		}
+		log.debug(usuarios);
+		port.commit();
 		return UsuarioSerializer.getXMLfromPojo(usuarios);
+		}catch (ClientTransportException e) {
+			port.rollback();//if not
+			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+		}
 	}
 	
 	
