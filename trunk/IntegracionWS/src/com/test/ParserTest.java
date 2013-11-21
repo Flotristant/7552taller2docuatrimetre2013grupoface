@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,7 +18,10 @@ import org.xml.sax.SAXException;
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 import org.w3c.dom.Document;
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.CompactWriter;
 import com.ws.parsers.UsuarioParser;
+import com.ws.serializers.UsuarioPojoSerializer;
 import com.ws.serializers.UsuarioSerializer;
 
 public class ParserTest {
@@ -68,6 +72,13 @@ public class ParserTest {
 		UsuarioParser up = new UsuarioParser(doc);
 		
 		System.out.println(up.obtenerCampos());
+		
+		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidadUsuario());
+		
+		System.out.println(salida);
+		
+		
+		
 		}
 		catch (Exception e){
 			e.printStackTrace();

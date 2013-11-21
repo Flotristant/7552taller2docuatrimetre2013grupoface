@@ -2,21 +2,16 @@ package com.ws.handler;
 
 
 import java.util.Map;
-import javax.xml.datatype.XMLGregorianCalendar;
 import org.w3c.dom.Document;
-
-import ar.fiuba.redsocedu.datalayer.ws.Usuario;
-
 import com.db.querys.UsuarioQueryBuilder;
-import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
+import com.utils.MockCache;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
-import com.ws.serializers.UsuarioSerializer;
+
 
 
 public class UsuarioHandlerMock extends Handler {
-	
 	
 	public UsuarioHandlerMock() {
 		super();
@@ -25,44 +20,53 @@ public class UsuarioHandlerMock extends Handler {
 	
 	@Override
 	public String guardarDatos(Document doc) {
+		
+		MockCache.guardarUsuario(doc);
 		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());	
 	}
 
 	@Override
-	public String actualizarDatos(Document doc) {	
+	public String actualizarDatos(Document doc) {
+		MockCache.guardarUsuario(doc);
 		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
 	}
 
 	@Override
 	public String borrarDatos(Document doc) {
-
-		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+		
+		if(MockCache.borrarUsuario(doc)) return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+		else return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
 	}
 
 	@Override
 	public String seleccionarDatos(Document doc) {
 		
+		String salida = MockCache.seleccionarUsuario(doc);
 		
-		Usuario miusuario = new Usuario();
+		if (salida == null) return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
+		else return salida;
 		
-		miusuario.setActivado(true);
-		miusuario.setApellido("Perez");
-		miusuario.setNombre("Alfonso");
-		miusuario.setEmail("ap@fiuba.edu.ar");
-		miusuario.setPadron("1234");
-		miusuario.setPassword("123456");
-		miusuario.setHabilitado(true);
-		
-		XMLGregorianCalendar fecha = new XMLGregorianCalendarImpl();
-		fecha.setYear(1986);
-		fecha.setMonth(5);
-		fecha.setDay(5);
-		
-		miusuario.setFechaNac(fecha);
-		miusuario.setUsername("Pepe");
-		miusuario.setUsuarioId(12L);
-		
-		return UsuarioSerializer.getXMLfromPojo(miusuario);
+//		
+//		Usuario miusuario = new Usuario();
+//		
+//		miusuario.setActivado(true);
+//		miusuario.setApellido("Perez");
+//		miusuario.setNombre("Alfonso");
+//		miusuario.setEmail("ap@fiuba.edu.ar");
+//		miusuario.setPadron("1234");
+//		miusuario.setPassword("123456");
+//		miusuario.setHabilitado(true);
+//		
+//		XMLGregorianCalendar fecha = new XMLGregorianCalendarImpl();
+//		fecha.setYear(1986);
+//		fecha.setMonth(5);
+//		fecha.setDay(5);
+//		
+//		miusuario.setFechaNac(fecha);
+//		miusuario.setUsername("Pepe");
+//		miusuario.setUsuarioId(12L);
+//		
+//		return UsuarioSerializer.getXMLfromPojo(miusuario);
 	}
 	
 //	@Override
