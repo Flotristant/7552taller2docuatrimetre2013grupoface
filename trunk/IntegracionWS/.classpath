@@ -37,5 +37,6 @@
 	<classpathentry kind="lib" path="lib/stax2-api.jar"/>
 	<classpathentry kind="lib" path="lib/streambuffer.jar"/>
 	<classpathentry kind="lib" path="lib/woodstox-core-asl.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
