@@ -5,38 +5,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/hibernate-core-4.2.7.Final.jar"/>
 	<classpathentry kind="lib" path="lib/xstream-1.4.5.jar"/>
-	<classpathentry kind="lib" path="lib/xmlpull-1.1.3.1.jar"/>
-	<classpathentry kind="lib" path="lib/xpp3_min-1.1.4c.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="lib/commonj.sdo.jar"/>
-	<classpathentry kind="lib" path="lib/eclipselink.jar"/>
-	<classpathentry kind="lib" path="lib/FastInfoset.jar"/>
-	<classpathentry kind="lib" path="lib/gmbal-api-only.jar"/>
-	<classpathentry kind="lib" path="lib/ha-api.jar"/>
-	<classpathentry kind="lib" path="lib/javax.annotation-api.jar"/>
-	<classpathentry kind="lib" path="lib/javax.persistence.jar"/>
-	<classpathentry kind="lib" path="lib/javax.xml.soap-api.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb-api.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb-core.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb-impl.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb-jxc.jar"/>
-	<classpathentry kind="lib" path="lib/jaxb-xjc.jar"/>
-	<classpathentry kind="lib" path="lib/jaxws-api.jar"/>
-	<classpathentry kind="lib" path="lib/jaxws-eclipselink-plugin.jar"/>
-	<classpathentry kind="lib" path="lib/jaxws-rt.jar"/>
-	<classpathentry kind="lib" path="lib/jaxws-tools.jar"/>
-	<classpathentry kind="lib" path="lib/jsr181-api.jar"/>
-	<classpathentry kind="lib" path="lib/mail.jar"/>
-	<classpathentry kind="lib" path="lib/management-api.jar"/>
-	<classpathentry kind="lib" path="lib/mimepull.jar"/>
-	<classpathentry kind="lib" path="lib/policy.jar"/>
-	<classpathentry kind="lib" path="lib/resolver.jar"/>
-	<classpathentry kind="lib" path="lib/saaj-impl.jar"/>
-	<classpathentry kind="lib" path="lib/sdo-eclipselink-plugin.jar"/>
-	<classpathentry kind="lib" path="lib/stax-ex.jar"/>
-	<classpathentry kind="lib" path="lib/stax2-api.jar"/>
 	<classpathentry kind="lib" path="lib/streambuffer.jar"/>
-	<classpathentry kind="lib" path="lib/woodstox-core-asl.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
