@@ -3,7 +3,7 @@ package com.ws.handler;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
@@ -19,7 +19,7 @@ import com.ws.serializers.UsuarioSerializer;
 
 public class UsuarioHandler extends Handler {
 	
-	private static final Logger log = Logger.getLogger(UsuarioHandler.class);
+	//private static final Logger log = Logger.getLogger(UsuarioHandler.class);
 	
 	public UsuarioHandler() {
 		super();
@@ -50,7 +50,8 @@ public class UsuarioHandler extends Handler {
 			port.beginTransaction();
 			String query = this.queryBuilder.getAllById(parser.getIdUsuario());
 			List<ReturnedObject> usuarios = null; 
-			usuarios =port.query(query);
+			
+			usuarios = port.query(query);
 			if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {			
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
@@ -58,12 +59,15 @@ public class UsuarioHandler extends Handler {
 			usuario.setUsuarioId(parser.getIdUsuario());
 			
 			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
-			port.commit();			
+	
+			port.commit();
+			
 		}
 		catch(ClientTransportException e) {
 			port.rollback();
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 		}
+		
 		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
 	}
 
@@ -92,8 +96,7 @@ public class UsuarioHandler extends Handler {
 	public String seleccionarDatos(Document doc) {
 		
 		Map<String, String > campos = this.getCampos(doc);
-		String query = this.queryBuilder.getAllByAttributes(campos);
-		log.debug(query);
+		String query = this.queryBuilder.getAllByAttributes(campos);	
 		try {
 		port.beginTransaction();
 		List<ReturnedObject> usuarios = null; 
@@ -101,8 +104,8 @@ public class UsuarioHandler extends Handler {
 		if(usuarios == null || usuarios.isEmpty()) {
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
 		}
-		log.debug(usuarios);
 		port.commit();
+		
 		return UsuarioSerializer.getXMLfromPojo(usuarios);
 		}catch (ClientTransportException e) {
 			port.rollback();//if not
