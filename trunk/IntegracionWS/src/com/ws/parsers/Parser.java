@@ -26,6 +26,8 @@ public abstract class Parser {
 	
 	public abstract Object getEntidad();
 	
+	public abstract Long getId();
+	
 	protected Map<String, String> inicializarCampos() {
 		if (doc != null) {
 			NodeList nodes = doc.getElementsByTagName(this.classTag);
@@ -44,6 +46,10 @@ public abstract class Parser {
 		return this.campos;
 	}
 	
+	public Map<String, String> obtenerCampos(){
+		return this.campos;
+	}
+	
 	public Boolean esJoin() {
 		NodeList joinNode = this.doc.getElementsByTagName(JOIN_TAG);
 		return (joinNode != null && joinNode.getLength() > 0);
@@ -54,7 +60,6 @@ public abstract class Parser {
 		return (joinNode != null && joinNode.getLength() > 0);		
 	}
 	
-	public abstract Map<String, String> obtenerCampos();
 	
 	public String getClassTag() {
 		return classTag;
@@ -68,8 +73,9 @@ public abstract class Parser {
 		return doc;
 	}
 
-	public void setDoc(Document doc) {
+	public void inicializarDocumento(Document doc) {
 		this.doc = doc;
+		this.inicializarCampos();
 	}
 
 }

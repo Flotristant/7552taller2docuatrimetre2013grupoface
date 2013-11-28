@@ -17,7 +17,6 @@ import com.ws.serializers.UsuarioSerializer;
 
 public class UsuarioHandler extends Handler {
 	
-	//private static final Logger log = Logger.getLogger(UsuarioHandler.class);
 
 	public UsuarioHandler(){
 		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario", new UsuarioParser(), new UsuarioSerializer());
@@ -25,7 +24,7 @@ public class UsuarioHandler extends Handler {
 
 	@Override
 	public String actualizarDatos(Document doc) {	
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);
@@ -55,7 +54,7 @@ public class UsuarioHandler extends Handler {
 
 	@Override
 	public String borrarDatos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);

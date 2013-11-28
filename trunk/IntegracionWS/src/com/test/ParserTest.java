@@ -63,7 +63,7 @@ public class ParserTest {
 		
 		try {
 		UsuarioParser up = new UsuarioParser();
-		up.setDoc(doc);
+		up.inicializarDocumento(doc);
 		
 		System.out.println(up.obtenerCampos());
 		

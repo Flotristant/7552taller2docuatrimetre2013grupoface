@@ -1,28 +1,15 @@
 package com.ws.parsers;
 
-import java.util.Map;
-
 import com.ws.pojos.Subforo;
 import com.ws.tags.SubforoTags;
 
 public class SubforoParser extends Parser{
 
-	private Map<String, String> campos;
 	
 	public SubforoParser() {
 		super(SubforoTags.CLASS_TAG);
-		this.inicializarCampos();
 	}
 	
-	@Override
-	public Map<String, String> obtenerCampos() {
-		return this.campos;
-	}
-	
-	public Long getIdSubforo(){
-		return Long.parseLong(this.campos.get(SubforoTags.ID_TAG));
-	}
-
 	@Override
 	public Object getEntidad() {
 		Subforo subforo = new Subforo();
@@ -38,6 +25,11 @@ public class SubforoParser extends Parser{
 		}
 		subforo.setNombre(this.campos.get(SubforoTags.NOMBRE_TAG));
 		return subforo;
+	}
+
+	@Override
+	public Long getId() {
+		return Long.parseLong(this.campos.get(SubforoTags.ID_TAG));
 	}
 
 }

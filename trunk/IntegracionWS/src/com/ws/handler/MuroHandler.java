@@ -6,7 +6,6 @@ import org.w3c.dom.Document;
 
 import ar.fiuba.redsocedu.datalayer.ws.Muro;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
-import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
@@ -23,7 +22,7 @@ public class MuroHandler extends Handler {
 	
 	@Override
 	public String actualizarDatos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);
@@ -54,19 +53,19 @@ public class MuroHandler extends Handler {
 
 	@Override
 	public String borrarDatos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);
 			Muro muro = (Muro) parser.getEntidad();
 			String query = this.queryBuilder.getAllById(muro.getMuroId());
-			List<ReturnedObject> usuarios = null; 
-			usuarios = port.query(transactionId, query);
-			if(usuarios == null || usuarios.isEmpty() || usuarios.size() > 1) {
+			List<ReturnedObject> muros = null; 
+			muros = port.query(transactionId, query);
+			if(muros == null || muros.isEmpty() || muros.size() > 1) {
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
-			Usuario removingUsuario = (Usuario)usuarios.get(0);
-			port.delete(transactionId, this.databaseEntityPath, removingUsuario);
+			Muro removingMuro = (Muro)muros.get(0);
+			port.delete(transactionId, this.databaseEntityPath, removingMuro);
 			port.commit(transactionId);//if ok
 		} catch(ClientTransportException e) {
 			port.rollback(transactionId);//if not

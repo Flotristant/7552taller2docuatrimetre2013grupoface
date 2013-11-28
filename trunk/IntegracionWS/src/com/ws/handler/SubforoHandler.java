@@ -1,7 +1,6 @@
 package com.ws.handler;
 
 import java.util.List;
-import java.util.Map;
 
 import org.w3c.dom.Document;
 
@@ -10,40 +9,37 @@ import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
-import com.ws.parsers.Parser;
+import com.ws.parsers.SubforoParser;
 import com.ws.serializers.NotificacionSerializer;
-import com.ws.serializers.Serializer;
+import com.ws.serializers.SubforoSerializer;
 
 public class SubforoHandler extends Handler {
 
-	public SubforoHandler(String databaseEntityPath, Parser parser,
-			Serializer serializer) {
-		super(databaseEntityPath, parser, serializer);
-		// TODO Auto-generated constructor stub
+
+	//TODO ver si la entidad se llama asi
+	public SubforoHandler() {
+		super("ar.fiuba.redsocedu.datalayer.dtos.Subforo", new  SubforoParser(), new SubforoSerializer());
 	}
 
 	@Override
 	public String actualizarDatos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);
 			
-			//TODO
-			//String query = this.queryBuilder.getAllById(parser.getIdSubforo());
+			String query = this.queryBuilder.getAllById(parser.getId());
 			List<ReturnedObject> foros = null; 
 			
-			//foros = port.query(transactionId, query);
+			foros = port.query(transactionId, query);
 			if(foros == null || foros.isEmpty() || foros.size() > 1) {			
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
 			//TODO convertir al foro de negocio en el foro de base de datos
-			//Foro foro = this.toDatabaseUser(parser.getEntidadForo());
-			//foro.setForoId(parser.getIdForo());
-			//port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Foro",foro);
+			//Subforo subforo = this.toDatabaseEntity(parser.getEntidad());
+			//port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Subforo",subforo);
 				
-			port.commit(transactionId);
-			
+			port.commit(transactionId);		
 		}
 		catch(ClientTransportException e) {
 			port.rollback(transactionId);
@@ -56,18 +52,18 @@ public class SubforoHandler extends Handler {
 	@Override
 	public String borrarDatos(Document doc) {
 		//TODO esperar implementacion datos
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
-			/*port.beginTransaction(transactionId);
-			String query = this.queryBuilder.getAllById(parser.getIdSubforo());
+			port.beginTransaction(transactionId);
+			String query = this.queryBuilder.getAllById(parser.getId());
 			List<ReturnedObject> subforos = null; 
 			subforos = port.query(transactionId, query);
 			if(subforos == null || subforos.isEmpty() || subforos.size() > 1) {
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
-			Subforo removingUsuario = (Subforo)subforos.get(0);
-			port.delete("ar.fiuba.redsocedu.datalayer.dtos.Usuario",removingUsuario);
+			//Subforo removingSubforo = (Subforo)subforos.get(0);
+			//port.delete("ar.fiuba.redsocedu.datalayer.dtos.Subforo",removingSubforo);
 			port.commit(transactionId);//if ok*/
 		} catch(ClientTransportException e) {
 			port.rollback(transactionId);//if not
@@ -77,14 +73,19 @@ public class SubforoHandler extends Handler {
 		
 	}
 
-	protected Map<String, String> getCampos(Document doc) {
-		this.parser.setDoc(doc);
-		return parser.obtenerCampos();
-	}
-
 	@Override
 	protected Object toDatabaseEntity(Object object) {
-		// TODO Auto-generated method stub
+		// TODO ver bien esto
+		/*com.ws.pojos.Subforo subforo = (com.ws.pojos.Subforo) object;
+		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDb = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
+		subforoDb.setNombre(subforo.getNombre());
+		subforoDb.setIdForo(subforo.getIdForo());
+		subforoDb.setIdSubforo(subforo.getIdSubforo());
+		subforoDb.setIdSeccion(subforo.getIdSeccion());
+		subforoDb.setIdSubforoPadre(subforo.getIdSubforoPadre());
+		
+		return subforoDb;*/
+		
 		return null;
 	}
 

@@ -50,7 +50,7 @@ public class UsuarioTestIntegration {
 		xml = xml.replace(" ", "");
 		UsuarioHandler handler = new UsuarioHandler();
 		UsuarioParser parser1 = new UsuarioParser();
-		parser1.setDoc(integracionWS.getXMLDocument(xml));
+		parser1.inicializarDocumento(integracionWS.getXMLDocument(xml));		
 		return (Usuario) handler.toDatabaseEntity(parser1.getEntidad());
 	}
 
