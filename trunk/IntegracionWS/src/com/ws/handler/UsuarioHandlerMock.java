@@ -3,7 +3,11 @@ package com.ws.handler;
 
 import java.util.Map;
 import org.w3c.dom.Document;
+
+import ar.fiuba.redsocedu.datalayer.ws.Usuario;
+
 import com.db.querys.UsuarioQueryBuilder;
+import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.MockCache;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.UsuarioParser;
@@ -14,15 +18,30 @@ import com.ws.serializers.NotificacionSerializer;
 public class UsuarioHandlerMock extends Handler {
 	
 	public UsuarioHandlerMock() {
-		super();
-		this.queryBuilder = new UsuarioQueryBuilder();
+		//super();
+		//this.queryBuilder = new UsuarioQueryBuilder();
 	}
 	
 	@Override
 	public String guardarDatos(Document doc) {
 		
 		MockCache.guardarUsuario(doc);
+		
+//		UsuarioParser parser = new UsuarioParser(doc);
+//		try{
+//			port.beginTransaction();
+//			Usuario usuario = this.toDatabaseUser(parser.getEntidadUsuario());
+//			port.saveOrUpdate("ar.fiuba.redsocedu.datalayer.dtos.Usuario",usuario);
+//			port.commit();
+//		}
+//		catch(ClientTransportException e) {
+//			port.rollback();
+//			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+//		}
+	
 		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());	
+		
+		
 	}
 
 	@Override
@@ -92,6 +111,21 @@ public class UsuarioHandlerMock extends Handler {
 	protected Map<String, String> getCampos(Document doc) {
 		UsuarioParser parser = new UsuarioParser(doc);
 		return parser.obtenerCampos();
+	}
+	
+	public Usuario toDatabaseUser(com.ws.pojos.Usuario usuario) {
+		ar.fiuba.redsocedu.datalayer.ws.Usuario user = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
+		user.setNombre(usuario.getNombre());
+		user.setApellido(usuario.getApellido());
+		user.setPadron(usuario.getPadron());
+		user.setFechaNac(usuario.getFechaNac());
+		user.setActivado(usuario.isActivado());
+		user.setHabilitado(usuario.isHabilitado());
+		user.setEmail(usuario.getEmail());
+		user.setPassword(usuario.getPassword());
+		user.setUsername(usuario.getUsername());
+		user.setUsuarioId(usuario.getUsuarioId());
+		return user;
 	}
 
 }

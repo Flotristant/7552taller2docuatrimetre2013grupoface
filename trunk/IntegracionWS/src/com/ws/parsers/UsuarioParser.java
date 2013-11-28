@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParseException;
+import com.utils.XmlGregorianConverter;
 import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
 
@@ -70,14 +71,8 @@ public class UsuarioParser extends Parser {
 		XMLGregorianCalendar fecha;
 		if(this.campos.get(UsuarioTags.FECHANAC_TAG) != null)
 		{
-			try {
-				fecha = this.stringToXMLGregorianCalendar((this.campos.get(UsuarioTags.FECHANAC_TAG)));
-				usuario.setFechaNac(fecha);
-			} catch (ParseException e) {
-					e.printStackTrace();
-			} catch (DatatypeConfigurationException e) {
-					e.printStackTrace();
-			}
+			fecha = XmlGregorianConverter.string2XMLGregorian((this.campos.get(UsuarioTags.FECHANAC_TAG)));
+			usuario.setFechaNac(fecha);
 		}
 		usuario.setHabilitado(Boolean.parseBoolean(this.campos.get(UsuarioTags.HABILITADO_TAG)));
 		usuario.setActivado(Boolean.parseBoolean(this.campos.get(UsuarioTags.ACTIVADO_TAG)));
@@ -92,27 +87,27 @@ public class UsuarioParser extends Parser {
 	}
 	
 	
-	private XMLGregorianCalendar stringToXMLGregorianCalendar(String s) throws ParseException, 
-																		DatatypeConfigurationException {
-		XMLGregorianCalendar result = null;
-		Date date;
-		SimpleDateFormat simpleDateFormat;
-		GregorianCalendar gregorianCalendar;
-
-		simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss");
-        try {
-			date = simpleDateFormat.parse(s);
-			gregorianCalendar = 
-		    (GregorianCalendar)GregorianCalendar.getInstance();
-		    gregorianCalendar.setTime(date);
-		    result = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
-		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}        
-        
-        return result;
-	}
+//	private XMLGregorianCalendar stringToXMLGregorianCalendar(String s) throws ParseException, 
+//																		DatatypeConfigurationException {
+//		XMLGregorianCalendar result = null;
+//		Date date;
+//		SimpleDateFormat simpleDateFormat;
+//		GregorianCalendar gregorianCalendar;
+//
+//		simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm:ss");
+//        try {
+//			date = simpleDateFormat.parse(s);
+//			gregorianCalendar = 
+//		    (GregorianCalendar)GregorianCalendar.getInstance();
+//		    gregorianCalendar.setTime(date);
+//		    result = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
+//		} catch (java.text.ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}        
+//        
+//        return result;
+//	}
 
 
 }

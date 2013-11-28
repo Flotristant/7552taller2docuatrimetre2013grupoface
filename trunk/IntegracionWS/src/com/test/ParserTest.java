@@ -55,8 +55,10 @@ public class ParserTest {
 		miusuario.setUsuarioId(12L);
 		
 		Document doc = null;
+	
+		UsuarioSerializer us = new UsuarioSerializer();
 		
-		String xmlbruto = UsuarioSerializer.getXMLfromPojo(miusuario);
+		String xmlbruto = us.getXMLfromPojo(miusuario);
 		
 		//String xmlbruto = "<WS><Usuario><username>usuario prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
 		
