@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="transactionId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="entityName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="object" type="{http://www.w3.org/2001/XMLSchema}anyType" minOccurs="0"/>
  *       &lt;/sequence>
@@ -28,13 +29,39 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "saveOrUpdate", propOrder = {
+    "transactionId",
     "entityName",
     "object"
 })
 public class SaveOrUpdate {
 
+    protected Long transactionId;
     protected String entityName;
     protected Object object;
+
+    /**
+     * Gets the value of the transactionId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    /**
+     * Sets the value of the transactionId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setTransactionId(Long value) {
+        this.transactionId = value;
+    }
 
     /**
      * Gets the value of the entityName property.
