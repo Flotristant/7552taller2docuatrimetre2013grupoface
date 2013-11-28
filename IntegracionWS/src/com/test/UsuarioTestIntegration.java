@@ -87,9 +87,14 @@ public class UsuarioTestIntegration {
 
 	@Test
 	public void selectOneUserTest() {
+		try{
 		IntegracionWS integracionWS = new IntegracionWS();
 		String xml = createSelectUserXML(usuario1);
-		System.out.println(integracionWS.seleccionarDatos(xml));
+		String salida = integracionWS.seleccionarDatos(xml);
+		System.out.println(salida);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	private String createSelectUserXML(Usuario usuario) {
