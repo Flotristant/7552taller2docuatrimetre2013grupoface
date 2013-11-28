@@ -2,15 +2,13 @@ package com.ws.parsers;
 
 import java.util.Map;
 
-import org.w3c.dom.Document;
-
 import com.ws.pojos.Muro;
 import com.ws.tags.MuroTags;
 
 public class MuroParser extends Parser {
 
-	public MuroParser(Document doc) {
-		super(doc, MuroTags.CLASS_TAG);
+	public MuroParser() {
+		super(MuroTags.CLASS_TAG);
 	}
 
 	@Override
@@ -23,6 +21,12 @@ public class MuroParser extends Parser {
 		muro.setId(Long.parseLong(this.campos.get(MuroTags.ID_TAG)));
 		muro.setNombre(this.campos.get(MuroTags.NOMBRE_TAG));
 		return muro;
+	}
+
+	@Override
+	public Object getEntidad() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

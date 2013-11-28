@@ -8,7 +8,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.db.querys.QueryBuilder;
-import com.ws.tags.UsuarioTags;
 
 public abstract class Parser {
 	
@@ -17,27 +16,30 @@ public abstract class Parser {
 	protected Map<String, String> campos;
 	protected String classTag;
 	Document doc;
+	
 	QueryBuilder queryBuilder;
 	
-	
-	public Parser(Document doc, String classTag) {
-		this.doc = doc;
-		this.campos = new HashMap<String, String>();
+	public Parser(String classTag) {
 		this.classTag = classTag;
+		this.campos = new HashMap<String, String>();
 	}
 	
+	public abstract Object getEntidad();
+	
 	protected Map<String, String> inicializarCampos() {
-		NodeList nodes = doc.getElementsByTagName(this.classTag);
-		if (nodes != null) {
-			NodeList childNodes = nodes.item(0).getChildNodes(); 
-			this.campos = new HashMap<String, String>();
-			
-		    if (childNodes != null) {
-		        for (int i = 0; i < childNodes.getLength(); i++) {
-	        	   Element el = (Element) childNodes.item(i);
-	        	   this.campos.put(el.getNodeName(), el.getTextContent());
-		        }
-		    }
+		if (doc != null) {
+			NodeList nodes = doc.getElementsByTagName(this.classTag);
+			if (nodes != null) {
+				NodeList childNodes = nodes.item(0).getChildNodes(); 
+				this.campos = new HashMap<String, String>();
+				
+			    if (childNodes != null) {
+			        for (int i = 0; i < childNodes.getLength(); i++) {
+		        	   Element el = (Element) childNodes.item(i);
+		        	   this.campos.put(el.getNodeName(), el.getTextContent());
+			        }
+			    }
+			}
 		}
 		return this.campos;
 	}
@@ -52,5 +54,22 @@ public abstract class Parser {
 		return (joinNode != null && joinNode.getLength() > 0);		
 	}
 	
-	public abstract Map<String, String> obtenerCampos(); 
+	public abstract Map<String, String> obtenerCampos();
+	
+	public String getClassTag() {
+		return classTag;
+	}
+
+	public void setClassTag(String classTag) {
+		this.classTag = classTag;
+	}
+
+	public Document getDoc() {
+		return doc;
+	}
+
+	public void setDoc(Document doc) {
+		this.doc = doc;
+	}
+
 }

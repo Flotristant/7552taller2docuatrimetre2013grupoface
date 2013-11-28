@@ -11,6 +11,10 @@ import com.ws.serializers.NotificacionSerializer;
 
 public class ForoHandler extends Handler{
 
+	public ForoHandler(String databaseEntityPath) {
+		super(databaseEntityPath, new ForoParser(null), null);
+	}
+
 	@Override
 	public String guardarDatos(Document doc) {
 		ForoParser parser = new ForoParser(doc);
@@ -53,5 +57,11 @@ public class ForoHandler extends Handler{
 //		dbForo.setId(foro.getId());
 //		dbForo.setNombre(foro.getNombre);
 		return foro;
+	}
+
+	@Override
+	protected Object toDatabaseEntity(Object object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

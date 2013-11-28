@@ -44,8 +44,9 @@ public class MockCache {
 		
 		
 		try {
-			UsuarioParser up = new UsuarioParser(doc);
-			Usuario us = up.getEntidadUsuario();
+			UsuarioParser up = new UsuarioParser();
+			up.setDoc(doc);
+			Usuario us = (Usuario) up.getEntidad();
 			return us;
 		}
 		catch (Exception e){

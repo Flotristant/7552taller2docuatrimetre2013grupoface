@@ -2,30 +2,32 @@ package com.ws.handler;
 
 
 import java.util.Map;
+
 import org.w3c.dom.Document;
 
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.db.querys.UsuarioQueryBuilder;
-import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.MockCache;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
+import com.ws.serializers.UsuarioSerializer;
 
 
 
 public class UsuarioHandlerMock extends Handler {
 	
 	public UsuarioHandlerMock() {
-		//super();
-		//this.queryBuilder = new UsuarioQueryBuilder();
+		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario", new UsuarioParser(), new UsuarioSerializer());
+		this.queryBuilder = new UsuarioQueryBuilder();
 	}
 	
 	@Override
 	public String guardarDatos(Document doc) {
 		
 		MockCache.guardarUsuario(doc);
+		this.parser.setDoc(doc);
 		
 //		UsuarioParser parser = new UsuarioParser(doc);
 //		try{
@@ -109,7 +111,7 @@ public class UsuarioHandlerMock extends Handler {
 	
 	
 	protected Map<String, String> getCampos(Document doc) {
-		UsuarioParser parser = new UsuarioParser(doc);
+		this.parser.setDoc(doc);
 		return parser.obtenerCampos();
 	}
 	
@@ -126,6 +128,12 @@ public class UsuarioHandlerMock extends Handler {
 		user.setUsername(usuario.getUsername());
 		user.setUsuarioId(usuario.getUsuarioId());
 		return user;
+	}
+
+	@Override
+	protected Object toDatabaseEntity(Object object) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
