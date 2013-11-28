@@ -15,30 +15,14 @@ public class SubforoParser extends Parser{
 	private Map<String, String> campos;
 	
 	public SubforoParser(Document doc) {
-		super(doc);
+		super(doc, SubforoTags.CLASS_TAG);
 		this.inicializarCampos();
 	}
-	
-	private Map<String, String> inicializarCampos() {
-		NodeList nodes = doc.getElementsByTagName(SubforoTags.CLASS_TAG);
-		NodeList childNodes = nodes.item(0).getChildNodes(); 
-		this.campos = new HashMap<String, String>();
-		
-	    if (childNodes != null) {
-	        for (int i = 0; i < childNodes.getLength(); i++) {
-        	   Element el = (Element) childNodes.item(i);
-        	   this.campos.put(el.getNodeName(), el.getTextContent());
-	        }
-	    }
-		return campos;
-	}
-	
 	
 	@Override
 	public Map<String, String> obtenerCampos() {
 		return this.campos;
 	}
-	
 	
 	public Subforo getEntidadSubforo(){
 		

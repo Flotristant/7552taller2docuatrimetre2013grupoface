@@ -21,26 +21,10 @@ import com.ws.tags.UsuarioTags;
 
 public class UsuarioParser extends Parser {
 
-	private Map<String, String> campos;
 	
 	public UsuarioParser(Document doc) {
-		super(doc);
+		super(doc, UsuarioTags.CLASS_TAG);
 		this.inicializarCampos();
-	}
-
-	
-	private Map<String, String> inicializarCampos() {
-		NodeList nodes = doc.getElementsByTagName(UsuarioTags.CLASS_TAG);
-		NodeList childNodes = nodes.item(0).getChildNodes(); 
-		this.campos = new HashMap<String, String>();
-		
-	    if (childNodes != null) {
-	        for (int i = 0; i < childNodes.getLength(); i++) {
-        	   Element el = (Element) childNodes.item(i);
-        	   this.campos.put(el.getNodeName(), el.getTextContent());
-	        }
-	    }
-		return campos;
 	}
 	
 	@Override

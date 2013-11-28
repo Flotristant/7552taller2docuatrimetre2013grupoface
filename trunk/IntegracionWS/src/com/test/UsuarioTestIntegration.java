@@ -24,26 +24,27 @@ public class UsuarioTestIntegration {
 
 	Usuario usuario1, usuario2;
 
-//	@Before
-//	public void setUp() throws Exception {
-//		IntegracionWS integracionWS = new IntegracionWS();
-//		String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
-//
-//		guardarDatos(xmlUser1, integracionWS);
-//
-//		String nuevoXml1 = consultarDatos(xmlUser1, integracionWS);
-//		usuario1 =obtenerUsuario(nuevoXml1, integracionWS);
-//	}
-//	
-//	@After
-//	public void cleanUp() throws Exception {
-//		IntegracionWS integracionWS = new IntegracionWS();
-//		String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
-//		String suffix = "</id></Usuario></WS>";
-//		String xmlUser1 = createDeleteUserXML(prefix, suffix, usuario1);
-//		integracionWS.eliminarDatos(xmlUser1);
-//		
-//	}
+	@Before
+	public void setUp() throws Exception {
+		IntegracionWS integracionWS = new IntegracionWS();
+		String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
+
+		guardarDatos(xmlUser1, integracionWS);
+
+		String nuevoXml1 = consultarDatos(xmlUser1, integracionWS);
+		usuario1 =obtenerUsuario(nuevoXml1, integracionWS);
+	}
+	
+	@After
+	public void cleanUp() throws Exception {
+		IntegracionWS integracionWS = new IntegracionWS();
+		String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
+		String suffix = "</id></Usuario></WS>";
+		String xmlUser1 = createDeleteUserXML(prefix, suffix, usuario1);
+		if(xmlUser1 != "") {
+			integracionWS.eliminarDatos(xmlUser1);	
+		}
+	}
 
 	private Usuario obtenerUsuario(String xml, IntegracionWS integracionWS) throws SAXException, IOException, ParserConfigurationException {
 		xml = xml.replace("\n", "");
@@ -70,7 +71,10 @@ public class UsuarioTestIntegration {
 
 	private String createDeleteUserXML(String preffix, String suffix,
 			Usuario user) {
-		return preffix + user.getUsuarioId().toString() + suffix;
+		if (user.getUsuarioId() != null) {
+			return preffix + user.getUsuarioId().toString() + suffix; 
+		}
+		return "";
 	}
 
 	@Test
