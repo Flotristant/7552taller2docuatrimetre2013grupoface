@@ -1,20 +1,9 @@
 package com.ws.parsers;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.Map;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParseException;
 import com.utils.XmlGregorianConverter;
 import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
@@ -22,8 +11,8 @@ import com.ws.tags.UsuarioTags;
 public class UsuarioParser extends Parser {
 
 	
-	public UsuarioParser(Document doc) {
-		super(doc, UsuarioTags.CLASS_TAG);
+	public UsuarioParser() {
+		super(UsuarioTags.CLASS_TAG);
 		this.inicializarCampos();
 	}
 	
@@ -33,13 +22,20 @@ public class UsuarioParser extends Parser {
 		return this.campos;
 	} 
 	
+	public Long getIdUsuario(){
+		
+		return Long.parseLong(this.campos.get(UsuarioTags.ID_TAG));
+	}
+
 	/**
 	 * Este método retorna una instancia de usuario que representa el Usuario en la capa de Negocio.
 	 * @return
 	 */
-	public Usuario getEntidadUsuario(){
+
+	@Override
+	public Object getEntidad() {
 		Usuario usuario = new Usuario();
-	
+		
 		usuario.setUsername(this.campos.get(UsuarioTags.USERNANME_TAG));
 		usuario.setPassword (this.campos.get(UsuarioTags.PASSWORD_TAG));
 		usuario.setNombre(this.campos.get(UsuarioTags.NOMBRE_TAG));
@@ -62,12 +58,6 @@ public class UsuarioParser extends Parser {
 		usuario.setActivado(Boolean.parseBoolean(this.campos.get(UsuarioTags.ACTIVADO_TAG)));
 		
 		return usuario;
-		
-	}
-	
-	public Long getIdUsuario(){
-		
-		return Long.parseLong(this.campos.get(UsuarioTags.ID_TAG));
 	}
 	
 	

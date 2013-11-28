@@ -10,7 +10,7 @@ import com.ws.tags.ForoTags;
 public class ForoParser extends Parser {
 	
 	public ForoParser(Document doc) {
-		super(doc, ForoTags.CLASS_TAG);
+		super(ForoTags.CLASS_TAG);
 	}
 
 	public Foro getEntidadForo() {
@@ -22,6 +22,12 @@ public class ForoParser extends Parser {
 
 	@Override
 	public Map<String, String> obtenerCampos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getEntidad() {
 		// TODO Auto-generated method stub
 		return null;
 	}

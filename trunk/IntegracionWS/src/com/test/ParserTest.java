@@ -1,10 +1,7 @@
 package com.test;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.io.StringReader;
-import java.io.StringWriter;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
@@ -12,24 +9,18 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.junit.Test;
+import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
-import org.w3c.dom.Document;
+
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.CompactWriter;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.UsuarioPojoSerializer;
 import com.ws.serializers.UsuarioSerializer;
 
 public class ParserTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void testParserVsXstream(){
@@ -71,11 +62,12 @@ public class ParserTest {
 		}
 		
 		try {
-		UsuarioParser up = new UsuarioParser(doc);
+		UsuarioParser up = new UsuarioParser();
+		up.setDoc(doc);
 		
 		System.out.println(up.obtenerCampos());
 		
-		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidadUsuario());
+		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidad());
 		
 		System.out.println(salida);
 		

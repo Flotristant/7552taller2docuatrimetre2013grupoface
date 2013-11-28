@@ -1,7 +1,6 @@
 package com.test;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -50,8 +49,9 @@ public class UsuarioTestIntegration {
 		xml = xml.replace("\n", "");
 		xml = xml.replace(" ", "");
 		UsuarioHandler handler = new UsuarioHandler();
-		UsuarioParser parser1 = new UsuarioParser(integracionWS.getXMLDocument(xml));
-		return handler.toDatabaseUser(parser1.getEntidadUsuario());
+		UsuarioParser parser1 = new UsuarioParser();
+		parser1.setDoc(integracionWS.getXMLDocument(xml));
+		return (Usuario) handler.toDatabaseEntity(parser1.getEntidad());
 	}
 
 	private void guardarDatos(String xml, IntegracionWS integracionWS) {
