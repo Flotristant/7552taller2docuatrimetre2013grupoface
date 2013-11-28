@@ -1,13 +1,15 @@
 package com.ws.pojos;
 
 public class Foro {
-	Integer id;
-	String nombre;
 	
-	public Integer getId() {
+	Long id;
+	String nombre;
+	Long idAmbito;
+	
+	public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getNombre() {
@@ -15,6 +17,14 @@ public class Foro {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public Long getIdAmbito(){
+		return idAmbito;
+	}
+	
+	public void setIdAmbito(Long idAmbito){
+		this.idAmbito = idAmbito;
 	}
 
 }

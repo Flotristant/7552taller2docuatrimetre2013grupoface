@@ -29,4 +29,9 @@ public class MuroParser extends Parser {
 		return null;
 	}
 
+	@Override
+	public Long getId() {
+		return Long.parseLong(this.campos.get(MuroTags.ID_TAG));
+	}
+
 }

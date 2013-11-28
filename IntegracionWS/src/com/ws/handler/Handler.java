@@ -35,7 +35,7 @@ public abstract class Handler {
 	}
 	
 	public String guardarDatos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
 		try{
 			port.beginTransaction(transactionId);
@@ -71,7 +71,7 @@ public abstract class Handler {
 	}
 	
 	protected Map<String, String> getCampos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		return parser.obtenerCampos();
 	}
 	

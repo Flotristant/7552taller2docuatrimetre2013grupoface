@@ -1,12 +1,7 @@
 package com.ws.serializers;
 
 
-
-import java.io.StringWriter;
-import java.util.Collection;
-
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.CompactWriter;
 import com.ws.pojos.Muro;
 import com.ws.tags.MuroTags;
 

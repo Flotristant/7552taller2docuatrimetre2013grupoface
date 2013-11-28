@@ -1,7 +1,5 @@
 package com.ws.parsers;
 
-import java.util.Map;
-
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import com.utils.XmlGregorianConverter;
@@ -13,16 +11,10 @@ public class UsuarioParser extends Parser {
 	
 	public UsuarioParser() {
 		super(UsuarioTags.CLASS_TAG);
-		this.inicializarCampos();
 	}
 	
 	@Override
-	public Map<String, String> obtenerCampos(){
-		
-		return this.campos;
-	} 
-	
-	public Long getIdUsuario(){
+	public Long getId(){
 		
 		return Long.parseLong(this.campos.get(UsuarioTags.ID_TAG));
 	}

@@ -27,7 +27,7 @@ public class UsuarioHandlerMock extends Handler {
 	public String guardarDatos(Document doc) {
 		
 		MockCache.guardarUsuario(doc);
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		
 //		UsuarioParser parser = new UsuarioParser(doc);
 //		try{
@@ -111,7 +111,7 @@ public class UsuarioHandlerMock extends Handler {
 	
 	
 	protected Map<String, String> getCampos(Document doc) {
-		this.parser.setDoc(doc);
+		this.parser.inicializarDocumento(doc);
 		return parser.obtenerCampos();
 	}
 	
