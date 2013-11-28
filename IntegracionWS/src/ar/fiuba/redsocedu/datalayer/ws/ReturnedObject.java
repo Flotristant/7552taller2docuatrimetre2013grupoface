@@ -28,9 +28,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "returnedObject")
 @XmlSeeAlso({
+    Noticia.class,
     Usuario.class,
+    Cartelera.class,
+    Tema.class,
+    Evento.class,
+    Mensaje.class,
     Alumno.class,
-    Curso.class
+    Curso.class,
+    Muro.class
 })
 public abstract class ReturnedObject {
 

@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="transactionId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -25,8 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "rollback")
+@XmlType(name = "rollback", propOrder = {
+    "transactionId"
+})
 public class Rollback {
 
+    protected Long transactionId;
+
+    /**
+     * Gets the value of the transactionId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getTransactionId() {
+        return transactionId;
+    }
+
+    /**
+     * Sets the value of the transactionId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setTransactionId(Long value) {
+        this.transactionId = value;
+    }
 
 }
