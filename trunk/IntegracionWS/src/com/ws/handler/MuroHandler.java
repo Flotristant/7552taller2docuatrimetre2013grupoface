@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import ar.fiuba.redsocedu.datalayer.ws.Muro;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
@@ -18,6 +19,7 @@ public class MuroHandler extends Handler {
 	
 	public MuroHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Muro", new MuroParser(), new MuroSerializer());
+		//TODO Instanciar el query Builder
 	}
 	
 	@Override

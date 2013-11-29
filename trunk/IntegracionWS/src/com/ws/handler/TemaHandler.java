@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 import ar.fiuba.redsocedu.datalayer.ws.Tema;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.db.querys.TemaQueryBuilder;
+import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
@@ -18,6 +20,7 @@ public class TemaHandler extends Handler {
 	
 	public TemaHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Tema", new TemaParser(), new TemaSerializer());
+		this.queryBuilder = new TemaQueryBuilder();
 	}
 	
 	@Override

@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.db.querys.ForoQueryBuilder;
+import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
@@ -21,6 +23,7 @@ public class ForoHandler extends Handler{
 	//TODO ver si la entidad se llama asi
 	public ForoHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Foro", new ForoParser(), new ForoSerializer());
+		this.queryBuilder = new ForoQueryBuilder();
 	}
 
 
