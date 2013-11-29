@@ -26,8 +26,8 @@ public class TemaHandler extends Handler {
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);
-			Tema mensaje = (Tema) parser.getEntidad();
-			String query = this.queryBuilder.getAllById(mensaje.getTemaId());
+			Tema tema = (Tema) parser.getEntidad();
+			String query = this.queryBuilder.getAllById(tema.getTemaId());
 			List<ReturnedObject> muros = null; 
 			
 			muros = port.query(transactionId, query);
@@ -35,9 +35,9 @@ public class TemaHandler extends Handler {
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
 			Tema mensajeDB = (Tema) this.toDatabaseEntity(parser.getEntidad());
-			mensajeDB.setTemaId(mensaje.getTemaId());
+			mensajeDB.setTemaId(tema.getTemaId());
 			
-			port.saveOrUpdate(transactionId, this.databaseEntityPath , mensaje);
+			port.saveOrUpdate(transactionId, this.databaseEntityPath , tema);
 	
 			port.commit(transactionId);
 			

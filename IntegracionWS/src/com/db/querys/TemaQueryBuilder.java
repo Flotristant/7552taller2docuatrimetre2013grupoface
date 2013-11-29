@@ -1,24 +1,15 @@
 package com.db.querys;
 
 import java.util.Map;
-
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
-import com.ws.tags.MensajeTags;
+import com.ws.tags.TemaTags;
 
-public class MensajeQueryBuilder extends QueryBuilder {
-	private static final String CLASS_NAME = "ar.fiuba.redsocedu.datalayer.dtos.Mensaje";
+public class TemaQueryBuilder extends QueryBuilder {
+
+	private static final String CLASS_NAME = "ar.fiuba.redsocedu.datalayer.dtos.Tema";
 	
-	public static String getMensajesByMiembro(String idmiembro){ // Mover a getAllByAttributes
-		
-		DetachedCriteria criteria = DetachedCriteria.forEntityName("Mensajes","mensajes");
-		criteria.createAlias("mensajes.miembro","miembro");
-		criteria.add(Restrictions.eq("miembro.nombre",idmiembro));
-		return QueryBuilder.getSerializedCriteria(criteria);
-		
-	}
-
 	@Override
 	public String getAllById(Long id) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
@@ -29,10 +20,10 @@ public class MensajeQueryBuilder extends QueryBuilder {
 	@Override
 	public String getAllByAttributes(Map<String, String> attributes) {		
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		if(attributes.containsKey(MensajeTags.ID_TAG)) {
-			Long id = Long.parseLong(attributes.get(MensajeTags.ID_TAG));
+		if(attributes.containsKey(TemaTags.ID_TAG)) {
+			Long id = Long.parseLong(attributes.get(TemaTags.ID_TAG));
 			criteria.add(Restrictions.idEq(id));
-			attributes.remove(MensajeTags.ID_TAG);
+			attributes.remove(TemaTags.ID_TAG);
 		}		
 		criteria.add(Restrictions.allEq(attributes));
 		return QueryBuilder.getSerializedCriteria(criteria);
@@ -46,6 +37,5 @@ public class MensajeQueryBuilder extends QueryBuilder {
 		String xml = QueryBuilder.getSerializedCriteria(criteria);
 		return xml;
 	}	
-	
-	
+
 }

@@ -1,6 +1,8 @@
 package com.ws.serializers;
 
 
+
+
 import com.thoughtworks.xstream.XStream;
 import com.ws.pojos.Muro;
 import com.ws.tags.MuroTags;
