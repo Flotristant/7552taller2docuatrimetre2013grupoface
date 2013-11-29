@@ -28,8 +28,17 @@ public abstract class Handler {
 	
 	public Handler(String databaseEntityPath, Parser parser, Serializer serializer){
 		this.databaseEntityPath = databaseEntityPath;
-//		this.service = new DataService();
-//		this.port = service.getDataPort();
+		this.service = new DataService();
+		this.port = service.getDataPort();
+		this.parser = parser;
+		this.serializer = serializer;
+	}
+	
+	//for mock tests
+	public Handler(Parser parser, Serializer serializer) {
+		this.databaseEntityPath = "";
+		this.service = null;
+		this.port = null;
 		this.parser = parser;
 		this.serializer = serializer;
 	}
