@@ -2,6 +2,7 @@ package com.ws.parsers;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import com.thoughtworks.xstream.XStream;
 import com.utils.XmlGregorianConverter;
 import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
@@ -18,6 +19,27 @@ public class UsuarioParser extends Parser {
 		
 		return Long.parseLong(this.campos.get(UsuarioTags.ID_TAG));
 	}
+	
+	/**
+	 * Este método recibe el xml de negocio y lo transforma en un pojo de la BD
+	 */
+	public ar.fiuba.redsocedu.datalayer.ws.Usuario getDBUser(String xml) {
+		XStream xmlReader = new XStream();
+		Usuario usuario = (Usuario) xmlReader.fromXML(xml);
+		ar.fiuba.redsocedu.datalayer.ws.Usuario DBUser = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
+		DBUser.setActivado(usuario.getActivado());
+		DBUser.setHabilitado(usuario.getHabilitado());
+		DBUser.setEmail(usuario.getEmail());
+		DBUser.setNombre(usuario.getNombre());
+		DBUser.setApellido(usuario.getApellido());
+		DBUser.setUsername(usuario.getUsername());
+		DBUser.setPassword(usuario.getPassword());
+		DBUser.setPadron(usuario.getPadron());
+		DBUser.setUsuarioId(usuario.getId());
+		return DBUser;
+		//DBUser.setRolId(usuario.getIdRol());
+	}
+
 
 	/**
 	 * Este método retorna una instancia de usuario que representa el Usuario en la capa de Negocio.
@@ -36,15 +58,15 @@ public class UsuarioParser extends Parser {
 		usuario.setEmail(this.campos.get(UsuarioTags.EMAIL_TAG));
 	
 		if(this.campos.get(UsuarioTags.ID_TAG) != null) {
-			usuario.setUsuarioId(Long.parseLong(this.campos.get(UsuarioTags.ID_TAG)));
+			usuario.setId(Long.parseLong(this.campos.get(UsuarioTags.ID_TAG)));
 		}
 		
 		//Conversion de fecha a XMLGregorianCalendar
-		XMLGregorianCalendar fecha;
+		//XMLGregorianCalendar fecha;
 		if(this.campos.get(UsuarioTags.FECHANAC_TAG) != null)
 		{
-			fecha = XmlGregorianConverter.string2XMLGregorian((this.campos.get(UsuarioTags.FECHANAC_TAG)));
-			usuario.setFechaNac(fecha);
+			//fecha = XmlGregorianConverter.string2XMLGregorian((this.campos.get(UsuarioTags.FECHANAC_TAG)));
+			usuario.setFechaNacimiento(this.campos.get(UsuarioTags.FECHANAC_TAG));
 		}
 		usuario.setHabilitado(Boolean.parseBoolean(this.campos.get(UsuarioTags.HABILITADO_TAG)));
 		usuario.setActivado(Boolean.parseBoolean(this.campos.get(UsuarioTags.ACTIVADO_TAG)));
