@@ -30,14 +30,14 @@ public class TestIntegracionComunicacion {
         String resultadoTransaccion = integracionWS.guardarDatos(getMensajeNegocioXML(mensaje));
         Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), resultadoTransaccion);
 
-        // consultar mensaje por id
-        Mensaje mensaje2 = crearMensajeConId();
+        // consultar mensaje por props
         resultadoTransaccion = integracionWS.seleccionarDatos(getMensajeNegocioXML(mensaje));
         Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), resultadoTransaccion);
 
-        // consultar mensaje por props
-        Mensaje mensaje3 = crearMensaje();
-        resultadoTransaccion = integracionWS.seleccionarDatos(getMensajeNegocioXML(mensaje3));
+        // consultar mensaje por id
+        //IMPORTANTE: setear el id que corresponde!
+        Mensaje mensaje2 = crearMensajeConId();
+        resultadoTransaccion = integracionWS.seleccionarDatos(getMensajeNegocioXML(mensaje));
         Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), resultadoTransaccion);
 
         // eliminar mensaje
@@ -51,7 +51,6 @@ public class TestIntegracionComunicacion {
         mensaje.setAutor("Pepe");
         mensaje.setContenido("Hola querido!, como estas??");
         mensaje.setFecha("10/02/2013");
-
         return mensaje;
     }
 
@@ -60,6 +59,7 @@ public class TestIntegracionComunicacion {
         mensaje.setAutor("Pepe");
         mensaje.setContenido("Hola querido!, como estas??");
         mensaje.setFecha("10/02/2013");
+        //TODO: setear el que corresponde!
         mensaje.setId(5L);
         return mensaje;
     }
