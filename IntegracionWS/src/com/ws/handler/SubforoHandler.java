@@ -6,6 +6,8 @@ import org.w3c.dom.Document;
 
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.db.querys.SubforoQueryBuilder;
+import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
@@ -19,6 +21,7 @@ public class SubforoHandler extends Handler {
 	//TODO ver si la entidad se llama asi
 	public SubforoHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Subforo", new  SubforoParser(), new SubforoSerializer());
+		this.queryBuilder = new SubforoQueryBuilder();
 	}
 
 	@Override

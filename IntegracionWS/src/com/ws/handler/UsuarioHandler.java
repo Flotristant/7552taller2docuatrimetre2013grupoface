@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
+import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
@@ -20,6 +21,7 @@ public class UsuarioHandler extends Handler {
 
 	public UsuarioHandler(){
 		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario", new UsuarioParser(), new UsuarioSerializer());
+		this.queryBuilder = new UsuarioQueryBuilder();
 	}
 
 	@Override

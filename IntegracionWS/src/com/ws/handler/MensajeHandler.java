@@ -7,6 +7,8 @@ import org.w3c.dom.Document;
 import ar.fiuba.redsocedu.datalayer.ws.Mensaje;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.db.querys.MensajeQueryBuilder;
+import com.db.querys.UsuarioQueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
@@ -18,6 +20,7 @@ public class MensajeHandler extends Handler {
 	
 	public MensajeHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Mensaje", new MensajeParser(), new MensajeSerializer());
+		this.queryBuilder = new MensajeQueryBuilder();
 	}
 	
 	@Override
