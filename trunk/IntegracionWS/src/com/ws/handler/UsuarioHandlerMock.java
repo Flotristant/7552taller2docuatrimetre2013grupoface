@@ -120,13 +120,13 @@ public class UsuarioHandlerMock extends Handler {
 		user.setNombre(usuario.getNombre());
 		user.setApellido(usuario.getApellido());
 		user.setPadron(usuario.getPadron());
-		user.setFechaNac(usuario.getFechaNac());
-		user.setActivado(usuario.isActivado());
-		user.setHabilitado(usuario.isHabilitado());
+		//user.setFechaNac(usuario.getFechaNacimiento());
+		user.setActivado(usuario.getActivado());
+		user.setHabilitado(usuario.getHabilitado());
 		user.setEmail(usuario.getEmail());
 		user.setPassword(usuario.getPassword());
 		user.setUsername(usuario.getUsername());
-		user.setUsuarioId(usuario.getUsuarioId());
+		user.setUsuarioId(usuario.getId());
 		return user;
 	}
 
