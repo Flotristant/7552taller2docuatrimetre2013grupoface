@@ -13,6 +13,7 @@ public abstract class Serializer {
 		return "<WS>"+body+"</WS>";
 	}
 
+	//TODO: esto es para recibir un pojo de negocio o de BD?
 	public String getXMLfromPojo(Object dto) {
 		XStream xstream = new XStream();
 		this.setAttributeMappings(xstream);

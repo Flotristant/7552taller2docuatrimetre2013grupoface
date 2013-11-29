@@ -31,10 +31,10 @@ public class MensajeHandler extends Handler {
 			port.beginTransaction(transactionId);
 			Mensaje mensaje = (Mensaje) parser.getEntidad();
 			String query = this.queryBuilder.getAllById(mensaje.getMensajeId());
-			List<ReturnedObject> muros = null; 
+			List<ReturnedObject> mensajes = null; 
 			
-			muros = port.query(transactionId, query);
-			if(muros == null || muros.isEmpty() || muros.size() > 1) {			
+			mensajes = port.query(transactionId, query);
+			if(mensajes == null || mensajes.isEmpty() || mensajes.size() > 1) {			
 				return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 			}
 			Mensaje mensajeDB = (Mensaje) this.toDatabaseEntity(parser.getEntidad());

@@ -17,7 +17,7 @@ import com.ws.handler.Handler;
 public class IntegracionWS {
 		
 	private static String HANDLER_PACKAGE = "com.ws.handler." ;
-//	private static String HANDLER_SUFIX = "Handler";
+	//private static String HANDLER_SUFIX = "Handler";
 	private static String HANDLER_SUFIX = "HandlerMock";
 	private static String XML_ROOT_TAG = "WS"; 
 	
@@ -31,8 +31,15 @@ public class IntegracionWS {
 			return handler.guardarDatos(doc);
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
-		}
+		}    
+    }
     
+    public static void setMockService() {
+    	HANDLER_SUFIX="HandlerMock";
+    }
+    
+    public static void setNotMockService() {
+    	HANDLER_SUFIX="Handler";
     }
     
     public String actualizarDatos(String xml) {
@@ -77,6 +84,7 @@ public class IntegracionWS {
 		}
 	}
 	
+	//TODO: ver la forma de leer un xml con formato o de nunca obtener un xml con formato
 
 	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
