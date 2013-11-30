@@ -12,15 +12,10 @@ import com.ws.tags.UsuarioTags;
 
 public class UsuarioQueryBuilder extends QueryBuilder{
 
-	private static final String CLASS_NAME = "ar.fiuba.redsocedu.datalayer.dtos.Usuario";
-
-	@Override
-	public String getAllById(Long id) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		criteria.add(Restrictions.idEq(id));
-		return QueryBuilder.getSerializedCriteria(criteria);
+	public UsuarioQueryBuilder() {
+		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario");
 	}
-	
+
 	private Map<String, Object> obtenerAtributosConClase(Map<String, String> attributes){
 		
 		HashMap<String, Object> mimapa = new HashMap<String, Object>();
@@ -51,14 +46,11 @@ public class UsuarioQueryBuilder extends QueryBuilder{
 		mimapa.putAll(attributes);
 		
 		return mimapa;
-		
-		
-		
 	}
 
 	@Override
 	public String getAllByAttributes(Map<String, String> attributes) {		
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
 		if(attributes.containsKey(UsuarioTags.ID_TAG)) {
 			Long id = Long.parseLong(attributes.get(UsuarioTags.ID_TAG));
 			criteria.add(Restrictions.idEq(id));
@@ -67,13 +59,5 @@ public class UsuarioQueryBuilder extends QueryBuilder{
 		
 		criteria.add(Restrictions.allEq(obtenerAtributosConClase(attributes)));   //todos los atributos pasados por parámtero deben matchear
 		return QueryBuilder.getSerializedCriteria(criteria);
-	}
-	
-	@Override
-	public String removeById(Long id) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		criteria.add(Restrictions.idEq(id));
-		String xml = QueryBuilder.getSerializedCriteria(criteria);
-		return xml;
 	}
 }

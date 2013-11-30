@@ -9,19 +9,15 @@ import com.ws.tags.ForoTags;
 
 public class ForoQueryBuilder extends QueryBuilder{
 
-	//TODO poner el nombre de la clase de base de datos
-	private static final String CLASS_NAME = "ar.fiuba.redsocedu.datalayer.dtos.Foro";
-
-	@Override
-	public String getAllById(Long id) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		criteria.add(Restrictions.idEq(id));
-		return QueryBuilder.getSerializedCriteria(criteria);
+	public ForoQueryBuilder() {
+		super("ar.fiuba.redsocedu.datalayer.dtos.Foro");
 	}
+	
+	//TODO poner el nombre de la clase de base de datos
 
 	@Override
 	public String getAllByAttributes(Map<String, String> attributes) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
 		if(attributes.containsKey(ForoTags.ID_TAG)) {
 			Long id = Long.parseLong(attributes.get(ForoTags.ID_TAG));
 			criteria.add(Restrictions.idEq(id));
@@ -30,14 +26,6 @@ public class ForoQueryBuilder extends QueryBuilder{
 		
 		criteria.add(Restrictions.allEq(attributes));   
 		return QueryBuilder.getSerializedCriteria(criteria);
-	}
-
-	@Override
-	public String removeById(Long id) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		criteria.add(Restrictions.idEq(id));
-		String xml = QueryBuilder.getSerializedCriteria(criteria);
-		return xml;
 	}
 
 }

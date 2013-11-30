@@ -2,7 +2,7 @@
 
 import java.io.Serializable;
 
-public class Usuario  implements Serializable {
+public class Usuario  extends Pojo implements Serializable {
 	
 	/**
 	 * 
@@ -10,7 +10,6 @@ public class Usuario  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//TODO: consultar con seguridad y sesion si pueden pasar a Long en lugar de int, por problemas de compatibilidad 
 	//(Long->int puede no funcionar)
-	private Long userId;
 	private Long idRol;
 
 	private String username;
@@ -31,16 +30,7 @@ public class Usuario  implements Serializable {
 		this.password = password;
 		this.email = email;
 	}
-	
-	public Long getId() {
-		return userId;
-	}
-
-	public void setId(Long id) {
-		this.userId = id;
-	}
-
-		
+			
 	public String getUsername() {
 		return username;
 	}

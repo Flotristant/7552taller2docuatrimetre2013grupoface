@@ -30,7 +30,7 @@ public class MensajeHandlerMock extends Handler {
     }
 
     @Override
-    protected Object toDatabaseEntity(Object object) {
+	public Object toDatabaseEntity(Object object) {
         Mensaje mensaje = (Mensaje) object;
         ar.fiuba.redsocedu.datalayer.ws.Mensaje DBmensaje = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
         DBmensaje.setAutor(mensaje.getAutor());

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import com.thoughtworks.xstream.XStream;
 import com.utils.Base64Coder;
@@ -16,6 +17,11 @@ import com.utils.Base64Coder;
 
 public abstract class QueryBuilder {
 	
+	String className;
+	
+	public QueryBuilder(String className) {
+		this.className = className;
+	}
 	
 	/*
 	 * --------------Para modificar rapido la forma en la que se envian los detached---------------------
@@ -69,7 +75,18 @@ public abstract class QueryBuilder {
         return new String( Base64Coder.encode( baos.toByteArray() ) );
     }
 		
-	public abstract String getAllById(Long id);
+	public String getAllById(Long id) {
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
+		criteria.add(Restrictions.idEq(id));
+		return QueryBuilder.getSerializedCriteria(criteria);
+	}
+	
+	public String removeById(Long id) {
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
+		criteria.add(Restrictions.idEq(id));
+		String xml = QueryBuilder.getSerializedCriteria(criteria);
+		return xml;
+	}
+	
 	public abstract String getAllByAttributes(Map<String, String> attributes);
-	public abstract String removeById(Long id);
 }

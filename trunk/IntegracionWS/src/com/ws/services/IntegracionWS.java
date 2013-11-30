@@ -17,10 +17,9 @@ import com.ws.handler.Handler;
 public class IntegracionWS {
 		
 	private static String HANDLER_PACKAGE = "com.ws.handler." ;
-	//private static String HANDLER_SUFIX = "Handler";
-	private static String HANDLER_SUFIX = "HandlerMock";
+	private static String HANDLER_SUFIX = "Handler";
+//	private static String HANDLER_SUFIX = "HandlerMock";
 	private static String XML_ROOT_TAG = "WS"; 
-	
 
     public String guardarDatos(String xml) {
     	Document doc;
@@ -43,7 +42,6 @@ public class IntegracionWS {
     }
     
     public String actualizarDatos(String xml) {
-    	
     	Document doc;
 		try {
 			doc = getXMLDocument(xml);
@@ -54,8 +52,6 @@ public class IntegracionWS {
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
 		}
-    	
-    	
     }
 	
 	public String seleccionarDatos(String xml) {

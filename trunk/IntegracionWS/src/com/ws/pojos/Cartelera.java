@@ -1,16 +1,9 @@
 package com.ws.pojos;
 
-public class Cartelera {
+public class Cartelera extends Pojo {
 
-	 protected Long id;
-	 protected String nombre;
+	protected String nombre;
 	 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getNombre() {
 		return nombre;
 	}

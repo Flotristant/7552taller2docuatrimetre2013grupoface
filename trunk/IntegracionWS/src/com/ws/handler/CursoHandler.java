@@ -26,7 +26,7 @@ public class CursoHandler extends Handler {
 	}
 
 	@Override
-	protected Object toDatabaseEntity(Object object) {
+	public Object toDatabaseEntity(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}

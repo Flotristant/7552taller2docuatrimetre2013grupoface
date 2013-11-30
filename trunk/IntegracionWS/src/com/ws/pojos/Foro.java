@@ -1,17 +1,10 @@
 package com.ws.pojos;
 
-public class Foro {
+public class Foro extends Pojo {
 	
-	Long id;
 	String nombre;
 	Long idAmbito;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getNombre() {
 		return nombre;
 	}

@@ -1,9 +1,6 @@
 package com.ws.parsers;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-
 import com.thoughtworks.xstream.XStream;
-import com.utils.XmlGregorianConverter;
 import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
 

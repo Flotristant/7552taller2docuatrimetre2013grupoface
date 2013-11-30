@@ -35,7 +35,7 @@ public class TestGenerico {
 	@Test
 	public void test2() {
 	
-		String s="12-10-198";
+		String s="12-10-1988";
 		XMLGregorianCalendar result = null;
 		Date date;
 		SimpleDateFormat simpleDateFormat;

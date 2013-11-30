@@ -1,12 +1,11 @@
 package com.ws.pojos;
 
-public class Subforo {
+public class Subforo extends Pojo {
 
 	protected Long idForo;
 	protected Long idSubforoPadre;
 	protected Long idSeccion; 
 	protected String nombre;
-	protected Long idSubforo;
 	
 	public Long getIdForo() {
 		return idForo;
@@ -31,12 +30,6 @@ public class Subforo {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public Long getIdSubforo() {
-		return idSubforo;
-	}
-	public void setIdSubforo(Long idSubforo) {
-		this.idSubforo = idSubforo;
 	}
 	
 }
