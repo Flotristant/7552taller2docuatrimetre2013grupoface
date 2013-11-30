@@ -8,18 +8,13 @@ import com.ws.tags.TemaTags;
 
 public class TemaQueryBuilder extends QueryBuilder {
 
-	private static final String CLASS_NAME = "ar.fiuba.redsocedu.datalayer.dtos.Tema";
-	
-	@Override
-	public String getAllById(Long id) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		criteria.add(Restrictions.idEq(id));
-		return QueryBuilder.getSerializedCriteria(criteria);
+	public TemaQueryBuilder()	 {
+		super("ar.fiuba.redsocedu.datalayer.dtos.Tema");
 	}
-	
+
 	@Override
 	public String getAllByAttributes(Map<String, String> attributes) {		
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
 		if(attributes.containsKey(TemaTags.ID_TAG)) {
 			Long id = Long.parseLong(attributes.get(TemaTags.ID_TAG));
 			criteria.add(Restrictions.idEq(id));
@@ -28,14 +23,5 @@ public class TemaQueryBuilder extends QueryBuilder {
 		criteria.add(Restrictions.allEq(attributes));
 		return QueryBuilder.getSerializedCriteria(criteria);
 	}
-
-
-	@Override
-	public String removeById(Long id) {
-		DetachedCriteria criteria = DetachedCriteria.forEntityName(CLASS_NAME);
-		criteria.add(Restrictions.idEq(id));
-		String xml = QueryBuilder.getSerializedCriteria(criteria);
-		return xml;
-	}	
 
 }

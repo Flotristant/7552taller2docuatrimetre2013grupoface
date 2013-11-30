@@ -72,10 +72,9 @@ public abstract class Parser {
 	public Document getDoc() {
 		return doc;
 	}
-
+	
 	public void inicializarDocumento(Document doc) {
 		this.doc = doc;
 		this.inicializarCampos();
 	}
-
 }

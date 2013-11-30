@@ -21,7 +21,7 @@ public class SubforoParser extends Parser{
 			subforo.setIdSeccion(Long.parseLong(this.campos.get(SubforoTags.ID_SECCION_TAG)));
 		}
 		if(this.campos.get(SubforoTags.ID_TAG) != null){
-			subforo.setIdSubforo(Long.parseLong(this.campos.get(SubforoTags.ID_TAG)));
+			subforo.setId(Long.parseLong(this.campos.get(SubforoTags.ID_TAG)));
 		}
 		subforo.setNombre(this.campos.get(SubforoTags.NOMBRE_TAG));
 		return subforo;

@@ -1,11 +1,10 @@
 package com.ws.pojos;
 
-public class Tema {
+public class Tema extends Pojo {
 	String titulo;
 	String autor;
 	Boolean esSticky;
 	String fecha;
-	Long id;
 	
 	public String getTitulo() {
 		return titulo;
@@ -31,11 +30,4 @@ public class Tema {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 }

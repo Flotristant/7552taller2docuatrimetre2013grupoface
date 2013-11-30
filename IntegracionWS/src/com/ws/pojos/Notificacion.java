@@ -10,10 +10,11 @@ package com.ws.pojos;
  * @author zeke
  *
  */
-public class Notificacion {
+public class Notificacion extends Pojo {
 
 	int numero;
 	String mensaje;
+	
 	public int getNumero() {
 		return numero;
 	}

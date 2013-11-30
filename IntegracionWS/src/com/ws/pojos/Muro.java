@@ -1,17 +1,9 @@
 package com.ws.pojos;
 
-public class Muro {
-
-	
-	 protected Long id;
-	 protected String nombre;
+public class Muro extends Pojo {
 	 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	protected String nombre;
+	 
 	public String getNombre() {
 		return nombre;
 	}

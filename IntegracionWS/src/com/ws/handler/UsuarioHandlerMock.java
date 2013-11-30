@@ -4,8 +4,6 @@ import java.util.Map;
 
 import org.w3c.dom.Document;
 
-import ar.fiuba.redsocedu.datalayer.ws.Usuario;
-
 import com.db.querys.UsuarioQueryBuilder;
 import com.utils.MockCache;
 import com.utils.NotificacionFactory;
@@ -115,7 +113,9 @@ public class UsuarioHandlerMock extends Handler {
         return parser.obtenerCampos();
     }
 
-    public Usuario toDatabaseUser(com.ws.pojos.Usuario usuario) {
+    @Override
+	public Object toDatabaseEntity(Object object) {
+    	com.ws.pojos.Usuario usuario = (com.ws.pojos.Usuario) object; 
         ar.fiuba.redsocedu.datalayer.ws.Usuario user = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
         user.setNombre(usuario.getNombre());
         user.setApellido(usuario.getApellido());
@@ -127,13 +127,7 @@ public class UsuarioHandlerMock extends Handler {
         user.setPassword(usuario.getPassword());
         user.setUsername(usuario.getUsername());
         user.setUsuarioId(usuario.getId());
-        return user;
-    }
-
-    @Override
-    protected Object toDatabaseEntity(Object object) {
-        // TODO Auto-generated method stub
-        return null;
+        return user;    
     }
 
 }

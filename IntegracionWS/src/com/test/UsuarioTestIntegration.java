@@ -26,7 +26,7 @@ public class UsuarioTestIntegration {
     @Before
     public void setUp() throws Exception {
         IntegracionWS integracionWS = new IntegracionWS();
-        integracionWS.setMockService();
+        IntegracionWS.setNotMockService();
         String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
 
         guardarDatos(xmlUser1, integracionWS);
@@ -40,7 +40,7 @@ public class UsuarioTestIntegration {
         IntegracionWS integracionWS = new IntegracionWS();
         String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
         String suffix = "</id></Usuario></WS>";
-        String xmlUser1 = createDeleteUserXML(prefix, suffix, usuario1);
+        String xmlUser1 = createDeleteUserByIdXML(prefix, suffix, usuario1);
         if (xmlUser1 != "") {
             integracionWS.eliminarDatos(xmlUser1);
         }
@@ -52,7 +52,7 @@ public class UsuarioTestIntegration {
         UsuarioHandlerMock handler = new UsuarioHandlerMock();
         UsuarioParser parser1 = new UsuarioParser();
         parser1.inicializarDocumento(integracionWS.getXMLDocument(xml));
-        return (Usuario) handler.toDatabaseUser((com.ws.pojos.Usuario) parser1.getEntidad());
+        return (Usuario) handler.toDatabaseEntity((com.ws.pojos.Usuario) parser1.getEntidad());
     }
 
     private void guardarDatos(String xml, IntegracionWS integracionWS) {
@@ -69,21 +69,44 @@ public class UsuarioTestIntegration {
         return usuarios;
     }
 
-    private String createDeleteUserXML(String preffix, String suffix, Usuario user) {
+    private String createDeleteUserByIdXML(String preffix, String suffix, Usuario user) {
         if (user.getUsuarioId() != null) {
             return preffix + user.getUsuarioId().toString() + suffix;
         }
         return "";
     }
 
-    @Test
-    public void removeTest() {
-        IntegracionWS integracionWS = new IntegracionWS();
-        String xml1 = createCreateUserXML(usuario1);
-        if (!integracionWS.guardarDatos(xml1).equals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()))) {
-            Assert.fail("no se pudo guardar el usuario: " + xml1);
+    private String createDeleteUserByUsernameXML(Usuario user) {
+        if (user.getUsername() != null) {
+            return "<?xml version=\"1.0\"?><WS><Usuario><username>" + user.getUsername() + "</username></Usuario></WS>";
         }
-        Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), integracionWS.eliminarDatos(xml1));
+        return "";
+    }
+    
+    @Test
+    public void removeByIdTest() {
+        IntegracionWS integracionWS = new IntegracionWS();
+        String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
+        String suffix = "</id></Usuario></WS>";
+        String xml1 = createDeleteUserByIdXML(prefix, suffix, usuario1);
+        
+        Object obteinedMessage = integracionWS.eliminarDatos(xml1);
+        Object expectedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+        
+        String errorMessage = "No se pudo eliminar el usuario: " + xml1;
+        Assert.assertEquals(errorMessage, obteinedMessage, expectedMessage);
+    }
+
+    @Test
+    public void removeByUsernameTest() {
+        IntegracionWS integracionWS = new IntegracionWS();
+        String xml1 = createDeleteUserByUsernameXML(usuario1);
+        
+        Object obteinedMessage = integracionWS.eliminarDatos(xml1);
+        Object expectedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+        
+        String errorMessage = "No se pudo eliminar el usuario: " + xml1;
+        Assert.assertEquals(errorMessage, obteinedMessage, expectedMessage);
     }
 
     @Test
@@ -92,29 +115,29 @@ public class UsuarioTestIntegration {
             IntegracionWS integracionWS = new IntegracionWS();
             String xml = createSelectUserXML(usuario1);
             String salida = integracionWS.seleccionarDatos(xml);
-            System.out.println(salida);
+            System.out.println("Datos selección: " + salida);
+            
+            String notExpectedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+            Assert.assertNotSame(notExpectedMessage, salida);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private String createSelectUserXML(Usuario usuario) {
-
         return "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username></Usuario></WS>";
-
-        //		return "<?xml version=\"1.0\"?><WS><Usuario><username>"
-        //				+ usuario.getUsername() + "</username><password>"
-        //				+ usuario.getPassword() + "</password><activado>"
-        //				+ usuario.isActivado().toString() + "</activado><habilitado>"
-        //				+ usuario.isHabilitado().toString()
-        //				+ "</habilitado></Usuario></WS>";
     }
 
     @Test
     public void saveOneUserTest() {
         IntegracionWS integracionWS = new IntegracionWS();
         String xml = createCreateUserXML(usuario1);
-        integracionWS.guardarDatos(xml);
+
+        Object obteinedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+        Object expectedMessage = integracionWS.guardarDatos(xml);
+        
+        String errorMessage = "No se pudo guardar el usuario: " + xml;
+        Assert.assertEquals(errorMessage, obteinedMessage, expectedMessage);        
     }
 
     private String createCreateUserXML(Usuario usuario) {
@@ -125,7 +148,12 @@ public class UsuarioTestIntegration {
     public void updateOneUserTest() {
         IntegracionWS integracionWS = new IntegracionWS();
         String xml = createUpdateUserXML(usuario1);
-        integracionWS.actualizarDatos(xml);
+        
+        Object obteinedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+        Object expectedMessage = integracionWS.eliminarDatos(xml);
+        
+        String errorMessage = "No se pudo actualizar el usuario: " + xml;
+        Assert.assertEquals(errorMessage, obteinedMessage, expectedMessage);        
     }
 
     private String createUpdateUserXML(Usuario usuario) {

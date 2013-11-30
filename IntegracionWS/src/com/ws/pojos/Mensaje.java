@@ -1,17 +1,11 @@
 package com.ws.pojos;
 
-public class Mensaje {
+public class Mensaje extends Pojo {
+	
 	String contenido;
 	String autor;
 	String fecha;
-	Long id;
 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getContenido() {
 		return contenido;
 	}
