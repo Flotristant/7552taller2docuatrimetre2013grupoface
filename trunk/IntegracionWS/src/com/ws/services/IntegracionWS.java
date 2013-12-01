@@ -33,12 +33,16 @@ public class IntegracionWS {
 		}    
     }
     
-    public static void setMockService() {
-    	HANDLER_SUFIX="HandlerMock";
+    public static void setMockService(Boolean mock) {
+    	if(mock) {
+    		HANDLER_SUFIX="HandlerMock";
+    	} else {
+    		HANDLER_SUFIX="Handler";
+    	}
     }
-    
-    public static void setNotMockService() {
-    	HANDLER_SUFIX="Handler";
+        
+    public Boolean isMock() {
+    	return (HANDLER_SUFIX=="HandlerMock");
     }
     
     public String actualizarDatos(String xml) {
