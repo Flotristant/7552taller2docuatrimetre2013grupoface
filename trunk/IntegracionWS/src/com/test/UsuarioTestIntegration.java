@@ -22,38 +22,39 @@ import com.ws.services.IntegracionWS;
 public class UsuarioTestIntegration {
 
 	private static String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
-    Usuario usuario1, usuario2;
+    private Usuario usuarioBD;
+    private IntegracionWS integracionWS;
 
     @Before
     public void setUp() throws Exception {
-        IntegracionWS integracionWS = new IntegracionWS();
-        IntegracionWS.setMockService(true);
-        
-
+        integracionWS = new IntegracionWS();
+        IntegracionWS.setMockService(true);        
         guardarDatos(xmlUser1, integracionWS);
-
-        String nuevoXml1 = consultarDatos(xmlUser1, integracionWS);
-        usuario1 = obtenerUsuario(nuevoXml1, integracionWS);
+        String nuevoXml1 = consultarDatos(xmlUser1);
+        usuarioBD = obtenerUsuario(nuevoXml1);
     }
 
     @After
     public void cleanUp() throws Exception {
         IntegracionWS integracionWS = new IntegracionWS();
+        if(usuarioBD == null) {
+        	return;
+        }
         String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
         String suffix = "</id></Usuario></WS>";
-        String xmlUser1 = createDeleteUserByIdXML(prefix, suffix, usuario1);
+        String xmlUser1 = createDeleteUserByIdXML(prefix, suffix, usuarioBD);
         if (xmlUser1 != "") {
             integracionWS.eliminarDatos(xmlUser1);
         }
     }
 
-    private Usuario obtenerUsuario(String xml, IntegracionWS integracionWS) throws SAXException, IOException, ParserConfigurationException {
-        xml = xml.replace("\n", "");
-        xml = xml.replace(" ", "");
+    private Usuario obtenerUsuario(String xml) throws SAXException, IOException, ParserConfigurationException {
+//        xml = xml.replace("\n", "");
+//        xml = xml.replace(" ", "");
         UsuarioHandlerMock handler = new UsuarioHandlerMock();
-        UsuarioParser parser1 = new UsuarioParser();
-        parser1.inicializarDocumento(integracionWS.getXMLDocument(xml));
-        return (Usuario) handler.toDatabaseEntity((com.ws.pojos.Usuario) parser1.getEntidad());
+        UsuarioParser parser = new UsuarioParser();
+        parser.inicializarDocumento(integracionWS.getXMLDocument(xml));
+        return (Usuario) handler.toDatabaseEntity((com.ws.pojos.Usuario) parser.getEntidad());
     }
 
     private void guardarDatos(String xml, IntegracionWS integracionWS) {
@@ -62,7 +63,7 @@ public class UsuarioTestIntegration {
         }
     }
 
-    private String consultarDatos(String xml, IntegracionWS integracionWS) {
+    private String consultarDatos(String xml) {
         String usuarios = integracionWS.seleccionarDatos(xml);
         if (usuarios == null || usuarios == "") {
             Assert.fail("no se pudieron obtener los datos de: " + xml);
@@ -86,15 +87,14 @@ public class UsuarioTestIntegration {
     
     @Test
     public void removeByIdTest() {
-        IntegracionWS integracionWS = new IntegracionWS();
         String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
         String suffix = "</id></Usuario></WS>";
         
-        if((usuario1.getUsuarioId() == null) && (integracionWS.isMock())) {
-        	usuario1.setUsuarioId(1L);
+        if((usuarioBD.getUsuarioId() == null) && (integracionWS.isMock())) {
+        	usuarioBD.setUsuarioId(1L);
         }
 
-        String xml1 = createDeleteUserByIdXML(prefix, suffix, usuario1);
+        String xml1 = createDeleteUserByIdXML(prefix, suffix, usuarioBD);
         
         if(integracionWS.isMock()) {
         	integracionWS.guardarDatos(xml1);
@@ -109,9 +109,7 @@ public class UsuarioTestIntegration {
 
     @Test
     public void removeByUsernameTest() {
-        IntegracionWS integracionWS = new IntegracionWS();
-        IntegracionWS.setMockService(true);
-        String xml1 = createDeleteUserByUsernameXML(usuario1);
+        String xml1 = createDeleteUserByUsernameXML(usuarioBD);
         
         Object obteinedMessage = integracionWS.eliminarDatos(xml1);
         Object expectedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
@@ -123,8 +121,7 @@ public class UsuarioTestIntegration {
     @Test
     public void selectOneUserTest() {
         try {
-            IntegracionWS integracionWS = new IntegracionWS();
-            String xml = createSelectUserXML(usuario1);
+            String xml = createSelectUserXML(usuarioBD);
             String salida = integracionWS.seleccionarDatos(xml);
             System.out.println("Datos selección: " + salida);
             
@@ -141,8 +138,7 @@ public class UsuarioTestIntegration {
 
     @Test
     public void saveOneUserTest() {
-        IntegracionWS integracionWS = new IntegracionWS();
-        String xml = createCreateUserXML(usuario1);
+        String xml = createCreateUserXML(usuarioBD);
 
         Object obteinedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
         Object expectedMessage = integracionWS.guardarDatos(xml);
@@ -154,11 +150,15 @@ public class UsuarioTestIntegration {
     private String createCreateUserXML(Usuario usuario) {
         return "<?xml version=\"1.0\"?><WS><Usuario><username>" + usuario.getUsername() + "</username><password>" + usuario.getPassword() + "</password><activado>" + usuario.isActivado().toString() + "</activado><habilitado>" + usuario.isHabilitado().toString() + "</habilitado></Usuario></WS>";
     }
+    
+    @Test
+    public void foo() {
+    	
+    }
 
     @Test
     public void updateOneUserTest() {
-        IntegracionWS integracionWS = new IntegracionWS();
-        String xml = createUpdateUserXML(usuario1);
+        String xml = createUpdateUserXML(usuarioBD);
         
         Object obteinedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
         Object expectedMessage = integracionWS.eliminarDatos(xml);
