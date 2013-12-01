@@ -13,6 +13,7 @@ public class MockCache {
 	
 	public static void guardarUsuario(Document doc){
 		Usuario us = getUsuarioFromString(doc);
+
 		cache.put(us.getUsername(), us);
 	}
 	

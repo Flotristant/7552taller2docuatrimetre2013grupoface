@@ -21,13 +21,14 @@ import com.ws.services.IntegracionWS;
 
 public class UsuarioTestIntegration {
 
+	private static String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
     Usuario usuario1, usuario2;
 
     @Before
     public void setUp() throws Exception {
         IntegracionWS integracionWS = new IntegracionWS();
-        IntegracionWS.setNotMockService();
-        String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
+        IntegracionWS.setMockService(true);
+        
 
         guardarDatos(xmlUser1, integracionWS);
 
@@ -88,18 +89,28 @@ public class UsuarioTestIntegration {
         IntegracionWS integracionWS = new IntegracionWS();
         String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
         String suffix = "</id></Usuario></WS>";
+        
+        if((usuario1.getUsuarioId() == null) && (integracionWS.isMock())) {
+        	usuario1.setUsuarioId(1L);
+        }
+
         String xml1 = createDeleteUserByIdXML(prefix, suffix, usuario1);
+        
+        if(integracionWS.isMock()) {
+        	integracionWS.guardarDatos(xml1);
+        }        
         
         Object obteinedMessage = integracionWS.eliminarDatos(xml1);
         Object expectedMessage = NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
         
-        String errorMessage = "No se pudo eliminar el usuario: " + xml1;
-        Assert.assertEquals(errorMessage, obteinedMessage, expectedMessage);
+        String validacion = "notificacion de exito";
+        Assert.assertEquals(validacion, obteinedMessage, expectedMessage);
     }
 
     @Test
     public void removeByUsernameTest() {
         IntegracionWS integracionWS = new IntegracionWS();
+        IntegracionWS.setMockService(true);
         String xml1 = createDeleteUserByUsernameXML(usuario1);
         
         Object obteinedMessage = integracionWS.eliminarDatos(xml1);

@@ -20,8 +20,8 @@ public class TestIntegracionComunicacion {
     public void testMensaje() {
         // iniciar Servicio BD 
 
-        //mock, para probar integración real, borrar esta linea.
-        IntegracionWS.setMockService();
+        //mock, para probar integraciï¿½n real, borrar esta linea.
+        IntegracionWS.setMockService(true);
 
         IntegracionWS integracionWS = new IntegracionWS();
 
