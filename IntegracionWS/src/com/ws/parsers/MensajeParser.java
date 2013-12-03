@@ -15,20 +15,15 @@ public class MensajeParser extends Parser  {
 	public Map<String, String> obtenerCampos() {
 		return null;
 	}
-	
-	public Mensaje getEntidadMensaje() {
+
+	@Override
+	public Object getEntidad() {
 		Mensaje mensaje = new Mensaje();
 		mensaje.setId(Long.parseLong(this.campos.get(MensajeTags.ID_TAG)));
 		mensaje.setAutor(this.campos.get(MensajeTags.AUTOR_TAG));
 		mensaje.setContenido(this.campos.get(MensajeTags.CONTENIDO_TAG));
 		mensaje.setFecha(this.campos.get(MensajeTags.FECHA_TAG));
 		return mensaje;
-	}
-
-	@Override
-	public Object getEntidad() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
