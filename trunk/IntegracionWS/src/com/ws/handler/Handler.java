@@ -47,17 +47,18 @@ public abstract class Handler {
 	public String guardarDatos(Document doc) {
 		this.parser.inicializarDocumento(doc);
 		Long transactionId = IdGenerator.generateTransactionId();
+		Long idnuevo;
 		try{
 			port.beginTransaction(transactionId);
 			Object obj = this.toDatabaseEntity(parser.getEntidad());
-			port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
+			idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
 			port.commit(transactionId);
 		}
 		catch(ClientTransportException e) {
 			port.rollback(transactionId);
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 		}
-		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(idnuevo.toString()));
 	}
 	
 	public String seleccionarDatos(Document doc) {

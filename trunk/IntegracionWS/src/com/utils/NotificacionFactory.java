@@ -16,6 +16,12 @@ public class NotificacionFactory {
 		return new Notificacion(2, "Su solicitud fue procesada con éxito");
 	}
 	
+	public static Notificacion ExitoGuardado(String nuevoId){
+		Notificacion not =  new Notificacion(2, "La entidad ha sido almacenada con exito");
+		not.setDatos(nuevoId);
+		return not;
+	}
+	
 	public static Notificacion OperacionInvalida(){
 		return new Notificacion(0, "La operacion que trata de realizar es inválida");
 	}
