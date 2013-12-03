@@ -14,7 +14,14 @@ public class Notificacion extends Pojo {
 
 	int numero;
 	String mensaje;
+	String datos;
 	
+	public String getDatos() {
+		return datos;
+	}
+	public void setDatos(String datos) {
+		this.datos = datos;
+	}
 	public int getNumero() {
 		return numero;
 	}
