@@ -70,6 +70,7 @@ public abstract class Handler {
 		List<ReturnedObject> objects = null; 
 		objects = port.query(transactionId, query);
 		if(objects == null || objects.isEmpty()) {
+			port.commit(transactionId);
 			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
 		}
 		port.commit(transactionId);
