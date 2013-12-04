@@ -33,7 +33,7 @@ public class MockCache {
 	private static Usuario getUsuarioFromString(String xml){
 		try {
 			UsuarioParser up = new UsuarioParser();
-			Usuario us = (Usuario) up.getEntidad(xml);
+			Usuario us = (Usuario) up.getEntidadNegocio(xml);
 			return us;
 		}
 		catch (Exception e){

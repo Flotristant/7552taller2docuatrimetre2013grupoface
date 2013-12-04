@@ -10,31 +10,7 @@ public class TemaParser extends Parser  {
 	public TemaParser() {
 		super(TemaTags.CLASS_TAG);
 	}
-
-	@Override
-	public Map<String, String> getCampos() {
-		return null;
-	}
 	
-	public Tema getEntidadTema() {
-		Tema tema = new Tema();
-		tema.setId(Long.parseLong(this.campos.get(TemaTags.ID_TAG)));
-		tema.setAutor(this.campos.get(TemaTags.AUTOR_TAG));
-		tema.setFecha(this.campos.get(TemaTags.FECHA_TAG));
-		tema.setEsSticky(Boolean.parseBoolean(this.campos.get(TemaTags.STICKY_TAG)));
-		return tema;
-	}
-
-	@Override
-	public Object getEntidad(String xml) {
-		Tema tema = new Tema();
-		tema.setId(Long.parseLong(this.campos.get(TemaTags.ID_TAG)));
-		tema.setAutor(this.campos.get(TemaTags.AUTOR_TAG));
-		tema.setFecha(this.campos.get(TemaTags.FECHA_TAG));
-		tema.setEsSticky(Boolean.parseBoolean(this.campos.get(TemaTags.STICKY_TAG)));
-		return tema;
-	}
-
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(TemaTags.ID_TAG));

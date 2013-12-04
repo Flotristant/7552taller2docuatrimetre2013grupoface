@@ -69,11 +69,11 @@ public class ParserTest {
 		
 		try {
 		UsuarioParser up = new UsuarioParser();
-		up.inicializarDocumento(doc);
-		
+		up.inicializarCampos(xmlbruto);
+		//TODO: quitar super tags
 		System.out.println(up.getCampos());
 		
-		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidad(""));
+		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidadNegocio(""));
 		
 		System.out.println(salida);	
 		
