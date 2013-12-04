@@ -14,13 +14,13 @@ public class CursoHandler extends Handler {
 	}
 
 	@Override
-	public String actualizarDatos(Document doc) {
+	public String actualizarDatos(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String borrarDatos(Document doc) {
+	public String borrarDatos(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}

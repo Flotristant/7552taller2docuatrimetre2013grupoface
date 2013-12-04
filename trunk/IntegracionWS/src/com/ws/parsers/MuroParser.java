@@ -10,7 +10,7 @@ public class MuroParser extends Parser {
 	}
 	
 	@Override
-	public Object getEntidad() {
+	public Object getEntidad(String xml) {
 		Muro muro = new Muro();
 		muro.setId(Long.parseLong(this.campos.get(MuroTags.ID_TAG)));
 		muro.setNombre(this.campos.get(MuroTags.NOMBRE_TAG));
@@ -20,6 +20,12 @@ public class MuroParser extends Parser {
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(MuroTags.ID_TAG));
+	}
+
+	@Override
+	public Object getDBObject(String xml) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

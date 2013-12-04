@@ -9,8 +9,9 @@ public class ForoParser extends Parser {
 		super(ForoTags.CLASS_TAG);
 	}
 
+	//TODO: fix me
 	@Override
-	public Object getEntidad() {
+	public Object getEntidad(String xml) {
 		Foro foro = new Foro();
 		if(this.campos.get(ForoTags.ID_TAG) != null){
 			foro.setId(Long.parseLong(this.campos.get(ForoTags.ID_TAG)));
@@ -25,5 +26,11 @@ public class ForoParser extends Parser {
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(ForoTags.ID_TAG));
+	}
+
+	@Override
+	public Object getDBObject(String xml) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

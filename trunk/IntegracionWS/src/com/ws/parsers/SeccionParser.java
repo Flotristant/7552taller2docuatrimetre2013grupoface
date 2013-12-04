@@ -10,7 +10,7 @@ public class SeccionParser extends Parser {
 	}
 
 	@Override
-	public Object getEntidad() {
+	public Object getEntidad(String xml) {
 		Seccion seccion = new Seccion();
 		if(this.campos.get(SeccionTags.ID_TAG) != null){
 			seccion.setId(Long.parseLong(this.campos.get(SeccionTags.ID_TAG)));
@@ -28,6 +28,12 @@ public class SeccionParser extends Parser {
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(SeccionTags.ID_TAG));
+	}
+
+	@Override
+	public Object getDBObject(String xml) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

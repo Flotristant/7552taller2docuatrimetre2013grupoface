@@ -2,6 +2,9 @@ package com.test;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
@@ -68,9 +71,9 @@ public class ParserTest {
 		UsuarioParser up = new UsuarioParser();
 		up.inicializarDocumento(doc);
 		
-		System.out.println(up.obtenerCampos());
+		System.out.println(up.getCampos());
 		
-		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidad());
+		String salida = UsuarioPojoSerializer.getXMLfromPojo(up.getEntidad(""));
 		
 		System.out.println(salida);	
 		
@@ -80,6 +83,18 @@ public class ParserTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void domTest() throws ParserConfigurationException, SAXException, IOException, SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		com.ws.pojos.Usuario usuario = new com.ws.pojos.Usuario();
+		usuario.setNombre("florencia");
+		usuario.setUsername("fl0r3nc1a");
+		usuario.setActivado(true);
+		XStream xstream = new XStream();
+		String xml = xstream.toXML(usuario);
+		UsuarioParser parser = new UsuarioParser();
+ 		parser.inicializarCampos(xml);
 	}
 	
 	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {

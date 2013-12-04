@@ -18,7 +18,6 @@ public class IntegracionWS {
 		
 	private static String HANDLER_PACKAGE = "com.ws.handler." ;
 	private static String HANDLER_SUFIX = "Handler";
-//	private static String HANDLER_SUFIX = "HandlerMock";
 	private static String XML_ROOT_TAG = "WS"; 
 
     public String guardarDatos(String xml) {
@@ -27,7 +26,7 @@ public class IntegracionWS {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			Handler handler = getHandler(root);
-			return handler.guardarDatos(doc);
+			return handler.guardarDatos(xml);
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
 		}    
@@ -51,7 +50,7 @@ public class IntegracionWS {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			Handler handler = getHandler(root);
-			return handler.actualizarDatos(doc);
+			return handler.actualizarDatos(xml);
 			
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
@@ -64,7 +63,7 @@ public class IntegracionWS {
 			System.out.println(xml);
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
-			return getHandler(root).seleccionarDatos(doc);
+			return getHandler(root).seleccionarDatos(xml);
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
 		}
@@ -78,7 +77,7 @@ public class IntegracionWS {
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			Handler handler = getHandler(root);
 			//return the error or successfull message
-			return handler.borrarDatos(doc);			
+			return handler.borrarDatos(xml);			
 		} catch (Exception e) {
 			return e.getMessage() + "XML: " + xml;
 		}
@@ -95,7 +94,9 @@ public class IntegracionWS {
 	
 	
 	private Handler getHandler(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-		String handlerName = HANDLER_PACKAGE + root.item(0).getFirstChild().getNodeName() + HANDLER_SUFIX ;
+		String objectName = root.item(0).getFirstChild().getNodeName();
+		String nameWithoutPackage = objectName.substring(objectName.lastIndexOf(".")+1);
+		String handlerName = HANDLER_PACKAGE + nameWithoutPackage + HANDLER_SUFIX ;
 		Class<?> hClass = Class.forName(handlerName);
 		return (Handler) hClass.newInstance();
 	}

@@ -13,26 +13,54 @@ import org.xml.sax.SAXException;
 
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
+import com.thoughtworks.xstream.XStream;
 import com.utils.NotificacionFactory;
 import com.ws.handler.UsuarioHandlerMock;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
+import com.ws.tags.UsuarioTags;
 
 public class UsuarioTestIntegration {
 
-	private static String xmlUser1 = "<?xml version=\"1.0\"?><WS><Usuario><username>usuario_prueba1</username><password>1234</password><activado>true</activado><habilitado>true</habilitado></Usuario></WS>";
+	//ATENCION: el nombre del usuario tiene que ser uno que no exista en la BD si no se corre en modo mock.
+	private static String xmlUser1;
     private Usuario usuarioBD;
+    private com.ws.pojos.Usuario usuarioNegocio;
     private IntegracionWS integracionWS;
 
     @Before
     public void setUp() throws Exception {
-        integracionWS = new IntegracionWS();
-        IntegracionWS.setMockService(true);        
-        guardarDatos(xmlUser1, integracionWS);
+    	crearUsuarioNegocio();
+    	serializarUsuarioNegocio();
+
+    	integracionWS = new IntegracionWS();
+        IntegracionWS.setMockService(false);  
+        //guardarDatos(xmlUser1, integracionWS);
+        
+        System.out.println(xmlUser1);
+        integracionWS.eliminarDatos(xmlUser1);
         String nuevoXml1 = consultarDatos(xmlUser1);
-        usuarioBD = obtenerUsuario(nuevoXml1);
+        if(nuevoXml1 != null) {
+        	usuarioBD = obtenerUsuario(nuevoXml1);
+        }
     }
+
+	private void serializarUsuarioNegocio() {
+		XStream xstream = new XStream();
+		xstream.alias("Usuario", Usuario.class);
+        xmlUser1 = xstream.toXML(usuarioNegocio);
+        xmlUser1 = "<WS>"+xmlUser1+"</WS>";
+	}
+
+	private void crearUsuarioNegocio() {
+		usuarioNegocio = new com.ws.pojos.Usuario();
+		//usuarioNegocio.setId(172L);
+        usuarioNegocio.setUsername("fl0r3nc1a750");
+        usuarioNegocio.setPassword("123456");
+        usuarioNegocio.setActivado(true);
+        usuarioNegocio.setHabilitado(true);
+	}
 
     @After
     public void cleanUp() throws Exception {
@@ -47,16 +75,22 @@ public class UsuarioTestIntegration {
             integracionWS.eliminarDatos(xmlUser1);
         }
     }
-
-    private Usuario obtenerUsuario(String xml) throws SAXException, IOException, ParserConfigurationException {
-//        xml = xml.replace("\n", "");
-//        xml = xml.replace(" ", "");
-        UsuarioHandlerMock handler = new UsuarioHandlerMock();
-        UsuarioParser parser = new UsuarioParser();
-        parser.inicializarDocumento(integracionWS.getXMLDocument(xml));
-        return (Usuario) handler.toDatabaseEntity((com.ws.pojos.Usuario) parser.getEntidad());
+    
+    @Test
+    public void CreateQueryAndDeleteUser() {
+    	Assert.assertTrue(usuarioBD != null);
     }
 
+    
+    private Usuario obtenerUsuario(String xml) throws SAXException, IOException, ParserConfigurationException {
+        UsuarioParser parser = new UsuarioParser();
+		xml =xml.replace("<list>","" );
+		xml =xml.replace("</list>","" );
+        return (Usuario) parser.getDBObject(xml);
+        
+    }
+
+    
     private void guardarDatos(String xml, IntegracionWS integracionWS) {
         if (!integracionWS.guardarDatos(xml).equals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()))) {
             Assert.fail("no se pudieron guardar los datos de: " + xml);
@@ -85,6 +119,7 @@ public class UsuarioTestIntegration {
         return "";
     }
     
+    /*
     @Test
     public void removeByIdTest() {
         String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
@@ -118,6 +153,7 @@ public class UsuarioTestIntegration {
         Assert.assertEquals(errorMessage, obteinedMessage, expectedMessage);
     }
 
+    /*
     @Test
     public void selectOneUserTest() {
         try {
@@ -150,11 +186,6 @@ public class UsuarioTestIntegration {
     private String createCreateUserXML(Usuario usuario) {
         return "<?xml version=\"1.0\"?><WS><Usuario><username>" + usuario.getUsername() + "</username><password>" + usuario.getPassword() + "</password><activado>" + usuario.isActivado().toString() + "</activado><habilitado>" + usuario.isHabilitado().toString() + "</habilitado></Usuario></WS>";
     }
-    
-    @Test
-    public void foo() {
-    	
-    }
 
     @Test
     public void updateOneUserTest() {
@@ -174,6 +205,6 @@ public class UsuarioTestIntegration {
             return "<?xml version=\"1.0\"?><WS><Usuario><username>" + usuario.getUsername() + "</username><password>" + usuario.getPassword() + "</password><activado>" + usuario.isActivado() + "</activado><habilitado>" + usuario.isHabilitado() + "</habilitado></Usuario></WS>";
         }
 
-    }
+    }*/
 
 }

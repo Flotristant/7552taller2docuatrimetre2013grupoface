@@ -10,7 +10,7 @@ public class MensajeChatParser extends Parser {
 	}
 
 	@Override
-	public Object getEntidad() {
+	public Object getEntidad(String xml) {
 		MensajeChat mensajeChat = new MensajeChat();
 		if (this.campos.get(MensajeChatTags.ID_TAG) != null){
 			mensajeChat.setId(Long.parseLong(this.campos.get(MensajeChatTags.ID_TAG)));
@@ -27,5 +27,11 @@ public class MensajeChatParser extends Parser {
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(MensajeChatTags.ID_TAG));
+	}
+
+	@Override
+	public Object getDBObject(String xml) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

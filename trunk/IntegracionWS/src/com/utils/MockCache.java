@@ -11,31 +11,29 @@ public class MockCache {
 
 	private static HashMap<String, Usuario> cache = new HashMap<String, Usuario>();
 	
-	public static void guardarUsuario(Document doc){
-		Usuario us = getUsuarioFromString(doc);
-
+	public static void guardarUsuario(String xml){
+		Usuario us = getUsuarioFromString(xml);
 		cache.put(us.getUsername(), us);
 	}
 	
-	public static String seleccionarUsuario(Document doc){
-		Usuario entrada = getUsuarioFromString(doc);
+	public static String seleccionarUsuario(String xml){
+		Usuario entrada = getUsuarioFromString(xml);
 		Usuario salida = cache.get(entrada.getUsername());
 		if (salida == null) return null;
 		return UsuarioPojoSerializer.getXMLfromPojo(salida);
 	}
 	
-	public static boolean borrarUsuario(Document doc){
-		Usuario entrada = getUsuarioFromString(doc);
+	public static boolean borrarUsuario(String xml){
+		Usuario entrada = getUsuarioFromString(xml);
 		Usuario salida = cache.remove(entrada.getUsername());
 		if (salida == null) return false;
 		else return true;
 	}
 	
-	private static Usuario getUsuarioFromString(Document doc){
+	private static Usuario getUsuarioFromString(String xml){
 		try {
 			UsuarioParser up = new UsuarioParser();
-			up.inicializarDocumento(doc);
-			Usuario us = (Usuario) up.getEntidad();
+			Usuario us = (Usuario) up.getEntidad(xml);
 			return us;
 		}
 		catch (Exception e){
