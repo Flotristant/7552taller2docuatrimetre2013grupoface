@@ -36,7 +36,8 @@ public abstract class Parser {
 	 * Obtiene la entidad de negocio representada por el xml utilizando XStream
 	 */
 	public Object getEntidadNegocio(String xml) {
-		replaceClassTag(xml);
+		xml = removeSuperTags(xml);
+		xml = replaceClassTag(xml);
 		XStream xmlReader = new XStream();
 		Object obj = xmlReader.fromXML(xml);
 		return obj;
@@ -45,6 +46,12 @@ public abstract class Parser {
 	protected String replaceClassTag(String xml) {
 		xml = xml.replace("<"+this.classTag+">", "<com.ws.pojos."+this.classTag+">");
 		xml = xml.replace("</"+this.classTag+">", "</com.ws.pojos."+this.classTag+">");
+		return xml;
+	}
+	
+	private String removeSuperTags(String xml) {
+		xml = xml.replace("<WS>", "");
+		xml = xml.replace("</WS>", "");
 		return xml;
 	}
 

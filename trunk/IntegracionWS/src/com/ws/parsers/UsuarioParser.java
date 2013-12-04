@@ -20,12 +20,8 @@ public class UsuarioParser extends Parser {
 	 */
 	@Override
 	public Object getDBObject(String xml) {
-		xml = xml.replace("<Usuario>", "<com.ws.pojos.Usuario>");
-		xml = xml.replace("</Usuario>", "</com.ws.pojos.Usuario>");
-		//transformo a un Usuario de negocio
-		XStream xmlReader = new XStream();
-		xml = removeSuperTags(xml);
-		Usuario usuario = (Usuario) xmlReader.fromXML(xml);
+		//obtengo la entidad de usuario desde el xml de negocio.
+		Usuario usuario = (Usuario) getEntidadNegocio(xml);
 		//Con el usuario de negocio armo un usuario de DB
 		ar.fiuba.redsocedu.datalayer.ws.Usuario DBUser = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
 		DBUser.setActivado(usuario.getActivado());
