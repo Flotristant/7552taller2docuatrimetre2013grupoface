@@ -1,16 +1,12 @@
 	package com.ws.pojos;
 
-import java.io.Serializable;
 
-public class Usuario  extends Pojo implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Usuario  extends Pojo {
+
 	//TODO: consultar con seguridad y sesion si pueden pasar a Long en lugar de int, por problemas de compatibilidad 
 	//(Long->int puede no funcionar)
 	private Long idRol;
+	private Long id;
 
 	private String username;
 	private String password; 
@@ -18,7 +14,7 @@ public class Usuario  extends Pojo implements Serializable {
 	private String nombre;
 	private String apellido;
 	private String padron;
-	private String fechaNac;
+	private String fechaNacimiento;
 	private Boolean activado;
 	private Boolean habilitado;
 	
@@ -81,11 +77,11 @@ public class Usuario  extends Pojo implements Serializable {
 	}
 
 	public String getFechaNacimiento() {
-		return fechaNac;
+		return fechaNacimiento;
 	}
 
 	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNac = fechaNacimiento;
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	public Boolean getActivado() {
@@ -110,6 +106,13 @@ public class Usuario  extends Pojo implements Serializable {
 	
 	public void setIdRol(Long idRol) {
 		this.idRol = idRol;
+	}
+	public Long getId() {
+		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 }
 

@@ -15,17 +15,17 @@ public class MensajeHandlerMock extends Handler {
     }
 
     @Override
-    public String guardarDatos(Document doc) {
+    public String guardarDatos(String xml) {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
 
     @Override
-    public String actualizarDatos(Document doc) {
+    public String actualizarDatos(String xml) {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
 
     @Override
-    public String borrarDatos(Document doc) {
+    public String borrarDatos(String xml) {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
 
@@ -39,8 +39,8 @@ public class MensajeHandlerMock extends Handler {
         return DBmensaje;
     }
 
-    @Override
-    public String seleccionarDatos(Document doc) {
-        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
-    }
+//    @Override
+//    public String seleccionarDatos(String xml) {
+//        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+//    }
 }

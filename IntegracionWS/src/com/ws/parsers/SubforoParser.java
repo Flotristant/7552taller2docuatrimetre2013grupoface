@@ -11,7 +11,7 @@ public class SubforoParser extends Parser{
 	}
 	
 	@Override
-	public Object getEntidad() {
+	public Object getEntidad(String xml) {
 		Subforo subforo = new Subforo();
 		subforo.setIdForo(Long.parseLong(this.campos.get(SubforoTags.ID_FORO_TAG)));
 		if(this.campos.get(SubforoTags.ID_SUBFOROPADRE_TAG) != null){
@@ -30,6 +30,12 @@ public class SubforoParser extends Parser{
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(SubforoTags.ID_TAG));
+	}
+
+	@Override
+	public Object getDBObject(String xml) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

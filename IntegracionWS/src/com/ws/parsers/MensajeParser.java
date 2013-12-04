@@ -12,12 +12,12 @@ public class MensajeParser extends Parser  {
 	}
 
 	@Override
-	public Map<String, String> obtenerCampos() {
+	public Map<String, String> getCampos() {
 		return null;
 	}
 
 	@Override
-	public Object getEntidad() {
+	public Object getEntidad(String xml) {
 		Mensaje mensaje = new Mensaje();
 		mensaje.setId(Long.parseLong(this.campos.get(MensajeTags.ID_TAG)));
 		mensaje.setAutor(this.campos.get(MensajeTags.AUTOR_TAG));
@@ -29,5 +29,11 @@ public class MensajeParser extends Parser  {
 	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(MensajeTags.ID_TAG));
+	}
+
+	@Override
+	public Object getDBObject(String xml) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
