@@ -14,6 +14,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
+import com.ws.pojos.Foro;
 import com.ws.tags.UsuarioTags;
 
 public abstract class Parser {
@@ -31,7 +32,21 @@ public abstract class Parser {
 		this.campos = new HashMap<String, String>();
 	}
 
-	public abstract Object getEntidad(String xml);
+	/**
+	 * Obtiene la entidad de negocio representada por el xml utilizando XStream
+	 */
+	public Object getEntidadNegocio(String xml) {
+		replaceClassTag(xml);
+		XStream xmlReader = new XStream();
+		Object obj = xmlReader.fromXML(xml);
+		return obj;
+	}
+	
+	protected String replaceClassTag(String xml) {
+		xml = xml.replace("<"+this.classTag+">", "<com.ws.pojos."+this.classTag+">");
+		xml = xml.replace("</"+this.classTag+">", "</com.ws.pojos."+this.classTag+">");
+		return xml;
+	}
 
 	public abstract Long getId();
 
@@ -50,7 +65,7 @@ public abstract class Parser {
 	//public abstract Map<String, String> inicializarCampos(String xml) ;
 
 	public Map<String, String> inicializarCampos(String xml) {
-		Object obj =  this.getEntidad(xml);
+		Object obj =  this.getEntidadNegocio(xml);
 		Field[] fields = obj.getClass().getDeclaredFields();
 
 		Object ret;

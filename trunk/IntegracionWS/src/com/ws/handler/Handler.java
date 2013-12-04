@@ -88,7 +88,7 @@ public abstract class Handler {
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);
-			Pojo pojo = (Pojo) parser.getEntidad(xml);
+			Pojo pojo = (Pojo) parser.getEntidadNegocio(xml);
 			String query = this.queryBuilder.getAllById(pojo.getId());
 			List<ReturnedObject> dbPojos = null;
 
