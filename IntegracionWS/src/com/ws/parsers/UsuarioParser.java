@@ -1,6 +1,5 @@
 package com.ws.parsers;
 
-import com.thoughtworks.xstream.XStream;
 import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
 
@@ -32,7 +31,7 @@ public class UsuarioParser extends Parser {
 		DBUser.setUsername(usuario.getUsername());
 		DBUser.setPassword(usuario.getPassword());
 		DBUser.setPadron(usuario.getPadron());
-		DBUser.setUsuarioId(usuario.getId());
+		DBUser.setId(usuario.getId());
 		return DBUser;
 		//DBUser.setRolId(usuario.getIdRol());
 	}

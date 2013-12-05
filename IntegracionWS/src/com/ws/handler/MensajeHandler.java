@@ -17,8 +17,9 @@ public class MensajeHandler extends Handler {
 	public Object toDatabaseEntity(Object object) {
 		com.ws.pojos.Mensaje entidadMensaje = (com.ws.pojos.Mensaje) object;
 		Mensaje mensaje = new Mensaje();
-		mensaje.setMensajeId(entidadMensaje.getId());
-		mensaje.setAutor(entidadMensaje.getAutor());
+		mensaje.setId(entidadMensaje.getId());
+		// El mensajes tiene como autor un objeto Autor
+//		mensaje.setAutor(entidadMensaje.getAutor()); 
 		mensaje.setContenido(entidadMensaje.getContenido());
 		//TODO: SETEAR FECHA
 		//mensaje.setFecha(entidadMensaje.getFecha());

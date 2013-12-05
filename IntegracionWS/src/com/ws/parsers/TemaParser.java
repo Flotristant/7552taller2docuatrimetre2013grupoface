@@ -1,7 +1,5 @@
 package com.ws.parsers;
 
-import java.util.Map;
-
 import com.ws.pojos.Tema;
 import com.ws.tags.TemaTags;
 
@@ -18,7 +16,10 @@ public class TemaParser extends Parser  {
 
 	@Override
 	public Object getDBObject(String xml) {
-		// TODO Auto-generated method stub
-		return null;
+		Tema tema = (Tema) getEntidadNegocio(xml);
+		ar.fiuba.redsocedu.datalayer.ws.Tema temaDB = new ar.fiuba.redsocedu.datalayer.ws.Tema();
+		temaDB.setId(tema.getId());
+		temaDB.setNombre(tema.getTitulo()); // FIXME: No estoy segura que sea esta la relación
+		return temaDB;
 	}
 }

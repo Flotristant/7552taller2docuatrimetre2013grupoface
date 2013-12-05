@@ -106,8 +106,8 @@ public class UsuarioTestIntegration {
     }
 
     private String createDeleteUserByIdXML(String preffix, String suffix, Usuario user) {
-        if (user.getUsuarioId() != null) {
-            return preffix + user.getUsuarioId().toString() + suffix;
+        if (user.getId() != null) {
+            return preffix + user.getId().toString() + suffix;
         }
         return "";
     }

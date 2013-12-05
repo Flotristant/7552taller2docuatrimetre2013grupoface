@@ -1,6 +1,5 @@
 package com.ws.parsers;
 
-import com.ws.pojos.MiembroChat;
 import com.ws.tags.MiembroChatTags;
 
 public class MiembroChatParser extends Parser {

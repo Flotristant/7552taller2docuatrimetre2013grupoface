@@ -16,8 +16,11 @@ public class MuroParser extends Parser {
 
 	@Override
 	public Object getDBObject(String xml) {
-		// TODO Auto-generated method stub
-		return null;
+		Muro muro = (Muro) getEntidadNegocio(xml);
+		ar.fiuba.redsocedu.datalayer.ws.Muro muroDB = new ar.fiuba.redsocedu.datalayer.ws.Muro();
+		muroDB.setId(muro.getId());
+		muroDB.setNombre(muro.getNombre());
+		return muro;
 	}
 
 }

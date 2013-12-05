@@ -23,8 +23,11 @@ public class MensajeParser extends Parser  {
 
 	@Override
 	public Object getDBObject(String xml) {
-		// TODO Auto-generated method stub
-		return null;
+		Mensaje mensaje = (Mensaje) getEntidadNegocio(xml);
+		ar.fiuba.redsocedu.datalayer.ws.Mensaje mensajeDB = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
+		mensajeDB.setContenido(mensaje.getContenido());
+		mensajeDB.setId(mensaje.getId());
+		return mensajeDB;
 	}
 
 }
