@@ -13,7 +13,11 @@ public abstract class Serializer {
 		return "<WS>"+body+"</WS>";
 	}
 
-	//TODO: esto es para recibir un pojo de negocio o de BD?
+	/**
+	 * Arma el xml de respuesta a Negocio
+	 * @param dto
+	 * @return
+	 */
 	public String getXMLfromPojo(Object dto) {
 		XStream xstream = new XStream();
 		this.setAttributeMappings(xstream);
@@ -28,7 +32,9 @@ public abstract class Serializer {
 	public String getXMLfromPojo(Collection<?> dtos) {
 		XStream xstream = new XStream();
 		this.setAttributeMappings(xstream);
-		String xml = xstream.toXML(dtos);		
+		String xml = xstream.toXML(dtos);
+//		xml.replace("<list>", "");
+//		xml.replace("</list>", "");
 		return addSuperTags(xml);
 	}
 	
