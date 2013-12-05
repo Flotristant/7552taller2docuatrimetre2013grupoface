@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,19 +27,49 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "returnedObject")
+@XmlType(name = "returnedObject", propOrder = {
+    "id"
+})
 @XmlSeeAlso({
     Noticia.class,
     Usuario.class,
+    Evento.class,
+    Alumno.class,
+    Seccion.class,
+    Muro.class,
+    Subforo.class,
+    Foro.class,
     Cartelera.class,
     Tema.class,
-    Evento.class,
     Mensaje.class,
-    Alumno.class,
-    Curso.class,
-    Muro.class
+    Curso.class
 })
-public abstract class ReturnedObject {
+public class ReturnedObject {
 
+    protected Long id;
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setId(Long value) {
+        this.id = value;
+    }
 
 }

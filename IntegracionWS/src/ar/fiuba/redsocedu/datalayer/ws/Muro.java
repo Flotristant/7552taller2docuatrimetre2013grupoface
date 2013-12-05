@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="muroId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="eventos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}evento" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
@@ -32,7 +31,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "muro", propOrder = {
-    "muroId",
     "eventos",
     "nombre"
 })
@@ -40,34 +38,9 @@ public class Muro
     extends ReturnedObject
 {
 
-    protected Long muroId;
     @XmlElement(nillable = true)
     protected List<Evento> eventos;
     protected String nombre;
-
-    /**
-     * Gets the value of the muroId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getMuroId() {
-        return muroId;
-    }
-
-    /**
-     * Sets the value of the muroId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setMuroId(Long value) {
-        this.muroId = value;
-    }
 
     /**
      * Gets the value of the eventos property.

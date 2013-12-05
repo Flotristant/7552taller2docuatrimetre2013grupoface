@@ -18,7 +18,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="usuarioId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="activado" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -38,7 +37,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "usuario", propOrder = {
-    "usuarioId",
     "activado",
     "apellido",
     "email",
@@ -53,7 +51,6 @@ public class Usuario
     extends ReturnedObject
 {
 
-    protected Long usuarioId;
     protected Boolean activado;
     protected String apellido;
     protected String email;
@@ -64,30 +61,6 @@ public class Usuario
     protected String padron;
     protected String password;
     protected String username;
-
-    /**
-     * Gets the value of the usuarioId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
-
-    /**
-     * Sets the value of the usuarioId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setUsuarioId(Long value) {
-        this.usuarioId = value;
-    }
 
     /**
      * Gets the value of the activado property.

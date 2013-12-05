@@ -19,9 +19,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="temaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="mensajes" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensaje" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="tema" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensaje" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="subforo" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -32,41 +32,46 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tema", propOrder = {
-    "temaId",
+    "mensajes",
     "nombre",
-    "tema"
+    "subforo"
 })
 public class Tema
     extends ReturnedObject
 {
 
-    protected Long temaId;
-    protected String nombre;
     @XmlElement(nillable = true)
-    protected List<Mensaje> tema;
+    protected List<Mensaje> mensajes;
+    protected String nombre;
+    protected Subforo subforo;
 
     /**
-     * Gets the value of the temaId property.
+     * Gets the value of the mensajes property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getTemaId() {
-        return temaId;
-    }
-
-    /**
-     * Sets the value of the temaId property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the mensajes property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getMensajes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Mensaje }
+     * 
+     * 
      */
-    public void setTemaId(Long value) {
-        this.temaId = value;
+    public List<Mensaje> getMensajes() {
+        if (mensajes == null) {
+            mensajes = new ArrayList<Mensaje>();
+        }
+        return this.mensajes;
     }
 
     /**
@@ -94,32 +99,27 @@ public class Tema
     }
 
     /**
-     * Gets the value of the tema property.
+     * Gets the value of the subforo property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the tema property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTema().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Mensaje }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link Subforo }
+     *     
      */
-    public List<Mensaje> getTema() {
-        if (tema == null) {
-            tema = new ArrayList<Mensaje>();
-        }
-        return this.tema;
+    public Subforo getSubforo() {
+        return subforo;
+    }
+
+    /**
+     * Sets the value of the subforo property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Subforo }
+     *     
+     */
+    public void setSubforo(Subforo value) {
+        this.subforo = value;
     }
 
 }

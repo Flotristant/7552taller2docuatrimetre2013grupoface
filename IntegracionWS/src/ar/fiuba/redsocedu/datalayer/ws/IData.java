@@ -63,17 +63,6 @@ public interface IData {
      * @param transactionId
      */
     @WebMethod
-    @RequestWrapper(localName = "rollback", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Rollback")
-    @ResponseWrapper(localName = "rollbackResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.RollbackResponse")
-    public void rollback(
-        @WebParam(name = "transactionId", targetNamespace = "")
-        Long transactionId);
-
-    /**
-     * 
-     * @param transactionId
-     */
-    @WebMethod
     @RequestWrapper(localName = "commit", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Commit")
     @ResponseWrapper(localName = "commitResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.CommitResponse")
     public void commit(
@@ -88,6 +77,17 @@ public interface IData {
     @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
     @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
     public void beginTransaction(
+        @WebParam(name = "transactionId", targetNamespace = "")
+        Long transactionId);
+
+    /**
+     * 
+     * @param transactionId
+     */
+    @WebMethod
+    @RequestWrapper(localName = "rollback", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Rollback")
+    @ResponseWrapper(localName = "rollbackResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.RollbackResponse")
+    public void rollback(
         @WebParam(name = "transactionId", targetNamespace = "")
         Long transactionId);
 

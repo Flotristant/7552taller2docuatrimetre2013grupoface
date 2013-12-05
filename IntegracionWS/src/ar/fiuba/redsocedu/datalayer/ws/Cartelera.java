@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="carteleraId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="noticias" type="{http://ws.datalayer.redsocedu.fiuba.ar/}noticia" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
@@ -32,7 +31,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "cartelera", propOrder = {
-    "carteleraId",
     "nombre",
     "noticias"
 })
@@ -40,34 +38,9 @@ public class Cartelera
     extends ReturnedObject
 {
 
-    protected Long carteleraId;
     protected String nombre;
     @XmlElement(nillable = true)
     protected List<Noticia> noticias;
-
-    /**
-     * Gets the value of the carteleraId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getCarteleraId() {
-        return carteleraId;
-    }
-
-    /**
-     * Sets the value of the carteleraId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setCarteleraId(Long value) {
-        this.carteleraId = value;
-    }
 
     /**
      * Gets the value of the nombre property.

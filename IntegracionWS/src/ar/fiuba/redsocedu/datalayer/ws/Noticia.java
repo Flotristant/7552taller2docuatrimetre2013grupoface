@@ -16,8 +16,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="noticiaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="autor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="cartelera" type="{http://ws.datalayer.redsocedu.fiuba.ar/}cartelera" minOccurs="0"/>
+ *         &lt;element name="carteleraId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
@@ -30,8 +30,8 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "noticia", propOrder = {
-    "noticiaId",
-    "autor",
+    "cartelera",
+    "carteleraId",
     "contenido",
     "titulo"
 })
@@ -39,57 +39,57 @@ public class Noticia
     extends ReturnedObject
 {
 
-    protected Long noticiaId;
-    protected String autor;
+    protected Cartelera cartelera;
+    protected Long carteleraId;
     protected String contenido;
     protected String titulo;
 
     /**
-     * Gets the value of the noticiaId property.
+     * Gets the value of the cartelera property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Cartelera }
+     *     
+     */
+    public Cartelera getCartelera() {
+        return cartelera;
+    }
+
+    /**
+     * Sets the value of the cartelera property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Cartelera }
+     *     
+     */
+    public void setCartelera(Cartelera value) {
+        this.cartelera = value;
+    }
+
+    /**
+     * Gets the value of the carteleraId property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getNoticiaId() {
-        return noticiaId;
+    public Long getCarteleraId() {
+        return carteleraId;
     }
 
     /**
-     * Sets the value of the noticiaId property.
+     * Sets the value of the carteleraId property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setNoticiaId(Long value) {
-        this.noticiaId = value;
-    }
-
-    /**
-     * Gets the value of the autor property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAutor() {
-        return autor;
-    }
-
-    /**
-     * Sets the value of the autor property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAutor(String value) {
-        this.autor = value;
+    public void setCarteleraId(Long value) {
+        this.carteleraId = value;
     }
 
     /**
