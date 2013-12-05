@@ -17,8 +17,11 @@ public class SubforoParser extends Parser{
 
 	@Override
 	public Object getDBObject(String xml) {
-		// TODO Auto-generated method stub
-		return null;
+		Subforo subforo = (Subforo) getEntidadNegocio(xml);
+		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDB = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
+		subforoDB.setId(subforo.getId());
+		subforoDB.setNombre(subforo.getNombre());
+		return subforoDB;
 	}
 
 	@Override

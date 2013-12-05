@@ -49,7 +49,7 @@ public class ParserTest {
 		
 		miusuario.setFechaNac(fecha);
 		miusuario.setUsername("Pepe");
-		miusuario.setUsuarioId(12L);
+		miusuario.setId(12L);
 		
 		Document doc = null;
 	

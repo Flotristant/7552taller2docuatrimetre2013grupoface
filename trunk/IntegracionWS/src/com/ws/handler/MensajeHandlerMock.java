@@ -33,9 +33,9 @@ public class MensajeHandlerMock extends Handler {
 	public Object toDatabaseEntity(Object object) {
         Mensaje mensaje = (Mensaje) object;
         ar.fiuba.redsocedu.datalayer.ws.Mensaje DBmensaje = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
-        DBmensaje.setAutor(mensaje.getAutor());
+        //DBmensaje.setAutor(mensaje.getAutor()); Es un objeto
         DBmensaje.setContenido(mensaje.getContenido());
-        DBmensaje.setMensajeId(mensaje.getId());
+        DBmensaje.setId(mensaje.getId());
         return DBmensaje;
     }
 

@@ -16,7 +16,7 @@ public class MuroHandler extends Handler {
 	public Object toDatabaseEntity(Object object) {
 		com.ws.pojos.Muro entidadMuro = (com.ws.pojos.Muro) object;
 		Muro muro = new Muro();
-		muro.setMuroId(entidadMuro.getId());
+		muro.setId(entidadMuro.getId());
 		muro.setNombre(muro.getNombre());
 		return muro;	
 	}

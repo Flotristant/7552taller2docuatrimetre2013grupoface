@@ -17,7 +17,7 @@ public class TemaHandler extends Handler {
 	public Object toDatabaseEntity(Object object) {
 		com.ws.pojos.Tema entidadTema = (com.ws.pojos.Tema) object;
 		Tema tema = new Tema();
-		tema.setTemaId(entidadTema.getId());
+		tema.setId(entidadTema.getId());
 		tema.setNombre(entidadTema.getAutor());
 		return tema;	
 	}

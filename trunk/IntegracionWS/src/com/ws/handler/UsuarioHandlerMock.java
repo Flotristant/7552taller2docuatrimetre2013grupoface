@@ -52,7 +52,7 @@ public class UsuarioHandlerMock extends Handler {
         user.setEmail(usuario.getEmail());
         user.setPassword(usuario.getPassword());
         user.setUsername(usuario.getUsername());
-        user.setUsuarioId(usuario.getId());
+        user.setId(usuario.getId());
         return user;    
     }
 
