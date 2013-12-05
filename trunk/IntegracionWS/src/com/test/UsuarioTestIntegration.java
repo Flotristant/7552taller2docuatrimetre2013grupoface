@@ -1,18 +1,15 @@
 package com.test;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import java.io.IOException;
-
 import javax.xml.parsers.ParserConfigurationException;
-
 import junit.framework.Assert;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
-
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
-
 import com.thoughtworks.xstream.XStream;
 import com.utils.NotificacionFactory;
 import com.ws.handler.UsuarioHandlerMock;
@@ -31,19 +28,37 @@ public class UsuarioTestIntegration {
 
     @Before
     public void setUp() throws Exception {
-    	crearUsuarioNegocio();
+    	crearNuevoUsuarioNegocio();
     	serializarUsuarioNegocio();
-
     	integracionWS = new IntegracionWS();
         IntegracionWS.setMockService(false);  
-        //guardarDatos(xmlUser1, integracionWS);
-        
+    }
+    
+    @Test
+    public void CreateQueryUpdateAndDeleteUser() throws SAXException, IOException, ParserConfigurationException {
+        guardarDatos(xmlUser1, integracionWS);        
         System.out.println(xmlUser1);
-        integracionWS.eliminarDatos(xmlUser1);
         String nuevoXml1 = consultarDatos(xmlUser1);
+        System.out.println(nuevoXml1);
         if(nuevoXml1 != null) {
-        	usuarioBD = obtenerUsuario(nuevoXml1);
+        	usuarioBD = obtenerUsuarioBD(nuevoXml1);
         }
+    	Assert.assertTrue(usuarioBD != null);
+	    if(usuarioBD == null || usuarioBD.getId() == null) {
+	    	Assert.fail("No se pudo recuperar el usuario");
+	    }
+    	this.usuarioNegocio.setId(this.usuarioBD.getId());
+    	this.usuarioNegocio.setEmail("lalala@gmail.com");
+    	this.serializarUsuarioNegocio();
+    	String message = this.integracionWS.actualizarDatos(xmlUser1);
+    	Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
+	    String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
+	    String suffix = "</id></Usuario></WS>";
+	    String xmlUser1 = createDeleteUserByIdXML(prefix, suffix, usuarioBD);
+	    if (xmlUser1 != "") {
+	        message = integracionWS.eliminarDatos(xmlUser1);
+	    }
+	    Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
     }
 
 	private void serializarUsuarioNegocio() {
@@ -53,47 +68,27 @@ public class UsuarioTestIntegration {
         xmlUser1 = "<WS>"+xmlUser1+"</WS>";
 	}
 
-	private void crearUsuarioNegocio() {
+	private void crearNuevoUsuarioNegocio() {
 		usuarioNegocio = new com.ws.pojos.Usuario();
-		//usuarioNegocio.setId(172L);
-        usuarioNegocio.setUsername("fl0r3nc1a750");
+		String time = ((Long)System.currentTimeMillis()).toString();
+        usuarioNegocio.setUsername("fl0r3nc1a"+time);
         usuarioNegocio.setPassword("123456");
         usuarioNegocio.setActivado(true);
         usuarioNegocio.setHabilitado(true);
 	}
-
-    @After
-    public void cleanUp() throws Exception {
-        IntegracionWS integracionWS = new IntegracionWS();
-        if(usuarioBD == null) {
-        	return;
-        }
-        String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
-        String suffix = "</id></Usuario></WS>";
-        String xmlUser1 = createDeleteUserByIdXML(prefix, suffix, usuarioBD);
-        if (xmlUser1 != "") {
-            integracionWS.eliminarDatos(xmlUser1);
-        }
-    }
     
-    @Test
-    public void CreateQueryAndDeleteUser() {
-    	Assert.assertTrue(usuarioBD != null);
-    }
-
-    
-    private Usuario obtenerUsuario(String xml) throws SAXException, IOException, ParserConfigurationException {
+    private Usuario obtenerUsuarioBD(String xml) throws SAXException, IOException, ParserConfigurationException {
         UsuarioParser parser = new UsuarioParser();
 		xml =xml.replace("<list>","" );
 		xml =xml.replace("</list>","" );
         return (Usuario) parser.getDBObject(xml);
         
     }
-
     
     private void guardarDatos(String xml, IntegracionWS integracionWS) {
-        if (!integracionWS.guardarDatos(xml).equals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()))) {
-            Assert.fail("no se pudieron guardar los datos de: " + xml);
+    	String mensaje = integracionWS.guardarDatos(xml);
+        if (!mensaje.contains("La entidad ha sido almacenada con exito")) {
+            Assert.fail("no se pudieron guardar los datos de: " + xml + "mensaje obtenido: " + mensaje);
         }
     }
 
@@ -112,11 +107,46 @@ public class UsuarioTestIntegration {
         return "";
     }
 
-    private String createDeleteUserByUsernameXML(Usuario user) {
-        if (user.getUsername() != null) {
-            return "<?xml version=\"1.0\"?><WS><Usuario><username>" + user.getUsername() + "</username></Usuario></WS>";
+    
+    @Test
+    public void updateUserTest() throws SAXException, IOException, ParserConfigurationException {
+    	guardarDatos(xmlUser1, integracionWS);        
+        System.out.println(xmlUser1);
+        String nuevoXml1 = consultarDatos(xmlUser1);
+        System.out.println(nuevoXml1);
+        if(nuevoXml1 != null) {
+        	usuarioBD = obtenerUsuarioBD(nuevoXml1);
         }
-        return "";
+	    if(usuarioBD == null || usuarioBD.getId() == null) {
+	    	Assert.fail("No se pudo recuperar el usuario");
+	    }
+    	this.usuarioNegocio.setId(this.usuarioBD.getId());
+    	this.usuarioNegocio.setEmail("lalala@gmail.com");
+    	this.serializarUsuarioNegocio();
+    	String message = this.integracionWS.actualizarDatos(xmlUser1);
+    	Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
+    }
+    
+    @Test
+    public void removeUserTest() {
+    	//ATENCION: asegurarse de que el usuario de negocio tenga el id.
+    	crearNuevoUsuarioNegocio();
+    	this.usuarioNegocio.setId(this.usuarioBD.getId());
+    	this.usuarioNegocio.setEmail("lalala@gmail.com");
+    	this.serializarUsuarioNegocio();
+    	String message = this.integracionWS.actualizarDatos(xmlUser1);
+    	Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
+    }
+    
+    @Test
+    public void obtenerMasDeUnUsuarioTest() {
+		usuarioNegocio = new com.ws.pojos.Usuario();
+        usuarioNegocio.setActivado(true);
+        usuarioNegocio.setHabilitado(true);
+        this.serializarUsuarioNegocio();
+        String nuevoXml1 = consultarDatos(xmlUser1);
+        System.out.println(nuevoXml1);
+        
     }
     
     /*
@@ -140,6 +170,14 @@ public class UsuarioTestIntegration {
         
         String validacion = "notificacion de exito";
         Assert.assertEquals(validacion, obteinedMessage, expectedMessage);
+    }
+    
+    
+    private String createDeleteUserByUsernameXML(Usuario user) {
+        if (user.getUsername() != null) {
+            return "<?xml version=\"1.0\"?><WS><Usuario><username>" + user.getUsername() + "</username></Usuario></WS>";
+        }
+        return "";
     }
 
     @Test

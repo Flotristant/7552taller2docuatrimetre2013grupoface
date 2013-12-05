@@ -74,7 +74,6 @@ public abstract class Handler {
 						.getXMLfromPojo(NotificacionFactory.sinResultados());
 			}
 			port.commit(transactionId);
-
 			return this.serializer.getXMLfromPojo(objects);
 		} catch (ClientTransportException e) {
 			port.rollback(transactionId);// if not
@@ -134,7 +133,7 @@ public abstract class Handler {
 		try {
 			port.beginTransaction(transactionId2);
 			for (ReturnedObject ro : pojos) {
-				port.delete(transactionId, this.databaseEntityPath, ro);
+				port.delete(transactionId2, this.databaseEntityPath, ro);
 			}
 			port.commit(transactionId2);// if ok
 		} catch(ClientTransportException e) {
