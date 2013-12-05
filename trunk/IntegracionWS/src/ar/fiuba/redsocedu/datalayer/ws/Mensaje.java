@@ -16,8 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="mensajeId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="autor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="autor" type="{http://ws.datalayer.redsocedu.fiuba.ar/}usuario" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -29,7 +28,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "mensaje", propOrder = {
-    "mensajeId",
     "autor",
     "contenido"
 })
@@ -37,43 +35,18 @@ public class Mensaje
     extends ReturnedObject
 {
 
-    protected Long mensajeId;
-    protected String autor;
+    protected Usuario autor;
     protected String contenido;
-
-    /**
-     * Gets the value of the mensajeId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getMensajeId() {
-        return mensajeId;
-    }
-
-    /**
-     * Sets the value of the mensajeId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setMensajeId(Long value) {
-        this.mensajeId = value;
-    }
 
     /**
      * Gets the value of the autor property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Usuario }
      *     
      */
-    public String getAutor() {
+    public Usuario getAutor() {
         return autor;
     }
 
@@ -82,10 +55,10 @@ public class Mensaje
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Usuario }
      *     
      */
-    public void setAutor(String value) {
+    public void setAutor(Usuario value) {
         this.autor = value;
     }
 

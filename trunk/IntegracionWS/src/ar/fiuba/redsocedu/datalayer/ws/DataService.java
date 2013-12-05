@@ -32,7 +32,7 @@ public class DataService
             baseUrl = ar.fiuba.redsocedu.datalayer.ws.DataService.class.getResource(".");
             url = new URL(baseUrl, "http://localhost:8080/rsedatos/rsedatos?wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: http://localhost:8080/rsedatos/rsedatos?wsdl");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://localhost:8080/rsedatos/rsedatos?wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         DATASERVICE_WSDL_LOCATION = url;
