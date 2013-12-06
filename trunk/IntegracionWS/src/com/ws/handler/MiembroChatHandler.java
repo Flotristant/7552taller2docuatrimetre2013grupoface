@@ -7,7 +7,7 @@ import com.ws.serializers.MiembroChatSerializer;
 public class MiembroChatHandler extends Handler {
 
 	public MiembroChatHandler() {
-		super("ar.fiuba.redsocedu.datalayer.ws.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer());
+		super("ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer());
 		this.queryBuilder = new MiembroChatQueryBuilder();
 	}
 	

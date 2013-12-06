@@ -8,7 +8,7 @@ public class SubforoHandler extends Handler {
 
 
 	public SubforoHandler() {
-		super("ar.fiuba.redsocedu.datalayer.ws.Subforo", new  SubforoParser(), new SubforoSerializer());
+		super("ar.fiuba.redsocedu.datalayer.dtos.Subforo", new  SubforoParser(), new SubforoSerializer());
 		this.queryBuilder = new SubforoQueryBuilder();
 	}
 
@@ -20,9 +20,6 @@ public class SubforoHandler extends Handler {
 		subforoDb.setNombre(subforo.getNombre());
 		subforoDb.setSubforoId(subforo.getId());
 		
-		//TODO decir a los de bd que falta el id foro en subforo
-		//subforoDb.setIdForo(subforo.getIdForo());
-	
 		if(subforo.getIdSeccion() != null)
 			subforoDb.setSeccionId(subforo.getIdSeccion());
 		if(subforo.getIdSubforoPadre() != null)

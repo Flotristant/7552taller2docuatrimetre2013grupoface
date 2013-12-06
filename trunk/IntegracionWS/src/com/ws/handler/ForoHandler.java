@@ -7,7 +7,7 @@ import com.ws.serializers.ForoSerializer;
 public class ForoHandler extends Handler{
 
 	public ForoHandler() {
-		super("ar.fiuba.redsocedu.datalayer.ws.Foro", new ForoParser(), new ForoSerializer());
+		super("ar.fiuba.redsocedu.datalayer.dtos.Foro", new ForoParser(), new ForoSerializer());
 		this.queryBuilder = new ForoQueryBuilder();
 	}
 

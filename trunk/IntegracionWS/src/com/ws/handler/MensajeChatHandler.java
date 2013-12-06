@@ -10,7 +10,7 @@ import com.ws.serializers.XMLCalendarConverter;
 public class MensajeChatHandler extends Handler{
 	
 	public MensajeChatHandler() {
-		super("ar.fiuba.redsocedu.datalayer.ws.MensajeChat", new  MensajeChatParser(), new MensajeChatSerializer());
+		super("ar.fiuba.redsocedu.datalayer.dtos.MensajeChat", new  MensajeChatParser(), new MensajeChatSerializer());
 		this.queryBuilder = new MensajeChatQueryBuilder();
 	}
 
