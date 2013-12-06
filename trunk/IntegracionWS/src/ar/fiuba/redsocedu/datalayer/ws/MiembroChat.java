@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="chats" type="{http://ws.datalayer.redsocedu.fiuba.ar/}chat" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *         &lt;element name="mensajesChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensajeChat" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="miembroChatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
     "chats",
     "estado",
     "mensajesChat",
+    "miembroChatId",
     "nombre"
 })
 public class MiembroChat
@@ -47,6 +49,7 @@ public class MiembroChat
     protected boolean estado;
     @XmlElement(nillable = true)
     protected List<MensajeChat> mensajesChat;
+    protected Long miembroChatId;
     protected String nombre;
 
     /**
@@ -121,6 +124,30 @@ public class MiembroChat
             mensajesChat = new ArrayList<MensajeChat>();
         }
         return this.mensajesChat;
+    }
+
+    /**
+     * Gets the value of the miembroChatId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getMiembroChatId() {
+        return miembroChatId;
+    }
+
+    /**
+     * Sets the value of the miembroChatId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setMiembroChatId(Long value) {
+        this.miembroChatId = value;
     }
 
     /**

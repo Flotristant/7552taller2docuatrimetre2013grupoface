@@ -21,6 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="chat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}chat" minOccurs="0"/>
  *         &lt;element name="chatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="mensajeChatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="miembroChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}miembroChat" minOccurs="0"/>
  *         &lt;element name="miembroChatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -37,6 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "chat",
     "chatId",
     "contenido",
+    "mensajeChatId",
     "miembroChat",
     "miembroChatId",
     "fecha"
@@ -48,6 +50,7 @@ public class MensajeChat
     protected Chat chat;
     protected Long chatId;
     protected String contenido;
+    protected Long mensajeChatId;
     protected MiembroChat miembroChat;
     protected Long miembroChatId;
     @XmlSchemaType(name = "dateTime")
@@ -123,6 +126,30 @@ public class MensajeChat
      */
     public void setContenido(String value) {
         this.contenido = value;
+    }
+
+    /**
+     * Gets the value of the mensajeChatId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getMensajeChatId() {
+        return mensajeChatId;
+    }
+
+    /**
+     * Sets the value of the mensajeChatId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setMensajeChatId(Long value) {
+        this.mensajeChatId = value;
     }
 
     /**

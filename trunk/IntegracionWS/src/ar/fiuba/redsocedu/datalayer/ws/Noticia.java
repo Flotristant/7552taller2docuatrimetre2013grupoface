@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="cartelera" type="{http://ws.datalayer.redsocedu.fiuba.ar/}cartelera" minOccurs="0"/>
  *         &lt;element name="carteleraId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="noticiaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
     "cartelera",
     "carteleraId",
     "contenido",
+    "noticiaId",
     "titulo"
 })
 public class Noticia
@@ -42,6 +44,7 @@ public class Noticia
     protected Cartelera cartelera;
     protected Long carteleraId;
     protected String contenido;
+    protected Long noticiaId;
     protected String titulo;
 
     /**
@@ -114,6 +117,30 @@ public class Noticia
      */
     public void setContenido(String value) {
         this.contenido = value;
+    }
+
+    /**
+     * Gets the value of the noticiaId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getNoticiaId() {
+        return noticiaId;
+    }
+
+    /**
+     * Sets the value of the noticiaId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setNoticiaId(Long value) {
+        this.noticiaId = value;
     }
 
     /**
