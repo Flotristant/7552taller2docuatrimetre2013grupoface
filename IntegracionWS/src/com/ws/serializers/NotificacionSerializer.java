@@ -3,7 +3,7 @@ package com.ws.serializers;
 import com.thoughtworks.xstream.XStream;
 import com.ws.pojos.Notificacion;
 
-
+//TODO no hay Pojo de DB a la fecha de notificacion, no se puede corregir el import
 
 public class NotificacionSerializer {
 

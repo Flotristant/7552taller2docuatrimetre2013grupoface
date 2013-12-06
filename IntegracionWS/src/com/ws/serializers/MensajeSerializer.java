@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.Mensaje;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Mensaje;
 import com.ws.tags.MensajeTags;
 
 public class MensajeSerializer extends Serializer {

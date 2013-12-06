@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.Foro;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Foro;
 import com.ws.tags.ForoTags;
 
 public class ForoSerializer extends Serializer{

@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.Seccion;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Seccion;
 import com.ws.tags.SeccionTags;
 
 public class SeccionSerializer extends Serializer {

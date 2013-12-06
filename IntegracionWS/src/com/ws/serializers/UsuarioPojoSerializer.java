@@ -4,10 +4,12 @@ import java.io.StringWriter;
 import java.util.Collection;
 
 import javax.xml.datatype.XMLGregorianCalendar;
+
+import ar.fiuba.redsocedu.datalayer.ws.Usuario;
+
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.CompactWriter;
-import com.ws.pojos.Usuario;
 import com.ws.tags.UsuarioTags;
 
 public class UsuarioPojoSerializer {
