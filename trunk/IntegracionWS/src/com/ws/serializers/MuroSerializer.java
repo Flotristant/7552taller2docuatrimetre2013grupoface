@@ -1,12 +1,8 @@
 package com.ws.serializers;
 
-
-
-
+import ar.fiuba.redsocedu.datalayer.ws.Muro;
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Muro;
 import com.ws.tags.MuroTags;
-
 
 
 //TODO  Cambiar la clase del POJO

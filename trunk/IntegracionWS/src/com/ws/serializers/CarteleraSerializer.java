@@ -2,8 +2,9 @@ package com.ws.serializers;
 
 
 
+import ar.fiuba.redsocedu.datalayer.ws.Cartelera;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Cartelera;
 import com.ws.tags.CarteleraTags;
 
 public class CarteleraSerializer extends Serializer {

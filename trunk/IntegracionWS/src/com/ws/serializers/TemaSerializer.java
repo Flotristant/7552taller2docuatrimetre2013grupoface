@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.Tema;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Tema;
 import com.ws.tags.TemaTags;
 
 public class TemaSerializer extends Serializer {

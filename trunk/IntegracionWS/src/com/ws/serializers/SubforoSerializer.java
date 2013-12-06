@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.Subforo;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Subforo;
 import com.ws.tags.SubforoTags;
 
 public class SubforoSerializer extends Serializer {

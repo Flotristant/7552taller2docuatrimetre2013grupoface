@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.MiembroChat;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.MiembroChat;
 import com.ws.tags.MiembroChatTags;
 
 

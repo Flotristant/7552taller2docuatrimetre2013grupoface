@@ -1,7 +1,8 @@
 package com.ws.serializers;
 
+import ar.fiuba.redsocedu.datalayer.ws.MensajeChat;
+
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.MensajeChat;
 import com.ws.tags.MensajeChatTags;
 
 
