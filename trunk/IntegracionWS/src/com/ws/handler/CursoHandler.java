@@ -1,6 +1,5 @@
 package com.ws.handler;
 
-import org.w3c.dom.Document;
 
 import com.ws.parsers.Parser;
 import com.ws.serializers.Serializer;

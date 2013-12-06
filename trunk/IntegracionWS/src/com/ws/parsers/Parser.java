@@ -7,15 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+
 import org.w3c.dom.NodeList;
 
-import ar.fiuba.redsocedu.datalayer.ws.Usuario;
+
 
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
-import com.ws.pojos.Foro;
-import com.ws.tags.UsuarioTags;
+
 
 public abstract class Parser {
 
