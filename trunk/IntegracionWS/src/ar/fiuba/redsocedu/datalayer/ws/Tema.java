@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="mensajes" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensaje" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="subforo" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" minOccurs="0"/>
+ *         &lt;element name="subforoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tema", propOrder = {
     "mensajes",
     "nombre",
-    "subforo"
+    "subforo",
+    "subforoId"
 })
 public class Tema
     extends ReturnedObject
@@ -44,6 +46,7 @@ public class Tema
     protected List<Mensaje> mensajes;
     protected String nombre;
     protected Subforo subforo;
+    protected Long subforoId;
 
     /**
      * Gets the value of the mensajes property.
@@ -120,6 +123,30 @@ public class Tema
      */
     public void setSubforo(Subforo value) {
         this.subforo = value;
+    }
+
+    /**
+     * Gets the value of the subforoId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getSubforoId() {
+        return subforoId;
+    }
+
+    /**
+     * Sets the value of the subforoId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setSubforoId(Long value) {
+        this.subforoId = value;
     }
 
 }
