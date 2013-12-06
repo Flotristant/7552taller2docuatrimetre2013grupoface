@@ -8,7 +8,7 @@ import com.ws.serializers.MuroSerializer;
 public class MuroHandler extends Handler {
 	
 	public MuroHandler() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.Muro", new MuroParser(), new MuroSerializer());
+		super("ar.fiuba.redsocedu.datalayer.ws.Muro", new MuroParser(), new MuroSerializer());
 		//TODO Instanciar el query Builder
 	}
 	

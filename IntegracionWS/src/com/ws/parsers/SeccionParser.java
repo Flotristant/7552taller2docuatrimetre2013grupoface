@@ -1,7 +1,6 @@
 package com.ws.parsers;
 
 import com.ws.pojos.Seccion;
-import com.ws.pojos.Subforo;
 import com.ws.tags.SeccionTags;
 
 public class SeccionParser extends Parser {
@@ -21,7 +20,8 @@ public class SeccionParser extends Parser {
 		ar.fiuba.redsocedu.datalayer.ws.Seccion seccionDB = new ar.fiuba.redsocedu.datalayer.ws.Seccion();
 		seccionDB.setId(seccion.getId());
 		seccionDB.setNombre(seccion.getNombre());
-//		seccionDB.setSeccionId() Es el id de ambito??
+		seccionDB.setForoId(seccion.getIdForo());
+		
 		return seccionDB;
 	}
 }

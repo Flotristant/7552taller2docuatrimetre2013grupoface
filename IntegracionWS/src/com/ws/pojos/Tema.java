@@ -1,11 +1,19 @@
 package com.ws.pojos;
 
 public class Tema extends Pojo {
+	
 	String titulo;
 	String autor;
 	Boolean esSticky;
 	String fecha;
+	Long idSubforo;
 	
+	public Long getIdSubforo() {
+		return idSubforo;
+	}
+	public void setIdSubforo(Long idSubforo) {
+		this.idSubforo = idSubforo;
+	}
 	public String getTitulo() {
 		return titulo;
 	}

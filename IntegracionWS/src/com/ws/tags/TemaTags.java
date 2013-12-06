@@ -7,5 +7,6 @@ public class TemaTags {
 	public static String AUTOR_TAG = "autor";
 	public static String FECHA_TAG = "fecha";
 	public static String STICKY_TAG = "esSticky";
+	public static String ID_SUBFORO_TAG = "idSubforo";
 	
 }

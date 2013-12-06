@@ -1,5 +1,6 @@
 package com.ws.parsers;
 
+import com.ws.pojos.MensajeChat;
 import com.ws.tags.MensajeChatTags;
 
 public class MensajeChatParser extends Parser {
@@ -15,8 +16,14 @@ public class MensajeChatParser extends Parser {
 
 	@Override
 	public Object getDBObject(String xml) {
-		// TODO Auto-generated method stub
-		return null;
+		MensajeChat mensajeChat = (MensajeChat) getEntidadNegocio(xml);
+		ar.fiuba.redsocedu.datalayer.ws.MensajeChat mensajeChatDb = new ar.fiuba.redsocedu.datalayer.ws.MensajeChat();
+		mensajeChatDb.setContenido(mensajeChat.getContenido());
+		mensajeChatDb.setId(mensajeChat.getId());
+		mensajeChatDb.setMensajeChatId(mensajeChat.getIdChat());
+		//mensajeChatDb.setFecha(XMLCalendarConverter(mensajeChat.getFecha());
+		return mensajeChatDb;
+		
 	}
 
 }

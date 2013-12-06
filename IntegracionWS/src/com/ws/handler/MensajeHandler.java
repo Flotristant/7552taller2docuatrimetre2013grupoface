@@ -9,7 +9,7 @@ import com.ws.serializers.MensajeSerializer;
 public class MensajeHandler extends Handler {
 	
 	public MensajeHandler() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.Mensaje", new MensajeParser(), new MensajeSerializer());
+		super("ar.fiuba.redsocedu.datalayer.ws.Mensaje", new MensajeParser(), new MensajeSerializer());
 		this.queryBuilder = new MensajeQueryBuilder();
 	}
 	

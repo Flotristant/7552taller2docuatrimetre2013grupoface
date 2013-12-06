@@ -7,26 +7,28 @@ import com.ws.serializers.SubforoSerializer;
 public class SubforoHandler extends Handler {
 
 
-	//TODO ver si la entidad se llama asi
 	public SubforoHandler() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.Subforo", new  SubforoParser(), new SubforoSerializer());
+		super("ar.fiuba.redsocedu.datalayer.ws.Subforo", new  SubforoParser(), new SubforoSerializer());
 		this.queryBuilder = new SubforoQueryBuilder();
 	}
 
 	@Override
 	public Object toDatabaseEntity(Object object) {
-		// TODO ver bien esto
-		/*com.ws.pojos.Subforo subforo = (com.ws.pojos.Subforo) object;
+		
+		com.ws.pojos.Subforo subforo = (com.ws.pojos.Subforo) object;
 		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDb = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
 		subforoDb.setNombre(subforo.getNombre());
-		subforoDb.setIdForo(subforo.getIdForo());
-		subforoDb.setIdSubforo(subforo.getIdSubforo());
-		subforoDb.setIdSeccion(subforo.getIdSeccion());
-		subforoDb.setIdSubforoPadre(subforo.getIdSubforoPadre());
+		subforoDb.setSubforoId(subforo.getId());
 		
-		return subforoDb;*/
+		//TODO decir a los de bd que falta el id foro en subforo
+		//subforoDb.setIdForo(subforo.getIdForo());
+	
+		if(subforo.getIdSeccion() != null)
+			subforoDb.setSeccionId(subforo.getIdSeccion());
+		if(subforo.getIdSubforoPadre() != null)
+			subforoDb.setSubforoPadreId(subforo.getIdSubforoPadre());
 		
-		return null;
+		return subforoDb;
 	}
 
 }

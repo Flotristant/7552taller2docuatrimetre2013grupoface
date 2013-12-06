@@ -1,18 +1,17 @@
 package com.ws.pojos;
 
-import java.sql.Timestamp;
-
+import java.util.Date;
 
 public class MensajeChat extends Pojo {
 	
-	Timestamp fecha;
+	Date fecha;
 	String contenido;
 	Long idChat;
 	
-	public Timestamp getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
-	public void setFecha(Timestamp fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	public String getContenido() {

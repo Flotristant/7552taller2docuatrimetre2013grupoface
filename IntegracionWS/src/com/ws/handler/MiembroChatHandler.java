@@ -7,20 +7,18 @@ import com.ws.serializers.MiembroChatSerializer;
 public class MiembroChatHandler extends Handler {
 
 	public MiembroChatHandler() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer());
+		super("ar.fiuba.redsocedu.datalayer.ws.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer());
 		this.queryBuilder = new MiembroChatQueryBuilder();
 	}
 	
 	@Override
 	public Object toDatabaseEntity(Object object) {
-		// TODO ver bien esto
-		/*com.ws.pojos.MiembroChat miembroChat = (com.ws.pojos.MiembroChat) object;
+		com.ws.pojos.MiembroChat miembroChat = (com.ws.pojos.MiembroChat) object;
 		ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembroChatDb = new ar.fiuba.redsocedu.datalayer.ws.MiembroChat();
 		miembroChatDb.setNombre(miembroChat.getNombre());
 		miembroChatDb.setId(miembroChat.getId());
-		miembroChatDb.setEstado(miembroChatDb.gerEstado());		
-		return miembroChatDb;*/
-		return null;
+		miembroChatDb.setEstado(miembroChat.getEstado());		
+		return miembroChatDb;
 	}
 
 }

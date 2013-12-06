@@ -14,5 +14,6 @@ public class TemaSerializer extends Serializer {
 		xstream.aliasField(TemaTags.AUTOR_TAG, Tema.class, "autor");
 		xstream.aliasField(TemaTags.FECHA_TAG, Tema.class, "fecha");
 		xstream.aliasField(TemaTags.STICKY_TAG, Tema.class, "esSticky");
+		xstream.aliasField(TemaTags.ID_SUBFORO_TAG, Tema.class, "idSubforo");
 	}
 }
