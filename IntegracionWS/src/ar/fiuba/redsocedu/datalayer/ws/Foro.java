@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="foroId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="secciones" type="{http://ws.datalayer.redsocedu.fiuba.ar/}seccion" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
@@ -32,7 +31,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "foro", propOrder = {
-    "foroId",
     "nombre",
     "secciones"
 })
@@ -40,34 +38,9 @@ public class Foro
     extends ReturnedObject
 {
 
-    protected Long foroId;
     protected String nombre;
     @XmlElement(nillable = true)
     protected List<Seccion> secciones;
-
-    /**
-     * Gets the value of the foroId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getForoId() {
-        return foroId;
-    }
-
-    /**
-     * Sets the value of the foroId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setForoId(Long value) {
-        this.foroId = value;
-    }
 
     /**
      * Gets the value of the nombre property.
