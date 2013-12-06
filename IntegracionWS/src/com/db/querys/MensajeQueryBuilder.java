@@ -13,6 +13,7 @@ public class MensajeQueryBuilder extends QueryBuilder {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Mensaje");
 	}
 	
+	//TODO A este metodo no se llega nunca
 	public static String getMensajesByMiembro(String idmiembro) { // Mover a getAllByAttributes
 		
 		DetachedCriteria criteria = DetachedCriteria.forEntityName("Mensajes","mensajes");

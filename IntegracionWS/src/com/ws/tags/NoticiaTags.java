@@ -7,6 +7,7 @@ public class NoticiaTags {
 	public static String TITULO_TAG = "titulo";
 	public static String AUTOR_TAG = "autor";
 	public static String CONTENIDO_TAG = "contenido";
+	public static String CARTELERAID_TAG = "CarteleraId";
 	
 
 }
