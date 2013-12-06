@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlType;
     Usuario.class,
     Evento.class,
     Chat.class,
-    Alumno.class,
     Seccion.class,
+    Alumno.class,
     Muro.class,
     Subforo.class,
     Foro.class,
@@ -45,6 +45,7 @@ import javax.xml.bind.annotation.XmlType;
     Tema.class,
     Mensaje.class,
     MiembroChat.class,
+    Ambito.class,
     Curso.class
 })
 public class ReturnedObject {

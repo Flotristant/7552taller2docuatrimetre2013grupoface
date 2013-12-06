@@ -26,6 +26,7 @@ public class ObjectFactory {
 
     private final static QName _CommitResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "commitResponse");
     private final static QName _MiembroChat_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "miembroChat");
+    private final static QName _Ambito_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "ambito");
     private final static QName _QueryResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "queryResponse");
     private final static QName _Tema_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "tema");
     private final static QName _SaveOrUpdateResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "saveOrUpdateResponse");
@@ -36,8 +37,8 @@ public class ObjectFactory {
     private final static QName _Curso_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "curso");
     private final static QName _DeleteResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "deleteResponse");
     private final static QName _ReturnedObject_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "returnedObject");
-    private final static QName _Seccion_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "seccion");
     private final static QName _Alumno_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "alumno");
+    private final static QName _Seccion_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "seccion");
     private final static QName _BeginTransaction_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "beginTransaction");
     private final static QName _Rollback_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "rollback");
     private final static QName _Evento_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "evento");
@@ -125,19 +126,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Alumno }
-     * 
-     */
-    public Alumno createAlumno() {
-        return new Alumno();
-    }
-
-    /**
      * Create an instance of {@link Seccion }
      * 
      */
     public Seccion createSeccion() {
         return new Seccion();
+    }
+
+    /**
+     * Create an instance of {@link Alumno }
+     * 
+     */
+    public Alumno createAlumno() {
+        return new Alumno();
     }
 
     /**
@@ -261,6 +262,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Ambito }
+     * 
+     */
+    public Ambito createAmbito() {
+        return new Ambito();
+    }
+
+    /**
      * Create an instance of {@link DeleteResponse }
      * 
      */
@@ -300,6 +309,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "miembroChat")
     public JAXBElement<MiembroChat> createMiembroChat(MiembroChat value) {
         return new JAXBElement<MiembroChat>(_MiembroChat_QNAME, MiembroChat.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Ambito }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "ambito")
+    public JAXBElement<Ambito> createAmbito(Ambito value) {
+        return new JAXBElement<Ambito>(_Ambito_QNAME, Ambito.class, null, value);
     }
 
     /**
@@ -393,21 +411,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Seccion }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "seccion")
-    public JAXBElement<Seccion> createSeccion(Seccion value) {
-        return new JAXBElement<Seccion>(_Seccion_QNAME, Seccion.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Alumno }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "alumno")
     public JAXBElement<Alumno> createAlumno(Alumno value) {
         return new JAXBElement<Alumno>(_Alumno_QNAME, Alumno.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Seccion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "seccion")
+    public JAXBElement<Seccion> createSeccion(Seccion value) {
+        return new JAXBElement<Seccion>(_Seccion_QNAME, Seccion.class, null, value);
     }
 
     /**

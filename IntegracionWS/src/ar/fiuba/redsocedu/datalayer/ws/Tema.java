@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="subforo" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" minOccurs="0"/>
  *         &lt;element name="subforoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="temaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -38,7 +39,8 @@ import javax.xml.bind.annotation.XmlType;
     "nombre",
     "subforo",
     "subforoId",
-    "temaId"
+    "temaId",
+    "username"
 })
 public class Tema
     extends ReturnedObject
@@ -50,6 +52,7 @@ public class Tema
     protected Subforo subforo;
     protected Long subforoId;
     protected Long temaId;
+    protected String username;
 
     /**
      * Gets the value of the mensajes property.
@@ -174,6 +177,30 @@ public class Tema
      */
     public void setTemaId(Long value) {
         this.temaId = value;
+    }
+
+    /**
+     * Gets the value of the username property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Sets the value of the username property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUsername(String value) {
+        this.username = value;
     }
 
 }
