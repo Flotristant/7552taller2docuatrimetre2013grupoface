@@ -18,7 +18,7 @@ public class ForoParser extends Parser {
 	public Object getDBObject(String xml) {
 		Foro foro = (Foro) getEntidadNegocio(xml);
 		ar.fiuba.redsocedu.datalayer.ws.Foro foroDB = new ar.fiuba.redsocedu.datalayer.ws.Foro();
-		foroDB.setForoId(foro.getId());
+	//	foroDB.setForoId(foro.getId());
 		foroDB.setNombre(foro.getNombre());
 		return foroDB;
 	}
