@@ -7,7 +7,7 @@ import com.ws.serializers.TemaSerializer;
 public class TemaHandler extends Handler {
 	
 	public TemaHandler() {
-		super("ar.fiuba.redsocedu.datalayer.ws.Tema", new TemaParser(), new TemaSerializer());
+		super("ar.fiuba.redsocedu.datalayer.dtos.Tema", new TemaParser(), new TemaSerializer());
 		this.queryBuilder = new TemaQueryBuilder();
 	}
 	

@@ -8,7 +8,7 @@ import com.ws.serializers.SeccionSerializer;
 public class SeccionHandler extends Handler {
 
 	public SeccionHandler() {
-		super("ar.fiuba.redsocedu.datalayer.ws.Seccion", new SeccionParser(), new SeccionSerializer());
+		super("ar.fiuba.redsocedu.datalayer.dtos.Seccion", new SeccionParser(), new SeccionSerializer());
 		this.queryBuilder = new SeccionQueryBuilder();
 	}
 	

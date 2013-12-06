@@ -21,8 +21,7 @@ public class SubforoParser extends Parser{
 		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDB = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
 		subforoDB.setId(subforo.getId());
 		subforoDB.setNombre(subforo.getNombre());
-		//TODO decir a los de bd que falta el id foro en subforo
-		//subforoDb.setIdForo(subforo.getIdForo());
+		
 		if(subforo.getIdSeccion() != null)
 			subforoDB.setSeccionId(subforo.getIdSeccion());
 		if(subforo.getIdSubforoPadre() != null)
