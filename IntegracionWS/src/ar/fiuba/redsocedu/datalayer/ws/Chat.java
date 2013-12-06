@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
+ *         &lt;element name="chatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="mensajesChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensajeChat" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="miembrosChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}miembroChat" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "chat", propOrder = {
+    "chatId",
     "mensajesChat",
     "miembrosChat"
 })
@@ -38,10 +40,35 @@ public class Chat
     extends ReturnedObject
 {
 
+    protected Long chatId;
     @XmlElement(nillable = true)
     protected List<MensajeChat> mensajesChat;
     @XmlElement(nillable = true)
     protected List<MiembroChat> miembrosChat;
+
+    /**
+     * Gets the value of the chatId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getChatId() {
+        return chatId;
+    }
+
+    /**
+     * Sets the value of the chatId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setChatId(Long value) {
+        this.chatId = value;
+    }
 
     /**
      * Gets the value of the mensajesChat property.

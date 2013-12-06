@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
+ *         &lt;element name="alumnoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="padron" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *       &lt;/sequence>
@@ -28,6 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "alumno", propOrder = {
+    "alumnoId",
     "nombre",
     "padron"
 })
@@ -35,8 +37,33 @@ public class Alumno
     extends ReturnedObject
 {
 
+    protected Long alumnoId;
     protected String nombre;
     protected int padron;
+
+    /**
+     * Gets the value of the alumnoId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getAlumnoId() {
+        return alumnoId;
+    }
+
+    /**
+     * Sets the value of the alumnoId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setAlumnoId(Long value) {
+        this.alumnoId = value;
+    }
 
     /**
      * Gets the value of the nombre property.

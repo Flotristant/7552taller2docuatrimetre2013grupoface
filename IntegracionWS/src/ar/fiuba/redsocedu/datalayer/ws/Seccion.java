@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="foro" type="{http://ws.datalayer.redsocedu.fiuba.ar/}foro" minOccurs="0"/>
  *         &lt;element name="foroId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="seccionId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="subforos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
     "foro",
     "foroId",
     "nombre",
+    "seccionId",
     "subforos"
 })
 public class Seccion
@@ -45,6 +47,7 @@ public class Seccion
     protected Foro foro;
     protected Long foroId;
     protected String nombre;
+    protected Long seccionId;
     @XmlElement(nillable = true)
     protected List<Subforo> subforos;
 
@@ -118,6 +121,30 @@ public class Seccion
      */
     public void setNombre(String value) {
         this.nombre = value;
+    }
+
+    /**
+     * Gets the value of the seccionId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getSeccionId() {
+        return seccionId;
+    }
+
+    /**
+     * Sets the value of the seccionId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setSeccionId(Long value) {
+        this.seccionId = value;
     }
 
     /**

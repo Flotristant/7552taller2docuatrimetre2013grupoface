@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="autor" type="{http://ws.datalayer.redsocedu.fiuba.ar/}usuario" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="mensajeId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="tema" type="{http://ws.datalayer.redsocedu.fiuba.ar/}tema" minOccurs="0"/>
  *         &lt;element name="temaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "mensaje", propOrder = {
     "autor",
     "contenido",
+    "mensajeId",
     "tema",
     "temaId"
 })
@@ -41,6 +43,7 @@ public class Mensaje
 
     protected Usuario autor;
     protected String contenido;
+    protected Long mensajeId;
     protected Tema tema;
     protected Long temaId;
 
@@ -90,6 +93,30 @@ public class Mensaje
      */
     public void setContenido(String value) {
         this.contenido = value;
+    }
+
+    /**
+     * Gets the value of the mensajeId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getMensajeId() {
+        return mensajeId;
+    }
+
+    /**
+     * Sets the value of the mensajeId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setMensajeId(Long value) {
+        this.mensajeId = value;
     }
 
     /**

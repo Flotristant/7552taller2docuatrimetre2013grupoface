@@ -27,6 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="padron" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="usuarioId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -45,7 +46,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "nombre",
     "padron",
     "password",
-    "username"
+    "username",
+    "usuarioId"
 })
 public class Usuario
     extends ReturnedObject
@@ -61,6 +63,7 @@ public class Usuario
     protected String padron;
     protected String password;
     protected String username;
+    protected Long usuarioId;
 
     /**
      * Gets the value of the activado property.
@@ -276,6 +279,30 @@ public class Usuario
      */
     public void setUsername(String value) {
         this.username = value;
+    }
+
+    /**
+     * Gets the value of the usuarioId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    /**
+     * Sets the value of the usuarioId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setUsuarioId(Long value) {
+        this.usuarioId = value;
     }
 
 }

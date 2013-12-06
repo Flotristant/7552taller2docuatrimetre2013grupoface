@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
  *         &lt;element name="alumnos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}alumno" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="cursoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "curso", propOrder = {
     "alumnos",
+    "cursoId",
     "nombre"
 })
 public class Curso
@@ -40,6 +42,7 @@ public class Curso
 
     @XmlElement(nillable = true)
     protected List<Alumno> alumnos;
+    protected Long cursoId;
     protected String nombre;
 
     /**
@@ -69,6 +72,30 @@ public class Curso
             alumnos = new ArrayList<Alumno>();
         }
         return this.alumnos;
+    }
+
+    /**
+     * Gets the value of the cursoId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getCursoId() {
+        return cursoId;
+    }
+
+    /**
+     * Sets the value of the cursoId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setCursoId(Long value) {
+        this.cursoId = value;
     }
 
     /**
