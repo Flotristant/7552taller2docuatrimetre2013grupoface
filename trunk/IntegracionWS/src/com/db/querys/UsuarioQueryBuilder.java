@@ -13,7 +13,7 @@ import com.ws.tags.UsuarioTags;
 public class UsuarioQueryBuilder extends QueryBuilder{
 
 	public UsuarioQueryBuilder() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario");
+		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario", UsuarioTags.ID_TAG);
 	}
 
 	private Map<String, Object> obtenerAtributosConClase(Map<String, String> attributes){
