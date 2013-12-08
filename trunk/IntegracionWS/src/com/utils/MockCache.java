@@ -10,10 +10,13 @@ import com.ws.serializers.UsuarioPojoSerializer;
 public class MockCache {
 
 	private static HashMap<String, Usuario> cache = new HashMap<String, Usuario>();
+	private static Long objects_count = 0L;
 	
-	public static void guardarUsuario(String xml){
+	public static Long guardarUsuario(String xml){
 		Usuario us = getUsuarioFromString(xml);
+		us.setId(++objects_count);
 		cache.put(us.getUsername(), us);
+		return objects_count;
 	}
 	
 	public static String seleccionarUsuario(String xml){

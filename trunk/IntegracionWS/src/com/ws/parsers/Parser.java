@@ -103,6 +103,7 @@ public abstract class Parser {
 		return (joinNode != null && joinNode.getLength() > 0);
 	}
 
+	//TODO: se usa?
 	public Boolean esSelect() {
 		NodeList joinNode = this.doc.getElementsByTagName(SELECT_TAG);
 		return (joinNode != null && joinNode.getLength() > 0);
@@ -120,9 +121,4 @@ public abstract class Parser {
 		return doc;
 	}
 
-	@Deprecated
-	public void inicializarDocumento(Document doc) {
-		this.doc = doc;
-		this.inicializarCampos("");	
-	}
 }

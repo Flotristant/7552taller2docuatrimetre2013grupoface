@@ -16,8 +16,8 @@ public class UsuarioHandlerMock extends Handler {
 
     @Override
     public String guardarDatos(String xml) {
-        MockCache.guardarUsuario(xml);
-        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
+        Long id = MockCache.guardarUsuario(xml);
+        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(id.toString()));
     }
 
     @Override

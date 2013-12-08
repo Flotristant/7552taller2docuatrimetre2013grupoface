@@ -22,6 +22,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.UsuarioPojoSerializer;
 import com.ws.serializers.UsuarioSerializer;
@@ -96,6 +97,18 @@ public class ParserTest {
 		UsuarioParser parser = new UsuarioParser();
  		parser.inicializarCampos(xml);
 	}
+	
+	@Test
+	public void docTest() throws ParserConfigurationException, SAXException, IOException, SecurityException, IllegalArgumentException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+		com.ws.pojos.Usuario usuario = new com.ws.pojos.Usuario();
+		usuario.setNombre("florencia");
+		usuario.setUsername("fl0r3nc1a");
+		usuario.setActivado(true);
+		XStream xstream = new XStream(new DomDriver());
+		String xml = xstream.toXML(usuario);
+		Document doc = getXMLDocument(xml);
+	}
+	
 	
 	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

@@ -5,7 +5,14 @@ public class Mensaje extends Pojo {
 	String contenido;
 	String autor;
 	String fecha;
+	Long temaId;
 
+	public Long getTemaId() {
+		return temaId;
+	}
+	public void setTemaId(Long temaId) {
+		this.temaId = temaId;
+	}
 	public String getContenido() {
 		return contenido;
 	}
