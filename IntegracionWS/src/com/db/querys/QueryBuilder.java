@@ -18,9 +18,11 @@ import com.utils.Base64Coder;
 public abstract class QueryBuilder {
 	
 	String className;
+	String idTag;
 	
-	public QueryBuilder(String className) {
+	public QueryBuilder(String className, String idTag) {
 		this.className = className;
+		this.idTag = idTag;
 	}
 	
 	/*
@@ -88,5 +90,14 @@ public abstract class QueryBuilder {
 		return xml;
 	}
 	
-	public abstract String getAllByAttributes(Map<String, String> attributes);
+	public String getAllByAttributes(Map<String, String> attributes) {
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
+		if(attributes.containsKey(this.idTag)) {
+			Long id = Long.parseLong(attributes.get(this.idTag));
+			criteria.add(Restrictions.idEq(id));
+			attributes.remove(this.idTag);
+		}
+		criteria.add(Restrictions.allEq(attributes));   
+		return QueryBuilder.getSerializedCriteria(criteria);
+	}
 }
