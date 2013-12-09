@@ -3,6 +3,7 @@ package com.ws.parsers;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,11 +74,20 @@ public abstract class Parser {
 	public Map<String, String> inicializarCampos(String xml) {
 		Object obj =  this.getEntidadNegocio(xml);
 		Field[] fields = obj.getClass().getDeclaredFields();
+		ArrayList<Field> fieldsList = new ArrayList<Field>();
+		for (Field field : fields) {
+			fieldsList.add(field);
+		}
+		
+		Field[] superFields = obj.getClass().getSuperclass().getDeclaredFields();
+		for (Field field : superFields) {
+			fieldsList.add(field);
+		}
 
 		Object ret;
 		String value, attribute;
 		try {
-			for(Field field: fields) {
+			for(Field field: fieldsList) {
 				attribute = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
 				Method method = obj.getClass().getMethod("get" + attribute);
 				ret = method.invoke(obj, null);

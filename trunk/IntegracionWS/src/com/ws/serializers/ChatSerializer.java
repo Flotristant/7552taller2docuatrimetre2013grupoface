@@ -1,6 +1,7 @@
 package com.ws.serializers;
 
 import ar.fiuba.redsocedu.datalayer.ws.Chat;
+import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.thoughtworks.xstream.XStream;
 import com.ws.tags.ChatTags;
@@ -13,7 +14,8 @@ public class ChatSerializer extends Serializer {
 	protected void setAttributeMappings(XStream xstream) {
 		
 		xstream.alias(ChatTags.CLASS_TAG, Chat.class);
-		xstream.aliasField(ChatTags.ID_TAG, Chat.class, "ChatId");
+		xstream.aliasField(ChatTags.ID_TAG, Chat.class, "id");
+		xstream.omitField(Chat.class, "ChatId");
 		xstream.aliasField(ChatTags.ID_AMBITO_TAG, Chat.class, "idAmbito");
 		
 		// Siguiendo los lineamientos del PDF, al devolver el chat, no devolveriamos el listado
