@@ -18,7 +18,9 @@ public class SubforoHandler extends Handler {
 		com.ws.pojos.Subforo subforo = (com.ws.pojos.Subforo) object;
 		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDb = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
 		subforoDb.setNombre(subforo.getNombre());
-		subforoDb.setSubforoId(subforo.getId());
+		
+		if(subforo.getId() != null)
+			subforoDb.setSubforoId(subforo.getId());
 		
 		if(subforo.getIdSeccion() != null)
 			subforoDb.setSeccionId(subforo.getIdSeccion());

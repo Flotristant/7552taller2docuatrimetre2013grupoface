@@ -19,20 +19,15 @@ public class SubforoParser extends Parser{
 	public Object getDBObject(String xml) {
 		Subforo subforo = (Subforo) getEntidadNegocio(xml);
 		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDB = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
-		subforoDB.setId(subforo.getId());
+		
 		subforoDB.setNombre(subforo.getNombre());
 		
+		if(subforo.getId() != null)
+			subforoDB.setId(subforo.getId());
 		if(subforo.getIdSeccion() != null)
 			subforoDB.setSeccionId(subforo.getIdSeccion());
 		if(subforo.getIdSubforoPadre() != null)
 			subforoDB.setSubforoPadreId(subforo.getIdSubforoPadre());
 		return subforoDB;
 	}
-
-	@Override
-	protected String replaceClassTag(String xml) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
