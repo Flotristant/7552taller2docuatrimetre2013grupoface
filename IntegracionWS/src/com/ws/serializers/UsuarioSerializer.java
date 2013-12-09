@@ -16,7 +16,8 @@ public class UsuarioSerializer extends Serializer {
 		xstream.alias(UsuarioTags.CLASS_TAG, Usuario.class);
 		
 		//Mapeos de los nombres de atributo
-		xstream.aliasField(UsuarioTags.ID_TAG, Usuario.class, "usuarioId");
+		xstream.aliasField(UsuarioTags.ID_TAG, Usuario.class, "id");
+		xstream.omitField(Usuario.class, "usuarioId");
 		xstream.aliasField(UsuarioTags.ACTIVADO_TAG, Usuario.class, "activado");
 		xstream.aliasField(UsuarioTags.APELLIDO_TAG, Usuario.class, "apellido");
 		xstream.aliasField(UsuarioTags.EMAIL_TAG, Usuario.class, "email");
@@ -29,6 +30,7 @@ public class UsuarioSerializer extends Serializer {
 		
 		//alias implementacion interfaz
 		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);
+
 		
 		//Conversor de la clase XMLGregorian para que devuelva la fecha en el formato indicado
 		xstream.registerConverter(new XMLCalendarConverter());

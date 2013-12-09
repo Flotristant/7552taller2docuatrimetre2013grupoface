@@ -12,11 +12,6 @@ public class MensajeParser extends Parser  {
 	}
 
 	@Override
-	public Map<String, String> getCampos() {
-		return null;
-	}
-
-	@Override
 	public Long getId() {
 		return Long.parseLong(this.campos.get(MensajeTags.ID_TAG));
 	}
@@ -27,6 +22,9 @@ public class MensajeParser extends Parser  {
 		ar.fiuba.redsocedu.datalayer.ws.Mensaje mensajeDB = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
 		mensajeDB.setContenido(mensaje.getContenido());
 		mensajeDB.setId(mensaje.getId());
+		//TODO: armar el tema de BD y setearlo
+//		mensajeDB.setTema(mensaje.getTema());
+		mensajeDB.setTemaId(mensaje.getTemaId());
 		return mensajeDB;
 	}
 

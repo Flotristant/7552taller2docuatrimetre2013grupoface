@@ -65,6 +65,7 @@ public class IntegracionWS {
 			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
 			return getHandler(root).seleccionarDatos(xml);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return e.getMessage() + "XML: " + xml;
 		}
 	}
@@ -83,8 +84,6 @@ public class IntegracionWS {
 		}
 	}
 	
-	//TODO: ver la forma de leer un xml con formato o de nunca obtener un xml con formato
-
 	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
