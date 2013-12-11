@@ -66,6 +66,7 @@ public abstract class Handler {
 		Map<String, String> campos = this.parser.inicializarCampos(xml);
 		String query;
 		if(this.parser.esJoin()) {
+			campos = this.parser.getJoinFields();
 			query = this.queryBuilder.resolveJoin(campos);
 		} else {
 			query = this.queryBuilder.getAllByAttributes(campos);
