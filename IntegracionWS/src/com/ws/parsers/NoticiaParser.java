@@ -22,7 +22,7 @@ public class NoticiaParser extends Parser {
 		
 		ar.fiuba.redsocedu.datalayer.ws.Noticia miNoticiaDB = new ar.fiuba.redsocedu.datalayer.ws.Noticia();
 		
-		miNoticiaDB.setNoticiaId(miNoticiaNegocio.getId());
+//		miNoticiaDB.setNoticiaId(miNoticiaNegocio.getId());
 		miNoticiaDB.setContenido(miNoticiaNegocio.getContenido());
 		miNoticiaDB.setCarteleraId(miNoticiaNegocio.getCarteleraId());
 		miNoticiaDB.setTitulo(miNoticiaNegocio.getTitulo());

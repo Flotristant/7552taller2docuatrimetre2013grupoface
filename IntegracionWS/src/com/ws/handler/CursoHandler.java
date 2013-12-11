@@ -8,20 +8,8 @@ public class CursoHandler extends Handler {
 
 	public CursoHandler(String databaseEntityPath, Parser parser,
 			Serializer serializer) {
-		super(databaseEntityPath, parser, serializer);
+		super(databaseEntityPath, parser, serializer, null);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String actualizarDatos(String xml) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String borrarDatos(String xml) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

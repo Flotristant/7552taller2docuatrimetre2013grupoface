@@ -23,8 +23,7 @@ public class MensajeParser extends Parser  {
 		mensajeDB.setContenido(mensaje.getContenido());
 		mensajeDB.setId(mensaje.getId());
 		//TODO: armar el tema de BD y setearlo
-//		mensajeDB.setTema(mensaje.getTema());
-		mensajeDB.setTemaId(mensaje.getTemaId());
+//		mensajeDB.setTemaId(mensaje.getTemaId());
 		return mensajeDB;
 	}
 

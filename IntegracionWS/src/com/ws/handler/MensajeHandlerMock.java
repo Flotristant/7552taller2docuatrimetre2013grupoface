@@ -1,7 +1,5 @@
 package com.ws.handler;
 
-import org.w3c.dom.Document;
-
 import com.utils.NotificacionFactory;
 import com.ws.parsers.MensajeParser;
 import com.ws.pojos.Mensaje;

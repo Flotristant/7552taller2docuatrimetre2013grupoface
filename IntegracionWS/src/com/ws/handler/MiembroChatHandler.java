@@ -7,8 +7,7 @@ import com.ws.serializers.MiembroChatSerializer;
 public class MiembroChatHandler extends Handler {
 
 	public MiembroChatHandler() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer());
-		this.queryBuilder = new MiembroChatQueryBuilder();
+		super("ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer(), new MiembroChatQueryBuilder());
 	}
 	
 	@Override

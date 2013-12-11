@@ -20,10 +20,8 @@ import com.thoughtworks.xstream.XStream;
 public abstract class Parser {
 
 	private static String JOIN_TAG = "join";
-	private static String SELECT_TAG = "select";
 	protected Map<String, String> campos;
 	protected String classTag;
-	Document doc;
 
 	QueryBuilder queryBuilder;
 
@@ -69,7 +67,6 @@ public abstract class Parser {
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	//public abstract Map<String, String> inicializarCampos(String xml) ;
 
 	public Map<String, String> inicializarCampos(String xml) {
 		Object obj =  this.getEntidadNegocio(xml);
@@ -109,14 +106,7 @@ public abstract class Parser {
 	}
 
 	public Boolean esJoin() {
-		NodeList joinNode = this.doc.getElementsByTagName(JOIN_TAG);
-		return (joinNode != null && joinNode.getLength() > 0);
-	}
-
-	//TODO: se usa?
-	public Boolean esSelect() {
-		NodeList joinNode = this.doc.getElementsByTagName(SELECT_TAG);
-		return (joinNode != null && joinNode.getLength() > 0);
+		return this.campos.containsKey(JOIN_TAG);
 	}
 
 	public String getClassTag() {
@@ -126,9 +116,4 @@ public abstract class Parser {
 	public void setClassTag(String classTag) {
 		this.classTag = classTag;
 	}
-
-	public Document getDoc() {
-		return doc;
-	}
-
 }

@@ -10,8 +10,7 @@ import com.ws.serializers.XMLCalendarConverter;
 public class MensajeChatHandler extends Handler{
 	
 	public MensajeChatHandler() {
-		super("ar.fiuba.redsocedu.datalayer.dtos.MensajeChat", new  MensajeChatParser(), new MensajeChatSerializer());
-		this.queryBuilder = new MensajeChatQueryBuilder();
+		super("ar.fiuba.redsocedu.datalayer.dtos.MensajeChat", new  MensajeChatParser(), new MensajeChatSerializer(), new MensajeChatQueryBuilder());
 	}
 
 	@Override
@@ -21,7 +20,7 @@ public class MensajeChatHandler extends Handler{
 		mensajeChatDb.setContenido(mensajeChat.getContenido());
 		mensajeChatDb.setId(mensajeChat.getId());
 		mensajeChatDb.setMensajeChatId(mensajeChat.getIdChat());
-		//mensajeChatDb.setFecha(XMLCalendarConverter(mensajeChat.getFecha());
+//		mensajeChatDb.setFecha(XMLCalendarConverter(mensajeChat.getFecha());
 		return mensajeChatDb;
 		
 	}

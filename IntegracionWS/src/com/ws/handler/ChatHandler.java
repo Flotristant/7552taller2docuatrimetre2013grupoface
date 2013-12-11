@@ -12,8 +12,7 @@ public class ChatHandler extends Handler {
 
 	public ChatHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Chat", new ChatParser(),
-				new ChatSerializer());
-		this.queryBuilder = new ChatQueryBuilder();
+				new ChatSerializer(), new ChatQueryBuilder());
 	}
 
 	@Override

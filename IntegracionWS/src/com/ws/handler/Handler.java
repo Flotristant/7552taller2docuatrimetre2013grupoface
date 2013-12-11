@@ -27,12 +27,13 @@ public abstract class Handler {
 	protected String databaseEntityPath;
 
 	public Handler(String databaseEntityPath, Parser parser,
-			Serializer serializer) {
+			Serializer serializer, QueryBuilder queryBuilder) {
 		this.databaseEntityPath = databaseEntityPath;
 		this.service = new DataService();
 		this.port = service.getDataPort();
 		this.parser = parser;
 		this.serializer = serializer;
+		this.queryBuilder = queryBuilder;
 	}
 
 	// for mock tests
@@ -63,7 +64,12 @@ public abstract class Handler {
 
 	public String seleccionarDatos(String xml) {
 		Map<String, String> campos = this.parser.inicializarCampos(xml);
-		String query = this.queryBuilder.getAllByAttributes(campos);
+		String query;
+		if(this.parser.esJoin()) {
+			query = this.queryBuilder.resolveJoin(campos);
+		} else {
+			query = this.queryBuilder.getAllByAttributes(campos);
+		}
 		Long transactionId = IdGenerator.generateTransactionId();
 		try {
 			port.beginTransaction(transactionId);

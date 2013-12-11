@@ -20,7 +20,7 @@ public class SeccionParser extends Parser {
 		ar.fiuba.redsocedu.datalayer.ws.Seccion seccionDB = new ar.fiuba.redsocedu.datalayer.ws.Seccion();
 		seccionDB.setId(seccion.getId());
 		seccionDB.setNombre(seccion.getNombre());
-		seccionDB.setForoId(seccion.getIdForo());
+//		seccionDB.setForoId(seccion.getIdForo());
 		
 		return seccionDB;
 	}
