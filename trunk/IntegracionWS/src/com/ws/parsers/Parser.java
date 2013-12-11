@@ -100,6 +100,9 @@ public abstract class Parser {
 		return this.campos;
 	}
 	
+	public Map<String, String> getJoinFields() {
+		return campos;
+	}
 
 	public Map<String, String> getCampos() {
 		return this.campos;
