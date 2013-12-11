@@ -44,6 +44,8 @@
      }
 
         
+               // No methods generated for meps other than in-out
+                
            /**
             * auto generated Axis2 call back method for eliminarDatos method
             * override this method for handling normal response from eliminarDatos operation
@@ -58,6 +60,54 @@
            * override this method for handling error response from eliminarDatos operation
            */
             public void receiveErroreliminarDatos(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for actualizarArchivo method
+            * override this method for handling normal response from actualizarArchivo operation
+            */
+           public void receiveResultactualizarArchivo(
+                    com.ws.services.IntegracionStub.ActualizarArchivoResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from actualizarArchivo operation
+           */
+            public void receiveErroractualizarArchivo(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for guardarArchivo method
+            * override this method for handling normal response from guardarArchivo operation
+            */
+           public void receiveResultguardarArchivo(
+                    com.ws.services.IntegracionStub.GuardarArchivoResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from guardarArchivo operation
+           */
+            public void receiveErrorguardarArchivo(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for isMock method
+            * override this method for handling normal response from isMock operation
+            */
+           public void receiveResultisMock(
+                    com.ws.services.IntegracionStub.IsMockResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from isMock operation
+           */
+            public void receiveErrorisMock(java.lang.Exception e) {
             }
                 
            /**
@@ -106,6 +156,22 @@
            * override this method for handling error response from guardarDatos operation
            */
             public void receiveErrorguardarDatos(java.lang.Exception e) {
+            }
+                
+           /**
+            * auto generated Axis2 call back method for eliminarArchivo method
+            * override this method for handling normal response from eliminarArchivo operation
+            */
+           public void receiveResulteliminarArchivo(
+                    com.ws.services.IntegracionStub.EliminarArchivoResponse result
+                        ) {
+           }
+
+          /**
+           * auto generated Axis2 Error handler
+           * override this method for handling error response from eliminarArchivo operation
+           */
+            public void receiveErroreliminarArchivo(java.lang.Exception e) {
             }
                 
 
