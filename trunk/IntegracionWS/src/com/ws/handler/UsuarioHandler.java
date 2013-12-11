@@ -8,8 +8,7 @@ import com.ws.serializers.UsuarioSerializer;
 public class UsuarioHandler extends Handler {
 
 	public UsuarioHandler(){
-		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario", new UsuarioParser(), new UsuarioSerializer());
-		this.queryBuilder = new UsuarioQueryBuilder();
+		super("ar.fiuba.redsocedu.datalayer.dtos.Usuario", new UsuarioParser(), new UsuarioSerializer(), new UsuarioQueryBuilder());
 	}
 	
 	/**
@@ -24,7 +23,7 @@ public class UsuarioHandler extends Handler {
 		user.setNombre(usuario.getNombre());
 		user.setApellido(usuario.getApellido());
 		user.setPadron(usuario.getPadron());
-		//user.setFechaNac(usuario.getFechaNacimiento());
+//		user.setFechaNac(usuario.getFechaNacimiento());
 		user.setActivado(usuario.getActivado());
 		user.setHabilitado(usuario.getHabilitado());
 		user.setEmail(usuario.getEmail());

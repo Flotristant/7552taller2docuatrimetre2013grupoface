@@ -100,4 +100,12 @@ public abstract class QueryBuilder {
 		criteria.add(Restrictions.allEq(attributes));   
 		return QueryBuilder.getSerializedCriteria(criteria);
 	}
+	
+	public String resolveJoin(Map<String, String> attributes) {
+		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
+		for(Map.Entry<String, String> entry : attributes.entrySet()) {
+			criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));	
+		}
+		return QueryBuilder.getSerializedCriteria(criteria);
+	}	
 }

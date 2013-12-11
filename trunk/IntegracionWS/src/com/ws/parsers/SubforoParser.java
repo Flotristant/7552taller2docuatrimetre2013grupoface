@@ -24,10 +24,10 @@ public class SubforoParser extends Parser{
 		
 		if(subforo.getId() != null)
 			subforoDB.setId(subforo.getId());
-		if(subforo.getIdSeccion() != null)
-			subforoDB.setSeccionId(subforo.getIdSeccion());
-		if(subforo.getIdSubforoPadre() != null)
-			subforoDB.setSubforoPadreId(subforo.getIdSubforoPadre());
+//		if(subforo.getIdSeccion() != null)
+//			subforoDB.setSeccionId(subforo.getIdSeccion());
+//		if(subforo.getIdSubforoPadre() != null)
+//			subforoDB.setSubforoPadreId(subforo.getIdSubforoPadre());
 		return subforoDB;
 	}
 }

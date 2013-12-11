@@ -1,22 +1,22 @@
 package com.test;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
 import java.io.IOException;
+
 import javax.xml.parsers.ParserConfigurationException;
+
 import junit.framework.Assert;
-import org.junit.After;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
+
 import com.thoughtworks.xstream.XStream;
 import com.utils.NotificacionFactory;
-import com.ws.handler.UsuarioHandlerMock;
 import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
-import com.ws.tags.UsuarioTags;
 
 public class UsuarioTestIntegration {
 
@@ -24,14 +24,14 @@ public class UsuarioTestIntegration {
 	private static String xmlUser1;
     private Usuario usuarioBD;
     private com.ws.pojos.Usuario usuarioNegocio;
-    private IntegracionWS integracionWS;
+	private IntegracionWS integracionWS;
 
     @Before
     public void setUp() throws Exception {
     	crearNuevoUsuarioNegocio();
     	serializarUsuarioNegocio();
     	integracionWS = new IntegracionWS();
-        IntegracionWS.setMockService(true);  
+        IntegracionWS.setMockService(false);  
     }
     
     @Test
@@ -145,8 +145,6 @@ public class UsuarioTestIntegration {
         }
         return "";
     }
-
-    
     
     /*
     @Test
