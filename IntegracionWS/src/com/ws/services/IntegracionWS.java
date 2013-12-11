@@ -1,6 +1,8 @@
 package com.ws.services;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -83,6 +85,67 @@ public class IntegracionWS {
 			return e.getMessage() + "XML: " + xml;
 		}
 	}
+	
+	
+	public String guardarArchivo(String xml , byte [] archivo){
+		//Prueba se ivocacion al web service guardar archivo
+		   String correcto ="Incorrecto";
+			try { 
+		     OutputStream out = new FileOutputStream(xml); 
+		     out.write(archivo); 
+		     out.close();         
+		     correcto = "Correcto"; 
+		   } catch (Exception e) { 
+		     e.printStackTrace(); 
+		   }         
+		     return correcto;
+		
+		//TODO
+		/*Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			//TODO agregar un guardar datos en el handler 
+			// referente al archivo que reciba el xml y el byte
+			//return handler.guardarDatos(xml);
+			return null;
+		} catch (Exception e) {
+			return e.getMessage() + "XML: " + xml;
+		}  */  
+	}
+	
+	public String eliminarArchivo(String xml, byte [] archivo){
+		Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			//TODO agregar un eliminar archivo en el handler que reciba el xml y el byte
+			//return the error or successfull message
+			//return handler.borrarDatos(xml);
+			return null;
+		} catch (Exception e) {
+			return e.getMessage() + "XML: " + xml;
+		}
+	}
+	
+	public String actualizarArchivo (String xml, byte [] archivo) {
+		Document doc;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
+			Handler handler = getHandler(root);
+			//TODO agregar un actualizar archivo en el handler que reciba el xml y el byte
+			//return handler.actualizarDatos(xml);
+			return null;
+		} catch (Exception e) {
+			return e.getMessage() + "XML: " + xml;
+		}
+		
+	}
+	
+
 	
 	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
