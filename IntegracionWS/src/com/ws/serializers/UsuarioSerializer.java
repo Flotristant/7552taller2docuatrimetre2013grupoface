@@ -1,9 +1,7 @@
 package com.ws.serializers;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
-
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.thoughtworks.xstream.XStream;
 import com.ws.tags.UsuarioTags;
