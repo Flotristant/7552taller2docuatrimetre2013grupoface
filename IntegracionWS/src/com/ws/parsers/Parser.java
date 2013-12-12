@@ -33,12 +33,14 @@ public abstract class Parser {
 	protected static String JOIN_TAG = "join";
 	protected Map<String, String> campos;
 	protected String classTag;
+	protected Map<String, String> relaciones;
 
 	QueryBuilder queryBuilder;
 
 	public Parser(String classTag) {
 		this.classTag = classTag;
 		this.campos = new HashMap<String, String>();
+		relaciones = new HashMap<String, String>();
 	}
 
 	/**
@@ -134,10 +136,39 @@ public abstract class Parser {
 		}
 		return substring;
 	}
+
 	
 	public Map<String, String> getJoinFields() {
-		return campos;
+		String joinXML = this.campos.get(Parser.JOIN_TAG);
+		Map<String, String> joinFields = new HashMap<String, String>();
+		Parser parser = getJoinParser(joinXML);
+		if(parser == null)
+			return joinFields;
+		String nombreRelacion = relaciones.get(parser.getClass().toString());
+		joinXML = cleanJoinTags(joinXML);
+		parser.inicializarCampos(joinXML);
+		Map<String, String> camposRelacion = parser.getCampos();
+		for(String campo : camposRelacion.keySet()) {
+			joinFields.put(nombreRelacion+"."+campo,camposRelacion.get(campo));
+		}
+		return joinFields;		
 	}
+
+	private String cleanJoinTags(String joinXML) {
+		joinXML = joinXML.replace("<join>", "");
+		joinXML = joinXML.replace("</join>", "");
+		return joinXML;
+	}
+	
+	private Parser getJoinParser(String joinXML) {
+		Parser parser = getParserFromJoinXML(joinXML);
+		if(validateJoinParser(parser)) {
+			return parser;
+		}
+		return null;
+	}
+	
+	protected abstract Boolean validateJoinParser(Parser parser);
 
 	public Map<String, String> getCampos() {
 		return this.campos;

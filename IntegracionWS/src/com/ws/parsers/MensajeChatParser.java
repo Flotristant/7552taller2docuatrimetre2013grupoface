@@ -26,4 +26,10 @@ public class MensajeChatParser extends Parser {
 		
 	}
 
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

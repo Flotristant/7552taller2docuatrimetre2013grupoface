@@ -24,4 +24,10 @@ public class ForoParser extends Parser {
 		return foroDB;
 	}
 
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

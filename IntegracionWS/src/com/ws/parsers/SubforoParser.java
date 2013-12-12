@@ -30,4 +30,10 @@ public class SubforoParser extends Parser{
 //			subforoDB.setSubforoPadreId(subforo.getIdSubforoPadre());
 		return subforoDB;
 	}
+
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

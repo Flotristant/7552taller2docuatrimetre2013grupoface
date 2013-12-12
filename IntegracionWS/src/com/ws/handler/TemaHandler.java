@@ -17,7 +17,6 @@ public class TemaHandler extends Handler {
 		com.ws.pojos.Tema entidadTema = (com.ws.pojos.Tema) object;
 		
 		temaDB.setId(entidadTema.getId());
-		temaDB.setNombre(entidadTema.getTitulo());
 		temaDB.setUsername(entidadTema.getAutor());
 		temaDB.setSubforoId(entidadTema.getIdSubforo());
 		

@@ -56,8 +56,7 @@ public abstract class Handler {
 			port.commit(transactionId);
 		} catch (ClientTransportException e) {
 			port.rollback(transactionId);
-			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory
-					.Error());
+			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 		}
 		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(idnuevo.toString()));
 	}

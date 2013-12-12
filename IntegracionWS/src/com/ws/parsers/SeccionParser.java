@@ -24,4 +24,10 @@ public class SeccionParser extends Parser {
 		
 		return seccionDB;
 	}
+
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

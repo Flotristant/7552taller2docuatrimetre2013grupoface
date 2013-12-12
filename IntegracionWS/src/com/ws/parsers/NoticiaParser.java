@@ -31,5 +31,11 @@ public class NoticiaParser extends Parser {
 		
 		return miNoticiaDB;
 	}
+
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

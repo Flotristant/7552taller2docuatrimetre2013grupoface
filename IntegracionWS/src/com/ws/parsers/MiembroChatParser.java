@@ -24,4 +24,10 @@ public class MiembroChatParser extends Parser {
 		return miembroChatDb;
 	}
 
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

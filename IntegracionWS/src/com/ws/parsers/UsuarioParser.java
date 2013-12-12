@@ -41,6 +41,12 @@ public class UsuarioParser extends Parser {
 		xml = xml.replace("</WS>", "");
 		return xml;
 	}
+
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 //	private XMLGregorianCalendar stringToXMLGregorianCalendar(String s) throws ParseException, 
 //																		DatatypeConfigurationException {

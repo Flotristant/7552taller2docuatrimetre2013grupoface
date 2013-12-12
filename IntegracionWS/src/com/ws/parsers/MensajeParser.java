@@ -27,4 +27,10 @@ public class MensajeParser extends Parser  {
 		return mensajeDB;
 	}
 
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

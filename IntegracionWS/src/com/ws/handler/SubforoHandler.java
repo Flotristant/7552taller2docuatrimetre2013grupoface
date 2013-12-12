@@ -26,13 +26,13 @@ public class SubforoHandler extends Handler {
 		if(subforo.getIdSeccion() != null) {
 			Seccion seccion = new Seccion();
 			seccion.setId(subforo.getIdSeccion());
-			subforoDb.setSeccion(seccion);
+			subforoDb.setSeccionId(seccion.getId());
 		} 
 			
 		if(subforo.getIdSubforoPadre() != null) {
 			ar.fiuba.redsocedu.datalayer.ws.Subforo subforoPadre = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
 			subforoPadre.setId(subforo.getIdSubforoPadre());
-			subforoDb.setSubforoPadre(subforoPadre);			
+			subforoDb.setSubforopadreId(subforoPadre.getId());			
 		}
 
 		
