@@ -115,7 +115,7 @@ public class IntegracionWS {
 		}  */  
 	}
 	
-	public String eliminarArchivo(String xml, byte [] archivo){
+	public String eliminarArchivo(String xml){
 		Document doc;
 		try {
 			doc = getXMLDocument(xml);
