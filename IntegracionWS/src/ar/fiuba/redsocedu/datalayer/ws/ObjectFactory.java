@@ -24,16 +24,17 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CommitResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "commitResponse");
     private final static QName _MiembroChat_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "miembroChat");
+    private final static QName _CommitResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "commitResponse");
     private final static QName _Ambito_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "ambito");
     private final static QName _QueryResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "queryResponse");
     private final static QName _Tema_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "tema");
     private final static QName _SaveOrUpdateResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "saveOrUpdateResponse");
     private final static QName _Mensaje_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "mensaje");
-    private final static QName _Foro_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "foro");
     private final static QName _Cartelera_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "cartelera");
+    private final static QName _Foro_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "foro");
     private final static QName _SaveOrUpdate_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "saveOrUpdate");
+    private final static QName _Grupo_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "grupo");
     private final static QName _Curso_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "curso");
     private final static QName _DeleteResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "deleteResponse");
     private final static QName _ReturnedObject_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "returnedObject");
@@ -45,9 +46,11 @@ public class ObjectFactory {
     private final static QName _Chat_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "chat");
     private final static QName _Usuario_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "usuario");
     private final static QName _Query_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "query");
+    private final static QName _Actividad_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "actividad");
     private final static QName _BeginTransactionResponse_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "beginTransactionResponse");
     private final static QName _Noticia_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "noticia");
     private final static QName _MensajeChat_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "mensajeChat");
+    private final static QName _Nota_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "nota");
     private final static QName _Subforo_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "subforo");
     private final static QName _Delete_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "delete");
     private final static QName _Muro_QNAME = new QName("http://ws.datalayer.redsocedu.fiuba.ar/", "muro");
@@ -62,11 +65,155 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Alumno }
+     * 
+     */
+    public Alumno createAlumno() {
+        return new Alumno();
+    }
+
+    /**
+     * Create an instance of {@link Usuario }
+     * 
+     */
+    public Usuario createUsuario() {
+        return new Usuario();
+    }
+
+    /**
+     * Create an instance of {@link Curso }
+     * 
+     */
+    public Curso createCurso() {
+        return new Curso();
+    }
+
+    /**
+     * Create an instance of {@link Rollback }
+     * 
+     */
+    public Rollback createRollback() {
+        return new Rollback();
+    }
+
+    /**
+     * Create an instance of {@link Cartelera }
+     * 
+     */
+    public Cartelera createCartelera() {
+        return new Cartelera();
+    }
+
+    /**
+     * Create an instance of {@link Seccion }
+     * 
+     */
+    public Seccion createSeccion() {
+        return new Seccion();
+    }
+
+    /**
+     * Create an instance of {@link Evento }
+     * 
+     */
+    public Evento createEvento() {
+        return new Evento();
+    }
+
+    /**
+     * Create an instance of {@link QueryResponse }
+     * 
+     */
+    public QueryResponse createQueryResponse() {
+        return new QueryResponse();
+    }
+
+    /**
      * Create an instance of {@link BeginTransactionResponse }
      * 
      */
     public BeginTransactionResponse createBeginTransactionResponse() {
         return new BeginTransactionResponse();
+    }
+
+    /**
+     * Create an instance of {@link Grupo }
+     * 
+     */
+    public Grupo createGrupo() {
+        return new Grupo();
+    }
+
+    /**
+     * Create an instance of {@link Mensaje }
+     * 
+     */
+    public Mensaje createMensaje() {
+        return new Mensaje();
+    }
+
+    /**
+     * Create an instance of {@link Nota }
+     * 
+     */
+    public Nota createNota() {
+        return new Nota();
+    }
+
+    /**
+     * Create an instance of {@link Foro }
+     * 
+     */
+    public Foro createForo() {
+        return new Foro();
+    }
+
+    /**
+     * Create an instance of {@link Muro }
+     * 
+     */
+    public Muro createMuro() {
+        return new Muro();
+    }
+
+    /**
+     * Create an instance of {@link Ambito }
+     * 
+     */
+    public Ambito createAmbito() {
+        return new Ambito();
+    }
+
+    /**
+     * Create an instance of {@link Delete }
+     * 
+     */
+    public Delete createDelete() {
+        return new Delete();
+    }
+
+    /**
+     * Create an instance of {@link SaveOrUpdateResponse }
+     * 
+     */
+    public SaveOrUpdateResponse createSaveOrUpdateResponse() {
+        return new SaveOrUpdateResponse();
+    }
+
+    /**
+     * Create an instance of {@link MiembroChat }
+     * 
+     */
+    public MiembroChat createMiembroChat() {
+        return new MiembroChat();
+    }
+
+    /**
+     * Create an instance of {@link Chat }
+     * 
+     */
+    public Chat createChat() {
+        return new Chat();
     }
 
     /**
@@ -86,67 +233,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Usuario }
+     * Create an instance of {@link Commit }
      * 
      */
-    public Usuario createUsuario() {
-        return new Usuario();
-    }
-
-    /**
-     * Create an instance of {@link Query }
-     * 
-     */
-    public Query createQuery() {
-        return new Query();
-    }
-
-    /**
-     * Create an instance of {@link Evento }
-     * 
-     */
-    public Evento createEvento() {
-        return new Evento();
-    }
-
-    /**
-     * Create an instance of {@link Rollback }
-     * 
-     */
-    public Rollback createRollback() {
-        return new Rollback();
-    }
-
-    /**
-     * Create an instance of {@link Chat }
-     * 
-     */
-    public Chat createChat() {
-        return new Chat();
-    }
-
-    /**
-     * Create an instance of {@link Seccion }
-     * 
-     */
-    public Seccion createSeccion() {
-        return new Seccion();
-    }
-
-    /**
-     * Create an instance of {@link Alumno }
-     * 
-     */
-    public Alumno createAlumno() {
-        return new Alumno();
-    }
-
-    /**
-     * Create an instance of {@link BeginTransaction }
-     * 
-     */
-    public BeginTransaction createBeginTransaction() {
-        return new BeginTransaction();
+    public Commit createCommit() {
+        return new Commit();
     }
 
     /**
@@ -158,115 +249,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Commit }
-     * 
-     */
-    public Commit createCommit() {
-        return new Commit();
-    }
-
-    /**
-     * Create an instance of {@link Delete }
-     * 
-     */
-    public Delete createDelete() {
-        return new Delete();
-    }
-
-    /**
-     * Create an instance of {@link Muro }
-     * 
-     */
-    public Muro createMuro() {
-        return new Muro();
-    }
-
-    /**
      * Create an instance of {@link Subforo }
      * 
      */
     public Subforo createSubforo() {
         return new Subforo();
-    }
-
-    /**
-     * Create an instance of {@link Foro }
-     * 
-     */
-    public Foro createForo() {
-        return new Foro();
-    }
-
-    /**
-     * Create an instance of {@link Cartelera }
-     * 
-     */
-    public Cartelera createCartelera() {
-        return new Cartelera();
-    }
-
-    /**
-     * Create an instance of {@link SaveOrUpdate }
-     * 
-     */
-    public SaveOrUpdate createSaveOrUpdate() {
-        return new SaveOrUpdate();
-    }
-
-    /**
-     * Create an instance of {@link QueryResponse }
-     * 
-     */
-    public QueryResponse createQueryResponse() {
-        return new QueryResponse();
-    }
-
-    /**
-     * Create an instance of {@link Tema }
-     * 
-     */
-    public Tema createTema() {
-        return new Tema();
-    }
-
-    /**
-     * Create an instance of {@link SaveOrUpdateResponse }
-     * 
-     */
-    public SaveOrUpdateResponse createSaveOrUpdateResponse() {
-        return new SaveOrUpdateResponse();
-    }
-
-    /**
-     * Create an instance of {@link Mensaje }
-     * 
-     */
-    public Mensaje createMensaje() {
-        return new Mensaje();
-    }
-
-    /**
-     * Create an instance of {@link CommitResponse }
-     * 
-     */
-    public CommitResponse createCommitResponse() {
-        return new CommitResponse();
-    }
-
-    /**
-     * Create an instance of {@link MiembroChat }
-     * 
-     */
-    public MiembroChat createMiembroChat() {
-        return new MiembroChat();
-    }
-
-    /**
-     * Create an instance of {@link Ambito }
-     * 
-     */
-    public Ambito createAmbito() {
-        return new Ambito();
     }
 
     /**
@@ -278,6 +265,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Query }
+     * 
+     */
+    public Query createQuery() {
+        return new Query();
+    }
+
+    /**
+     * Create an instance of {@link CommitResponse }
+     * 
+     */
+    public CommitResponse createCommitResponse() {
+        return new CommitResponse();
+    }
+
+    /**
      * Create an instance of {@link ReturnedObject }
      * 
      */
@@ -286,20 +289,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Curso }
+     * Create an instance of {@link BeginTransaction }
      * 
      */
-    public Curso createCurso() {
-        return new Curso();
+    public BeginTransaction createBeginTransaction() {
+        return new BeginTransaction();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CommitResponse }{@code >}}
+     * Create an instance of {@link SaveOrUpdate }
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "commitResponse")
-    public JAXBElement<CommitResponse> createCommitResponse(CommitResponse value) {
-        return new JAXBElement<CommitResponse>(_CommitResponse_QNAME, CommitResponse.class, null, value);
+    public SaveOrUpdate createSaveOrUpdate() {
+        return new SaveOrUpdate();
+    }
+
+    /**
+     * Create an instance of {@link Actividad }
+     * 
+     */
+    public Actividad createActividad() {
+        return new Actividad();
+    }
+
+    /**
+     * Create an instance of {@link Tema }
+     * 
+     */
+    public Tema createTema() {
+        return new Tema();
     }
 
     /**
@@ -309,6 +327,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "miembroChat")
     public JAXBElement<MiembroChat> createMiembroChat(MiembroChat value) {
         return new JAXBElement<MiembroChat>(_MiembroChat_QNAME, MiembroChat.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CommitResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "commitResponse")
+    public JAXBElement<CommitResponse> createCommitResponse(CommitResponse value) {
+        return new JAXBElement<CommitResponse>(_CommitResponse_QNAME, CommitResponse.class, null, value);
     }
 
     /**
@@ -357,15 +384,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Foro }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "foro")
-    public JAXBElement<Foro> createForo(Foro value) {
-        return new JAXBElement<Foro>(_Foro_QNAME, Foro.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Cartelera }{@code >}}
      * 
      */
@@ -375,12 +393,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Foro }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "foro")
+    public JAXBElement<Foro> createForo(Foro value) {
+        return new JAXBElement<Foro>(_Foro_QNAME, Foro.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SaveOrUpdate }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "saveOrUpdate")
     public JAXBElement<SaveOrUpdate> createSaveOrUpdate(SaveOrUpdate value) {
         return new JAXBElement<SaveOrUpdate>(_SaveOrUpdate_QNAME, SaveOrUpdate.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Grupo }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "grupo")
+    public JAXBElement<Grupo> createGrupo(Grupo value) {
+        return new JAXBElement<Grupo>(_Grupo_QNAME, Grupo.class, null, value);
     }
 
     /**
@@ -483,6 +519,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Actividad }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "actividad")
+    public JAXBElement<Actividad> createActividad(Actividad value) {
+        return new JAXBElement<Actividad>(_Actividad_QNAME, Actividad.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link BeginTransactionResponse }{@code >}}
      * 
      */
@@ -507,6 +552,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "mensajeChat")
     public JAXBElement<MensajeChat> createMensajeChat(MensajeChat value) {
         return new JAXBElement<MensajeChat>(_MensajeChat_QNAME, MensajeChat.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Nota }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.datalayer.redsocedu.fiuba.ar/", name = "nota")
+    public JAXBElement<Nota> createNota(Nota value) {
+        return new JAXBElement<Nota>(_Nota_QNAME, Nota.class, null, value);
     }
 
     /**

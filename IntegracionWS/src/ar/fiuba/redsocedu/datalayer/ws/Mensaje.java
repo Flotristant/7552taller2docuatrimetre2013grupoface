@@ -18,7 +18,6 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="mensajeId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="tema" type="{http://ws.datalayer.redsocedu.fiuba.ar/}tema" minOccurs="0"/>
  *         &lt;element name="temaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
@@ -33,7 +32,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "mensaje", propOrder = {
     "contenido",
     "mensajeId",
-    "tema",
     "temaId",
     "username"
 })
@@ -43,7 +41,6 @@ public class Mensaje
 
     protected String contenido;
     protected Long mensajeId;
-    protected Tema tema;
     protected Long temaId;
     protected String username;
 
@@ -93,30 +90,6 @@ public class Mensaje
      */
     public void setMensajeId(Long value) {
         this.mensajeId = value;
-    }
-
-    /**
-     * Gets the value of the tema property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Tema }
-     *     
-     */
-    public Tema getTema() {
-        return tema;
-    }
-
-    /**
-     * Sets the value of the tema property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Tema }
-     *     
-     */
-    public void setTema(Tema value) {
-        this.tema = value;
     }
 
     /**

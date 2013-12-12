@@ -20,11 +20,9 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="seccion" type="{http://ws.datalayer.redsocedu.fiuba.ar/}seccion" minOccurs="0"/>
  *         &lt;element name="seccionId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="subforoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="subforoPadre" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" minOccurs="0"/>
- *         &lt;element name="subforoPadreId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="subforopadreId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="subforos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="temas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}tema" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
@@ -38,11 +36,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "subforo", propOrder = {
     "nombre",
-    "seccion",
     "seccionId",
     "subforoId",
-    "subforoPadre",
-    "subforoPadreId",
+    "subforopadreId",
     "subforos",
     "temas"
 })
@@ -51,11 +47,9 @@ public class Subforo
 {
 
     protected String nombre;
-    protected Seccion seccion;
     protected Long seccionId;
     protected Long subforoId;
-    protected Subforo subforoPadre;
-    protected Long subforoPadreId;
+    protected Long subforopadreId;
     @XmlElement(nillable = true)
     protected List<Subforo> subforos;
     @XmlElement(nillable = true)
@@ -83,30 +77,6 @@ public class Subforo
      */
     public void setNombre(String value) {
         this.nombre = value;
-    }
-
-    /**
-     * Gets the value of the seccion property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Seccion }
-     *     
-     */
-    public Seccion getSeccion() {
-        return seccion;
-    }
-
-    /**
-     * Sets the value of the seccion property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Seccion }
-     *     
-     */
-    public void setSeccion(Seccion value) {
-        this.seccion = value;
     }
 
     /**
@@ -158,51 +128,27 @@ public class Subforo
     }
 
     /**
-     * Gets the value of the subforoPadre property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Subforo }
-     *     
-     */
-    public Subforo getSubforoPadre() {
-        return subforoPadre;
-    }
-
-    /**
-     * Sets the value of the subforoPadre property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Subforo }
-     *     
-     */
-    public void setSubforoPadre(Subforo value) {
-        this.subforoPadre = value;
-    }
-
-    /**
-     * Gets the value of the subforoPadreId property.
+     * Gets the value of the subforopadreId property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getSubforoPadreId() {
-        return subforoPadreId;
+    public Long getSubforopadreId() {
+        return subforopadreId;
     }
 
     /**
-     * Sets the value of the subforoPadreId property.
+     * Sets the value of the subforopadreId property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setSubforoPadreId(Long value) {
-        this.subforoPadreId = value;
+    public void setSubforopadreId(Long value) {
+        this.subforopadreId = value;
     }
 
     /**

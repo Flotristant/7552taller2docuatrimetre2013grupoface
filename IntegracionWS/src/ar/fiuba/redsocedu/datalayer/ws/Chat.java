@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="ambito" type="{http://ws.datalayer.redsocedu.fiuba.ar/}ambito" minOccurs="0"/>
  *         &lt;element name="ambitoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="chatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="mensajesChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensajeChat" maxOccurs="unbounded" minOccurs="0"/>
@@ -34,7 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "chat", propOrder = {
-    "ambito",
     "ambitoId",
     "chatId",
     "mensajesChat",
@@ -44,37 +42,12 @@ public class Chat
     extends ReturnedObject
 {
 
-    protected Ambito ambito;
     protected Long ambitoId;
     protected Long chatId;
     @XmlElement(nillable = true)
     protected List<MensajeChat> mensajesChat;
     @XmlElement(nillable = true)
     protected List<MiembroChat> miembrosChat;
-
-    /**
-     * Gets the value of the ambito property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Ambito }
-     *     
-     */
-    public Ambito getAmbito() {
-        return ambito;
-    }
-
-    /**
-     * Sets the value of the ambito property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Ambito }
-     *     
-     */
-    public void setAmbito(Ambito value) {
-        this.ambito = value;
-    }
 
     /**
      * Gets the value of the ambitoId property.
