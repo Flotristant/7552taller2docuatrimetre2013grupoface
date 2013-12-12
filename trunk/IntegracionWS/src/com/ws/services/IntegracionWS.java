@@ -14,6 +14,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import com.ws.handler.ArchivoHandler;
 import com.ws.handler.Handler;
 
 public class IntegracionWS {
@@ -88,59 +89,57 @@ public class IntegracionWS {
 	
 	
 	public String guardarArchivo(String xml , byte [] archivo){
-		//Prueba se ivocacion al web service guardar archivo
-		   String correcto ="Incorrecto";
-			try { 
-		     OutputStream out = new FileOutputStream(xml); 
-		     out.write(archivo); 
-		     out.close();         
-		     correcto = "Correcto"; 
-		   } catch (Exception e) { 
-		     e.printStackTrace(); 
-		   }         
-		     return correcto;
 		
-		//TODO
-		/*Document doc;
-		try {
-			doc = getXMLDocument(xml);
-			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
-			Handler handler = getHandler(root);
-			//TODO agregar un guardar datos en el handler 
-			// referente al archivo que reciba el xml y el byte
-			//return handler.guardarDatos(xml);
-			return null;
-		} catch (Exception e) {
-			return e.getMessage() + "XML: " + xml;
-		}  */  
+		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
+			//prueba se ivocacion al web service guardar archivo
+			   String correcto ="Incorrecto";
+				try { 
+			     OutputStream out = new FileOutputStream(xml); 
+			     out.write(archivo); 
+			     out.close();         
+			     correcto = "Correcto"; 
+			   } catch (Exception e) { 
+			     e.printStackTrace(); 
+			   }         
+			     return correcto;
+		}else{
+		
+			try {
+				ArchivoHandler hand = new ArchivoHandler();
+				return hand.guardarDatos(xml, archivo);
+			} catch (Exception e) {
+				return e.getMessage() + "XML: " + xml;
+			} 
+		}
+		
 	}
 	
 	public String eliminarArchivo(String xml){
-		Document doc;
-		try {
-			doc = getXMLDocument(xml);
-			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
-			Handler handler = getHandler(root);
-			//TODO agregar un eliminar archivo en el handler que reciba el xml y el byte
-			//return the error or successfull message
-			//return handler.borrarDatos(xml);
-			return null;
-		} catch (Exception e) {
-			return e.getMessage() + "XML: " + xml;
+		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
+			//prueba se ivocacion al web service eliminar archivo    
+			     return "Eliminado";
+		}else{
+			try {
+				ArchivoHandler hand = new ArchivoHandler();
+				return hand.borrarDatos(xml);
+			} catch (Exception e) {
+				return e.getMessage() + "XML: " + xml;
+			}    
 		}
 	}
 	
 	public String actualizarArchivo (String xml, byte [] archivo) {
-		Document doc;
-		try {
-			doc = getXMLDocument(xml);
-			NodeList root = doc.getElementsByTagName(XML_ROOT_TAG);
-			Handler handler = getHandler(root);
-			//TODO agregar un actualizar archivo en el handler que reciba el xml y el byte
-			//return handler.actualizarDatos(xml);
-			return null;
-		} catch (Exception e) {
-			return e.getMessage() + "XML: " + xml;
+		
+		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
+			//prueba se ivocacion al web service eliminar archivo    
+			     return "Actualizado";
+		}else{
+			try {
+				ArchivoHandler hand = new ArchivoHandler();
+				return hand.actualizarDatos(xml, archivo);
+			} catch (Exception e) {
+				return e.getMessage() + "XML: " + xml;
+			}    
 		}
 		
 	}
