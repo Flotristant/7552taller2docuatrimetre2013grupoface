@@ -14,8 +14,6 @@ import com.ws.tags.ChatTags;
 
 public class ChatParser extends Parser {
 	
-	Map<String, String> relaciones;
-	
 	public ChatParser() {
 		super(ChatTags.CLASS_TAG);
 		relaciones = new HashMap<String, String>();
@@ -23,30 +21,10 @@ public class ChatParser extends Parser {
 		relaciones.put(MiembroChatParser.class.toString(), "miembrosChat");
 	}
 	
+
 	@Override
-	public Map<String, String> getJoinFields() {
-		String joinXML = this.campos.get(Parser.JOIN_TAG);
-		Map<String, String> joinFields = new HashMap<String, String>();
-		Parser parser = getJoinParser(joinXML);
-		if(parser == null)
-			return joinFields;
-		String nombreRelacion = relaciones.get(parser.getClass().toString());
-		joinXML = joinXML.replace("<join>", "");
-		joinXML = joinXML.replace("</join>", "");
-		parser.inicializarCampos(joinXML);
-		Map<String, String> camposRelacion = parser.getCampos();
-		for(String campo : camposRelacion.keySet()) {
-			joinFields.put(nombreRelacion+"."+campo,camposRelacion.get(campo));
-		}
-		return joinFields;		
-	}
-	
-	private Parser getJoinParser(String joinXML) {
-		Parser parser = getParserFromJoinXML(joinXML);
-		if((parser instanceof MensajeChatParser)||(parser instanceof MiembroChatParser)) {
-			return parser;
-		}
-		return null;
+	protected Boolean validateJoinParser(Parser parser) {
+		return (parser instanceof MensajeChatParser)||(parser instanceof MiembroChatParser);
 	}
 
 

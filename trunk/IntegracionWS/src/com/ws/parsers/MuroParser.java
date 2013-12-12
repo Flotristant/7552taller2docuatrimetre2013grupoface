@@ -23,4 +23,10 @@ public class MuroParser extends Parser {
 		return muro;
 	}
 
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
