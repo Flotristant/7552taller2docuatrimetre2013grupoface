@@ -19,7 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="ambito" type="{http://ws.datalayer.redsocedu.fiuba.ar/}ambito" minOccurs="0"/>
  *         &lt;element name="ambitoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="foroId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -34,7 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "foro", propOrder = {
-    "ambito",
     "ambitoId",
     "foroId",
     "nombre",
@@ -44,36 +42,11 @@ public class Foro
     extends ReturnedObject
 {
 
-    protected Ambito ambito;
     protected Long ambitoId;
     protected Long foroId;
     protected String nombre;
     @XmlElement(nillable = true)
     protected List<Seccion> secciones;
-
-    /**
-     * Gets the value of the ambito property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Ambito }
-     *     
-     */
-    public Ambito getAmbito() {
-        return ambito;
-    }
-
-    /**
-     * Sets the value of the ambito property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Ambito }
-     *     
-     */
-    public void setAmbito(Ambito value) {
-        this.ambito = value;
-    }
 
     /**
      * Gets the value of the ambitoId property.

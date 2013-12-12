@@ -20,8 +20,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
  *         &lt;element name="mensajes" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensaje" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="subforo" type="{http://ws.datalayer.redsocedu.fiuba.ar/}subforo" minOccurs="0"/>
  *         &lt;element name="subforoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="temaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -36,8 +34,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tema", propOrder = {
     "mensajes",
-    "nombre",
-    "subforo",
     "subforoId",
     "temaId",
     "username"
@@ -48,8 +44,6 @@ public class Tema
 
     @XmlElement(nillable = true)
     protected List<Mensaje> mensajes;
-    protected String nombre;
-    protected Subforo subforo;
     protected Long subforoId;
     protected Long temaId;
     protected String username;
@@ -81,54 +75,6 @@ public class Tema
             mensajes = new ArrayList<Mensaje>();
         }
         return this.mensajes;
-    }
-
-    /**
-     * Gets the value of the nombre property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNombre() {
-        return nombre;
-    }
-
-    /**
-     * Sets the value of the nombre property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNombre(String value) {
-        this.nombre = value;
-    }
-
-    /**
-     * Gets the value of the subforo property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Subforo }
-     *     
-     */
-    public Subforo getSubforo() {
-        return subforo;
-    }
-
-    /**
-     * Sets the value of the subforo property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Subforo }
-     *     
-     */
-    public void setSubforo(Subforo value) {
-        this.subforo = value;
     }
 
     /**

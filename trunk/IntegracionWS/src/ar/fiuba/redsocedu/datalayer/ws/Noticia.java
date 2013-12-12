@@ -16,11 +16,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="cartelera" type="{http://ws.datalayer.redsocedu.fiuba.ar/}cartelera" minOccurs="0"/>
  *         &lt;element name="carteleraId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="noticiaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -31,45 +31,21 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "noticia", propOrder = {
-    "cartelera",
     "carteleraId",
     "contenido",
     "noticiaId",
-    "titulo"
+    "titulo",
+    "username"
 })
 public class Noticia
     extends ReturnedObject
 {
 
-    protected Cartelera cartelera;
     protected Long carteleraId;
     protected String contenido;
     protected Long noticiaId;
     protected String titulo;
-
-    /**
-     * Gets the value of the cartelera property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Cartelera }
-     *     
-     */
-    public Cartelera getCartelera() {
-        return cartelera;
-    }
-
-    /**
-     * Sets the value of the cartelera property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Cartelera }
-     *     
-     */
-    public void setCartelera(Cartelera value) {
-        this.cartelera = value;
-    }
+    protected String username;
 
     /**
      * Gets the value of the carteleraId property.
@@ -165,6 +141,30 @@ public class Noticia
      */
     public void setTitulo(String value) {
         this.titulo = value;
+    }
+
+    /**
+     * Gets the value of the username property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUsername() {
+        return username;
+    }
+
+    /**
+     * Sets the value of the username property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUsername(String value) {
+        this.username = value;
     }
 
 }
