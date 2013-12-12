@@ -1,5 +1,7 @@
 package com.ws.parsers;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -7,19 +9,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.w3c.dom.Document;
 
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 
 
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
+import com.ws.handler.Handler;
 
 
 public abstract class Parser {
 
-	private static String JOIN_TAG = "join";
+	private static final String PARSER_PACKAGE = "com.ws.parsers.";
+	private static final String PARSER_SUFIX = "Parser";
+	protected static String JOIN_TAG = "join";
 	protected Map<String, String> campos;
 	protected String classTag;
 
@@ -69,7 +80,8 @@ public abstract class Parser {
 	 */
 
 	public Map<String, String> inicializarCampos(String xml) {
-		Object obj =  this.getEntidadNegocio(xml);
+		String xmlSinJoin = cleanJoinPart(xml);
+		Object obj =  this.getEntidadNegocio(xmlSinJoin);
 		Field[] fields = obj.getClass().getDeclaredFields();
 		ArrayList<Field> fieldsList = new ArrayList<Field>();
 		for (Field field : fields) {
@@ -93,11 +105,34 @@ public abstract class Parser {
 					attribute = field.getName();
 					this.campos.put(attribute, value.toString());
 				}
-			}
+			}			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		String joinXML = getJoinXML(xml);
+		if(!joinXML.isEmpty()) {
+			this.campos.put(Parser.JOIN_TAG, getJoinXML(xml));
+		}
 		return this.campos;
+	}
+	
+	public String cleanJoinPart(String xml) {
+		String substring = getJoinXML(xml);
+		if(substring.isEmpty()) {
+			return xml;
+		}
+		return xml.replace(substring, "");
+	}
+
+	private String getJoinXML(String xml) {
+		int first_index = xml.indexOf("<"+Parser.JOIN_TAG+">");
+		String close_tag = "</"+Parser.JOIN_TAG+">";
+		int last_index = xml.indexOf(close_tag);
+		String substring ="";
+		if(first_index > 0 && last_index > 0) {
+			substring = xml.substring(first_index, last_index+close_tag.length());
+		}
+		return substring;
 	}
 	
 	public Map<String, String> getJoinFields() {
@@ -118,5 +153,33 @@ public abstract class Parser {
 
 	public void setClassTag(String classTag) {
 		this.classTag = classTag;
+	}
+	
+	public Parser getParserFromJoinXML(String xml) {
+		Document doc;
+		Parser parser=null;
+		try {
+			doc = getXMLDocument(xml);
+			NodeList root = doc.getElementsByTagName(Parser.JOIN_TAG);
+			parser = getParser(root);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}  
+		return parser;
+	}
+	
+	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder;
+		docBuilder = docFactory.newDocumentBuilder();
+		return docBuilder.parse(new InputSource(new StringReader(xml)));
+	}
+	
+	
+	private Parser getParser(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		String objectName = root.item(0).getFirstChild().getNodeName();
+		String handlerName = PARSER_PACKAGE + objectName + PARSER_SUFIX ;
+		Class<?> hClass = Class.forName(handlerName);
+		return (Parser) hClass.newInstance();
 	}
 }

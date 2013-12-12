@@ -24,7 +24,7 @@ public class ChatHandler extends Handler {
 
 		// Administro las listas que puedo recibir del negocio
 		// Agrego al Pojo de DB instancias de Mensajes con los id que recibo
-		for (Long elem : ChatNegocio.getMensajeChat()) {
+		for (Long elem : ChatNegocio.getMensajesChat()) {
 
 			MensajeChat unMensaje = new MensajeChat();
 			unMensaje.setMensajeChatId(elem);
@@ -32,7 +32,7 @@ public class ChatHandler extends Handler {
 		}
 
 		// Agrego al Pojo de DB instancias de Miembros con los id que recibo
-		for (Long elem : ChatNegocio.getMiembroChat()) {
+		for (Long elem : ChatNegocio.getMiembrosChat()) {
 
 			MiembroChat unMiembro = new MiembroChat();
 			unMiembro.setMiembroChatId(elem);

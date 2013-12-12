@@ -8,20 +8,20 @@ public class Chat extends Pojo {
 
 	Long idChat;
 	Long idAmbito;
-	List<Long> MensajeChat = new ArrayList<Long>();
-	List<Long> MiembroChat = new ArrayList<Long>();
+	List<Long> mensajesChat = new ArrayList<Long>();
+	List<Long> miembrosChat = new ArrayList<Long>();
 	
-	public List<Long> getMensajeChat() {
-		return MensajeChat;
+	public List<Long> getMensajesChat() {
+		return mensajesChat;
 	}
-	public void setMensajeChat(List<Long> mensajeChat) {
-		MensajeChat = mensajeChat;
+	public void setMensajesChat(List<Long> mensajeChat) {
+		mensajesChat = mensajeChat;
 	}
-	public List<Long> getMiembroChat() {
-		return MiembroChat;
+	public List<Long> getMiembrosChat() {
+		return miembrosChat;
 	}
-	public void setMiembroChat(List<Long> miembroChat) {
-		MiembroChat = miembroChat;
+	public void setMiembrosChat(List<Long> miembroChat) {
+		miembrosChat = miembroChat;
 	}
 	
 	public Long getIdChat() {
