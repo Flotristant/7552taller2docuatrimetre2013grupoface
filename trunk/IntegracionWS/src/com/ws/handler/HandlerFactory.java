@@ -55,6 +55,18 @@ public class HandlerFactory {
         }
         //----Fin codigo administracion actividad-------
         
+        
+        //---codigo para devolver el handler nota aun si se recibe una nota grupal o una nota individual...
+        String regexNota= "^Nota";
+		Pattern patronNota = Pattern.compile(regexNota);
+		Matcher mtNota = patronNota.matcher(nameWithoutPackage);
+        
+        if (mtNota.find()){
+        	handlerName = HANDLER_PACKAGE + "Nota" + HANDLER_SUFIX;
+        }
+        //----Fin codigo administracion nota-------
+        
+        
         Class<?> hClass = Class.forName(handlerName);
         return (Handler) hClass.newInstance();
     }

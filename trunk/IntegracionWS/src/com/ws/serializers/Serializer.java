@@ -8,6 +8,8 @@ import com.thoughtworks.xstream.io.xml.CompactWriter;
 
 public abstract class Serializer {
 	
+	protected Object objetoDTO;
+	
 	private static String addSuperTags(String body) {
 		
 		return "<WS>"+body+"</WS>";
@@ -19,11 +21,16 @@ public abstract class Serializer {
 	 * @return
 	 */
 	public String getXMLfromPojo(Object dto) {
+		
+		//Se hace esto para que se pueda acceder a la infomación del
+		//dto desde nota para saber si es una grupal o individual
+		this.objetoDTO = dto;
+		
 		XStream xstream = new XStream();
 		this.setAttributeMappings(xstream);
 		
 		StringWriter sw = new StringWriter();
-		xstream.marshal(dto, new CompactWriter(sw));
+		xstream.marshal(this.objetoDTO, new CompactWriter(sw));
 		
 		//String xml = xstream.toXML(dto);		
 		return addSuperTags(sw.toString());
