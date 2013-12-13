@@ -10,6 +10,8 @@ package com.ws.handler;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -42,6 +44,17 @@ public class HandlerFactory {
         String objectName = root.item(0).getFirstChild().getNodeName();
         String nameWithoutPackage = objectName.substring(objectName.lastIndexOf(".") + 1);
         String handlerName = HANDLER_PACKAGE + nameWithoutPackage + HANDLER_SUFIX;
+        
+        //---codigo para devolver el handler actividad aun si se recibe un actividadgrupla o actividadindividual...
+        String regex= "^Actividad";
+		Pattern patron = Pattern.compile(regex);
+		Matcher mt = patron.matcher(nameWithoutPackage);
+        
+        if (mt.find()){
+        	handlerName = HANDLER_PACKAGE + "Actividad" + HANDLER_SUFIX;
+        }
+        //----Fin codigo administracion actividad-------
+        
         Class<?> hClass = Class.forName(handlerName);
         return (Handler) hClass.newInstance();
     }
