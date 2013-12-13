@@ -17,6 +17,7 @@ public class MensajeSerializer extends Serializer {
 //		xstream.aliasField(MensajeTags.AUTOR_TAG, Mensaje.class, "nombre");
 		xstream.aliasField(MensajeTags.CONTENIDO_TAG, Mensaje.class, "contenido");
 //		xstream.aliasField(MensajeTags.FECHA_TAG, Mensaje.class, "fecha");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
 
 }

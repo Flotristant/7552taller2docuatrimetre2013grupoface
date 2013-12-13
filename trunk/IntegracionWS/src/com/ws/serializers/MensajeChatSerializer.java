@@ -15,6 +15,7 @@ public class MensajeChatSerializer extends Serializer {
 		xstream.aliasField(MensajeChatTags.ID_CHAT_TAG, MensajeChat.class, "idChat");
 		xstream.aliasField(MensajeChatTags.FECHA_TAG, MensajeChat.class, "fecha");
 		xstream.aliasField(MensajeChatTags.CONTENIDO_TAG, MensajeChat.class,"contenido");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
 
 }

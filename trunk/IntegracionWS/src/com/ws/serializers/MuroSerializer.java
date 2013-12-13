@@ -16,6 +16,7 @@ public class MuroSerializer extends Serializer {
 		//Mapeos de los nombres de atributo
 		xstream.aliasField(MuroTags.ID_TAG, Muro.class, "id");
 		xstream.aliasField(MuroTags.NOMBRE_TAG, Muro.class, "nombre");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
 	
 }

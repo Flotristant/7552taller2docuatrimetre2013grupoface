@@ -15,6 +15,7 @@ public class ForoSerializer extends Serializer{
 		xstream.omitField(Foro.class, "idForo");
 		xstream.aliasField(ForoTags.NOMBRE_TAG, Foro.class, "nombre");
 		xstream.aliasField(ForoTags.ID_AMBITO_TAG, Foro.class, "idAmbito");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 	}
 

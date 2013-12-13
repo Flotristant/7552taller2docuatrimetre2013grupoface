@@ -15,6 +15,7 @@ public class SubforoSerializer extends Serializer {
 		xstream.aliasField(SubforoTags.ID_FORO_TAG, Subforo.class, "idForo");
 		xstream.aliasField(SubforoTags.ID_SUBFOROPADRE_TAG, Subforo.class, "idSubforoPadre");
 		xstream.aliasField(SubforoTags.ID_SECCION_TAG, Subforo.class, "idSeccion");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 		
 		
