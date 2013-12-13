@@ -17,10 +17,8 @@ public class SeccionHandler extends Handler {
 		ar.fiuba.redsocedu.datalayer.ws.Seccion seccionDb = new ar.fiuba.redsocedu.datalayer.ws.Seccion();
 		seccionDb.setNombre(seccion.getNombre());
 		seccionDb.setForoId(seccion.getIdForo());
-		seccionDb.setId(seccion.getId());
-		
-		return seccionDb;
-		 
+		seccionDb.setId(seccion.getId());		
+		return seccionDb;		 
 	}
 
 }

@@ -8,9 +8,11 @@ import org.junit.Test;
 import com.thoughtworks.xstream.XStream;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.MensajeParser;
+import com.ws.parsers.SeccionParser;
 import com.ws.parsers.SubforoParser;
 import com.ws.parsers.TemaParser;
 import com.ws.pojos.Mensaje;
+import com.ws.pojos.Seccion;
 import com.ws.pojos.Subforo;
 import com.ws.pojos.Tema;
 import com.ws.serializers.MensajeSerializer;
@@ -146,8 +148,19 @@ public class TestIntegracionComunicacion {
     //******************************************SUBFORO************************************************\\
     @Test
     public void testSubforo() {
+//    	Seccion seccion = crearSeccionNegocio();
+//    	String seccionXML = getSeccionNegocioXML(seccion);
+//    	String resultadoTransaccion = integracionWS.guardarDatos(seccionXML);
+//        //Assert.assertTrue(resultadoTransaccion.contains("La entidad ha sido almacenada con exito"));
+//    	
+//        // consultar mensaje por props
+//        resultadoTransaccion = integracionWS.seleccionarDatos(seccionXML);
+//        Seccion seccion_leida = getSeccionFromResult(resultadoTransaccion);
+//        //assertSubforosIguales(seccion, seccion_leida);
+        
         // guardar mensaje
     	Subforo subforo = crearSubforoNegocio();
+    	subforo.setIdSeccion(1L);
         String mensajeXML = getSubforoNegocioXML(subforo);
         String resultadoTransaccion = integracionWS.guardarDatos(mensajeXML);
         Assert.assertTrue(resultadoTransaccion.contains("La entidad ha sido almacenada con exito"));
@@ -176,6 +189,14 @@ public class TestIntegracionComunicacion {
         Subforo subforo_leido = (Subforo) parser.getEntidadNegocio(resultadoTransaccion);
 		return subforo_leido;
 	}
+	
+	private Seccion getSeccionFromResult(String resultadoTransaccion) {
+		resultadoTransaccion.replace("<list>", "");
+        resultadoTransaccion.replace("</list>", "");
+        SeccionParser parser = new SeccionParser();
+        Seccion subforo_leido = (Seccion) parser.getEntidadNegocio(resultadoTransaccion);
+		return subforo_leido;
+	}
 
 	private void assertSubforosIguales(Subforo subforo, Subforo subforo_leido) {
 		Assert.assertTrue(subforo_leido.getId() != null);
@@ -196,6 +217,21 @@ public class TestIntegracionComunicacion {
     	XStream xstream = new XStream();
     	xstream.alias("Subforo", Subforo.class);
     	String xml = xstream.toXML(subforo);
+    	return "<WS>"+xml+"</WS>";
+    	
+    }
+    
+    private Seccion crearSeccionNegocio() {
+    	Seccion seccion = new Seccion();
+    	Long time = System.currentTimeMillis();
+    	seccion.setNombre("Mi seccion"+time.toString());
+        return seccion;
+    }
+
+    private String getSeccionNegocioXML(Seccion seccion) {
+    	XStream xstream = new XStream();
+    	xstream.alias("Seccion", Seccion.class);
+    	String xml = xstream.toXML(seccion);
     	return "<WS>"+xml+"</WS>";
     	
     }
