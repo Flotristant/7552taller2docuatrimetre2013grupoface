@@ -21,14 +21,18 @@ import org.xml.sax.SAXException;
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
 
-
 public abstract class Parser {
 
 	private static final String PARSER_PACKAGE = "com.ws.parsers.";
+
 	private static final String PARSER_SUFIX = "Parser";
-	protected static String JOIN_TAG = "join";
+
+	public static String JOIN_TAG = "join";
+
 	protected Map<String, String> campos;
+
 	protected String classTag;
+
 	protected Map<String, String> relaciones;
 
 	QueryBuilder queryBuilder;
@@ -49,13 +53,15 @@ public abstract class Parser {
 		Object obj = xmlReader.fromXML(xml);
 		return obj;
 	}
-	
+
 	protected String replaceClassTag(String xml) {
-		xml = xml.replace("<"+this.classTag+">", "<com.ws.pojos."+this.classTag+">");
-		xml = xml.replace("</"+this.classTag+">", "</com.ws.pojos."+this.classTag+">");
+		xml = xml.replace("<" + this.classTag + ">", "<com.ws.pojos."
+				+ this.classTag + ">");
+		xml = xml.replace("</" + this.classTag + ">", "</com.ws.pojos."
+				+ this.classTag + ">");
 		return xml;
 	}
-	
+
 	private String removeSuperTags(String xml) {
 		xml = xml.replace("<WS>", "");
 		xml = xml.replace("</WS>", "");
@@ -67,26 +73,30 @@ public abstract class Parser {
 	public abstract Object getDBObject(String xml);
 
 	/**
-	 * Este metodo inicializa el map "campos" para poder armar la query a la base de datos.
-	 * @param xml : tiene que ser el xml recibido desde la capa de negocio.
+	 * Este metodo inicializa el map "campos" para poder armar la query a la
+	 * base de datos.
+	 * 
+	 * @param xml
+	 *            : tiene que ser el xml recibido desde la capa de negocio.
 	 * @return
-	 * @throws NoSuchMethodException 
-	 * @throws SecurityException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
 	 */
 
 	public Map<String, String> inicializarCampos(String xml) {
 		String xmlSinJoin = cleanJoinPart(xml);
-		Object obj =  this.getEntidadNegocio(xmlSinJoin);
+		Object obj = this.getEntidadNegocio(xmlSinJoin);
 		Field[] fields = obj.getClass().getDeclaredFields();
 		ArrayList<Field> fieldsList = new ArrayList<Field>();
 		for (Field field : fields) {
 			fieldsList.add(field);
 		}
-		
-		Field[] superFields = obj.getClass().getSuperclass().getDeclaredFields();
+
+		Field[] superFields = obj.getClass().getSuperclass()
+				.getDeclaredFields();
 		for (Field field : superFields) {
 			fieldsList.add(field);
 		}
@@ -94,60 +104,63 @@ public abstract class Parser {
 		Object ret;
 		String value, attribute;
 		try {
-			for(Field field: fieldsList) {
-				attribute = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
+			for (Field field : fieldsList) {
+				attribute = field.getName().substring(0, 1).toUpperCase()
+						+ field.getName().substring(1);
 				Method method = obj.getClass().getMethod("get" + attribute);
 				ret = method.invoke(obj, null);
-				if(ret != null) {
+				if (ret != null) {
 					value = ret.toString();
 					attribute = field.getName();
 					this.campos.put(attribute, value.toString());
 				}
-			}			
-		}catch (Exception e) {
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		String joinXML = getJoinXML(xml);
-		if(!joinXML.isEmpty()) {
+		if (!joinXML.isEmpty()) {
 			this.campos.put(Parser.JOIN_TAG, getJoinXML(xml));
 		}
 		return this.campos;
 	}
-	
+
 	public String cleanJoinPart(String xml) {
 		String substring = getJoinXML(xml);
-		if(substring.isEmpty()) {
+		if (substring.isEmpty()) {
 			return xml;
 		}
 		return xml.replace(substring, "");
 	}
 
 	private String getJoinXML(String xml) {
-		int first_index = xml.indexOf("<"+Parser.JOIN_TAG+">");
-		String close_tag = "</"+Parser.JOIN_TAG+">";
+		int first_index = xml.indexOf("<" + Parser.JOIN_TAG + ">");
+		String close_tag = "</" + Parser.JOIN_TAG + ">";
 		int last_index = xml.indexOf(close_tag);
-		String substring ="";
-		if(first_index > 0 && last_index > 0) {
-			substring = xml.substring(first_index, last_index+close_tag.length());
+		String substring = "";
+		if (first_index > 0 && last_index > 0) {
+			substring = xml.substring(first_index,
+					last_index + close_tag.length());
 		}
 		return substring;
 	}
 
-	
+	/**
+	 * Utiliza la parte del xml que indica el join para crear un nuevo parser y
+	 * obtener los campos involucrados en el join.
+	 * 
+	 * @return
+	 */
 	public Map<String, String> getJoinFields() {
 		String joinXML = this.campos.get(Parser.JOIN_TAG);
 		Map<String, String> joinFields = new HashMap<String, String>();
 		Parser parser = getJoinParser(joinXML);
-		if(parser == null)
+		if (parser == null)
 			return joinFields;
-		String nombreRelacion = relaciones.get(parser.getClass().toString());
 		joinXML = cleanJoinTags(joinXML);
 		parser.inicializarCampos(joinXML);
 		Map<String, String> camposRelacion = parser.getCampos();
-		for(String campo : camposRelacion.keySet()) {
-			joinFields.put(nombreRelacion+"."+campo,camposRelacion.get(campo));
-		}
-		return joinFields;		
+		return camposRelacion;
 	}
 
 	private String cleanJoinTags(String joinXML) {
@@ -155,15 +168,25 @@ public abstract class Parser {
 		joinXML = joinXML.replace("</join>", "");
 		return joinXML;
 	}
-	
-	private Parser getJoinParser(String joinXML) {
-		Parser parser = getParserFromJoinXML(joinXML);
-		if(validateJoinParser(parser)) {
-			return parser;
-		}
+
+	public String getNombreRelacion() {
+		return relaciones.get(this.getClass().toString());
+	}
+
+	public Object getRelationList() {
+		String nombre_relacion = this.getNombreRelacion();
+		// FIXME obtener la lista con el nombre de la relacion
 		return null;
 	}
-	
+
+	private Parser getJoinParser(String joinXML) {
+		Parser parser = getParserFromJoinXML(joinXML);
+//		if (validateJoinParser(parser)) {
+			return parser;
+//		}
+//		return null;
+	}
+
 	protected abstract Boolean validateJoinParser(Parser parser);
 
 	public Map<String, String> getCampos() {
@@ -181,31 +204,33 @@ public abstract class Parser {
 	public void setClassTag(String classTag) {
 		this.classTag = classTag;
 	}
-	
+
 	public Parser getParserFromJoinXML(String xml) {
 		Document doc;
-		Parser parser=null;
+		Parser parser = null;
 		try {
 			doc = getXMLDocument(xml);
 			NodeList root = doc.getElementsByTagName(Parser.JOIN_TAG);
 			parser = getParser(root);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}  
+		}
 		return parser;
 	}
-	
-	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+
+	public Document getXMLDocument(String xml) throws SAXException,
+			IOException, ParserConfigurationException {
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory
+				.newInstance();
 		DocumentBuilder docBuilder;
 		docBuilder = docFactory.newDocumentBuilder();
 		return docBuilder.parse(new InputSource(new StringReader(xml)));
 	}
-	
-	
-	private Parser getParser(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+
+	private Parser getParser(NodeList root) throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException {
 		String objectName = root.item(0).getFirstChild().getNodeName();
-		String handlerName = PARSER_PACKAGE + objectName + PARSER_SUFIX ;
+		String handlerName = PARSER_PACKAGE + objectName + PARSER_SUFIX;
 		Class<?> hClass = Class.forName(handlerName);
 		return (Parser) hClass.newInstance();
 	}
