@@ -1,7 +1,5 @@
 package com.ws.handler;
 
-import ar.fiuba.redsocedu.datalayer.ws.Seccion;
-
 import com.db.querys.SubforoQueryBuilder;
 import com.ws.parsers.SubforoParser;
 import com.ws.serializers.SubforoSerializer;
@@ -21,21 +19,15 @@ public class SubforoHandler extends Handler {
 		subforoDb.setNombre(subforo.getNombre());
 		
 		if(subforo.getId() != null)
-			subforoDb.setSubforoId(subforo.getId());
+			subforoDb.setId(subforo.getId());
 		
 		if(subforo.getIdSeccion() != null) {
-			Seccion seccion = new Seccion();
-			seccion.setId(subforo.getIdSeccion());
-			subforoDb.setSeccionId(seccion.getId());
+			subforoDb.setSeccionId(subforo.getIdSeccion());
 		} 
 			
 		if(subforo.getIdSubforoPadre() != null) {
-			ar.fiuba.redsocedu.datalayer.ws.Subforo subforoPadre = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
-			subforoPadre.setId(subforo.getIdSubforoPadre());
-			subforoDb.setSubforopadreId(subforoPadre.getId());			
+			subforoDb.setSubforopadreId(subforo.getIdSubforoPadre());		
 		}
-
-		
 		return subforoDb;
 	}
 

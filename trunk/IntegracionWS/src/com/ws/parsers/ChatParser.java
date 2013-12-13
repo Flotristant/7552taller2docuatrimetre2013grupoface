@@ -1,15 +1,8 @@
 package com.ws.parsers;
 
 import java.util.HashMap;
-import java.util.Map;
 
-import org.w3c.dom.NodeList;
-
-import com.thoughtworks.xstream.XStream;
-import com.ws.handler.Handler;
 import com.ws.pojos.Chat;
-import com.ws.pojos.MensajeChat;
-import com.ws.pojos.MiembroChat;
 import com.ws.tags.ChatTags;
 
 public class ChatParser extends Parser {

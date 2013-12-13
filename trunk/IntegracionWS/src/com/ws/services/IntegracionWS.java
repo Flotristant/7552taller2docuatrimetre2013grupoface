@@ -144,15 +144,12 @@ public class IntegracionWS {
 		
 	}
 	
-
-	
 	public Document getXMLDocument(String xml) throws SAXException, IOException, ParserConfigurationException {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder;
 		docBuilder = docFactory.newDocumentBuilder();
 		return docBuilder.parse(new InputSource(new StringReader(xml)));
 	}
-	
 	
 	private Handler getHandler(NodeList root) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
 		String objectName = root.item(0).getFirstChild().getNodeName();

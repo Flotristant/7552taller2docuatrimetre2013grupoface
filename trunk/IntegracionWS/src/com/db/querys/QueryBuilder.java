@@ -37,7 +37,7 @@ public abstract class QueryBuilder {
 	private static SERIALIZATIONTYPE CodificationStrategy = SERIALIZATIONTYPE.BIN; //modificar para cambiar a XML
 	
 	
-	protected static String getSerializedCriteria(DetachedCriteria crit){
+	public static String getSerializedCriteria(DetachedCriteria crit){
 		
 		switch (CodificationStrategy) {
 		case BIN:
