@@ -13,6 +13,7 @@ public class EventoSerializer extends Serializer {
 		xstream.alias(EventoTags.CLASS_TAG, Chat.class);
 		xstream.aliasField(EventoTags.ID_TAG, Chat.class, "id");
 		xstream.omitField(Evento.class, "EventoId");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
 
 }

@@ -25,6 +25,7 @@ public class UsuarioSerializer extends Serializer {
 		xstream.aliasField(UsuarioTags.PADRON_TAG, Usuario.class, "padron");
 		xstream.aliasField(UsuarioTags.PASSWORD_TAG, Usuario.class, "password");
 		xstream.aliasField(UsuarioTags.USERNANME_TAG, Usuario.class, "username");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 		//alias implementacion interfaz
 		xstream.alias("fechaNac", XMLGregorianCalendar.class, XMLGregorianCalendarImpl.class);

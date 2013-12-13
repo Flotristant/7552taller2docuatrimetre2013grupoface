@@ -19,6 +19,7 @@ public class CarteleraSerializer extends Serializer {
 		//Mapeos de los nombres de atributo
 		xstream.aliasField(CarteleraTags.ID_TAG, Cartelera.class, "id");
 		xstream.aliasField(CarteleraTags.NOMBRE_TAG, Cartelera.class, "nombre");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
 	
 }

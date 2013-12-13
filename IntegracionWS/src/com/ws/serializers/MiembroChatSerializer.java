@@ -14,6 +14,7 @@ public class MiembroChatSerializer extends Serializer {
 		xstream.aliasField(MiembroChatTags.ID_TAG, MiembroChat.class, "id");
 		xstream.aliasField(MiembroChatTags.NOMBRE_TAG, MiembroChat.class, "nombre");
 		xstream.aliasField(MiembroChatTags.ESTADO_TAG, MiembroChat.class, "estado");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 	}
 

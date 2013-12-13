@@ -19,6 +19,7 @@ public class NoticiaSerializer extends Serializer {
 		//xstream.aliasField(NoticiaTags.AUTOR_TAG, Noticia.class, "username");   TODO el campo username o autor no existe todavia en el pojo de DB
 		xstream.aliasField(NoticiaTags.CONTENIDO_TAG, Noticia.class, "contenido");
 		xstream.aliasField(NoticiaTags.CARTELERAID_TAG, Noticia.class, "carteleraId");
+		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 		xstream.omitField(Noticia.class, "carteleraId");
 		
