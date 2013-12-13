@@ -1,7 +1,6 @@
 package com.ws.serializers;
 
 import ar.fiuba.redsocedu.datalayer.ws.Chat;
-import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.thoughtworks.xstream.XStream;
 import com.ws.tags.ChatTags;

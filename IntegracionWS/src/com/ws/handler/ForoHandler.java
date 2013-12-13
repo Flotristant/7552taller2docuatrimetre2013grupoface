@@ -19,6 +19,5 @@ public class ForoHandler extends Handler{
 		foroDb.setAmbitoId(foro.getId());
 
 		return foroDb;
-	
 	}
 }

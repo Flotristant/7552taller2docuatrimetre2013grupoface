@@ -1,5 +1,7 @@
 package com.ws.parsers;
 
+import java.util.HashMap;
+
 import com.ws.pojos.Muro;
 import com.ws.tags.MuroTags;
 
@@ -7,6 +9,8 @@ public class MuroParser extends Parser {
 
 	public MuroParser() {
 		super(MuroTags.CLASS_TAG);
+		relaciones = new HashMap<String, String>();
+		relaciones.put(EventoParser.class.toString(), "eventos");
 	}
 
 	@Override
@@ -25,8 +29,7 @@ public class MuroParser extends Parser {
 
 	@Override
 	protected Boolean validateJoinParser(Parser parser) {
-		// TODO Auto-generated method stub
-		return null;
+		return (parser instanceof MensajeChatParser)||(parser instanceof MiembroChatParser);
 	}
 
 }
