@@ -19,8 +19,8 @@ public class ActividadHandler extends Handler {
 
         miObjDB.setId(miObjNegocio.getId());
         miObjDB.setActividadId(miObjNegocio.getActividadId());
-        miObjDB.setActividadSuperiorId(miObjNegocio.getActividadSuperiorId());
-        miObjDB.setAmbitoSuperiorId(miObjNegocio.getAmbitoSuperiorId());
+        miObjDB.setActividadSuperiorId(miObjNegocio.getIdActividadSuperior());
+        miObjDB.setAmbitoSuperiorId(miObjNegocio.getIdAmbitoSuperior());
         miObjDB.setDescripcion(miObjNegocio.getDescripcion());
         miObjDB.setFechaFin(miObjNegocio.getFechaFin());
         miObjDB.setFechaInicio(miObjNegocio.getFechaInicio());

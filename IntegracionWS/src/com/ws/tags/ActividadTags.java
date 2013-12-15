@@ -6,7 +6,7 @@ public class ActividadTags {
 	public static String ID_TAG = "id";
 	public static String ACTIVIDAD_ID_TAG = "actividadId";
 	public static String ACTIVIDAD_SUPERIOR_ID_TAG = "actividadSuperiorId";
-	public static String AMBITO_SUPERIOR_ID_TAG = "AmbitoSuperiorId";
+	public static String AMBITO_SUPERIOR_ID_TAG = "idAmbitoSuperior";
 	public static String DESCRIPCION_TAG = "descripcion";
 	public static String FECHA_FIN_TAG = "fechaFin";
 	public static String FECHA_INICIO_TAG = "fechaInicio";
