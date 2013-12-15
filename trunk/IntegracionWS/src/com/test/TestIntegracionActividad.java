@@ -62,7 +62,7 @@ public class TestIntegracionActividad {
         Assert.assertEquals(actividad.getGruposExclusivo(), actividad_leida.getGruposExclusivo());
         Assert.assertEquals(actividad.getTipo(), actividad_leida.getTipo());
         Assert.assertEquals(actividad.getTipoEscala(), actividad_leida.getTipoEscala());
-        Assert.assertEquals(actividad.getActividadSuperiorId(), actividad_leida.getActividadSuperiorId());
+        Assert.assertEquals(actividad.getIdActividadSuperior(), actividad_leida.getIdActividadSuperior());
 	}
 
     private Actividad crearActividadNegocio() {

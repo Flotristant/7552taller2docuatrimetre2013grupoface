@@ -1,13 +1,12 @@
 package com.ws.pojos;
 
-import java.util.List;
 
 
 public class Actividad extends Pojo {
 
     protected Long actividadId;
-    protected Long actividadSuperiorId;
-    protected Long ambitoSuperiorId;
+    protected Long idActividadSuperior;
+    protected Long idAmbitoSuperior;
     protected String descripcion;
     protected Long fechaFin;
 	protected Long fechaInicio;
@@ -25,17 +24,17 @@ public class Actividad extends Pojo {
  	public void setActividadId(Long actividadId) {
  		this.actividadId = actividadId;
  	}
- 	public Long getActividadSuperiorId() {
- 		return actividadSuperiorId;
+ 	public Long getIdActividadSuperior() {
+ 		return idActividadSuperior;
  	}
- 	public void setActividadSuperiorId(Long actividadSuperiorId) {
- 		this.actividadSuperiorId = actividadSuperiorId;
+ 	public void setIdActividadSuperior(Long actividadSuperiorId) {
+ 		this.idActividadSuperior = actividadSuperiorId;
  	}
- 	public Long getAmbitoSuperiorId() {
- 		return ambitoSuperiorId;
+ 	public Long getIdAmbitoSuperior() {
+ 		return idAmbitoSuperior;
  	}
- 	public void setAmbitoSuperiorId(Long ambitoSuperiorId) {
- 		this.ambitoSuperiorId = ambitoSuperiorId;
+ 	public void setIdAmbitoSuperior(Long ambitoSuperiorId) {
+ 		this.idAmbitoSuperior = ambitoSuperiorId;
  	}
  	public String getDescripcion() {
  		return descripcion;
