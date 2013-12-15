@@ -5,8 +5,8 @@ package com.ws.pojos;
 public class Actividad extends Pojo {
 
     protected Long actividadId;
-    protected Long idActividadSuperior;
-    protected Long idAmbitoSuperior;
+    protected Long actividadSuperiorId;
+    protected Long ambitoSuperiorId;
     protected String descripcion;
     protected Long fechaFin;
 	protected Long fechaInicio;
@@ -24,17 +24,17 @@ public class Actividad extends Pojo {
  	public void setActividadId(Long actividadId) {
  		this.actividadId = actividadId;
  	}
- 	public Long getIdActividadSuperior() {
- 		return idActividadSuperior;
+ 	public Long getActividadSuperiorId() {
+ 		return actividadSuperiorId;
  	}
- 	public void setIdActividadSuperior(Long actividadSuperiorId) {
- 		this.idActividadSuperior = actividadSuperiorId;
+ 	public void setActividadSuperiorId(Long actividadSuperiorId) {
+ 		this.actividadSuperiorId = actividadSuperiorId;
  	}
- 	public Long getIdAmbitoSuperior() {
- 		return idAmbitoSuperior;
+ 	public Long getAmbitoSuperiorId() {
+ 		return ambitoSuperiorId;
  	}
- 	public void setIdAmbitoSuperior(Long ambitoSuperiorId) {
- 		this.idAmbitoSuperior = ambitoSuperiorId;
+ 	public void setAmbitoSuperiorId(Long ambitoSuperiorId) {
+ 		this.ambitoSuperiorId = ambitoSuperiorId;
  	}
  	public String getDescripcion() {
  		return descripcion;
