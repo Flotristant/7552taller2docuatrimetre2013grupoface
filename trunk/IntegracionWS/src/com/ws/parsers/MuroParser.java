@@ -11,6 +11,7 @@ public class MuroParser extends Parser {
 		super(MuroTags.CLASS_TAG);
 		relaciones = new HashMap<String, String>();
 		relaciones.put(EventoParser.class.toString(), "eventos");
+		relaciones.put(AmbitoParser.class.toString(), "ambito");
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class MuroParser extends Parser {
 
 	@Override
 	protected Boolean validateJoinParser(Parser parser) {
-		return (parser instanceof MensajeChatParser)||(parser instanceof MiembroChatParser);
+		return (parser instanceof EventoParser)||(parser instanceof AmbitoParser);
 	}
 
 }
