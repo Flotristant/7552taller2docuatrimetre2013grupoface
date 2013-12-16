@@ -75,12 +75,14 @@ public class AmbitoJoinTest {
 		foro.setAmbitoId(ambito.getId());
 		foro.setNombre("Foro 1");
 		foros.add(foro);
-		TestHelper.guardarDatos(foro, "ar.fiuba.redsocedu.datalayer.dtos.Foro", service, port);
+		Long foro_id = TestHelper.guardarDatos(foro, "ar.fiuba.redsocedu.datalayer.dtos.Foro", service, port);
+		foro.setId(foro_id);
 		foro = new Foro();
 		foro.setAmbitoId(ambito.getId());
 		foro.setNombre("Foro 2");
 		foros.add(foro);
-		TestHelper.guardarDatos(foro, "ar.fiuba.redsocedu.datalayer.dtos.Foro", service, port);
+		foro_id = TestHelper.guardarDatos(foro, "ar.fiuba.redsocedu.datalayer.dtos.Foro", service, port);
+		foro.setId(foro_id);
 		
 		String xml = "<WS><Foro><join><Ambito><ambitoId>"+ ambito.getId().toString() + "</ambitoId></Ambito></join></Foro></WS>";
 		String rdo = ws.seleccionarDatos(xml);
@@ -95,12 +97,14 @@ public class AmbitoJoinTest {
 		cartelera.setAmbitoId(ambito.getId());
 		cartelera.setNombre("Cartelera 1");
 		carteleras.add(cartelera);
-		TestHelper.guardarDatos(cartelera, "ar.fiuba.redsocedu.datalayer.dtos.Cartelera", service, port);
+		Long cartelera_id = TestHelper.guardarDatos(cartelera, "ar.fiuba.redsocedu.datalayer.dtos.Cartelera", service, port);
+		cartelera.setCarteleraId(cartelera_id);
 		cartelera = new Cartelera();
 		cartelera.setAmbitoId(ambito.getId());
 		cartelera.setNombre("Cartelera 2");
 		carteleras.add(cartelera);
-		TestHelper.guardarDatos(cartelera, "ar.fiuba.redsocedu.datalayer.dtos.Cartelera", service, port);
+		cartelera_id = TestHelper.guardarDatos(cartelera, "ar.fiuba.redsocedu.datalayer.dtos.Cartelera", service, port);
+		cartelera.setCarteleraId(cartelera_id);
 		
 		String xml = "<WS><Cartelera><join><Ambito><ambitoId>"+ ambito.getId().toString() + "</ambitoId></Ambito></join></Cartelera></WS>";
 		String rdo = ws.seleccionarDatos(xml);
