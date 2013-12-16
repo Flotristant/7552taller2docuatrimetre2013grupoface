@@ -1,5 +1,7 @@
 package com.ws.parsers;
 
+import java.util.HashMap;
+
 import com.ws.pojos.Evento;
 import com.ws.tags.EventoTags;
 
@@ -7,6 +9,7 @@ public class EventoParser extends Parser {
 
 	public EventoParser() {
 		super(EventoTags.CLASS_TAG);
+		this.relaciones.put(EventoParser.class.toString(), "eventos");
 	}
 
 	@Override

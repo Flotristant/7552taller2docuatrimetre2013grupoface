@@ -6,6 +6,7 @@ public class CarteleraParser extends Parser {
 
 	public CarteleraParser() {
 		super(CarteleraTags.CLASS_TAG);
+		relaciones.put(CarteleraParser.class.toString(), "carteleras");
 	}
 
 	@Override

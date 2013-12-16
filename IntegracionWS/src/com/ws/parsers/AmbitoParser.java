@@ -1,8 +1,6 @@
 package com.ws.parsers;
 
 
-import java.util.HashMap;
-
 import com.ws.pojos.Ambito;
 import com.ws.tags.AmbitoTags;
 
@@ -11,8 +9,8 @@ public class AmbitoParser extends Parser {
 
 	public AmbitoParser() {
 		super(AmbitoTags.CLASS_TAG);
-		relaciones = new HashMap<String, String>();
 		relaciones.put(MuroParser.class.toString(), "muros");
+		relaciones.put(AmbitoParser.class.toString(), "ambitos");
 	}
 
 	@Override

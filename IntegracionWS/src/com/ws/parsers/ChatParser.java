@@ -1,8 +1,6 @@
 package com.ws.parsers;
 
 
-import java.util.HashMap;
-
 import com.ws.pojos.Chat;
 import com.ws.tags.ChatTags;
 
@@ -12,6 +10,7 @@ public class ChatParser extends Parser {
         super(ChatTags.CLASS_TAG);
         relaciones.put(MensajeChatParser.class.toString(), "mensajesChat");
         relaciones.put(MiembroChatParser.class.toString(), "miembrosChat");
+        relaciones.put(ChatParser.class.toString(), "chats");
     }
 
     @Override

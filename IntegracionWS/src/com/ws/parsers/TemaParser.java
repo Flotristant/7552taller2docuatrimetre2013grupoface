@@ -1,5 +1,7 @@
 package com.ws.parsers;
 
+import java.util.HashMap;
+
 import com.ws.pojos.Tema;
 import com.ws.tags.TemaTags;
 
@@ -7,6 +9,8 @@ public class TemaParser extends Parser  {
 
 	public TemaParser() {
 		super(TemaTags.CLASS_TAG);
+		this.relaciones = new HashMap<String, String>();
+		this.relaciones.put(TemaParser.class.toString(), "temas");
 	}
 	
 	@Override
