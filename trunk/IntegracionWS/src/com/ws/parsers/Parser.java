@@ -67,6 +67,10 @@ public abstract class Parser {
 		xml = xml.replace("</WS>", "");
 		return xml;
 	}
+	
+	public String createXmlResponse(String data) {
+		return "<?xml version=\"1.0\"?><WS>" + data + "</WS>";
+	}
 
 	public abstract Long getId();
 

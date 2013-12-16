@@ -7,6 +7,7 @@ public class GrupoParser extends Parser  {
 
 	public GrupoParser() {
 		super(GrupoTags.CLASS_TAG);
+		this.relaciones.put(GrupoParser.class.toString(), "grupos");
 	}
 
 	@Override

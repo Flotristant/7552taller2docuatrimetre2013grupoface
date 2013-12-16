@@ -73,10 +73,13 @@ public abstract class Handler {
         	String joinXML = campos.get(Parser.JOIN_TAG);
         	joinXML=joinXML.replace("<join>", "");
         	joinXML=joinXML.replace("</join>", "");
-        	return handlerJoin.seleccionarDatos(joinXML);
-//        	String xmlJoin =  handlerJoin.seleccionarDatos(joinXML);
-//    		String nombreRelacion = this.parser.getNombreRelacion();
-//    		return getOnlyRelation(nombreRelacion, xmlJoin);
+        	String xmlJoin = handlerJoin.seleccionarDatos(joinXML);
+    		String nombreRelacion = this.parser.getNombreRelacion();
+    		if( nombreRelacion != null && !"".equals(nombreRelacion)) {
+    			String relationXml = getOnlyRelation(nombreRelacion, xmlJoin);
+        		return parser.createXmlResponse(relationXml);	
+    		}
+    		return xmlJoin;
         } else {
             query = this.queryBuilder.getAllByAttributes(campos);
         }
@@ -106,10 +109,12 @@ public abstract class Handler {
     }
 
     private String getOnlyRelation(String nombreRelacion, String xmlJoin) {
-		int first = xmlJoin.indexOf("<"+nombreRelacion+">");
-		int last = xmlJoin.indexOf("</"+nombreRelacion+">");
+    	String initialTag = "<"+nombreRelacion+">";
+    	String endTag = "</"+nombreRelacion+">";
+		int first = xmlJoin.indexOf(initialTag);
+		int last = xmlJoin.indexOf(endTag);
 		if(first > 0 && last > 0 && first < last) {
-			return xmlJoin.substring(first, last+nombreRelacion.length());
+			return xmlJoin.substring(first, last + endTag.length());
 		}
 		return "";
 	}

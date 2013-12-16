@@ -1,5 +1,7 @@
 package com.ws.parsers;
 
+import java.util.HashMap;
+
 import com.ws.pojos.Subforo;
 import com.ws.tags.SubforoTags;
 
@@ -8,6 +10,8 @@ public class SubforoParser extends Parser{
 	
 	public SubforoParser() {
 		super(SubforoTags.CLASS_TAG);
+		this.relaciones = new HashMap<String, String>();
+		this.relaciones.put(SubforoParser.class.toString(), "subforos");
 	}
 	
 	@Override

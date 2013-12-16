@@ -8,6 +8,7 @@ public class ForoParser extends Parser {
     public ForoParser() {
         super(ForoTags.CLASS_TAG);
         relaciones.put(SeccionParser.class.toString(), "secciones");
+        relaciones.put(ForoParser.class.toString(), "foros");
     }
 
     @Override
