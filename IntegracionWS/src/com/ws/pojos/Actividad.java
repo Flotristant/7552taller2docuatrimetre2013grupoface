@@ -1,5 +1,7 @@
 package com.ws.pojos;
 
+import java.util.List;
+
 
 
 public class Actividad extends Pojo {
@@ -10,11 +12,10 @@ public class Actividad extends Pojo {
     protected String descripcion;
     protected Long fechaFin;
 	protected Long fechaInicio;
-	//TODO: AGREGAR CLASES NOTA Y GRUPO
-   // protected List<Grupo> grupos;
+    protected List<Grupo> grupos;
     protected boolean gruposExclusivo;
     protected String nombre;
-   // protected List<Nota> notas;
+    protected List<Nota> notas;
     protected String tipo;
     protected String tipoEscala;
     
@@ -54,12 +55,12 @@ public class Actividad extends Pojo {
  	public void setFechaInicio(Long fechaInicio) {
  		this.fechaInicio = fechaInicio;
  	}
-// 	public List<Grupo> getGrupos() {
-// 		return grupos;
-// 	}
-// 	public void setGrupos(List<Grupo> grupos) {
-// 		this.grupos = grupos;
-// 	}
+ 	public List<Grupo> getGrupos() {
+ 		return grupos;
+ 	}
+ 	public void setGrupos(List<Grupo> grupos) {
+ 		this.grupos = grupos;
+ 	}
  	public boolean getGruposExclusivo() {
  		return gruposExclusivo;
  	}
@@ -72,12 +73,12 @@ public class Actividad extends Pojo {
  	public void setNombre(String nombre) {
  		this.nombre = nombre;
  	}
-// 	public List<Nota> getNotas() {
-// 		return notas;
-// 	}
-// 	public void setNotas(List<Nota> notas) {
-// 		this.notas = notas;
-// 	}
+ 	public List<Nota> getNotas() {
+ 		return notas;
+ 	}
+ 	public void setNotas(List<Nota> notas) {
+ 		this.notas = notas;
+ 	}
  	public String getTipo() {
  		return tipo;
  	}

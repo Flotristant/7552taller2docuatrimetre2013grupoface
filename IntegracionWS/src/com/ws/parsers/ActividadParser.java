@@ -2,6 +2,8 @@ package com.ws.parsers;
 
 import com.ws.pojos.Actividad;
 import com.ws.tags.ActividadTags;
+import com.ws.tags.GrupoTags;
+import com.ws.tags.NotaTags;
 
 public class ActividadParser extends Parser {
 	
@@ -35,6 +37,16 @@ public class ActividadParser extends Parser {
         miObjDB.setTipoEscala(miObjNegocio.getTipoEscala());
 
         return miObjDB;
+	}
+	
+	@Override
+	protected String replaceClassTag(String xml) {
+		xml = super.replaceClassTag(xml);
+		xml = xml.replace(NotaTags.CLASS_TAG, "com.ws.pojos."
+				+ NotaTags.CLASS_TAG);
+		xml = xml.replace(GrupoTags.CLASS_TAG, "com.ws.pojos."
+				+ GrupoTags.CLASS_TAG);
+		return xml;
 	}
 
 	@Override
