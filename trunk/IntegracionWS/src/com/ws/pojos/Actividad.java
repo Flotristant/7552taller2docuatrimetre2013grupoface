@@ -13,7 +13,7 @@ public class Actividad extends Pojo {
     protected Long fechaFin;
 	protected Long fechaInicio;
     protected List<Grupo> grupos;
-    protected boolean gruposExclusivos;
+    protected Boolean gruposExclusivos;
     protected String nombre;
     protected List<Nota> notas;
     protected String tipo;
@@ -61,10 +61,10 @@ public class Actividad extends Pojo {
  	public void setGrupos(List<Grupo> grupos) {
  		this.grupos = grupos;
  	}
- 	public boolean getGruposExclusivos() {
+ 	public Boolean getGruposExclusivos() {
  		return gruposExclusivos;
  	}
- 	public void setGruposExclusivos(boolean gruposExclusivos) {
+ 	public void setGruposExclusivos(Boolean gruposExclusivos) {
  		this.gruposExclusivos = gruposExclusivos;
  	}
  	public String getNombre() {

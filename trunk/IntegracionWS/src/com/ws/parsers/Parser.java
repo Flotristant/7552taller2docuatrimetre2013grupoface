@@ -100,6 +100,7 @@ public abstract class Parser {
 	public Map<String, String> inicializarCampos(String xml) {
 		String xmlSinJoin = cleanJoinPart(xml);
 		Object obj = this.getEntidadNegocio(xmlSinJoin);
+		//Object obj = this.getDBObject(xmlSinJoin);
 		Field[] fields = obj.getClass().getDeclaredFields();
 		ArrayList<Field> fieldsList = new ArrayList<Field>();
 		for (Field field : fields) {
