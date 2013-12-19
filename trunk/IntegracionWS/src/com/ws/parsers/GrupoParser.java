@@ -1,6 +1,7 @@
 package com.ws.parsers;
 
 import com.ws.pojos.Grupo;
+import com.ws.pojos.Nota;
 import com.ws.tags.GrupoTags;
 
 public class GrupoParser extends Parser  {
@@ -18,12 +19,19 @@ public class GrupoParser extends Parser  {
 	@Override
 	public Object getDBObject(String xml) {
 		Grupo grupo = (Grupo) getEntidadNegocio(xml);
+		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = (ar.fiuba.redsocedu.datalayer.ws.Grupo)getDBObjectFromBussinessObject(grupo);
+		//TODO ver si hay que setearle el username
+		
+		return grupoDB;
+	}
+	
+	public Object getDBObjectFromBussinessObject(
+			Object object) {
+		Grupo grupo = (Grupo) object;
 		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = new ar.fiuba.redsocedu.datalayer.ws.Grupo();
 	    
 		grupoDB.setGrupoId(grupo.getGrupoId());
 		grupoDB.setActividadId(grupo.getActividadId());
-		//TODO ver si hay que setearle el username
-		
 		return grupoDB;
 	}
 
