@@ -33,18 +33,23 @@ public class ActividadParser extends Parser {
         miObjDB.setDescripcion(miObjNegocio.getDescripcion());
         miObjDB.setFechaFin(miObjNegocio.getFechaFin());
         miObjDB.setFechaInicio(miObjNegocio.getFechaInicio());
-        miObjDB.setGruposExclusivo(miObjNegocio.getGruposExclusivos());
+        if (miObjNegocio.getGruposExclusivos()!=null){
+        	miObjDB.setGruposExclusivo(miObjNegocio.getGruposExclusivos());
+        }
         miObjDB.setNombre(miObjNegocio.getNombre());
         miObjDB.setTipo(miObjNegocio.getTipo());
         miObjDB.setTipoEscala(miObjNegocio.getTipoEscala());
         NotaParser notaParser = new NotaParser();
+        if (miObjNegocio.getNotas() != null){
         for (Nota nota : miObjNegocio.getNotas()) {
 			miObjDB.getNotas().add(notaParser.getDBObjectFromBussinessObject(nota));
-		}
+		}}
         GrupoParser grupoParser = new GrupoParser();
+        
+        if (miObjNegocio.getGrupos() != null){
         for (Grupo grupo : miObjNegocio.getGrupos()) {
 			miObjDB.getGrupos().add((ar.fiuba.redsocedu.datalayer.ws.Grupo)grupoParser.getDBObjectFromBussinessObject(grupo));
-		}
+		}}
 
         return miObjDB;
 	}
