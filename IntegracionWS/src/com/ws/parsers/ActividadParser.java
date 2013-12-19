@@ -1,6 +1,8 @@
 package com.ws.parsers;
 
 import com.ws.pojos.Actividad;
+import com.ws.pojos.Grupo;
+import com.ws.pojos.Nota;
 import com.ws.tags.ActividadTags;
 import com.ws.tags.GrupoTags;
 import com.ws.tags.NotaTags;
@@ -35,6 +37,14 @@ public class ActividadParser extends Parser {
         miObjDB.setNombre(miObjNegocio.getNombre());
         miObjDB.setTipo(miObjNegocio.getTipo());
         miObjDB.setTipoEscala(miObjNegocio.getTipoEscala());
+        NotaParser notaParser = new NotaParser();
+        for (Nota nota : miObjNegocio.getNotas()) {
+			miObjDB.getNotas().add(notaParser.getDBObjectFromBussinessObject(nota));
+		}
+        GrupoParser grupoParser = new GrupoParser();
+        for (Grupo grupo : miObjNegocio.getGrupos()) {
+			miObjDB.getGrupos().add((ar.fiuba.redsocedu.datalayer.ws.Grupo)grupoParser.getDBObjectFromBussinessObject(grupo));
+		}
 
         return miObjDB;
 	}

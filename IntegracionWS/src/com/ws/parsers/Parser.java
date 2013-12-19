@@ -20,6 +20,7 @@ import org.xml.sax.SAXException;
 
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
+import com.ws.pojos.Nota;
 
 public abstract class Parser {
 
@@ -41,6 +42,12 @@ public abstract class Parser {
 		this.classTag = classTag;
 		this.campos = new HashMap<String, String>();
 		relaciones = new HashMap<String, String>();
+	}
+	
+
+	public ar.fiuba.redsocedu.datalayer.ws.Nota getDBObjectFromBussinessObject(
+			Nota notaNegocio) {
+		return null;
 	}
 
 	/**
