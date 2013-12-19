@@ -11,7 +11,7 @@ public class ActividadTags {
 	public static String FECHA_FIN_TAG = "fechaFin";
 	public static String FECHA_INICIO_TAG = "fechaInicio";
 	public static String GRUPOS_TAG = "grupos";
-	public static String GRUPOSEXCLUSIVO_TAG = "gruposExclusivo";
+	public static String GRUPOSEXCLUSIVO_TAG = "gruposExclusivos";
 	public static String NOMBRE_TAG = "nombre";
 	public static String NOTAS_TAG = "notas";
 	public static String TIPO_TAG = "tipo";

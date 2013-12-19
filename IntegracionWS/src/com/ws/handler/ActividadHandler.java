@@ -24,7 +24,7 @@ public class ActividadHandler extends Handler {
         miObjDB.setDescripcion(miObjNegocio.getDescripcion());
         miObjDB.setFechaFin(miObjNegocio.getFechaFin());
         miObjDB.setFechaInicio(miObjNegocio.getFechaInicio());
-        miObjDB.setGruposExclusivo(miObjNegocio.getGruposExclusivo());
+        miObjDB.setGruposExclusivo(miObjNegocio.getGruposExclusivos());
         miObjDB.setNombre(miObjNegocio.getNombre());
         miObjDB.setTipo(miObjNegocio.getTipo());
         miObjDB.setTipoEscala(miObjNegocio.getTipoEscala());

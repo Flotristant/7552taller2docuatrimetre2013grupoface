@@ -89,6 +89,7 @@ public abstract class Handler {
             List<ReturnedObject> objects = null;
             objects = port.query(transactionId, query);
             if (objects == null || objects.isEmpty()) {
+            	port.commit(transactionId);
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
             }
             port.commit(transactionId);
@@ -130,6 +131,7 @@ public abstract class Handler {
 
             dbPojos = port.query(transactionId, query);
             if (dbPojos == null || dbPojos.isEmpty() || dbPojos.size() > 1) {
+            	port.commit(transactionId);
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             }
             // Los pasos previos solo se hacen para verificar que existe el
@@ -155,6 +157,7 @@ public abstract class Handler {
             port.beginTransaction(transactionId);
             pojos = port.query(transactionId, query);
             if (pojos == null || pojos.isEmpty() || pojos.size() > 1) {
+            	port.commit(transactionId);
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             }
             port.commit(transactionId);
