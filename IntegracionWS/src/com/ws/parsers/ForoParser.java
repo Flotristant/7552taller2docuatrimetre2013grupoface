@@ -2,6 +2,8 @@ package com.ws.parsers;
 
 import com.ws.pojos.Foro;
 import com.ws.tags.ForoTags;
+import com.ws.tags.NoticiaTags;
+import com.ws.tags.SeccionTags;
 
 public class ForoParser extends Parser {
 
@@ -30,5 +32,13 @@ public class ForoParser extends Parser {
         //		foroDB.setAmbitoId(foro.getIdAmbito());
         return foroDB;
     }
+    
+	@Override
+	protected String replaceClassTag(String xml) {
+		xml = super.replaceClassTag(xml);
+		xml = xml.replace(SeccionTags.CLASS_TAG, "com.ws.pojos."
+				+ SeccionTags.CLASS_TAG);
+		return xml;
+	}
 
 }
