@@ -1,6 +1,10 @@
 package com.ws.parsers;
 
 import com.ws.pojos.Usuario;
+import com.ws.tags.ActividadTags;
+import com.ws.tags.EventoTags;
+import com.ws.tags.GrupoTags;
+import com.ws.tags.NotaTags;
 import com.ws.tags.UsuarioTags;
 
 public class UsuarioParser extends Parser {
@@ -70,5 +74,16 @@ public class UsuarioParser extends Parser {
 //        return result;
 //	}
 
+	@Override
+	protected String replaceClassTag(String xml) {
+		xml = super.replaceClassTag(xml);
+		xml = xml.replace(NotaTags.CLASS_TAG, "com.ws.pojos."
+				+ NotaTags.CLASS_TAG);
+		xml = xml.replace(GrupoTags.CLASS_TAG, "com.ws.pojos."
+				+ GrupoTags.CLASS_TAG);
+		xml = xml.replace(ActividadTags.CLASS_TAG, "com.ws.pojos."
+				+ ActividadTags.CLASS_TAG);
+		return xml;
+	}
 
 }

@@ -2,7 +2,9 @@ package com.ws.parsers;
 
 import com.ws.pojos.Grupo;
 import com.ws.pojos.Nota;
+import com.ws.tags.ActividadTags;
 import com.ws.tags.GrupoTags;
+import com.ws.tags.NotaTags;
 
 public class GrupoParser extends Parser  {
 
@@ -39,6 +41,14 @@ public class GrupoParser extends Parser  {
 	protected Boolean validateJoinParser(Parser parser) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	protected String replaceClassTag(String xml) {
+		xml = super.replaceClassTag(xml);
+		xml = xml.replace(NotaTags.CLASS_TAG, "com.ws.pojos."
+				+ NotaTags.CLASS_TAG);
+		return xml;
 	}
 
 }
