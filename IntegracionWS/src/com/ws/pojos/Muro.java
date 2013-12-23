@@ -10,5 +10,12 @@ public class Muro extends Pojo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Muro muroDB = new ar.fiuba.redsocedu.datalayer.ws.Muro();
+		muroDB.setId(this.getId());
+		muroDB.setNombre(this.getNombre());
+		return muroDB;
+	}
 	
 }

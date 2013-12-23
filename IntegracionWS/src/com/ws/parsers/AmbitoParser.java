@@ -25,11 +25,9 @@ public class AmbitoParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Ambito ambito = (Ambito) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Ambito ambitoDB = new ar.fiuba.redsocedu.datalayer.ws.Ambito();
-		ambitoDB.setId(ambito.getAmbitoId());
-		return ambito;
+		return ambito.getDatabaseEntity();
 	}
 
 	@Override

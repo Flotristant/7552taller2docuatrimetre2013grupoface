@@ -4,7 +4,7 @@ import java.util.List;
 
 import ar.fiuba.redsocedu.datalayer.ws.Chat;
 
-public class Ambito {
+public class Ambito extends Pojo {
     protected Long ambitoId;
     protected List<Cartelera> carteleras;
     protected List<Chat> chats;
@@ -40,5 +40,11 @@ public class Ambito {
 	}
 	public void setMuros(List<Muro> muros) {
 		this.muros = muros;
+	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Ambito ambitoDB = new ar.fiuba.redsocedu.datalayer.ws.Ambito();
+		ambitoDB.setId(this.getAmbitoId());
+		return ambitoDB;
 	}
 }

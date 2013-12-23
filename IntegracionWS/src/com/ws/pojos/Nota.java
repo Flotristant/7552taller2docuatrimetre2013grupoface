@@ -46,5 +46,18 @@ public class Nota extends Pojo {
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Nota notaDB = new ar.fiuba.redsocedu.datalayer.ws.Nota();
+        
+        notaDB.setId(this.getId());
+        notaDB.setNotaId(this.getIdNota());
+        notaDB.setActividadId(this.getIdActividad());
+        notaDB.setGrupoId(this.getIdGrupo());
+        notaDB.setNota(this.getNota());
+        notaDB.setObservaciones(this.getObservaciones());
+        notaDB.setUsuarioId(this.getIdUsuario());
+		return notaDB;
+	}
 	
 }

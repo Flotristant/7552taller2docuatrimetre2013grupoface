@@ -30,4 +30,15 @@ public class Cartelera extends Pojo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Cartelera miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Cartelera();
+        
+        miObjDB.setAmbitoId(this.getAmbitoId());
+        miObjDB.setCarteleraId(this.getId());
+        miObjDB.setId(this.getId());
+        miObjDB.setNombre(this.getNombre());
+		return miObjDB;
+	}
 }

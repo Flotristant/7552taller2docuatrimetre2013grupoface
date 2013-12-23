@@ -21,10 +21,14 @@ public class ActividadParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Actividad miObjNegocio = (Actividad) getEntidadNegocio(xml);
+        return miObjNegocio.getDatabaseEntity();
+	}
 
-        ar.fiuba.redsocedu.datalayer.ws.Actividad miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Actividad();
+	private ar.fiuba.redsocedu.datalayer.ws.Actividad toDBObject(
+			Actividad miObjNegocio) {
+		ar.fiuba.redsocedu.datalayer.ws.Actividad miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Actividad();
 
         miObjDB.setId(miObjNegocio.getId());
         miObjDB.setActividadId(miObjNegocio.getActividadId());
@@ -50,8 +54,7 @@ public class ActividadParser extends Parser {
         for (Grupo grupo : miObjNegocio.getGrupos()) {
 			miObjDB.getGrupos().add((ar.fiuba.redsocedu.datalayer.ws.Grupo)grupoParser.getDBObjectFromBussinessObject(grupo));
 		}}
-
-        return miObjDB;
+		return miObjDB;
 	}
 	
 	@Override

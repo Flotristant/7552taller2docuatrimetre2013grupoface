@@ -25,13 +25,9 @@ public class ForoParser extends Parser {
     }
 
     @Override
-    public Object getDBObject(String xml) {
+    public Object getDBObjectFromBusinessXML(String xml) {
         Foro foro = (Foro) getEntidadNegocio(xml);
-        ar.fiuba.redsocedu.datalayer.ws.Foro foroDB = new ar.fiuba.redsocedu.datalayer.ws.Foro();
-        foroDB.setForoId(foro.getId());
-        foroDB.setNombre(foro.getNombre());
-        //		foroDB.setAmbitoId(foro.getIdAmbito());
-        return foroDB;
+        return foro.getDatabaseEntity();
     }
     
 	@Override

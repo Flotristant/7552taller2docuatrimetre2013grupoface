@@ -92,7 +92,7 @@ public class ForoTest {
         ForoParser parser = new ForoParser();
 		xml =xml.replace("<list>","" );
 		xml =xml.replace("</list>","" );
-        return (ar.fiuba.redsocedu.datalayer.ws.Foro) parser.getDBObject(xml);
+        return (ar.fiuba.redsocedu.datalayer.ws.Foro) parser.getDBObjectFromBusinessXML(xml);
         
     }
 

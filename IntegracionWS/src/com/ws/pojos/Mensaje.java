@@ -38,4 +38,12 @@ public class Mensaje extends Pojo {
 //	public void setFecha(String fecha) {
 //		this.fecha = fecha;
 //	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Mensaje mensajeDB = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
+		mensajeDB.setContenido(this.getContenido());
+		mensajeDB.setId(this.getId());
+		mensajeDB.setTemaId(this.getTemaId());
+		return mensajeDB;
+	}
 }

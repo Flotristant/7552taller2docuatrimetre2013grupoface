@@ -38,4 +38,12 @@ public class Tema extends Pojo {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Tema temaDB = new ar.fiuba.redsocedu.datalayer.ws.Tema();
+		temaDB.setId(this.getId());
+		temaDB.setSubforoId(this.getIdSubforo());
+		temaDB.setUsername(this.getAutor());
+		return temaDB;
+	}
 }

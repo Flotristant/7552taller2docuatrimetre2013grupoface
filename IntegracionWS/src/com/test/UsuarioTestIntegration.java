@@ -120,7 +120,7 @@ public class UsuarioTestIntegration {
         UsuarioParser parser = new UsuarioParser();
 		xml =xml.replace("<list>","" );
 		xml =xml.replace("</list>","" );
-        return (Usuario) parser.getDBObject(xml);
+        return (Usuario) parser.getDBObjectFromBusinessXML(xml);
         
     }
     

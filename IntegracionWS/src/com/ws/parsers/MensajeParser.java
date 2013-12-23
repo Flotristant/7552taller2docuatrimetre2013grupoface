@@ -18,14 +18,9 @@ public class MensajeParser extends Parser  {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Mensaje mensaje = (Mensaje) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Mensaje mensajeDB = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
-		mensajeDB.setContenido(mensaje.getContenido());
-		mensajeDB.setId(mensaje.getId());
-		//TODO: armar el tema de BD y setearlo
-//		mensajeDB.setTemaId(mensaje.getTemaId());
-		return mensajeDB;
+		return mensaje.getDatabaseEntity();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.ws.parsers;
 
+import com.ws.pojos.Cartelera;
 import com.ws.tags.CarteleraTags;
 import com.ws.tags.NoticiaTags;
 
@@ -11,21 +12,25 @@ public class CarteleraParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getDBObjectFromBusinessXML(String xml) {
+		Cartelera objetoNegocio = (Cartelera) getEntidadNegocio(xml);
+        return objetoNegocio.getDatabaseEntity();
 	}
 
-	@Override
-	public Object getDBObject(String xml) {
-		// TODO Auto-generated method stub
-		return null;
+	private ar.fiuba.redsocedu.datalayer.ws.Cartelera toDBObject(
+			Cartelera objetoNegocio) {
+		ar.fiuba.redsocedu.datalayer.ws.Cartelera miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Cartelera();
+        
+        miObjDB.setAmbitoId(objetoNegocio.getAmbitoId());
+        miObjDB.setCarteleraId(objetoNegocio.getId());
+        miObjDB.setId(objetoNegocio.getId());
+        miObjDB.setNombre(objetoNegocio.getNombre());
+		return miObjDB;
 	}
 
 	@Override
 	protected Boolean validateJoinParser(Parser parser) {
-		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 	
 	@Override

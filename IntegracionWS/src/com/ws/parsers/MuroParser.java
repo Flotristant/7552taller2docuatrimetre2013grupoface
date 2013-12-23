@@ -23,12 +23,9 @@ public class MuroParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Muro muro = (Muro) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Muro muroDB = new ar.fiuba.redsocedu.datalayer.ws.Muro();
-		muroDB.setId(muro.getId());
-		muroDB.setNombre(muro.getNombre());
-		return muro;
+		return muro.getDatabaseEntity();
 	}
 
 	@Override

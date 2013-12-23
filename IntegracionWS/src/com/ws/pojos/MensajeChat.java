@@ -26,4 +26,13 @@ public class MensajeChat extends Pojo {
 	public void setIdChat(Long idChat) {
 		this.idChat = idChat;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.MensajeChat mensajeChatDb = new ar.fiuba.redsocedu.datalayer.ws.MensajeChat();
+		mensajeChatDb.setContenido(this.getContenido());
+		mensajeChatDb.setId(this.getId());
+		mensajeChatDb.setMensajeChatId(this.getIdChat());
+		//mensajeChatDb.setFecha(this.getFecha());
+		return mensajeChatDb;
+	}
 }

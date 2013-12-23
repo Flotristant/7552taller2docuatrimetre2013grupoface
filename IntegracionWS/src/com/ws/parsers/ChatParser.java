@@ -32,29 +32,9 @@ public class ChatParser extends Parser {
     }
 
     @Override
-    public Object getDBObject(String xml)  {
+    public Object getDBObjectFromBusinessXML(String xml)  {
         Chat miChatNegocio = (Chat) getEntidadNegocio(xml);
-        ar.fiuba.redsocedu.datalayer.ws.Chat miChatDB = new ar.fiuba.redsocedu.datalayer.ws.Chat();
-
-        miChatDB.setChatId(miChatNegocio.getIdChat());
-        miChatDB.setAmbitoId(miChatNegocio.getIdAmbito());
-        
-        if(miChatNegocio.getMiembrosChat() != null && miChatNegocio.getMiembrosChat().size() > 0) {
-        	List<ar.fiuba.redsocedu.datalayer.ws.MiembroChat> miembrosChatDB = miChatDB.getMiembrosChat();
-            for(MiembroChat miembroNeg: miChatNegocio.getMiembrosChat()) {        
-            	ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembro = (ar.fiuba.redsocedu.datalayer.ws.MiembroChat) miembroNeg.getDatabaseEntity();
-            	try {
-	            	if(miembro.getId() == null) {
-	            		Long id = DBManager.guardarObjetos(miembro, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
-	            		miembro.setId(id);
-	            	}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-            	miembrosChatDB.add(miembro);
-            }	
-        }
-        return miChatDB;
+        return miChatNegocio.getDatabaseEntity();
     }
     
 	@Override

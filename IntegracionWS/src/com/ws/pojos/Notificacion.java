@@ -39,6 +39,11 @@ public class Notificacion extends Pojo {
 		this.numero = numero;
 		this.mensaje = mensaje;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 }

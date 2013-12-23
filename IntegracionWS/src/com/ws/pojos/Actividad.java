@@ -2,6 +2,9 @@ package com.ws.pojos;
 
 import java.util.List;
 
+import com.ws.parsers.GrupoParser;
+import com.ws.parsers.NotaParser;
+
 
 
 public class Actividad extends Pojo {
@@ -91,5 +94,38 @@ public class Actividad extends Pojo {
  	public void setTipoEscala(String tipoEscala) {
  		this.tipoEscala = tipoEscala;
  	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Actividad miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Actividad();
+
+        miObjDB.setId(this.getId());
+        miObjDB.setActividadId(this.getActividadId());
+        miObjDB.setActividadSuperiorId(this.getActividadSuperiorId());
+        miObjDB.setAmbitoSuperiorId(this.getAmbitoSuperiorId());
+        miObjDB.setDescripcion(this.getDescripcion());
+        miObjDB.setFechaFin(this.getFechaFin());
+        miObjDB.setFechaInicio(this.getFechaInicio());
+        if (this.getGruposExclusivos()!=null){
+        	miObjDB.setGruposExclusivo(this.getGruposExclusivos());
+        }
+        miObjDB.setNombre(this.getNombre());
+        miObjDB.setTipo(this.getTipo());
+        miObjDB.setTipoEscala(this.getTipoEscala());
+        NotaParser notaParser = new NotaParser();
+        if (this.getNotas() != null){
+        	for (Nota nota : this.getNotas()) {
+        		miObjDB.getNotas().add(notaParser.getDBObjectFromBussinessObject(nota));
+        	}
+        }
+        GrupoParser grupoParser = new GrupoParser();
+        
+        if (this.getGrupos() != null){
+        	for (Grupo grupo : this.getGrupos()) {
+        		miObjDB.getGrupos().add((ar.fiuba.redsocedu.datalayer.ws.Grupo)grupoParser.getDBObjectFromBussinessObject(grupo));
+        	}
+        }
+
+        return miObjDB;
+	}
 
 }

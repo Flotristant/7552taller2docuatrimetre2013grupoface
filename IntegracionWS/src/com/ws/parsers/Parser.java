@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -30,6 +29,8 @@ public abstract class Parser {
 	private static final String PARSER_SUFIX = "Parser";
 
 	public static String JOIN_TAG = "join";
+	
+	public static String ID_TAG = "id";
 
 	protected Map<String, String> campos;
 
@@ -45,6 +46,7 @@ public abstract class Parser {
 		relaciones = new HashMap<String, String>();
 	}
 	
+	
 
 	public ar.fiuba.redsocedu.datalayer.ws.Nota getDBObjectFromBussinessObject(
 			Nota notaNegocio) {
@@ -57,7 +59,7 @@ public abstract class Parser {
 	public Object getEntidadNegocio(String xml) {
 		xml = removeSuperTags(xml);
 		xml = replaceClassTag(xml);
-		XStream xmlReader = new XStream();		
+		XStream xmlReader = new XStream();
 		Object obj = xmlReader.fromXML(xml);
 		return obj;
 	}
@@ -80,9 +82,12 @@ public abstract class Parser {
 		return "<?xml version=\"1.0\"?><WS>" + data + "</WS>";
 	}
 
-	public abstract Long getId();
+	
+	public Long getId() {
+		return Long.parseLong(this.campos.get(ID_TAG));
+	}
 
-	public abstract Object getDBObject(String xml);
+	public abstract Object getDBObjectFromBusinessXML(String xml);
 
 	/**
 	 * Este metodo inicializa el map "campos" para poder armar la query a la

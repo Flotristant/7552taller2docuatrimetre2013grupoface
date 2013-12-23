@@ -19,14 +19,9 @@ public class SeccionParser extends Parser {
     }
 
     @Override
-    public Object getDBObject(String xml) {
+    public Object getDBObjectFromBusinessXML(String xml) {
         Seccion seccion = (Seccion) getEntidadNegocio(xml);
-        ar.fiuba.redsocedu.datalayer.ws.Seccion seccionDB = new ar.fiuba.redsocedu.datalayer.ws.Seccion();
-        seccionDB.setId(seccion.getId());
-        seccionDB.setNombre(seccion.getNombre());
-        //		seccionDB.setForoId(seccion.getIdForo());
-
-        return seccionDB;
+        return seccion.getDatabaseEntity();
     }
 
     @Override
