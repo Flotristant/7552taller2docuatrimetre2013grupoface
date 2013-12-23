@@ -53,7 +53,7 @@ public abstract class Handler {
         Long transactionId = IdGenerator.generateTransactionId();
         Long idnuevo;
         try {
-        	Object obj = parser.getDBObject(xml);
+        	Object obj = parser.getDBObjectFromBusinessXML(xml);
             port.beginTransaction(transactionId);
             idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
             port.commit(transactionId);

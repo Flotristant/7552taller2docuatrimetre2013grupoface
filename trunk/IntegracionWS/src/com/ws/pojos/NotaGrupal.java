@@ -1,6 +1,6 @@
 package com.ws.pojos;
 
-public class NotaGrupal extends Nota{
+public class NotaGrupal extends Nota {
 	
 	
 }

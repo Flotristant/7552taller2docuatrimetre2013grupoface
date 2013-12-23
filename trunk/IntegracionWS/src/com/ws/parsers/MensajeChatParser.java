@@ -16,14 +16,9 @@ public class MensajeChatParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		MensajeChat mensajeChat = (MensajeChat) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.MensajeChat mensajeChatDb = new ar.fiuba.redsocedu.datalayer.ws.MensajeChat();
-		mensajeChatDb.setContenido(mensajeChat.getContenido());
-		mensajeChatDb.setId(mensajeChat.getId());
-		mensajeChatDb.setMensajeChatId(mensajeChat.getIdChat());
-		//mensajeChatDb.setFecha(XMLCalendarConverter(mensajeChat.getFecha());
-		return mensajeChatDb;
+		return mensajeChat.getDatabaseEntity();
 		
 	}
 

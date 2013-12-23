@@ -9,13 +9,7 @@ public class ArchivoMetadataParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		// TODO Auto-generated method stub
 		return null;
 	}

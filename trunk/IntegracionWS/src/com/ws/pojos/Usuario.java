@@ -114,5 +114,21 @@ public class Usuario  extends Pojo {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Usuario DBUser = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
+		DBUser.setActivado(this.getActivado());
+		DBUser.setHabilitado(this.getHabilitado());
+		DBUser.setEmail(this.getEmail());
+		DBUser.setNombre(this.getNombre());
+		DBUser.setApellido(this.getApellido());
+		DBUser.setUsername(this.getUsername());
+		DBUser.setPassword(this.getPassword());
+		DBUser.setPadron(this.getPadron());
+		DBUser.setId(this.getId());
+		//DBUser.setRolId(this.getIdRol());
+		return DBUser;
+	}
 }
 

@@ -31,6 +31,19 @@ public class Noticia extends Pojo {
 	public void setContenido(String Contenido) {
 		contenido = Contenido;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+ar.fiuba.redsocedu.datalayer.ws.Noticia miNoticiaDB = new ar.fiuba.redsocedu.datalayer.ws.Noticia();
+		
+		miNoticiaDB.setNoticiaId(this.getId());
+		miNoticiaDB.setId(this.getId());
+		miNoticiaDB.setContenido(this.getContenido());
+		miNoticiaDB.setCarteleraId(this.getCarteleraId());
+		miNoticiaDB.setTitulo(this.getTitulo());
+		miNoticiaDB.setUsername(this.getAutor());	
+		
+		return miNoticiaDB;
+	}
 	
 	
 	

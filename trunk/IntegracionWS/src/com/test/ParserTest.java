@@ -24,6 +24,7 @@ import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.ws.parsers.UsuarioParser;
+import com.ws.pojos.Actividad;
 import com.ws.serializers.UsuarioPojoSerializer;
 import com.ws.serializers.UsuarioSerializer;
 
@@ -84,6 +85,14 @@ public class ParserTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void xstreamConMayusculas() {
+		XStream xstream = new XStream();
+		String xml = "<com.ws.pojos.Actividad><ActividadId>1</ActividadId></com.ws.pojos.Actividad>";
+		Actividad actividad = (Actividad) xstream.fromXML(xml);
+		System.out.println(actividad.getActividadId());
 	}
 	
 	@Test

@@ -1,7 +1,7 @@
 package com.ws.pojos;
 
 
-public class Pojo {
+public abstract class Pojo {
 	Long id;
 
 	public Long getId() {
@@ -12,5 +12,5 @@ public class Pojo {
 		this.id = id;
 	}
 	
-	public Object getDatabaseEntity(){return null;};
+	public abstract Object getDatabaseEntity();
 }

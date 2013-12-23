@@ -17,4 +17,13 @@ public class Seccion extends Pojo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+        ar.fiuba.redsocedu.datalayer.ws.Seccion seccionDB = new ar.fiuba.redsocedu.datalayer.ws.Seccion();
+        seccionDB.setId(this.getId());
+        seccionDB.setNombre(this.getNombre());
+        //		seccionDB.setForoId(this.getIdForo());
+
+        return seccionDB;
+	}
 }

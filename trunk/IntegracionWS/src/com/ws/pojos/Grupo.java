@@ -1,6 +1,6 @@
 package com.ws.pojos;
 
-public class Grupo {
+public class Grupo extends Pojo{
 	
 	Long grupoId;
 	Long actividadId;
@@ -23,6 +23,14 @@ public class Grupo {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = new ar.fiuba.redsocedu.datalayer.ws.Grupo();
+	    
+		grupoDB.setGrupoId(this.getGrupoId());
+		grupoDB.setActividadId(this.getActividadId());
+		return grupoDB;
 	}
 
 }

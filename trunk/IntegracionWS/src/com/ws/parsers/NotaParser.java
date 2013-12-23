@@ -16,24 +16,9 @@ public class NotaParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Nota notaNegocio = (Nota) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Nota notaDB = getDBObjectFromBussinessObject(notaNegocio);        
-        return notaDB;
-	}
-
-	public ar.fiuba.redsocedu.datalayer.ws.Nota getDBObjectFromBussinessObject(
-			Nota notaNegocio) {
-		ar.fiuba.redsocedu.datalayer.ws.Nota notaDB = new ar.fiuba.redsocedu.datalayer.ws.Nota();
-        
-        notaDB.setId(notaNegocio.getId());
-        notaDB.setNotaId(notaNegocio.getIdNota());
-        notaDB.setActividadId(notaNegocio.getIdActividad());
-        notaDB.setGrupoId(notaNegocio.getIdGrupo());
-        notaDB.setNota(notaNegocio.getNota());
-        notaDB.setObservaciones(notaNegocio.getObservaciones());
-        notaDB.setUsuarioId(notaNegocio.getIdUsuario());
-		return notaDB;
+        return notaNegocio.getDatabaseEntity();
 	}
 
 	@Override

@@ -20,13 +20,9 @@ public class MiembroChatParser extends Parser {
     }
 
     @Override
-    public Object getDBObject(String xml) {
+    public Object getDBObjectFromBusinessXML(String xml) {
         MiembroChat miembroChat = (MiembroChat) getEntidadNegocio(xml);
-        ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembroChatDb = new ar.fiuba.redsocedu.datalayer.ws.MiembroChat();
-        miembroChatDb.setNombre(miembroChat.getNombre());
-        miembroChatDb.setId(miembroChat.getId());
-        miembroChatDb.setEstado(miembroChat.getEstado());
-        return miembroChatDb;
+        return miembroChat.getDatabaseEntity();
     }
 
     @Override

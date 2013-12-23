@@ -22,21 +22,10 @@ public class UsuarioParser extends Parser {
 	 * Este método recibe el xml de negocio y lo transforma en un pojo de la BD
 	 */
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		//obtengo la entidad de usuario desde el xml de negocio.
 		Usuario usuario = (Usuario) getEntidadNegocio(xml);
-		//Con el usuario de negocio armo un usuario de DB
-		ar.fiuba.redsocedu.datalayer.ws.Usuario DBUser = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
-		DBUser.setActivado(usuario.getActivado());
-		DBUser.setHabilitado(usuario.getHabilitado());
-		DBUser.setEmail(usuario.getEmail());
-		DBUser.setNombre(usuario.getNombre());
-		DBUser.setApellido(usuario.getApellido());
-		DBUser.setUsername(usuario.getUsername());
-		DBUser.setPassword(usuario.getPassword());
-		DBUser.setPadron(usuario.getPadron());
-		DBUser.setId(usuario.getId());
-		return DBUser;
+		return usuario.getDatabaseEntity();
 		//DBUser.setRolId(usuario.getIdRol());
 	}
 

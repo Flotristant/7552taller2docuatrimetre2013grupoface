@@ -97,7 +97,7 @@ public class JoinTests {
     
     @Test
     public void SubforoSeccionJoinTest() {
-    	 String consulta_join = "<WS><Subforo>" + "	<join><Seccion>" + "			<id>1</id>" + "		</Seccion></join>" + "</Subforo></WS>";
+    	 String consulta_join = "<WS><Evento><join><Muro><nombre>Muro Integración</nombre></Muro></join></Evento></WS>";//"<WS><Subforo>" + "	<join><Seccion>" + "			<id>1</id>" + "		</Seccion></join>" + "</Subforo></WS>";
     	 IntegracionWS integracionWS = new IntegracionWS();
     	 String resultado = integracionWS.seleccionarDatos(consulta_join);
     	 System.out.println(resultado);

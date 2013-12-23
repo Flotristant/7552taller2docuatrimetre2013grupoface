@@ -31,5 +31,17 @@ public class Subforo extends Pojo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	@Override
+	public Object getDatabaseEntity() {
+		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDB = new ar.fiuba.redsocedu.datalayer.ws.Subforo();		
+		subforoDB.setNombre(this.getNombre());		
+		if(this.getId() != null)
+			subforoDB.setId(this.getId());
+		if(this.getIdSeccion() != null)
+			subforoDB.setSeccionId(this.getIdSeccion());
+		if(this.getIdSubforoPadre() != null)
+			subforoDB.setSubforopadreId(this.getIdSubforoPadre());
+		return subforoDB;
+	}
 	
 }

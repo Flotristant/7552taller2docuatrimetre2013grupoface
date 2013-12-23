@@ -20,13 +20,9 @@ public class TemaParser extends Parser  {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Tema tema = (Tema) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Tema temaDB = new ar.fiuba.redsocedu.datalayer.ws.Tema();
-		temaDB.setId(tema.getId());
-//		temaDB.setSubforoId(tema.getIdSubforo());
-//		temaDB.setUsername(tema.getAutor());
-		return temaDB;
+		return tema.getDatabaseEntity();
 	}
 
 	@Override

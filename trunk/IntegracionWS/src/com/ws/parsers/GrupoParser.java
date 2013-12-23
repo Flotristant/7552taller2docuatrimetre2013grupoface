@@ -19,12 +19,9 @@ public class GrupoParser extends Parser  {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Grupo grupo = (Grupo) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = (ar.fiuba.redsocedu.datalayer.ws.Grupo)getDBObjectFromBussinessObject(grupo);
-		//TODO ver si hay que setearle el username
-		
-		return grupoDB;
+		return grupo.getDatabaseEntity();
 	}
 	
 	public Object getDBObjectFromBussinessObject(

@@ -18,16 +18,9 @@ public class EventoParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Evento eventoNegocio = (Evento) getEntidadNegocio(xml);
-		ar.fiuba.redsocedu.datalayer.ws.Evento eventoDB = new ar.fiuba.redsocedu.datalayer.ws.Evento();
-
-		eventoDB.setEventoId(eventoNegocio.getEventoId());
-		eventoDB.setId(eventoNegocio.getId());
-		eventoDB.setMuroId(eventoNegocio.getMuroId());
-		eventoDB.setNombre(eventoNegocio.getNombre());
-		
-		return eventoDB;
+		return eventoNegocio.getDatabaseEntity();
 	}
 
 	@Override

@@ -17,20 +17,9 @@ public class NoticiaParser extends Parser {
 	}
 
 	@Override
-	public Object getDBObject(String xml) {
-		
+	public Object getDBObjectFromBusinessXML(String xml) {
 		Noticia miNoticiaNegocio = (Noticia) getEntidadNegocio(xml);
-		
-		ar.fiuba.redsocedu.datalayer.ws.Noticia miNoticiaDB = new ar.fiuba.redsocedu.datalayer.ws.Noticia();
-		
-//		miNoticiaDB.setNoticiaId(miNoticiaNegocio.getId());
-		miNoticiaDB.setContenido(miNoticiaNegocio.getContenido());
-		miNoticiaDB.setCarteleraId(miNoticiaNegocio.getCarteleraId());
-		miNoticiaDB.setTitulo(miNoticiaNegocio.getTitulo());
-		
-		//TODO FALTA CARGAR EL CAMPO AUTOR, A LA FECHA EL POJO DE DB NO LO TIENE.
-		
-		return miNoticiaDB;
+		return miNoticiaNegocio.getDatabaseEntity();
 	}
 
 	@Override
