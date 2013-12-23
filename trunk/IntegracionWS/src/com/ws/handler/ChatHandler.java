@@ -5,6 +5,7 @@ import ar.fiuba.redsocedu.datalayer.ws.MensajeChat;
 import ar.fiuba.redsocedu.datalayer.ws.MiembroChat;
 
 import com.db.querys.ChatQueryBuilder;
+import com.db.querys.DBManager;
 import com.ws.parsers.ChatParser;
 import com.ws.serializers.ChatSerializer;
 
@@ -34,9 +35,15 @@ public class ChatHandler extends Handler {
 		// Agrego al Pojo de DB instancias de Miembros con los id que recibo
 		for (com.ws.pojos.MiembroChat elem : ChatNegocio.getMiembrosChat()) {
 			MiembroChat unMiembro = new MiembroChat();
-//			unMiembro.setMiembroChatId(elem.getId());
-			unMiembro.setId(elem.getId());
-//			unMiembro = (ar.fiuba.redsocedu.datalayer.ws.MiembroChat) TestHelper.seleccionarDatos(unMiembro, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
+			unMiembro.setNombre(elem.getNombre());
+        	try {
+            	if(elem.getId() == null) {
+            		Long id = DBManager.guardarObjetos(elem, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
+            		elem.setId(id);
+            	}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			chatDB.getMiembrosChat().add(unMiembro);
 		}
 
