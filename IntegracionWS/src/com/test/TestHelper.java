@@ -1,8 +1,14 @@
 package com.test;
 
+import java.util.List;
+
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
+import ar.fiuba.redsocedu.datalayer.ws.MiembroChat;
+import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.db.querys.MiembroChatQueryBuilder;
+import com.db.querys.QueryBuilder;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 

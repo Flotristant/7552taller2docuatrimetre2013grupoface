@@ -22,7 +22,7 @@ public abstract class Serializer {
 	 */
 	public String getXMLfromPojo(Object dto) {
 		
-		//Se hace esto para que se pueda acceder a la infomación del
+		//Se hace esto para que se pueda acceder a la infomaciï¿½n del
 		//dto desde nota para saber si es una grupal o individual
 		this.objetoDTO = dto;
 		
@@ -40,11 +40,13 @@ public abstract class Serializer {
 		XStream xstream = new XStream();
 		this.setAttributeMappings(xstream);
 		String xml = xstream.toXML(dtos);
+		xml = this.addExtraFields(xml, dtos);
 //		xml.replace("<list>", "");
 //		xml.replace("</list>", "");
 		return addSuperTags(xml);
 	}
 	
+	protected String addExtraFields(String xml, Collection<?> dtos){ return xml; }
 	protected abstract void setAttributeMappings(XStream xstream);
 	
 }

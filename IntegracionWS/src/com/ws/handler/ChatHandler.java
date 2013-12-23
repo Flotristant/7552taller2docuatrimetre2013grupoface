@@ -32,10 +32,11 @@ public class ChatHandler extends Handler {
 		}
 
 		// Agrego al Pojo de DB instancias de Miembros con los id que recibo
-		for (Long elem : ChatNegocio.getMiembrosChat()) {
-
+		for (com.ws.pojos.MiembroChat elem : ChatNegocio.getMiembrosChat()) {
 			MiembroChat unMiembro = new MiembroChat();
-			unMiembro.setMiembroChatId(elem);
+//			unMiembro.setMiembroChatId(elem.getId());
+			unMiembro.setId(elem.getId());
+//			unMiembro = (ar.fiuba.redsocedu.datalayer.ws.MiembroChat) TestHelper.seleccionarDatos(unMiembro, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
 			chatDB.getMiembrosChat().add(unMiembro);
 		}
 
