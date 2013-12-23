@@ -35,7 +35,7 @@ public class ForoTest {
     @Test
     public void CreateQueryUpdateAndDeleteForo() throws SAXException, IOException, ParserConfigurationException {
         guardarDatos(xmlForo, integracionWS);        
-        System.out.println(xmlForo);
+        System.out.println("XMl CONSULTA: \n" + xmlForo);
         String nuevoXmlForo = consultarDatos(xmlForo);
         System.out.println(nuevoXmlForo);
         if(nuevoXmlForo != null) {

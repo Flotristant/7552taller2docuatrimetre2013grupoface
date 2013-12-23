@@ -53,8 +53,8 @@ public abstract class Handler {
         Long transactionId = IdGenerator.generateTransactionId();
         Long idnuevo;
         try {
+        	Object obj = parser.getDBObject(xml);
             port.beginTransaction(transactionId);
-            Object obj = parser.getDBObject(xml);
             idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
             port.commit(transactionId);
         } catch (ClientTransportException e) {

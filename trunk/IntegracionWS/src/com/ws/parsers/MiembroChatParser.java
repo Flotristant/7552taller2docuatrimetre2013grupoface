@@ -1,5 +1,7 @@
 package com.ws.parsers;
 
+import ar.fiuba.redsocedu.datalayer.ws.Chat;
+
 import com.ws.pojos.MiembroChat;
 import com.ws.tags.ChatTags;
 import com.ws.tags.MensajeChatTags;

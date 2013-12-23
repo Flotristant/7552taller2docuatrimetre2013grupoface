@@ -1,5 +1,6 @@
 package com.ws.pojos;
 
+
 public class Pojo {
 	Long id;
 
@@ -11,5 +12,5 @@ public class Pojo {
 		this.id = id;
 	}
 	
-	
+	public Object getDatabaseEntity(){return null;};
 }

@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -56,7 +57,7 @@ public abstract class Parser {
 	public Object getEntidadNegocio(String xml) {
 		xml = removeSuperTags(xml);
 		xml = replaceClassTag(xml);
-		XStream xmlReader = new XStream();
+		XStream xmlReader = new XStream();		
 		Object obj = xmlReader.fromXML(xml);
 		return obj;
 	}

@@ -109,7 +109,7 @@ public class TestIntegracionActividad {
 	private void assertActividadsIguales(Actividad actividad, Actividad actividad_leida) {
 		Assert.assertTrue(actividad_leida.getId() != null);
         Assert.assertEquals(actividad.getDescripcion(), actividad_leida.getDescripcion());
-        Assert.assertEquals(actividad.getGruposExclusivo(), actividad_leida.getGruposExclusivo());
+        Assert.assertEquals(actividad.getGruposExclusivos(), actividad_leida.getGruposExclusivos());
         Assert.assertEquals(actividad.getTipo(), actividad_leida.getTipo());
         Assert.assertEquals(actividad.getTipoEscala(), actividad_leida.getTipoEscala());
         Assert.assertEquals(actividad.getActividadSuperiorId(), actividad_leida.getActividadSuperiorId());
@@ -122,7 +122,7 @@ public class TestIntegracionActividad {
         actividad.setNombre("mi actividad"+ date.toString());
         actividad.setFechaInicio(System.currentTimeMillis());
         actividad.setFechaFin(date + 2000L);
-        actividad.setGruposExclusivo(false);
+        actividad.setGruposExclusivos(false);
         actividad.setTipo("individual");
         actividad.setTipoEscala("");
         
