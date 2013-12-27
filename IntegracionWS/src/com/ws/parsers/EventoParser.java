@@ -13,11 +13,6 @@ public class EventoParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(EventoTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Evento eventoNegocio = (Evento) getEntidadNegocio(xml);
 		return eventoNegocio.getDatabaseEntity();

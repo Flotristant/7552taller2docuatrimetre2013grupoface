@@ -13,11 +13,6 @@ public class MensajeParser extends Parser  {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(MensajeTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Mensaje mensaje = (Mensaje) getEntidadNegocio(xml);
 		return mensaje.getDatabaseEntity();

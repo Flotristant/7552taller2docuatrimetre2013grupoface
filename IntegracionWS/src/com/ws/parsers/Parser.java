@@ -32,7 +32,7 @@ public abstract class Parser {
 	
 	public static String ID_TAG = "id";
 
-	protected Map<String, String> campos;
+	protected Map<String, Object> campos;
 
 	protected String classTag;
 
@@ -43,7 +43,7 @@ public abstract class Parser {
 
 	public Parser(String classTag) {
 		this.classTag = classTag;
-		this.campos = new HashMap<String, String>();
+		this.campos = new HashMap<String, Object>();
 		//directas: contiene una lista del otro en BD.
 		relaciones_directas = new HashMap<String, String>();
 	}
@@ -86,7 +86,7 @@ public abstract class Parser {
 
 	
 	public Long getId() {
-		return Long.parseLong(this.campos.get(ID_TAG));
+		return (Long)this.campos.get(ID_TAG);
 	}
 
 	public abstract Object getDBObjectFromBusinessXML(String xml);
@@ -105,7 +105,7 @@ public abstract class Parser {
 	 * @throws IllegalArgumentException
 	 */
 
-	public Map<String, String> inicializarCampos(String xml) {
+	public Map<String, Object>  inicializarCampos(String xml) {
 		String xmlSinJoin = cleanJoinPart(xml);
 		Object obj = this.getEntidadNegocio(xmlSinJoin);
 		Field[] fields = obj.getClass().getDeclaredFields();
@@ -121,7 +121,7 @@ public abstract class Parser {
 		}
 
 		Object ret;
-		String value, attribute;
+		String attribute;
 		try {
 			for (Field field : fieldsList) {
 				attribute = field.getName().substring(0, 1).toUpperCase()
@@ -129,9 +129,8 @@ public abstract class Parser {
 				Method method = obj.getClass().getMethod("get" + attribute);
 				ret = method.invoke(obj, null);
 				if (ret != null) {
-					value = ret.toString();
 					attribute = field.getName();
-					this.campos.put(attribute, value.toString());
+					this.campos.put(attribute, ret);
 				}
 			}
 		} catch (Exception e) {
@@ -170,15 +169,15 @@ public abstract class Parser {
 	 * 
 	 * @return
 	 */
-	public Map<String, String> getJoinFields() {
-		String joinXML = this.campos.get(Parser.JOIN_TAG);
-		Map<String, String> joinFields = new HashMap<String, String>();
+	public Map<String, Object> getJoinFields() {
+		String joinXML = (String)this.campos.get(Parser.JOIN_TAG);
+		Map<String, Object> joinFields = new HashMap<String, Object>();
 		Parser parser = getJoinParser(joinXML);
 		if (parser == null)
 			return joinFields;
 		joinXML = cleanJoinTags(joinXML);
 		parser.inicializarCampos(joinXML);
-		Map<String, String> camposRelacion = parser.getCampos();
+		Map<String, Object> camposRelacion = parser.getCampos();
 		return camposRelacion;
 	}
 
@@ -209,7 +208,7 @@ public abstract class Parser {
 
 	protected abstract Boolean validateJoinParser(Parser parser);
 
-	public Map<String, String> getCampos() {
+	public Map<String, Object> getCampos() {
 		return this.campos;
 	}
 

@@ -11,11 +11,6 @@ public class NotaParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(NotaTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Nota notaNegocio = (Nota) getEntidadNegocio(xml);
         return notaNegocio.getDatabaseEntity();

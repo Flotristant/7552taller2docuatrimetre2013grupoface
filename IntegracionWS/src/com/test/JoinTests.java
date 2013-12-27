@@ -91,7 +91,7 @@ public class JoinTests {
         String consulta_join = "<MensajeChat><join><Chat><id>25</id></Chat></join></MensajeChat>";
         MensajeChatParser parser = new MensajeChatParser();
         parser.inicializarCampos(consulta_join);
-        Map<String, String> campos_query = parser.getJoinFields();
+        Map<String, Object> campos_query = parser.getJoinFields();
         System.out.println(campos_query);
     }
     
@@ -100,6 +100,22 @@ public class JoinTests {
         String consulta_join = "<WS><Chat><join><MensajeChat><id>25</id></MensajeChat></join></Chat></WS>";
     	IntegracionWS integracionWS = new IntegracionWS();
     	String resultado = integracionWS.seleccionarDatos(consulta_join);
+    	System.out.println(resultado);
+    }
+    
+    @Test
+    public void consultarChatPorId() {
+    	String consulta = "<WS><Chat><id>57</id></Chat></WS>";
+    	IntegracionWS integracionWS = new IntegracionWS();
+    	String resultado = integracionWS.seleccionarDatos(consulta);
+    	System.out.println(resultado);
+    }
+    
+    @Test
+    public void updateChat() {
+    	String consulta = "<WS><Chat><id>57</id></Chat></WS>";
+    	IntegracionWS integracionWS = new IntegracionWS();
+    	String resultado = integracionWS.actualizarDatos(consulta);
     	System.out.println(resultado);
     }
     

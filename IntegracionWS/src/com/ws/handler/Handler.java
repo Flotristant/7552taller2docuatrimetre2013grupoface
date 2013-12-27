@@ -67,7 +67,7 @@ public abstract class Handler {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(idnuevo.toString()));
     }
     
-    private String resolveDirectJoin( Map<String, String> campos, Handler handlerJoin) throws Exception {
+    private String resolveDirectJoin( Map<String, Object> campos, Handler handlerJoin) throws Exception {
     	String joinXML = getJoinXML(campos);
     	String xmlJoinResult = "";
     	//obtengo todo el objeto con la lista adentro
@@ -90,10 +90,10 @@ public abstract class Handler {
      * @throws Exception
      */
     public String seleccionarDatos(String xml) throws Exception {
-        Map<String, String> campos = this.parser.inicializarCampos(xml);
+        Map<String, Object> campos = this.parser.inicializarCampos(xml);
         String query;
         if (this.parser.esJoin()) {
-        	Handler handlerJoin = HandlerFactory.getHandler(Parser.JOIN_TAG, campos.get(Parser.JOIN_TAG));        	
+        	Handler handlerJoin = HandlerFactory.getHandler(Parser.JOIN_TAG, (String)campos.get(Parser.JOIN_TAG));        	
         	if(handlerJoin.getParser().isRelacionDirecta(this.parser.getClass().toString())) {        		
 	        	return resolveDirectJoin(campos, handlerJoin);         	
         	} else if(this.parser.isRelacionDirecta(handlerJoin.getParser().getClass().toString())) {         		
@@ -135,21 +135,21 @@ public abstract class Handler {
         }
 	}
 
-	private String resolveInverseJoin(Map<String, String> campos,
+	private String resolveInverseJoin(Map<String, Object> campos,
 			Handler handlerJoin) {
 		String query;
 		//obtengo el nombre de la relacion
 		String nombre_relacion = this.parser.getNombreRelacionDirecta(handlerJoin.getParser().getClass().toString());
 		//obtengo los campos para el join
 		String joinXML = getJoinXML(campos);
-		Map<String, String> campos_join = handlerJoin.getParser().inicializarCampos(Parser.cleanJoinTags(joinXML));
+		Map<String, Object> campos_join = handlerJoin.getParser().inicializarCampos(joinXML);
 		//armo query de join
 		query = this.queryBuilder.resolveJoin(campos_join, nombre_relacion);
 		return query;
 	}
 
-	private String getJoinXML(Map<String, String> campos) {
-		String joinXML = campos.get(Parser.JOIN_TAG);
+	private String getJoinXML(Map<String, Object> campos) {
+		String joinXML = (String)campos.get(Parser.JOIN_TAG);
 		joinXML=joinXML.replace("<join>", "");
 		joinXML=joinXML.replace("</join>", "");
 		return joinXML;
@@ -185,7 +185,7 @@ public abstract class Handler {
             // objeto en la BBDD?? yes.
             transactionId = IdGenerator.generateTransactionId();
             port.beginTransaction(transactionId);
-            Object pojoDB = this.toDatabaseEntity(pojo);
+            Object pojoDB = pojo.getDatabaseEntity(); //this.toDatabaseEntity(pojo);
             port.saveOrUpdate(transactionId, this.databaseEntityPath, pojoDB);
             port.commit(transactionId);
 

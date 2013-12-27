@@ -15,11 +15,6 @@ public class GrupoParser extends Parser  {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(GrupoTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Grupo grupo = (Grupo) getEntidadNegocio(xml);
 		return grupo.getDatabaseEntity();

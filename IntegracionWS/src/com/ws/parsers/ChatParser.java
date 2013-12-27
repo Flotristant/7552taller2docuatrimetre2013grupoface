@@ -22,10 +22,6 @@ public class ChatParser extends Parser {
         return (parser instanceof MensajeChatParser) || (parser instanceof MiembroChatParser);
     }
 
-    @Override
-    public Long getId() {
-        return Long.parseLong(this.campos.get(ChatTags.ID_TAG));
-    }
 
     @Override
     public Object getDBObjectFromBusinessXML(String xml)  {

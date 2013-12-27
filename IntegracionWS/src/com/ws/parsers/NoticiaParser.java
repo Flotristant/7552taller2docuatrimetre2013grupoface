@@ -10,11 +10,6 @@ public class NoticiaParser extends Parser {
 		super(NoticiaTags.CLASS_TAG);
 		this.relaciones_directas.put(NoticiaParser.class.toString(), "noticias");
 	}
-	
-	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(NoticiaTags.ID_TAG));
-	}
 
 	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {

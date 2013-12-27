@@ -18,11 +18,6 @@ public class MuroParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(MuroTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Muro muro = (Muro) getEntidadNegocio(xml);
 		return muro.getDatabaseEntity();

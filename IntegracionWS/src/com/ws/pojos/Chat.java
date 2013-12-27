@@ -10,7 +10,6 @@ import com.db.querys.DBManager;
 
 public class Chat extends Pojo {
 
-	Long idChat;
 	Long idAmbito;
 	List<Long> mensajesChat;// = new ArrayList<Long>();
 	List<MiembroChat> miembrosChat;// = new ArrayList<MiembroChat>();
@@ -21,29 +20,18 @@ public class Chat extends Pojo {
 	}
 	
 	public List<Long> getMensajesChat() {
-//		if(mensajesChat == null) {
-//			mensajesChat = new ArrayList<Long>();
-//		}
 		return mensajesChat;
 	}
 	public void setMensajesChat(List<Long> mensajeChat) {
 		mensajesChat = mensajeChat;
 	}
 	public List<MiembroChat> getMiembrosChat() {
-//		if(miembrosChat == null) {
-//			miembrosChat = new ArrayList<MiembroChat>();
-//		}		
 		return miembrosChat;
 	}
 	public void setMiembrosChat(List<MiembroChat> miembroChat) {
 		miembrosChat = miembroChat;
 	}
-	public Long getIdChat() {
-		return idChat;
-	}
-	public void setIdChat(Long idChat) {
-		this.idChat = idChat;
-	}
+
 	public Long getIdAmbito() {
 		return idAmbito;
 	}
