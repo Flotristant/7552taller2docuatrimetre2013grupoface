@@ -19,11 +19,6 @@ public class SubforoParser extends Parser{
 		this.relaciones_directas.put(SubforoParser.class.toString(), "subforos");
 		this.relaciones_directas.put(TemaParser.class.toString(), "temas");
 	}
-	
-	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(SubforoTags.ID_TAG));
-	}
 
 	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {

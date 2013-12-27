@@ -16,11 +16,6 @@ public class TemaParser extends Parser  {
 	}
 	
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(TemaTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Tema tema = (Tema) getEntidadNegocio(xml);
 		return tema.getDatabaseEntity();

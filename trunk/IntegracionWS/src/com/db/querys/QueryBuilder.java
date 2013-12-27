@@ -90,10 +90,10 @@ public abstract class QueryBuilder {
 		return xml;
 	}
 	
-	public String getAllByAttributes(Map<String, String> attributes) {
+	public String getAllByAttributes(Map<String, Object> attributes) {
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
 		if(attributes.containsKey(this.idTag)) {
-			Long id = Long.parseLong(attributes.get(this.idTag));
+			Long id = (Long)(attributes.get(this.idTag));
 			criteria.add(Restrictions.idEq(id));
 			attributes.remove(this.idTag);
 		}
@@ -101,11 +101,11 @@ public abstract class QueryBuilder {
 		return QueryBuilder.getSerializedCriteria(criteria);
 	}
 	
-	public String resolveJoin(Map<String, String> attributes, String relationName) {
+	public String resolveJoin(Map<String, Object> attributes, String relationName) {
 		String alias = "a";
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
 		criteria.createAlias(relationName, alias);
-		for(Map.Entry<String, String> entry : attributes.entrySet()) {
+		for(Map.Entry<String, Object> entry : attributes.entrySet()) {
 			criteria.add(Restrictions.eq(alias+"."+entry.getKey(), entry.getValue()));	
 		}
 		return QueryBuilder.getSerializedCriteria(criteria);

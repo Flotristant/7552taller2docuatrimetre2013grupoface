@@ -16,11 +16,6 @@ public class ActividadParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(ActividadTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Actividad miObjNegocio = (Actividad) getEntidadNegocio(xml);
         return miObjNegocio.getDatabaseEntity();

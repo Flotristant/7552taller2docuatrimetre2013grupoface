@@ -15,11 +15,6 @@ public class ForoParser extends Parser {
     }
 
     @Override
-    public Long getId() {
-        return Long.parseLong(this.campos.get(ForoTags.ID_TAG));
-    }
-
-    @Override
     protected Boolean validateJoinParser(Parser parser) {
         return (parser instanceof SeccionParser);
     }

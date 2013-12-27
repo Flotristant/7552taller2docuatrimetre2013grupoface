@@ -2,6 +2,8 @@ package com.test;
 
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +49,7 @@ public class TestIntegracionChat {
     			"</miembrosChat></Chat></WS>";
     	
 		String rdo = integracionWS.guardarDatos(consulta);
+		Assert.assertTrue(rdo.contains("La entidad ha sido almacenada con exito"));
 		System.err.println(rdo);
     }
     
@@ -64,6 +67,7 @@ public class TestIntegracionChat {
     			"</miembrosChat></Chat></WS>";
     	
 		String rdo = integracionWS.actualizarDatos(consulta);
+		Assert.assertTrue(rdo.contains("exito"));
 		System.err.println(rdo);
 		
 		String consultaChat = "<?xml version=\"1.0\"?><WS><Chat><id>" + id_chat + "</id></Chat></WS>";
@@ -94,6 +98,7 @@ public class TestIntegracionChat {
 		
 		String rdo = integracionWS.actualizarDatos(consulta);
 		System.err.println(rdo);
+		Assert.assertTrue(rdo.contains("exito"));
    }    
 
 }

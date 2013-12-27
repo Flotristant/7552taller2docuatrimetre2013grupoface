@@ -14,11 +14,6 @@ public class SeccionParser extends Parser {
     }
 
     @Override
-    public Long getId() {
-        return Long.parseLong(this.campos.get(SeccionTags.ID_TAG));
-    }
-
-    @Override
     public Object getDBObjectFromBusinessXML(String xml) {
         Seccion seccion = (Seccion) getEntidadNegocio(xml);
         return seccion.getDatabaseEntity();

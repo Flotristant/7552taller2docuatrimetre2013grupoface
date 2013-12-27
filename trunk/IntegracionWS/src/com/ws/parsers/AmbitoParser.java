@@ -23,11 +23,6 @@ public class AmbitoParser extends Parser {
 	}
 
 	@Override
-	public Long getId() {
-		return Long.parseLong(this.campos.get(AmbitoTags.ID_TAG));
-	}
-
-	@Override
 	public Object getDBObjectFromBusinessXML(String xml) {
 		Ambito ambito = (Ambito) getEntidadNegocio(xml);
 		return ambito.getDatabaseEntity();

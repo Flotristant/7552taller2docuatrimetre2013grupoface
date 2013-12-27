@@ -18,11 +18,6 @@ public class MiembroChatParser extends Parser {
     }
 
     @Override
-    public Long getId() {
-        return Long.parseLong(this.campos.get(MiembroChatTags.ID_TAG));
-    }
-
-    @Override
     public Object getDBObjectFromBusinessXML(String xml) {
         MiembroChat miembroChat = (MiembroChat) getEntidadNegocio(xml);
         return miembroChat.getDatabaseEntity();
