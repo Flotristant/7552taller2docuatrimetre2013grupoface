@@ -9,8 +9,8 @@ public class SeccionParser extends Parser {
 
     public SeccionParser() {
         super(SeccionTags.CLASS_TAG);
-        relaciones.put(SubforoParser.class.toString(), "subforos");
-        relaciones.put(SeccionParser.class.toString(), "secciones");
+        relaciones_directas.put(SubforoParser.class.toString(), "subforos");
+        relaciones_directas.put(SeccionParser.class.toString(), "secciones");
     }
 
     @Override

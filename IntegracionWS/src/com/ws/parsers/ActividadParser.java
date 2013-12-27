@@ -11,8 +11,8 @@ public class ActividadParser extends Parser {
 	
 	public ActividadParser() {
 		super(ActividadTags.CLASS_TAG);
-//		relaciones.put(NotaParser.getClass().toString(), "notas");
-//		relaciones.put(GrupoParser.getClass().toString(), "grupos");
+		relaciones_directas.put(NotaParser.class.toString(), "notas");
+		relaciones_directas.put(GrupoParser.class.toString(), "grupos");
 	}
 
 	@Override

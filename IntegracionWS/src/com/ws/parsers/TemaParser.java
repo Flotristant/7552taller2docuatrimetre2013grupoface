@@ -10,8 +10,9 @@ public class TemaParser extends Parser  {
 
 	public TemaParser() {
 		super(TemaTags.CLASS_TAG);
-		this.relaciones = new HashMap<String, String>();
-		this.relaciones.put(TemaParser.class.toString(), "temas");
+		this.relaciones_directas = new HashMap<String, String>();
+		this.relaciones_directas.put(MensajeParser.class.toString(), "mensajes");
+//		this.relaciones_directas.put(TemaParser.class.toString(), "temas");
 	}
 	
 	@Override

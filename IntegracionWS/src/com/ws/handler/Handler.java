@@ -3,6 +3,9 @@ package com.ws.handler;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
@@ -63,27 +66,50 @@ public abstract class Handler {
         }
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(idnuevo.toString()));
     }
+    
+    private String resolveDirectJoin( Map<String, String> campos, Handler handlerJoin) throws Exception {
+    	String joinXML = getJoinXML(campos);
+    	String xmlJoinResult = "";
+    	//obtengo todo el objeto con la lista adentro
+    	xmlJoinResult = handlerJoin.seleccionarDatos(joinXML);
+    	// se queda solo con los datos de la lista
+		String nombreRelacion = handlerJoin.getParser().getNombreRelacionDirecta(this.parser.getClass().toString());
+		if( nombreRelacion != null && !"".equals(nombreRelacion)) {
+			String relationXml = getOnlyRelation(nombreRelacion, xmlJoinResult);
+    		return parser.createXmlResponse(relationXml);	
+		} 
+		return "";
+    }
 
+    /**
+     * Este metodo verifica si la consulta es o no un join. En caso de ser join, valida si la relacion consultada
+     * es directa o inversa. En caso de no ser una relacion válida, se retorna un mensaje de error.
+     * En caso de no ser un join, se realiza una consulta basica utilizando los campos obtenidos del xml como filtro.
+     * @param xml
+     * @return
+     * @throws Exception
+     */
     public String seleccionarDatos(String xml) throws Exception {
         Map<String, String> campos = this.parser.inicializarCampos(xml);
         String query;
         if (this.parser.esJoin()) {
-        	//Traslado la consulta al handler del join
-        	Handler handlerJoin = HandlerFactory.getHandler(Parser.JOIN_TAG, campos.get(Parser.JOIN_TAG));
-        	String joinXML = campos.get(Parser.JOIN_TAG);
-        	joinXML=joinXML.replace("<join>", "");
-        	joinXML=joinXML.replace("</join>", "");
-        	String xmlJoin = handlerJoin.seleccionarDatos(joinXML);
-    		String nombreRelacion = this.parser.getNombreRelacion();
-    		if( nombreRelacion != null && !"".equals(nombreRelacion)) {
-    			String relationXml = getOnlyRelation(nombreRelacion, xmlJoin);
-        		return parser.createXmlResponse(relationXml);	
-    		}
-    		return xmlJoin;
+        	Handler handlerJoin = HandlerFactory.getHandler(Parser.JOIN_TAG, campos.get(Parser.JOIN_TAG));        	
+        	if(handlerJoin.getParser().isRelacionDirecta(this.parser.getClass().toString())) {        		
+	        	return resolveDirectJoin(campos, handlerJoin);         	
+        	} else if(this.parser.isRelacionDirecta(handlerJoin.getParser().getClass().toString())) {         		
+        		query = resolveInverseJoin(campos, handlerJoin);
+        	} else {
+        		//TODO: indicar que es un join no valido
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	}
         } else {
             query = this.queryBuilder.getAllByAttributes(campos);
         }
-        Long transactionId = IdGenerator.generateTransactionId();
+        return queryToDatabase(query);
+    }
+
+	private String queryToDatabase(String query) {
+		Long transactionId = IdGenerator.generateTransactionId();
         try {
             port.beginTransaction(transactionId);
             List<ReturnedObject> objects = null;
@@ -107,7 +133,27 @@ public abstract class Handler {
             port.rollback(transactionId);// if not
             return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
         }
-    }
+	}
+
+	private String resolveInverseJoin(Map<String, String> campos,
+			Handler handlerJoin) {
+		String query;
+		//obtengo el nombre de la relacion
+		String nombre_relacion = this.parser.getNombreRelacionDirecta(handlerJoin.getParser().getClass().toString());
+		//obtengo los campos para el join
+		String joinXML = getJoinXML(campos);
+		Map<String, String> campos_join = handlerJoin.getParser().inicializarCampos(Parser.cleanJoinTags(joinXML));
+		//armo query de join
+		query = this.queryBuilder.resolveJoin(campos_join, nombre_relacion);
+		return query;
+	}
+
+	private String getJoinXML(Map<String, String> campos) {
+		String joinXML = campos.get(Parser.JOIN_TAG);
+		joinXML=joinXML.replace("<join>", "");
+		joinXML=joinXML.replace("</join>", "");
+		return joinXML;
+	}
 
     private String getOnlyRelation(String nombreRelacion, String xmlJoin) {
     	String initialTag = "<"+nombreRelacion+">";
@@ -130,12 +176,15 @@ public abstract class Handler {
             List<ReturnedObject> dbPojos = null;
 
             dbPojos = port.query(transactionId, query);
+            port.commit(transactionId);
             if (dbPojos == null || dbPojos.isEmpty() || dbPojos.size() > 1) {
-            	port.commit(transactionId);
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             }
+            
             // Los pasos previos solo se hacen para verificar que existe el
-            // objeto en la BBDD??
+            // objeto en la BBDD?? yes.
+            transactionId = IdGenerator.generateTransactionId();
+            port.beginTransaction(transactionId);
             Object pojoDB = this.toDatabaseEntity(pojo);
             port.saveOrUpdate(transactionId, this.databaseEntityPath, pojoDB);
             port.commit(transactionId);
@@ -180,4 +229,8 @@ public abstract class Handler {
     }
 
     public abstract Object toDatabaseEntity(Object object);
+    
+    public Parser getParser() {
+    	return this.parser;
+    }
 }

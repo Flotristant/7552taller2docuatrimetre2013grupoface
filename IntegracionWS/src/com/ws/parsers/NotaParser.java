@@ -7,7 +7,7 @@ public class NotaParser extends Parser {
 
 	public NotaParser() {
 		super(NotaTags.CLASS_TAG);
-		this.relaciones.put(NotaParser.class.toString(), "notas");
+		this.relaciones_directas.put(NotaParser.class.toString(), "notas");
 	}
 
 	@Override

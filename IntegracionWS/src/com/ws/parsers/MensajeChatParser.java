@@ -7,7 +7,7 @@ public class MensajeChatParser extends Parser {
 
 	public MensajeChatParser(){
 		super(MensajeChatTags.CLASS_TAG);
-		this.relaciones.put(MensajeChatParser.class.toString(), "mensajesChat"); //TODO: chequear nombre
+//		this.relaciones_directas.put(MensajeChatParser.class.toString(), "mensajesChat"); //TODO: chequear nombre
 	}
 
 	@Override

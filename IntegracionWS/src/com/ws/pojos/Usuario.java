@@ -1,5 +1,6 @@
 	package com.ws.pojos;
 
+import java.util.List;
 
 public class Usuario  extends Pojo {
 
@@ -16,9 +17,36 @@ public class Usuario  extends Pojo {
 	private String padron;
 	private String fechaNacimiento;
 	private Boolean activado;
-	private Boolean habilitado;
+	private Boolean habilitado;  
+	private List<Actividad> actividades;
+	private List<Nota> notas;
+	private List<Grupo> grupos;
 	
 	
+	public List<Actividad> getActividades() {
+		return actividades;
+	}
+
+	public void setActividades(List<Actividad> actividades) {
+		this.actividades = actividades;
+	}
+
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
 	public Usuario() {}
 	
 	public Usuario(int id,String username, String password, String email) {
@@ -127,6 +155,21 @@ public class Usuario  extends Pojo {
 		DBUser.setPassword(this.getPassword());
 		DBUser.setPadron(this.getPadron());
 		DBUser.setId(this.getId());
+		if(actividades != null) {
+			for(Actividad actividad : actividades) {
+				DBUser.getActividades().add((ar.fiuba.redsocedu.datalayer.ws.Actividad)actividad.getDatabaseEntity());
+			}
+		}
+		if(notas != null) {
+			for(Nota nota : notas) {
+				DBUser.getNotas().add((ar.fiuba.redsocedu.datalayer.ws.Nota)nota.getDatabaseEntity());
+			}
+		}
+		if(grupos != null) {
+			for(Grupo grupo : grupos) {
+				DBUser.getGrupos().add((ar.fiuba.redsocedu.datalayer.ws.Grupo)grupo.getDatabaseEntity());
+			}
+		}
 		//DBUser.setRolId(this.getIdRol());
 		return DBUser;
 	}

@@ -11,6 +11,9 @@ public class UsuarioParser extends Parser {
 	
 	public UsuarioParser() {
 		super(UsuarioTags.CLASS_TAG);
+		this.relaciones_directas.put(ActividadParser.class.toString(), "actividades");
+		this.relaciones_directas.put(NotaParser.class.toString(), "notas");
+		this.relaciones_directas.put(GrupoParser.class.toString(), "grupos");
 	}
 	
 	@Override

@@ -15,8 +15,11 @@ public class AmbitoParser extends Parser {
 
 	public AmbitoParser() {
 		super(AmbitoTags.CLASS_TAG);
-		relaciones.put(MuroParser.class.toString(), "muros");
-		relaciones.put(AmbitoParser.class.toString(), "ambitos");
+		relaciones_directas.put(MuroParser.class.toString(), "muros");
+		relaciones_directas.put(CarteleraParser.class.toString(), "carteleras");
+		relaciones_directas.put(ChatParser.class.toString(), "chats");
+		relaciones_directas.put(ForoParser.class.toString(), "foros");
+//		relaciones_directas.put(AmbitoParser.class.toString(), "ambitos");
 	}
 
 	@Override
