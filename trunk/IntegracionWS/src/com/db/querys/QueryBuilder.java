@@ -101,10 +101,12 @@ public abstract class QueryBuilder {
 		return QueryBuilder.getSerializedCriteria(criteria);
 	}
 	
-	public String resolveJoin(Map<String, String> attributes) {
+	public String resolveJoin(Map<String, String> attributes, String relationName) {
+		String alias = "a";
 		DetachedCriteria criteria = DetachedCriteria.forEntityName(this.className);
+		criteria.createAlias(relationName, alias);
 		for(Map.Entry<String, String> entry : attributes.entrySet()) {
-			criteria.add(Restrictions.eq(entry.getKey(), entry.getValue()));	
+			criteria.add(Restrictions.eq(alias+"."+entry.getKey(), entry.getValue()));	
 		}
 		return QueryBuilder.getSerializedCriteria(criteria);
 	}	

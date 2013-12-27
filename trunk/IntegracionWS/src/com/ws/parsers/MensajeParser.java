@@ -9,7 +9,7 @@ public class MensajeParser extends Parser  {
 
 	public MensajeParser() {
 		super(MensajeTags.CLASS_TAG);
-		this.relaciones.put(MensajeParser.class.toString(), "mensajes");
+//		this.relaciones_directas.put(MensajeParser.class.toString(), "mensajes");
 	}
 
 	@Override

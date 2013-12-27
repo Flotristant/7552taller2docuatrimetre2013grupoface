@@ -1,12 +1,8 @@
 package com.ws.parsers;
 
 
-import java.util.List;
 
-import com.db.querys.DBManager;
 import com.ws.pojos.Chat;
-import com.ws.pojos.MensajeChat;
-import com.ws.pojos.MiembroChat;
 import com.ws.tags.ChatTags;
 import com.ws.tags.MensajeChatTags;
 import com.ws.tags.MiembroChatTags;
@@ -15,9 +11,9 @@ public class ChatParser extends Parser {
 
     public ChatParser() {
         super(ChatTags.CLASS_TAG);
-        relaciones.put(MensajeChatParser.class.toString(), "mensajesChat");
-        relaciones.put(MiembroChatParser.class.toString(), "miembrosChat");
-        relaciones.put(ChatParser.class.toString(), "chats");
+        relaciones_directas.put(MensajeChatParser.class.toString(), "mensajesChat");
+        relaciones_directas.put(MiembroChatParser.class.toString(), "miembrosChat");
+       // relaciones_directas.put(ChatParser.class.toString(), "chats");
         
     }
 

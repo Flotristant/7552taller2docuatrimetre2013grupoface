@@ -10,7 +10,8 @@ public class GrupoParser extends Parser  {
 
 	public GrupoParser() {
 		super(GrupoTags.CLASS_TAG);
-		this.relaciones.put(GrupoParser.class.toString(), "grupos");
+		this.relaciones_directas.put(NotaParser.class.toString(), "notas");
+//		this.relaciones_directas.put(GrupoParser.class.toString(), "grupos");
 	}
 
 	@Override

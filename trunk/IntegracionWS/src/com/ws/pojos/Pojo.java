@@ -12,5 +12,7 @@ public abstract class Pojo {
 		this.id = id;
 	}
 	
+	//TODO: revisar las clases con listas de otras entidades adentro, hay que pasar las entidades de adentro a 
+	// objetos de BD también.
 	public abstract Object getDatabaseEntity();
 }

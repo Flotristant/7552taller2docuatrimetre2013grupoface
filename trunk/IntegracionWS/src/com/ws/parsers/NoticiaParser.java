@@ -8,7 +8,7 @@ public class NoticiaParser extends Parser {
 
 	public NoticiaParser() {
 		super(NoticiaTags.CLASS_TAG);
-		this.relaciones.put(NoticiaParser.class.toString(), "noticias");
+		this.relaciones_directas.put(NoticiaParser.class.toString(), "noticias");
 	}
 	
 	@Override

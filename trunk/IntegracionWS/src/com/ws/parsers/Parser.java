@@ -36,14 +36,16 @@ public abstract class Parser {
 
 	protected String classTag;
 
-	protected Map<String, String> relaciones;
+	protected Map<String, String> relaciones_directas;
+	
 
 	QueryBuilder queryBuilder;
 
 	public Parser(String classTag) {
 		this.classTag = classTag;
 		this.campos = new HashMap<String, String>();
-		relaciones = new HashMap<String, String>();
+		//directas: contiene una lista del otro en BD.
+		relaciones_directas = new HashMap<String, String>();
 	}
 	
 	
@@ -106,7 +108,6 @@ public abstract class Parser {
 	public Map<String, String> inicializarCampos(String xml) {
 		String xmlSinJoin = cleanJoinPart(xml);
 		Object obj = this.getEntidadNegocio(xmlSinJoin);
-		//Object obj = this.getDBObject(xmlSinJoin);
 		Field[] fields = obj.getClass().getDeclaredFields();
 		ArrayList<Field> fieldsList = new ArrayList<Field>();
 		for (Field field : fields) {
@@ -143,7 +144,7 @@ public abstract class Parser {
 		return this.campos;
 	}
 
-	public String cleanJoinPart(String xml) {
+	public static String cleanJoinPart(String xml) {
 		String substring = getJoinXML(xml);
 		if (substring.isEmpty()) {
 			return xml;
@@ -151,7 +152,7 @@ public abstract class Parser {
 		return xml.replace(substring, "");
 	}
 
-	private String getJoinXML(String xml) {
+	private static String getJoinXML(String xml) {
 		int first_index = xml.indexOf("<" + Parser.JOIN_TAG + ">");
 		String close_tag = "</" + Parser.JOIN_TAG + ">";
 		int last_index = xml.indexOf(close_tag);
@@ -181,18 +182,19 @@ public abstract class Parser {
 		return camposRelacion;
 	}
 
-	private String cleanJoinTags(String joinXML) {
+	public static String cleanJoinTags(String joinXML) {
 		joinXML = joinXML.replace("<join>", "");
 		joinXML = joinXML.replace("</join>", "");
 		return joinXML;
 	}
 
-	public String getNombreRelacion() {
-		return relaciones.get(this.getClass().toString());
+	public String getNombreRelacionDirecta(String nombreParserRelacion) {
+		return relaciones_directas.get(nombreParserRelacion);
+		//return relaciones_directas.get(this.getClass().toString());
 	}
 
 	public Object getRelationList() {
-		String nombre_relacion = this.getNombreRelacion();
+		//String nombre_relacion = this.getNombreRelacionDirecta();
 		// FIXME obtener la lista con el nombre de la relacion
 		return null;
 	}
@@ -252,4 +254,9 @@ public abstract class Parser {
 		Class<?> hClass = Class.forName(handlerName);
 		return (Parser) hClass.newInstance();
 	}
+	
+	public Boolean isRelacionDirecta(String nombreClaseCompletaParser) {
+		return this.relaciones_directas.containsKey(nombreClaseCompletaParser);
+	}
+	
 }

@@ -15,8 +15,9 @@ public class SubforoParser extends Parser{
 	
 	public SubforoParser() {
 		super(SubforoTags.CLASS_TAG);
-		this.relaciones = new HashMap<String, String>();
-		this.relaciones.put(SubforoParser.class.toString(), "subforos");
+		this.relaciones_directas = new HashMap<String, String>();
+		this.relaciones_directas.put(SubforoParser.class.toString(), "subforos");
+		this.relaciones_directas.put(TemaParser.class.toString(), "temas");
 	}
 	
 	@Override

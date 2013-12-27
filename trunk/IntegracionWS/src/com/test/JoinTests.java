@@ -88,11 +88,35 @@ public class JoinTests {
 
     @Test
     public void ChatJoinTest() {
-        String consulta_join = "<MensajeChat>" + "	<join><Chat>" + "			<id>7</id>" + "		</Chat></join>" + "</MensajeChat>";
+        String consulta_join = "<MensajeChat><join><Chat><id>25</id></Chat></join></MensajeChat>";
         MensajeChatParser parser = new MensajeChatParser();
         parser.inicializarCampos(consulta_join);
         Map<String, String> campos_query = parser.getJoinFields();
         System.out.println(campos_query);
+    }
+    
+    @Test
+    public void ChatJoinMensajesChatTest() {
+        String consulta_join = "<WS><Chat><join><MensajeChat><id>25</id></MensajeChat></join></Chat></WS>";
+    	IntegracionWS integracionWS = new IntegracionWS();
+    	String resultado = integracionWS.seleccionarDatos(consulta_join);
+    	System.out.println(resultado);
+    }
+    
+    @Test
+    public void UsuarioJoinActividadTest() {
+        String consulta_join = "<WS><Usuario><join><Actividad><id>25</id></Actividad></join></Usuario></WS>";
+    	IntegracionWS integracionWS = new IntegracionWS();
+    	String resultado = integracionWS.seleccionarDatos(consulta_join);
+    	System.out.println(resultado);
+    }
+    
+    @Test
+    public void UsuarioJoinActividad() {
+    	String consulta = "<WS><Actividad><join><Usuario><id>63</id></Usuario></join></Actividad></WS>";
+    	IntegracionWS integracionWS = new IntegracionWS();
+    	String resultado = integracionWS.seleccionarDatos(consulta);
+    	System.out.println(resultado);
     }
     
     @Test

@@ -9,7 +9,7 @@ public class EventoParser extends Parser {
 
 	public EventoParser() {
 		super(EventoTags.CLASS_TAG);
-		this.relaciones.put(EventoParser.class.toString(), "eventos");
+		this.relaciones_directas.put(EventoParser.class.toString(), "eventos");
 	}
 
 	@Override
