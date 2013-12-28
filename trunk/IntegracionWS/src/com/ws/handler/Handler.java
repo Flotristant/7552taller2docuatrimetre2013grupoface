@@ -111,23 +111,14 @@ public abstract class Handler {
 	private String queryToDatabase(String query) {
 		Long transactionId = IdGenerator.generateTransactionId();
         try {
+        	List<ReturnedObject> objects = null;
             port.beginTransaction(transactionId);
-            List<ReturnedObject> objects = null;
             objects = port.query(transactionId, query);
-            if (objects == null || objects.isEmpty()) {
-            	port.commit(transactionId);
-                return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
-            }
             port.commit(transactionId);
-            if (this.parser.esJoin()) {
-            	if(objects.isEmpty() || objects.size() > 1) {
-                    port.rollback(transactionId);// if not
-                    return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
-            	} else {
-            		return this.serializer.getXMLfromPojo(objects);
-            	}
+            if (objects == null || objects.isEmpty()) {
+                return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
             } else {
-                return this.serializer.getXMLfromPojo(objects);
+            	return this.serializer.getXMLfromPojo(objects);
             }
         } catch (ClientTransportException e) {
             port.rollback(transactionId);// if not

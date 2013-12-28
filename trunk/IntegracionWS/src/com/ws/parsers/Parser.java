@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -107,7 +108,7 @@ public abstract class Parser {
 
 	public Map<String, Object>  inicializarCampos(String xml) {
 		String xmlSinJoin = cleanJoinPart(xml);
-		Object obj = this.getEntidadNegocio(xmlSinJoin);
+		Object obj = this.getDBObjectFromBusinessXML(xmlSinJoin); //this.getEntidadNegocio(xmlSinJoin);
 		Field[] fields = obj.getClass().getDeclaredFields();
 		ArrayList<Field> fieldsList = new ArrayList<Field>();
 		for (Field field : fields) {
@@ -120,21 +121,32 @@ public abstract class Parser {
 			fieldsList.add(field);
 		}
 
-		Object ret;
+		Object ret=null;
 		String attribute;
-		try {
-			for (Field field : fieldsList) {
-				attribute = field.getName().substring(0, 1).toUpperCase()
-						+ field.getName().substring(1);
+		for (Field field : fieldsList) {
+			attribute = field.getName().substring(0, 1).toUpperCase()
+					+ field.getName().substring(1);
+			try {
 				Method method = obj.getClass().getMethod("get" + attribute);
 				ret = method.invoke(obj, null);
-				if (ret != null) {
-					attribute = field.getName();
-					this.campos.put(attribute, ret);
+			} catch (Exception e) {
+				try {
+					Method method = obj.getClass().getMethod("is" + attribute);
+					ret = method.invoke(obj, null);
+				}catch (Exception e2) {
+					e2.printStackTrace();
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+			if(ret instanceof List) {
+				List<?> list = (List<?>) ret;
+				if(list.isEmpty()) {
+					ret=null;
+				}
+			}
+			if (ret != null) {
+				attribute = field.getName();
+				this.campos.put(attribute, ret);
+			}
 		}
 		String joinXML = getJoinXML(xml);
 		if (!joinXML.isEmpty()) {

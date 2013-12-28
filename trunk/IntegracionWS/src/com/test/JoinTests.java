@@ -2,6 +2,8 @@ package com.test;
 
 import java.util.Map;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import ar.fiuba.redsocedu.datalayer.ws.Cartelera;
@@ -121,10 +123,16 @@ public class JoinTests {
     
     @Test
     public void UsuarioJoinActividadTest() {
-        String consulta_join = "<WS><Usuario><join><Actividad><id>25</id></Actividad></join></Usuario></WS>";
     	IntegracionWS integracionWS = new IntegracionWS();
+    	String usuarioAGuardar = "<WS><Usuario><actividades><Actividad><id>27</id><gruposExclusivos>false</gruposExclusivos></Actividad></actividades></Usuario></WS>";
+    	String response = integracionWS.guardarDatos(usuarioAGuardar);
+    	System.out.println(response);
+    	Assert.assertTrue(response.contains("exito"));
+    	
+        String consulta_join = "<WS><Usuario><join><Actividad><id>27</id></Actividad></join></Usuario></WS>";
     	String resultado = integracionWS.seleccionarDatos(consulta_join);
     	System.out.println(resultado);
+    	Assert.assertTrue(resultado.contains("exito"));
     }
     
     @Test
