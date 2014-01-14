@@ -7,20 +7,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for noticia complex type.
+ * <p>Java class for seccionArticulo complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="noticia">
+ * &lt;complexType name="seccionArticulo">
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="carteleraId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="articuloId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="noticiaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="seccionArticuloId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="titulo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="username" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -30,45 +29,43 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "noticia", propOrder = {
-    "carteleraId",
+@XmlType(name = "seccionArticulo", propOrder = {
+    "articuloId",
     "contenido",
-    "noticiaId",
-    "titulo",
-    "username"
+    "seccionArticuloId",
+    "titulo"
 })
-public class Noticia
+public class SeccionArticulo
     extends ReturnedObject
 {
 
-    protected Long carteleraId;
+    protected Long articuloId;
     protected String contenido;
-    protected Long noticiaId;
+    protected Long seccionArticuloId;
     protected String titulo;
-    protected String username;
 
     /**
-     * Gets the value of the carteleraId property.
+     * Gets the value of the articuloId property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getCarteleraId() {
-        return carteleraId;
+    public Long getArticuloId() {
+        return articuloId;
     }
 
     /**
-     * Sets the value of the carteleraId property.
+     * Sets the value of the articuloId property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setCarteleraId(Long value) {
-        this.carteleraId = value;
+    public void setArticuloId(Long value) {
+        this.articuloId = value;
     }
 
     /**
@@ -96,27 +93,27 @@ public class Noticia
     }
 
     /**
-     * Gets the value of the noticiaId property.
+     * Gets the value of the seccionArticuloId property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getNoticiaId() {
-        return noticiaId;
+    public Long getSeccionArticuloId() {
+        return seccionArticuloId;
     }
 
     /**
-     * Sets the value of the noticiaId property.
+     * Sets the value of the seccionArticuloId property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setNoticiaId(Long value) {
-        this.noticiaId = value;
+    public void setSeccionArticuloId(Long value) {
+        this.seccionArticuloId = value;
     }
 
     /**
@@ -141,30 +138,6 @@ public class Noticia
      */
     public void setTitulo(String value) {
         this.titulo = value;
-    }
-
-    /**
-     * Gets the value of the username property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * Sets the value of the username property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setUsername(String value) {
-        this.username = value;
     }
 
 }

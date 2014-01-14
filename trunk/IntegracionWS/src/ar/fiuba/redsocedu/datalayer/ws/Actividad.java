@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="fechaFin" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fechaInicio" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="grupos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}grupo" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="gruposExclusivo" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="gruposExclusivo" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="notas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}nota" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="tipo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -66,7 +66,7 @@ public class Actividad
     protected Long fechaInicio;
     @XmlElement(nillable = true)
     protected List<Grupo> grupos;
-    protected boolean gruposExclusivo;
+    protected Boolean gruposExclusivo;
     protected String nombre;
     @XmlElement(nillable = true)
     protected List<Nota> notas;
@@ -249,16 +249,24 @@ public class Actividad
     /**
      * Gets the value of the gruposExclusivo property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isGruposExclusivo() {
+    public Boolean isGruposExclusivo() {
         return gruposExclusivo;
     }
 
     /**
      * Sets the value of the gruposExclusivo property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setGruposExclusivo(boolean value) {
+    public void setGruposExclusivo(Boolean value) {
         this.gruposExclusivo = value;
     }
 

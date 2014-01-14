@@ -19,8 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="chats" type="{http://ws.datalayer.redsocedu.fiuba.ar/}chat" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="estado" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="mensajesChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}mensajeChat" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="miembroChatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -34,7 +33,6 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "miembroChat", propOrder = {
-    "chats",
     "estado",
     "mensajesChat",
     "miembroChatId",
@@ -44,56 +42,33 @@ public class MiembroChat
     extends ReturnedObject
 {
 
-    @XmlElement(nillable = true)
-    protected List<Chat> chats;
-    protected boolean estado;
+    protected Boolean estado;
     @XmlElement(nillable = true)
     protected List<MensajeChat> mensajesChat;
     protected Long miembroChatId;
     protected String nombre;
 
     /**
-     * Gets the value of the chats property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the chats property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getChats().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Chat }
-     * 
-     * 
-     */
-    public List<Chat> getChats() {
-        if (chats == null) {
-            chats = new ArrayList<Chat>();
-        }
-        return this.chats;
-    }
-
-    /**
      * Gets the value of the estado property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
      */
-    public boolean isEstado() {
+    public Boolean isEstado() {
         return estado;
     }
 
     /**
      * Sets the value of the estado property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
      */
-    public void setEstado(boolean value) {
+    public void setEstado(Boolean value) {
         this.estado = value;
     }
 

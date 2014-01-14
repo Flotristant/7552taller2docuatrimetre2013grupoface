@@ -10,19 +10,19 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for muro complex type.
+ * <p>Java class for wiki complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="muro">
+ * &lt;complexType name="wiki">
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
  *         &lt;element name="ambitoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="eventos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}evento" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="muroId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="articulos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}articulo" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="portada" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="wikiId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -32,21 +32,21 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "muro", propOrder = {
+@XmlType(name = "wiki", propOrder = {
     "ambitoId",
-    "eventos",
-    "muroId",
-    "nombre"
+    "articulos",
+    "portada",
+    "wikiId"
 })
-public class Muro
+public class Wiki
     extends ReturnedObject
 {
 
     protected Long ambitoId;
     @XmlElement(nillable = true)
-    protected List<Evento> eventos;
-    protected Long muroId;
-    protected String nombre;
+    protected List<Articulo> articulos;
+    protected String portada;
+    protected Long wikiId;
 
     /**
      * Gets the value of the ambitoId property.
@@ -73,80 +73,80 @@ public class Muro
     }
 
     /**
-     * Gets the value of the eventos property.
+     * Gets the value of the articulos property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the eventos property.
+     * This is why there is not a <CODE>set</CODE> method for the articulos property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getEventos().add(newItem);
+     *    getArticulos().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Evento }
+     * {@link Articulo }
      * 
      * 
      */
-    public List<Evento> getEventos() {
-        if (eventos == null) {
-            eventos = new ArrayList<Evento>();
+    public List<Articulo> getArticulos() {
+        if (articulos == null) {
+            articulos = new ArrayList<Articulo>();
         }
-        return this.eventos;
+        return this.articulos;
     }
 
     /**
-     * Gets the value of the muroId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getMuroId() {
-        return muroId;
-    }
-
-    /**
-     * Sets the value of the muroId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setMuroId(Long value) {
-        this.muroId = value;
-    }
-
-    /**
-     * Gets the value of the nombre property.
+     * Gets the value of the portada property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getNombre() {
-        return nombre;
+    public String getPortada() {
+        return portada;
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Sets the value of the portada property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setNombre(String value) {
-        this.nombre = value;
+    public void setPortada(String value) {
+        this.portada = value;
+    }
+
+    /**
+     * Gets the value of the wikiId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getWikiId() {
+        return wikiId;
+    }
+
+    /**
+     * Sets the value of the wikiId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setWikiId(Long value) {
+        this.wikiId = value;
     }
 
 }

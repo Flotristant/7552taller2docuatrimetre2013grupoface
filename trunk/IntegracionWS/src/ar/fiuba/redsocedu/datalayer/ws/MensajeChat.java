@@ -18,11 +18,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="chat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}chat" minOccurs="0"/>
  *         &lt;element name="chatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="mensajeChatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="miembroChat" type="{http://ws.datalayer.redsocedu.fiuba.ar/}miembroChat" minOccurs="0"/>
  *         &lt;element name="miembroChatId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *       &lt;/sequence>
@@ -35,11 +33,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "mensajeChat", propOrder = {
-    "chat",
     "chatId",
     "contenido",
     "mensajeChatId",
-    "miembroChat",
     "miembroChatId",
     "fecha"
 })
@@ -47,38 +43,12 @@ public class MensajeChat
     extends ReturnedObject
 {
 
-    protected Chat chat;
     protected Long chatId;
     protected String contenido;
     protected Long mensajeChatId;
-    protected MiembroChat miembroChat;
     protected Long miembroChatId;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fecha;
-
-    /**
-     * Gets the value of the chat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Chat }
-     *     
-     */
-    public Chat getChat() {
-        return chat;
-    }
-
-    /**
-     * Sets the value of the chat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Chat }
-     *     
-     */
-    public void setChat(Chat value) {
-        this.chat = value;
-    }
 
     /**
      * Gets the value of the chatId property.
@@ -150,30 +120,6 @@ public class MensajeChat
      */
     public void setMensajeChatId(Long value) {
         this.mensajeChatId = value;
-    }
-
-    /**
-     * Gets the value of the miembroChat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link MiembroChat }
-     *     
-     */
-    public MiembroChat getMiembroChat() {
-        return miembroChat;
-    }
-
-    /**
-     * Sets the value of the miembroChat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link MiembroChat }
-     *     
-     */
-    public void setMiembroChat(MiembroChat value) {
-        this.miembroChat = value;
     }
 
     /**
