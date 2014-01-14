@@ -12,9 +12,9 @@ public class ForoSerializer extends Serializer{
 	protected void setAttributeMappings(XStream xstream) {
 		xstream.alias(ForoTags.CLASS_TAG, Foro.class);
 		xstream.aliasField(ForoTags.ID_TAG, Foro.class, "id");
-		xstream.omitField(Foro.class, "idForo");
+		xstream.omitField(Foro.class, "foroId");
 		xstream.aliasField(ForoTags.NOMBRE_TAG, Foro.class, "nombre");
-		xstream.aliasField(ForoTags.ID_AMBITO_TAG, Foro.class, "idAmbito");
+		xstream.aliasField(ForoTags.ID_AMBITO_TAG, Foro.class, "ambitoId");
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 	}

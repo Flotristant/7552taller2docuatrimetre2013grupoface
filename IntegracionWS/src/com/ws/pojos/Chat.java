@@ -39,6 +39,7 @@ public class Chat extends Pojo {
 		this.idAmbito = idAmbito;
 	}
 	
+	@Override
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Chat chatDB = new ar.fiuba.redsocedu.datalayer.ws.Chat();
 		chatDB.setId(this.getId());

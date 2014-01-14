@@ -3,15 +3,12 @@ package com.ws.handler;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-
+import ar.fiuba.redsocedu.datalayer.ws.DataException;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
 import com.db.querys.QueryBuilder;
-import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.Parser;
@@ -54,18 +51,24 @@ public abstract class Handler {
     public String guardarDatos(String xml) {
         // this.parser.inicializarDocumento(doc);
         Long transactionId = IdGenerator.generateTransactionId();
-        Long idnuevo;
+        Long idnuevo = null;
+        Object obj = parser.getDBObjectFromBusinessXML(xml);
         try {
-        	Object obj = parser.getDBObjectFromBusinessXML(xml);
-            port.beginTransaction(transactionId);
-            idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
-            port.commit(transactionId);
-        } catch (ClientTransportException e) {
-            port.rollback(transactionId);
-            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+			port.beginTransaction(transactionId);
+			idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
+			port.commit(transactionId);
+        } catch (DataException e) {
+        	try{
+        		port.rollback(transactionId);
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        			
+        	}
+        	catch (DataException e1){
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	}
         }
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(idnuevo.toString()));
-    }
+     }
     
     private String resolveDirectJoin( Map<String, Object> campos, Handler handlerJoin) throws Exception {
     	String joinXML = getJoinXML(campos);
@@ -120,9 +123,15 @@ public abstract class Handler {
             } else {
             	return this.serializer.getXMLfromPojo(objects);
             }
-        } catch (ClientTransportException e) {
-            port.rollback(transactionId);// if not
+        } catch (DataException e) {
+           try{
+        	port.rollback(transactionId);// if not
+        	return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+            
+           }
+           catch(DataException e1){
             return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+           }
         }
 	}
 
@@ -180,9 +189,15 @@ public abstract class Handler {
             port.saveOrUpdate(transactionId, this.databaseEntityPath, pojoDB);
             port.commit(transactionId);
 
-        } catch (ClientTransportException e) {
-            port.rollback(transactionId);
-            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        } catch (DataException e) {
+            
+        	try{
+        		port.rollback(transactionId);
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	}
+        	catch(DataException e1){
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	}
         }
 
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
@@ -201,10 +216,16 @@ public abstract class Handler {
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             }
             port.commit(transactionId);
-        } catch (ClientTransportException e) {
-            port.rollback(transactionId);// if not
-            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        } catch (DataException e) {
+            try{
+	        	port.rollback(transactionId);// if not
+	            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+	         }
+            catch(DataException e1){
+            	return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+            }
         }
+            
         Long transactionId2 = IdGenerator.generateTransactionId();
         try {
             port.beginTransaction(transactionId2);
@@ -212,9 +233,14 @@ public abstract class Handler {
                 port.delete(transactionId2, this.databaseEntityPath, ro);
             }
             port.commit(transactionId2);// if ok
-        } catch (ClientTransportException e) {
-            port.rollback(transactionId2);// if not
-            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        } catch (DataException e) {
+            try{
+	        	port.rollback(transactionId2);// if not
+	            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+	        }
+            catch(DataException e1){
+            	 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+            }
         }
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
