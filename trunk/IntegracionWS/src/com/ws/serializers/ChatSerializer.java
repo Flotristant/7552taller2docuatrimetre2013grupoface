@@ -18,7 +18,7 @@ public class ChatSerializer extends Serializer {
 		xstream.alias(ChatTags.CLASS_TAG, Chat.class);
 		xstream.aliasField(ChatTags.ID_TAG, Chat.class, "id");
 		xstream.omitField(Chat.class, "chatId");
-		xstream.aliasField(ChatTags.ID_AMBITO_TAG, Chat.class, "idAmbito");
+		xstream.aliasField(ChatTags.ID_AMBITO_TAG, Chat.class, "ambitoId");
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		
 		// Siguiendo los lineamientos del PDF, al devolver el chat, no devolveriamos el listado

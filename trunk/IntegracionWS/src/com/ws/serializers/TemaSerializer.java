@@ -12,10 +12,13 @@ public class TemaSerializer extends Serializer {
 		xstream.alias(TemaTags.CLASS_TAG, Tema.class);
 		//Mapeos de los nombres de atributo
 		xstream.aliasField(TemaTags.ID_TAG, Tema.class, "id");
-		xstream.aliasField(TemaTags.AUTOR_TAG, Tema.class, "autor");
-		xstream.aliasField(TemaTags.FECHA_TAG, Tema.class, "fecha");
-		xstream.aliasField(TemaTags.STICKY_TAG, Tema.class, "esSticky");
-		xstream.aliasField(TemaTags.ID_SUBFORO_TAG, Tema.class, "idSubforo");
+		xstream.aliasField(TemaTags.AUTOR_TAG, Tema.class, "username");
+		
+		//TODO ver bien porque en bd no estan estos campos
+		//xstream.aliasField(TemaTags.FECHA_TAG, Tema.class, "fecha");
+		//xstream.aliasField(TemaTags.STICKY_TAG, Tema.class, "esSticky");
+		
+		xstream.aliasField(TemaTags.ID_SUBFORO_TAG, Tema.class, "subforoId");
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
 }

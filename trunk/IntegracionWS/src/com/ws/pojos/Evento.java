@@ -24,6 +24,7 @@ public class Evento extends Pojo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	@Override
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Evento eventoDB = new ar.fiuba.redsocedu.datalayer.ws.Evento();

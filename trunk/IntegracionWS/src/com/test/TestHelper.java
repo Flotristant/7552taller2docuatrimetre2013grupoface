@@ -1,15 +1,10 @@
 package com.test;
 
-import java.util.List;
 
+
+import ar.fiuba.redsocedu.datalayer.ws.DataException;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
-import ar.fiuba.redsocedu.datalayer.ws.MiembroChat;
-import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
-
-import com.db.querys.MiembroChatQueryBuilder;
-import com.db.querys.QueryBuilder;
-import com.sun.xml.internal.ws.client.ClientTransportException;
 import com.utils.IdGenerator;
 
 public class TestHelper {
@@ -23,9 +18,15 @@ public class TestHelper {
 			idnuevo = port.saveOrUpdate(transactionId, databaseEntityPath, obj);
 			port.commit(transactionId);
 			return idnuevo;
-		} catch (ClientTransportException e) {
-			port.rollback(transactionId);
-			return 0L;
+		} catch (DataException e) {
+			try{
+				port.rollback(transactionId);
+				return 0L;
+			}
+			catch(DataException e1)
+			{
+				return 0L;
+			}
 		}
 	}
 	
@@ -37,8 +38,13 @@ public class TestHelper {
 			Object obj = o;
 			port.delete(transactionId, databaseEntityPath, obj);
 			port.commit(transactionId);
-		} catch (ClientTransportException e) {
-			port.rollback(transactionId);
+		} catch (DataException e) {
+			try{
+				port.rollback(transactionId);
+			}
+			catch(DataException e1){
+				
+			}
 		}
 	}
 }

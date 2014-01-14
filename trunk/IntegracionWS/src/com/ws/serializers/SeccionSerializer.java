@@ -12,7 +12,7 @@ public class SeccionSerializer extends Serializer {
 		xstream.alias(SeccionTags.CLASS_TAG, Seccion.class);
 		xstream.omitField(Seccion.class, "seccionId");
 		xstream.aliasField(SeccionTags.ID_TAG, Seccion.class, "id");
-		xstream.aliasField(SeccionTags.ID_FORO_TAG, Seccion.class, "idForo");
+		xstream.aliasField(SeccionTags.ID_FORO_TAG, Seccion.class, "foroId");
 		xstream.aliasField(SeccionTags.NOMBRE_TAG, Seccion.class, "nombre");
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 
