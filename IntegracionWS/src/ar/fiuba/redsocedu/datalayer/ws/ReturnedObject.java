@@ -31,25 +31,37 @@ import javax.xml.bind.annotation.XmlType;
     "id"
 })
 @XmlSeeAlso({
-    MensajeChat.class,
+    SeccionArticulo.class,
     Noticia.class,
+    MensajeChat.class,
     Nota.class,
+    Celda.class,
+    Campo.class,
+    Encuesta.class,
     Usuario.class,
     Actividad.class,
+    Link.class,
     Evento.class,
     Chat.class,
     Seccion.class,
     Alumno.class,
+    Fila.class,
     Muro.class,
+    Wiki.class,
+    Recurso.class,
     Subforo.class,
+    EncuestaRespondida.class,
     Grupo.class,
+    Articulo.class,
     Cartelera.class,
     Foro.class,
     Tema.class,
     Mensaje.class,
     MiembroChat.class,
     Ambito.class,
-    Curso.class
+    Tabla.class,
+    Curso.class,
+    Archivo.class
 })
 public class ReturnedObject {
 

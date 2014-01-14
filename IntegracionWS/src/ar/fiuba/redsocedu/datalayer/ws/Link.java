@@ -7,18 +7,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for alumno complex type.
+ * <p>Java class for link complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="alumno">
+ * &lt;complexType name="link">
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="alumnoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="padron" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="recursoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -28,42 +27,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "alumno", propOrder = {
-    "alumnoId",
+@XmlType(name = "link", propOrder = {
     "nombre",
-    "padron"
+    "recursoId"
 })
-public class Alumno
+public class Link
     extends ReturnedObject
 {
 
-    protected Long alumnoId;
     protected String nombre;
-    protected int padron;
-
-    /**
-     * Gets the value of the alumnoId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getAlumnoId() {
-        return alumnoId;
-    }
-
-    /**
-     * Sets the value of the alumnoId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setAlumnoId(Long value) {
-        this.alumnoId = value;
-    }
+    protected Long recursoId;
 
     /**
      * Gets the value of the nombre property.
@@ -90,19 +63,27 @@ public class Alumno
     }
 
     /**
-     * Gets the value of the padron property.
+     * Gets the value of the recursoId property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public int getPadron() {
-        return padron;
+    public Long getRecursoId() {
+        return recursoId;
     }
 
     /**
-     * Sets the value of the padron property.
+     * Sets the value of the recursoId property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setPadron(int value) {
-        this.padron = value;
+    public void setRecursoId(Long value) {
+        this.recursoId = value;
     }
 
 }

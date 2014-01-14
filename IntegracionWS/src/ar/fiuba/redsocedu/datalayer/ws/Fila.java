@@ -10,18 +10,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for curso complex type.
+ * <p>Java class for fila complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="curso">
+ * &lt;complexType name="fila">
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
- *         &lt;element name="alumnos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}alumno" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="cursoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="celdas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}celda" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="filaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="tablaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -31,95 +31,95 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "curso", propOrder = {
-    "alumnos",
-    "cursoId",
-    "nombre"
+@XmlType(name = "fila", propOrder = {
+    "celdas",
+    "filaId",
+    "tablaId"
 })
-public class Curso
+public class Fila
     extends ReturnedObject
 {
 
     @XmlElement(nillable = true)
-    protected List<Alumno> alumnos;
-    protected Long cursoId;
-    protected String nombre;
+    protected List<Celda> celdas;
+    protected Long filaId;
+    protected Long tablaId;
 
     /**
-     * Gets the value of the alumnos property.
+     * Gets the value of the celdas property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the alumnos property.
+     * This is why there is not a <CODE>set</CODE> method for the celdas property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getAlumnos().add(newItem);
+     *    getCeldas().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Alumno }
+     * {@link Celda }
      * 
      * 
      */
-    public List<Alumno> getAlumnos() {
-        if (alumnos == null) {
-            alumnos = new ArrayList<Alumno>();
+    public List<Celda> getCeldas() {
+        if (celdas == null) {
+            celdas = new ArrayList<Celda>();
         }
-        return this.alumnos;
+        return this.celdas;
     }
 
     /**
-     * Gets the value of the cursoId property.
+     * Gets the value of the filaId property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getCursoId() {
-        return cursoId;
+    public Long getFilaId() {
+        return filaId;
     }
 
     /**
-     * Sets the value of the cursoId property.
+     * Sets the value of the filaId property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setCursoId(Long value) {
-        this.cursoId = value;
+    public void setFilaId(Long value) {
+        this.filaId = value;
     }
 
     /**
-     * Gets the value of the nombre property.
+     * Gets the value of the tablaId property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Long }
      *     
      */
-    public String getNombre() {
-        return nombre;
+    public Long getTablaId() {
+        return tablaId;
     }
 
     /**
-     * Sets the value of the nombre property.
+     * Sets the value of the tablaId property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Long }
      *     
      */
-    public void setNombre(String value) {
-        this.nombre = value;
+    public void setTablaId(Long value) {
+        this.tablaId = value;
     }
 
 }

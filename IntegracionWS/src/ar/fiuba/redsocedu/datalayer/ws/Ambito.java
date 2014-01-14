@@ -19,11 +19,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
+ *         &lt;element name="actividades" type="{http://ws.datalayer.redsocedu.fiuba.ar/}actividad" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="ambitoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="carteleras" type="{http://ws.datalayer.redsocedu.fiuba.ar/}cartelera" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="chats" type="{http://ws.datalayer.redsocedu.fiuba.ar/}chat" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="foros" type="{http://ws.datalayer.redsocedu.fiuba.ar/}foro" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="muros" type="{http://ws.datalayer.redsocedu.fiuba.ar/}muro" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="recursos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}recurso" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="wikis" type="{http://ws.datalayer.redsocedu.fiuba.ar/}wiki" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -34,16 +37,21 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ambito", propOrder = {
+    "actividades",
     "ambitoId",
     "carteleras",
     "chats",
     "foros",
-    "muros"
+    "muros",
+    "recursos",
+    "wikis"
 })
 public class Ambito
     extends ReturnedObject
 {
 
+    @XmlElement(nillable = true)
+    protected List<Actividad> actividades;
     protected Long ambitoId;
     @XmlElement(nillable = true)
     protected List<Cartelera> carteleras;
@@ -53,6 +61,39 @@ public class Ambito
     protected List<Foro> foros;
     @XmlElement(nillable = true)
     protected List<Muro> muros;
+    @XmlElement(nillable = true)
+    protected List<Recurso> recursos;
+    @XmlElement(nillable = true)
+    protected List<Wiki> wikis;
+
+    /**
+     * Gets the value of the actividades property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the actividades property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getActividades().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Actividad }
+     * 
+     * 
+     */
+    public List<Actividad> getActividades() {
+        if (actividades == null) {
+            actividades = new ArrayList<Actividad>();
+        }
+        return this.actividades;
+    }
 
     /**
      * Gets the value of the ambitoId property.
@@ -192,6 +233,64 @@ public class Ambito
             muros = new ArrayList<Muro>();
         }
         return this.muros;
+    }
+
+    /**
+     * Gets the value of the recursos property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the recursos property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getRecursos().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Recurso }
+     * 
+     * 
+     */
+    public List<Recurso> getRecursos() {
+        if (recursos == null) {
+            recursos = new ArrayList<Recurso>();
+        }
+        return this.recursos;
+    }
+
+    /**
+     * Gets the value of the wikis property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the wikis property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getWikis().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Wiki }
+     * 
+     * 
+     */
+    public List<Wiki> getWikis() {
+        if (wikis == null) {
+            wikis = new ArrayList<Wiki>();
+        }
+        return this.wikis;
     }
 
 }
