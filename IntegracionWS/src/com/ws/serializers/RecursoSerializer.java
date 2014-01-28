@@ -14,7 +14,9 @@ public class RecursoSerializer extends Serializer{
 		xstream.omitField(Recurso.class, "recursoId");
 		xstream.aliasField(RecursoTags.ID_TAG,Recurso.class,"id");
 		xstream.aliasField(RecursoTags.DESCRIPCION_TAG,Recurso.class,"descripcion");
-		xstream.aliasField(RecursoTags.ID_AMBIENTE_TAG,Recurso.class,"ambitoId");
+		xstream.aliasField(RecursoTags.ID_AMBITO_TAG,Recurso.class,"ambitoId");
+		xstream.aliasField(RecursoTags.TIPO_TAG,Recurso.class,"tipo");
+		
 		xstream.omitField(Recurso.class, "recursoId");
 		
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");

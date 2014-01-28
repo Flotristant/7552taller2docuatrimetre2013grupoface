@@ -7,6 +7,6 @@ public class ArchivoMetadataTags {
 	public static String NOMBRE_TAG = "nombre";
 	public static String TAMANIO_TAG = "tamanio";
 	public static String TIPO_TAG = "tipo";
-	public static String ID_RECURSO_TAG = "idRecurso";
+	public static String ID_RECURSO_TAG = "recursoId";
 
 }

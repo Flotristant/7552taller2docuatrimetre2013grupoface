@@ -2,6 +2,9 @@ package com.ws.services;
 
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.List;
+
+import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
 import com.ws.handler.ArchivoHandler;
 import com.ws.handler.Handler;
@@ -83,7 +86,7 @@ public class IntegracionWS {
 		
 			try {
 				ArchivoHandler hand = new ArchivoHandler();
-				return hand.guardarDatos(xml, archivo);
+				return hand.guardarArchivo(xml, archivo);
 			} catch (Exception e) {
 				return e.getMessage() + "XML: " + xml;
 			} 
@@ -112,12 +115,30 @@ public class IntegracionWS {
 		}else{
 			try {
 				ArchivoHandler hand = new ArchivoHandler();
-				return hand.actualizarDatos(xml, archivo);
+				return hand.actualizarArchivo(xml, archivo);
 			} catch (Exception e) {
 				return e.getMessage() + "XML: " + xml;
 			}    
 		}
 			
+	}
+	
+	
+	public List<ReturnedObject> seleccionarArchivo(String xml) {
+		
+		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
+			//prueba se ivocacion al web service eliminar archivo    
+			     return null;
+		}else{
+			try {
+				ArchivoHandler hand = new ArchivoHandler();
+				return hand.seleccionarArchivo(xml);
+			} catch (Exception e) {
+				return null;
+			}    
+		}
+	
+	
 	}
 		
 }
