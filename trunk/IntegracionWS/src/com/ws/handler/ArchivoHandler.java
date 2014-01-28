@@ -1,6 +1,7 @@
 package com.ws.handler;
 
 import java.util.List;
+import java.util.Map;
 
 import ar.fiuba.redsocedu.datalayer.ws.DataException;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
@@ -31,7 +32,7 @@ public class ArchivoHandler extends Handler {
 	}
 	
 	
-	public String guardarDatos(String xml, byte[] datos){
+	public String guardarArchivo(String xml, byte[] datos){
 		 Long transactionId = IdGenerator.generateTransactionId();
 	     Long idnuevo = null;
 	     Object obj = this.parserArchivo.getDBArchivoObjectFromBusinessXML(xml, datos);
@@ -53,7 +54,7 @@ public class ArchivoHandler extends Handler {
      return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.ExitoGuardado(idnuevo.toString()));
     }
 	
-	public String actualizarDatos(String xml, byte[] datos){
+	public String actualizarArchivo(String xml, byte[] datos){
 		this.parser.inicializarCampos(xml);
 	    Long transactionId = IdGenerator.generateTransactionId();
         try {
@@ -93,6 +94,42 @@ public class ArchivoHandler extends Handler {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
   
 	
+	}
+	
+	
+	public List<ReturnedObject> seleccionarArchivo(String xml){
+		
+		Map<String, Object> campos = this.parser.inicializarCampos(xml);
+		
+		Long transactionId = IdGenerator.generateTransactionId();
+        String query = this.queryBuilder.getAllByAttributes(campos);
+        
+        try {
+        	port.beginTransaction(transactionId);
+        	List<ReturnedObject> objects = null; 
+        	objects = port.query(transactionId, query);
+        	
+        	if(objects == null || objects.isEmpty()) {
+        		
+        		return null;
+        	}
+        	
+        	port.commit(transactionId);
+		
+        	return objects;
+        }
+        catch (DataException e ) {
+        	
+        	try{
+        		port.rollback(transactionId);//if not
+        		return null;
+        	}
+        	catch(DataException e1){
+				return null;
+			}
+		}
+		
+		
 	}
 	
 

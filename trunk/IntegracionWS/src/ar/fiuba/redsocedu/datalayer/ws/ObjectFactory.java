@@ -78,11 +78,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Query }
+     * Create an instance of {@link DataExceptionBean }
      * 
      */
-    public Query createQuery() {
-        return new Query();
+    public DataExceptionBean createDataExceptionBean() {
+        return new DataExceptionBean();
+    }
+
+    /**
+     * Create an instance of {@link Delete }
+     * 
+     */
+    public Delete createDelete() {
+        return new Delete();
     }
 
     /**
@@ -94,11 +102,91 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Fila }
+     * Create an instance of {@link Mensaje }
      * 
      */
-    public Fila createFila() {
-        return new Fila();
+    public Mensaje createMensaje() {
+        return new Mensaje();
+    }
+
+    /**
+     * Create an instance of {@link SaveOrUpdate }
+     * 
+     */
+    public SaveOrUpdate createSaveOrUpdate() {
+        return new SaveOrUpdate();
+    }
+
+    /**
+     * Create an instance of {@link MensajeChat }
+     * 
+     */
+    public MensajeChat createMensajeChat() {
+        return new MensajeChat();
+    }
+
+    /**
+     * Create an instance of {@link Archivo }
+     * 
+     */
+    public Archivo createArchivo() {
+        return new Archivo();
+    }
+
+    /**
+     * Create an instance of {@link BeginTransactionResponse }
+     * 
+     */
+    public BeginTransactionResponse createBeginTransactionResponse() {
+        return new BeginTransactionResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeleteResponse }
+     * 
+     */
+    public DeleteResponse createDeleteResponse() {
+        return new DeleteResponse();
+    }
+
+    /**
+     * Create an instance of {@link EncuestaRespondida }
+     * 
+     */
+    public EncuestaRespondida createEncuestaRespondida() {
+        return new EncuestaRespondida();
+    }
+
+    /**
+     * Create an instance of {@link Evento }
+     * 
+     */
+    public Evento createEvento() {
+        return new Evento();
+    }
+
+    /**
+     * Create an instance of {@link Grupo }
+     * 
+     */
+    public Grupo createGrupo() {
+        return new Grupo();
+    }
+
+    /**
+     * Create an instance of {@link Wiki }
+     * 
+     */
+    public Wiki createWiki() {
+        return new Wiki();
+    }
+
+    /**
+     * Create an instance of {@link BeginTransaction }
+     * 
+     */
+    public BeginTransaction createBeginTransaction() {
+        return new BeginTransaction();
     }
 
     /**
@@ -110,6 +198,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Chat }
+     * 
+     */
+    public Chat createChat() {
+        return new Chat();
+    }
+
+    /**
      * Create an instance of {@link Foro }
      * 
      */
@@ -118,11 +214,195 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Ambito }
+     * 
+     */
+    public Ambito createAmbito() {
+        return new Ambito();
+    }
+
+    /**
+     * Create an instance of {@link Usuario }
+     * 
+     */
+    public Usuario createUsuario() {
+        return new Usuario();
+    }
+
+    /**
+     * Create an instance of {@link Encuesta }
+     * 
+     */
+    public Encuesta createEncuesta() {
+        return new Encuesta();
+    }
+
+    /**
+     * Create an instance of {@link QueryResponse }
+     * 
+     */
+    public QueryResponse createQueryResponse() {
+        return new QueryResponse();
+    }
+
+    /**
+     * Create an instance of {@link Campo }
+     * 
+     */
+    public Campo createCampo() {
+        return new Campo();
+    }
+
+    /**
+     * Create an instance of {@link RollbackResponse }
+     * 
+     */
+    public RollbackResponse createRollbackResponse() {
+        return new RollbackResponse();
+    }
+
+    /**
+     * Create an instance of {@link Fila }
+     * 
+     */
+    public Fila createFila() {
+        return new Fila();
+    }
+
+    /**
+     * Create an instance of {@link MiembroChat }
+     * 
+     */
+    public MiembroChat createMiembroChat() {
+        return new MiembroChat();
+    }
+
+    /**
+     * Create an instance of {@link Alumno }
+     * 
+     */
+    public Alumno createAlumno() {
+        return new Alumno();
+    }
+
+    /**
+     * Create an instance of {@link Query }
+     * 
+     */
+    public Query createQuery() {
+        return new Query();
+    }
+
+    /**
+     * Create an instance of {@link SeccionArticulo }
+     * 
+     */
+    public SeccionArticulo createSeccionArticulo() {
+        return new SeccionArticulo();
+    }
+
+    /**
+     * Create an instance of {@link CommitResponse }
+     * 
+     */
+    public CommitResponse createCommitResponse() {
+        return new CommitResponse();
+    }
+
+    /**
+     * Create an instance of {@link Seccion }
+     * 
+     */
+    public Seccion createSeccion() {
+        return new Seccion();
+    }
+
+    /**
+     * Create an instance of {@link Link }
+     * 
+     */
+    public Link createLink() {
+        return new Link();
+    }
+
+    /**
+     * Create an instance of {@link Tema }
+     * 
+     */
+    public Tema createTema() {
+        return new Tema();
+    }
+
+    /**
+     * Create an instance of {@link Articulo }
+     * 
+     */
+    public Articulo createArticulo() {
+        return new Articulo();
+    }
+
+    /**
+     * Create an instance of {@link Muro }
+     * 
+     */
+    public Muro createMuro() {
+        return new Muro();
+    }
+
+    /**
+     * Create an instance of {@link Cartelera }
+     * 
+     */
+    public Cartelera createCartelera() {
+        return new Cartelera();
+    }
+
+    /**
+     * Create an instance of {@link Rollback }
+     * 
+     */
+    public Rollback createRollback() {
+        return new Rollback();
+    }
+
+    /**
+     * Create an instance of {@link Subforo }
+     * 
+     */
+    public Subforo createSubforo() {
+        return new Subforo();
+    }
+
+    /**
      * Create an instance of {@link Noticia }
      * 
      */
     public Noticia createNoticia() {
         return new Noticia();
+    }
+
+    /**
+     * Create an instance of {@link Nota }
+     * 
+     */
+    public Nota createNota() {
+        return new Nota();
+    }
+
+    /**
+     * Create an instance of {@link ReturnedObject }
+     * 
+     */
+    public ReturnedObject createReturnedObject() {
+        return new ReturnedObject();
+    }
+
+    /**
+     * Create an instance of {@link Actividad }
+     * 
+     */
+    public Actividad createActividad() {
+        return new Actividad();
     }
 
     /**
@@ -142,222 +422,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Subforo }
-     * 
-     */
-    public Subforo createSubforo() {
-        return new Subforo();
-    }
-
-    /**
-     * Create an instance of {@link Rollback }
-     * 
-     */
-    public Rollback createRollback() {
-        return new Rollback();
-    }
-
-    /**
-     * Create an instance of {@link EncuestaRespondida }
-     * 
-     */
-    public EncuestaRespondida createEncuestaRespondida() {
-        return new EncuestaRespondida();
-    }
-
-    /**
-     * Create an instance of {@link Archivo }
-     * 
-     */
-    public Archivo createArchivo() {
-        return new Archivo();
-    }
-
-    /**
-     * Create an instance of {@link Muro }
-     * 
-     */
-    public Muro createMuro() {
-        return new Muro();
-    }
-
-    /**
-     * Create an instance of {@link Alumno }
-     * 
-     */
-    public Alumno createAlumno() {
-        return new Alumno();
-    }
-
-    /**
-     * Create an instance of {@link Tema }
-     * 
-     */
-    public Tema createTema() {
-        return new Tema();
-    }
-
-    /**
-     * Create an instance of {@link Evento }
-     * 
-     */
-    public Evento createEvento() {
-        return new Evento();
-    }
-
-    /**
-     * Create an instance of {@link Cartelera }
-     * 
-     */
-    public Cartelera createCartelera() {
-        return new Cartelera();
-    }
-
-    /**
-     * Create an instance of {@link CommitResponse }
-     * 
-     */
-    public CommitResponse createCommitResponse() {
-        return new CommitResponse();
-    }
-
-    /**
-     * Create an instance of {@link Encuesta }
-     * 
-     */
-    public Encuesta createEncuesta() {
-        return new Encuesta();
-    }
-
-    /**
-     * Create an instance of {@link Campo }
-     * 
-     */
-    public Campo createCampo() {
-        return new Campo();
-    }
-
-    /**
-     * Create an instance of {@link SaveOrUpdate }
-     * 
-     */
-    public SaveOrUpdate createSaveOrUpdate() {
-        return new SaveOrUpdate();
-    }
-
-    /**
-     * Create an instance of {@link Celda }
-     * 
-     */
-    public Celda createCelda() {
-        return new Celda();
-    }
-
-    /**
-     * Create an instance of {@link BeginTransaction }
-     * 
-     */
-    public BeginTransaction createBeginTransaction() {
-        return new BeginTransaction();
-    }
-
-    /**
-     * Create an instance of {@link RollbackResponse }
-     * 
-     */
-    public RollbackResponse createRollbackResponse() {
-        return new RollbackResponse();
-    }
-
-    /**
-     * Create an instance of {@link Mensaje }
-     * 
-     */
-    public Mensaje createMensaje() {
-        return new Mensaje();
-    }
-
-    /**
-     * Create an instance of {@link Seccion }
-     * 
-     */
-    public Seccion createSeccion() {
-        return new Seccion();
-    }
-
-    /**
-     * Create an instance of {@link Usuario }
-     * 
-     */
-    public Usuario createUsuario() {
-        return new Usuario();
-    }
-
-    /**
-     * Create an instance of {@link MiembroChat }
-     * 
-     */
-    public MiembroChat createMiembroChat() {
-        return new MiembroChat();
-    }
-
-    /**
-     * Create an instance of {@link Chat }
-     * 
-     */
-    public Chat createChat() {
-        return new Chat();
-    }
-
-    /**
-     * Create an instance of {@link Actividad }
-     * 
-     */
-    public Actividad createActividad() {
-        return new Actividad();
-    }
-
-    /**
-     * Create an instance of {@link QueryResponse }
-     * 
-     */
-    public QueryResponse createQueryResponse() {
-        return new QueryResponse();
-    }
-
-    /**
-     * Create an instance of {@link Grupo }
-     * 
-     */
-    public Grupo createGrupo() {
-        return new Grupo();
-    }
-
-    /**
-     * Create an instance of {@link Delete }
-     * 
-     */
-    public Delete createDelete() {
-        return new Delete();
-    }
-
-    /**
-     * Create an instance of {@link Articulo }
-     * 
-     */
-    public Articulo createArticulo() {
-        return new Articulo();
-    }
-
-    /**
-     * Create an instance of {@link Link }
-     * 
-     */
-    public Link createLink() {
-        return new Link();
-    }
-
-    /**
      * Create an instance of {@link Recurso }
      * 
      */
@@ -366,75 +430,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SeccionArticulo }
+     * Create an instance of {@link Celda }
      * 
      */
-    public SeccionArticulo createSeccionArticulo() {
-        return new SeccionArticulo();
-    }
-
-    /**
-     * Create an instance of {@link MensajeChat }
-     * 
-     */
-    public MensajeChat createMensajeChat() {
-        return new MensajeChat();
-    }
-
-    /**
-     * Create an instance of {@link DeleteResponse }
-     * 
-     */
-    public DeleteResponse createDeleteResponse() {
-        return new DeleteResponse();
-    }
-
-    /**
-     * Create an instance of {@link DataExceptionBean }
-     * 
-     */
-    public DataExceptionBean createDataExceptionBean() {
-        return new DataExceptionBean();
-    }
-
-    /**
-     * Create an instance of {@link BeginTransactionResponse }
-     * 
-     */
-    public BeginTransactionResponse createBeginTransactionResponse() {
-        return new BeginTransactionResponse();
-    }
-
-    /**
-     * Create an instance of {@link ReturnedObject }
-     * 
-     */
-    public ReturnedObject createReturnedObject() {
-        return new ReturnedObject();
-    }
-
-    /**
-     * Create an instance of {@link Ambito }
-     * 
-     */
-    public Ambito createAmbito() {
-        return new Ambito();
-    }
-
-    /**
-     * Create an instance of {@link Nota }
-     * 
-     */
-    public Nota createNota() {
-        return new Nota();
-    }
-
-    /**
-     * Create an instance of {@link Wiki }
-     * 
-     */
-    public Wiki createWiki() {
-        return new Wiki();
+    public Celda createCelda() {
+        return new Celda();
     }
 
     /**

@@ -2,24 +2,33 @@ package com.ws.pojos;
 
 public class Recurso extends Pojo{
 	
-	Long idAmbiente;
-	Long idRecurso;
+	Long ambitoId;
+	Long recursoId;
 	String descripcion;
+	String tipo;
 
-	public Long getIdAmbiente() {
-		return idAmbiente;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setIdAmbiente(Long idAmbiente) {
-		this.idAmbiente = idAmbiente;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
-	public Long getIdRecurso() {
-		return idRecurso;
+	public Long getAmbitoId() {
+		return ambitoId;
 	}
 
-	public void setIdRecurso(Long idRecurso) {
-		this.idRecurso = idRecurso;
+	public void setAmbitoId(Long ambitoId) {
+		this.ambitoId = ambitoId;
+	}
+
+	public Long getRecursoId() {
+		return recursoId;
+	}
+
+	public void setRecursoId(Long idRecurso) {
+		this.recursoId = idRecurso;
 	}
 
 	public String getDescripcion() {
@@ -29,16 +38,18 @@ public class Recurso extends Pojo{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	@Override
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Recurso recursoDB = new ar.fiuba.redsocedu.datalayer.ws.Recurso();
-		recursoDB.setAmbitoId(this.getIdAmbiente());
-		recursoDB.setRecursoId(this.getIdRecurso());
+		recursoDB.setAmbitoId(this.getAmbitoId());
+		recursoDB.setRecursoId(this.getRecursoId());
 		recursoDB.setId(this.getId());
 		recursoDB.setDescripcion(this.getDescripcion());
+		recursoDB.setTipo(this.getTipo());
 		
 		return recursoDB;
 	}
+	
 
 }
