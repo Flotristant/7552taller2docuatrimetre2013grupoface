@@ -1,6 +1,16 @@
 package com.test;
 
-import java.util.List;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
+
+import javax.xml.datatype.Duration;
+import javax.xml.datatype.XMLGregorianCalendar;
+import javax.xml.namespace.QName;
 
 import junit.framework.Assert;
 
@@ -11,15 +21,16 @@ import org.junit.Test;
 import ar.fiuba.redsocedu.datalayer.ws.Chat;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
+import ar.fiuba.redsocedu.datalayer.ws.MensajeChat;
 import ar.fiuba.redsocedu.datalayer.ws.MiembroChat;
 
+import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.ws.services.IntegracionWS;
 
 public class TestIntegracionChat {
 	private IntegracionWS integracionWS;
 	
 	private Chat chat;
-	private List<MiembroChat> miembrosChat;
 
 	DataService service;
 	IData port;
@@ -35,16 +46,17 @@ public class TestIntegracionChat {
     @After 
     public void tearDown() throws Exception {
     	if(chat != null ) {
-//    		TestHelper.borrarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
+    		TestHelper.borrarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
     	}
     }
     
     @Test
     public void chatNoCreadoConMiembrosNoCreados() {
+    	Long randomName = System.currentTimeMillis();
     	String consulta = "<?xml version=\"1.0\"?><WS><Chat>" +
     			"<miembrosChat>" +
     			"<MiembroChat>" +
-				"<nombre>"+ "LALA" + "</nombre>" +
+				"<nombre>"+ "LALA" + randomName.toString()+ "</nombre>" +
     			"</MiembroChat>" +
     			"</miembrosChat></Chat></WS>";
     	
@@ -55,6 +67,7 @@ public class TestIntegracionChat {
     
     @Test
     public void chatCreadoConMiembrosNoCreados() {
+    	Long randomName = System.currentTimeMillis();
       this.chat = new Chat();
       Long id_chat = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
       this.chat.setId(id_chat);
@@ -62,7 +75,7 @@ public class TestIntegracionChat {
     			"<id>" + id_chat + "</id>" + 
     			"<miembrosChat>" +
     			"<MiembroChat>" +
-				"<nombre>"+ "LALA" + "</nombre>" +
+				"<nombre>"+ "LALA" + randomName.toString()+ "</nombre>" +
     			"</MiembroChat>" +
     			"</miembrosChat></Chat></WS>";
     	
@@ -91,7 +104,7 @@ public class TestIntegracionChat {
 				"<miembrosChat>" +
 				"<MiembroChat>" +
 				"<nombre>"+ miembroChat.getNombre() + "</nombre>" +
-//				"<estado>"+ miembroChat.isEstado() + "</estado>" +
+				"<estado>"+ miembroChat.isEstado() + "</estado>" +
 				"<id>"+ miembroChat.getId() + "</id>" +
 				"</MiembroChat>" +
 				"</miembrosChat></Chat></WS>";
@@ -99,6 +112,51 @@ public class TestIntegracionChat {
 		String rdo = integracionWS.actualizarDatos(consulta);
 		System.err.println(rdo);
 		Assert.assertTrue(rdo.contains("exito"));
-   }    
-
+   }   
+    
+    @Test
+    public void chatCreadoConMiembrosYMensajesCreados() {
+    	this.chat = new Chat();
+	  	Long id_chat = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
+	  	this.chat.setId(id_chat);
+	  
+	  	MiembroChat miembroChat = new MiembroChat();
+	  	miembroChat.setNombre("MiembrosCreados");
+	  	Long id_miembro = TestHelper.guardarDatos(miembroChat, "ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", service, port);
+	  	miembroChat.setId(id_miembro);
+	  	
+	  	MensajeChat mensaje = new MensajeChat();
+	  	mensaje.setChatId(id_chat);
+	  	mensaje.setContenido("HELLOO WOORLD!");
+	  	mensaje.setFecha(XMLGregorianCalendarImpl.createDate(2014, 02, 1, 0));
+	  	mensaje.setMiembroChatId(id_miembro);
+	  	Long id_mensaje = TestHelper.guardarDatos(mensaje, "ar.fiuba.redsocedu.datalayer.dtos.MensajeChat", service, port);
+	  	mensaje.setId(id_mensaje);
+      
+	  	Date fecha = new Date();
+	  	SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/mm/yyyy");
+	  	String fecha_mensaje = simpleFormat.format(fecha);
+	  	
+		String consulta = "<?xml version=\"1.0\"?><WS><Chat>" +
+				"<id>" + id_chat + "</id>" + 
+				"<miembrosChat>" +
+				"<MiembroChat>" +
+				"<nombre>"+ miembroChat.getNombre() + "</nombre>" +
+				"<estado>"+ miembroChat.isEstado() + "</estado>" +
+				"<id>"+ miembroChat.getId() + "</id>" +
+				"</MiembroChat>" +
+				"</miembrosChat>" +
+				"<mensajesChat>"+
+				"<MensajeChat>" +
+				"<id>"+ mensaje.getId()+ "</id>" +
+				"<contenido>"+mensaje.getContenido()+ "</contenido>" +
+				"<fecha>"+ fecha_mensaje+"</fecha>" +
+				"</MensajeChat>" +
+				"</mensajesChat>"+
+				"</Chat></WS>";
+		
+		String rdo = integracionWS.actualizarDatos(consulta);
+		System.err.println(rdo);
+		Assert.assertTrue(rdo.contains("exito"));
+   }  
 }

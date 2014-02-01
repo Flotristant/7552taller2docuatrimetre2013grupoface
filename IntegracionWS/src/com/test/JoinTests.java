@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import ar.fiuba.redsocedu.datalayer.ws.Cartelera;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
+import ar.fiuba.redsocedu.datalayer.ws.DataServiceStub.Muro;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.Noticia;
 
@@ -145,10 +146,18 @@ public class JoinTests {
     
     @Test
     public void SubforoSeccionJoinTest() {
-    	 String consulta_join = "<WS><Evento><join><Muro><nombre>Muro Integración</nombre></Muro></join></Evento></WS>";//"<WS><Subforo>" + "	<join><Seccion>" + "			<id>1</id>" + "		</Seccion></join>" + "</Subforo></WS>";
-    	 IntegracionWS integracionWS = new IntegracionWS();
-    	 String resultado = integracionWS.seleccionarDatos(consulta_join);
-    	 System.out.println(resultado);
+	 String consulta_join = "<WS><Evento><join><Muro><nombre>Muro Integración</nombre></Muro></join></Evento></WS>";//"<WS><Subforo>" + "	<join><Seccion>" + "			<id>1</id>" + "		</Seccion></join>" + "</Subforo></WS>";
+	 IntegracionWS integracionWS = new IntegracionWS();
+	 String resultado = integracionWS.seleccionarDatos(consulta_join);
+	 System.out.println(resultado);
+    }
+    
+    @Test
+    public void MuroEventoInversa() {
+   	 String consulta_join = "<WS><Muro><join><Evento><id>1</id></Evento></join></Muro></WS>";//"<WS><Subforo>" + "	<join><Seccion>" + "			<id>1</id>" + "		</Seccion></join>" + "</Subforo></WS>";
+   	 IntegracionWS integracionWS = new IntegracionWS();
+   	 String resultado = integracionWS.seleccionarDatos(consulta_join);
+   	 System.out.println(resultado);
     }
 
 }

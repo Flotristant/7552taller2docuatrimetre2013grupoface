@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
 
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.converters.basic.DateConverter;
 import com.ws.pojos.Nota;
 
 public abstract class Parser {
@@ -63,6 +64,10 @@ public abstract class Parser {
 		xml = removeSuperTags(xml);
 		xml = replaceClassTag(xml);
 		XStream xmlReader = new XStream();
+		String dateFormat = "dd/mm/yyyy";
+		String timeFormat = "dd-mm-yyyy";
+		String[] acceptableFormats = {timeFormat};
+		xmlReader.registerConverter(new DateConverter(dateFormat, acceptableFormats));
 		Object obj = xmlReader.fromXML(xml);
 		return obj;
 	}
