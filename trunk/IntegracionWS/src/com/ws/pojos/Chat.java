@@ -50,6 +50,15 @@ public class Chat extends Pojo {
 		if(this.getMensajesChat() != null) {
 			for (MensajeChat elem : this.getMensajesChat()) {
 				ar.fiuba.redsocedu.datalayer.ws.MensajeChat unMensaje = (ar.fiuba.redsocedu.datalayer.ws.MensajeChat) elem.getDatabaseEntity();
+				try {
+	            	if(elem.getId() == null) {
+	            		Long id = DBManager.guardarObjetos(unMensaje, "ar.fiuba.redsocedu.datalayer.ws.MensajeChat");
+	            		elem.setId(id);
+	            	}
+	            	unMensaje.setId(elem.getId());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				chatDB.getMensajesChat().add(unMensaje);
 			}
 		} 
@@ -57,8 +66,6 @@ public class Chat extends Pojo {
 		// Agrego al Pojo de DB instancias de Miembros con los id que recibo
 		if(this.getMiembrosChat() != null) {
 			for (com.ws.pojos.MiembroChat miembroNeg : this.getMiembrosChat()) {
-				List<ReturnedObject> objects = null;
-				List<ar.fiuba.redsocedu.datalayer.ws.MiembroChat> miembrosChatDB = new ArrayList<ar.fiuba.redsocedu.datalayer.ws.MiembroChat>();
 	        	ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembro = (ar.fiuba.redsocedu.datalayer.ws.MiembroChat) miembroNeg.getDatabaseEntity();
 	        	try {
 	            	if(miembroNeg.getId() == null) {
@@ -69,7 +76,7 @@ public class Chat extends Pojo {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-	        	miembrosChatDB.add(miembro);
+	        	chatDB.getMiembrosChat().add(miembro);
 			}
 		}
 

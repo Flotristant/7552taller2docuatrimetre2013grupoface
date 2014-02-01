@@ -6,9 +6,11 @@ import java.util.List;
 
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+import com.utils.NotificacionFactory;
 import com.ws.handler.ArchivoHandler;
 import com.ws.handler.Handler;
 import com.ws.handler.HandlerFactory;
+import com.ws.serializers.NotificacionSerializer;
 
 public class IntegracionWS {
 		
@@ -42,7 +44,8 @@ public class IntegracionWS {
 			return handler.actualizarDatos(xml);
 			
 		} catch (Exception e) {
-			return e.getMessage() + "XML: " + xml;
+			System.err.println(e.getMessage() + "XML: " + xml);
+			return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 		}
     }
 	

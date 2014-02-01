@@ -8,6 +8,10 @@ public class NotificacionFactory {
 		return new Notificacion(3, "La consulta no produjo resultados");
 	}
 	
+	public static Notificacion errorParseoXML(){
+		return new Notificacion(4, "La consulta no puede ser parseada, verifique el formato del xml");
+	}
+	
 	public static Notificacion Error(){
 		return new Notificacion(1, "Hubo un error al realizar la operacion solicitada");
 	}

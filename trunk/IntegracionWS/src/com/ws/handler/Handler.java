@@ -9,6 +9,7 @@ import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
 import com.db.querys.QueryBuilder;
+import com.thoughtworks.xstream.converters.ConversionException;
 import com.utils.IdGenerator;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.Parser;
@@ -49,7 +50,6 @@ public abstract class Handler {
     }
 
     public String guardarDatos(String xml) {
-        // this.parser.inicializarDocumento(doc);
         Long transactionId = IdGenerator.generateTransactionId();
         Long idnuevo = null;
         Object obj = parser.getDBObjectFromBusinessXML(xml);
@@ -167,9 +167,10 @@ public abstract class Handler {
 	}
 
 	public String actualizarDatos(String xml) {
-        this.parser.inicializarCampos(xml);
-        Long transactionId = IdGenerator.generateTransactionId();
+		Long transactionId = null;
         try {
+        	this.parser.inicializarCampos(xml);
+        	transactionId = IdGenerator.generateTransactionId();
             port.beginTransaction(transactionId);
             Pojo pojo = (Pojo) parser.getEntidadNegocio(xml);
             String query = this.queryBuilder.getAllById(pojo.getId());
@@ -192,12 +193,18 @@ public abstract class Handler {
         } catch (DataException e) {
             
         	try{
-        		port.rollback(transactionId);
+        		if(transactionId != null ) {
+        			port.rollback(transactionId);
+        		}
         		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
         	}
         	catch(DataException e1){
         		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
         	}
+        } catch (ConversionException e) {
+        	return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.errorParseoXML());
+        } catch (Exception e) {
+        	return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
         }
 
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
