@@ -11,11 +11,5 @@ public class RecursoHandler extends Handler {
 
 	}
 	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }

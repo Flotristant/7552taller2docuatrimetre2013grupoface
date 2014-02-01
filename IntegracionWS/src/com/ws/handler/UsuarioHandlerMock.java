@@ -39,21 +39,4 @@ public class UsuarioHandlerMock extends Handler {
             return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());
     }
 
-    @Override
-	public Object toDatabaseEntity(Object object) {
-    	com.ws.pojos.Usuario usuario = (com.ws.pojos.Usuario) object; 
-        ar.fiuba.redsocedu.datalayer.ws.Usuario user = new ar.fiuba.redsocedu.datalayer.ws.Usuario();
-        user.setNombre(usuario.getNombre());
-        user.setApellido(usuario.getApellido());
-        user.setPadron(usuario.getPadron());
-        //user.setFechaNac(usuario.getFechaNacimiento());
-        user.setActivado(usuario.getActivado());
-        user.setHabilitado(usuario.getHabilitado());
-        user.setEmail(usuario.getEmail());
-        user.setPassword(usuario.getPassword());
-        user.setUsername(usuario.getUsername());
-        user.setId(usuario.getId());
-        return user;    
-    }
-
 }

@@ -12,16 +12,4 @@ public class MensajeHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Mensaje", new MensajeParser(), new MensajeSerializer(), new MensajeQueryBuilder());
 	}
 	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.Mensaje entidadMensaje = (com.ws.pojos.Mensaje) object;
-		Mensaje mensaje = new Mensaje();
-		mensaje.setId(entidadMensaje.getId());
-		// El mensajes tiene como autor un objeto Autor
-//		mensaje.setAutor(entidadMensaje.getAutor()); 
-		mensaje.setContenido(entidadMensaje.getContenido());
-		//TODO: SETEAR FECHA
-		//mensaje.setFecha(entidadMensaje.getFecha());
-		return mensaje;	
-	}
 }

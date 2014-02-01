@@ -9,16 +9,6 @@ public class SeccionHandler extends Handler {
 
 	public SeccionHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Seccion", new SeccionParser(), new SeccionSerializer(), new SeccionQueryBuilder());
-	}
-	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.Seccion seccion = (com.ws.pojos.Seccion) object;
-		ar.fiuba.redsocedu.datalayer.ws.Seccion seccionDb = new ar.fiuba.redsocedu.datalayer.ws.Seccion();
-		seccionDb.setNombre(seccion.getNombre());
-		seccionDb.setForoId(seccion.getIdForo());
-		seccionDb.setId(seccion.getId());		
-		return seccionDb;		 
-	}
+	}	
 
 }

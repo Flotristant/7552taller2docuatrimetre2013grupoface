@@ -12,9 +12,4 @@ public class CursoHandler extends Handler {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

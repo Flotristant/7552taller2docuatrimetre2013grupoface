@@ -10,10 +10,5 @@ public class LinkHandler extends Handler{
 		super("ar.fiuba.redsocedu.datalayer.dtos.Link",new LinkParser(),new LinkSerializer(), new LinkQueryBuilder());
 	}
 	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

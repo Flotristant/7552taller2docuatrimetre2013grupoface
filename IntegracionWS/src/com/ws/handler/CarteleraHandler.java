@@ -10,13 +10,6 @@ public class CarteleraHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Cartelera", new CarteleraParser(), new CarteleraSerializer(), new CarteleraQueryBuilder());
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.Cartelera carteleraNeg = (com.ws.pojos.Cartelera ) object;
-		ar.fiuba.redsocedu.datalayer.ws.Cartelera carteleraDB = new ar.fiuba.redsocedu.datalayer.ws.Cartelera();
-		carteleraDB.setNombre(carteleraNeg.getNombre());
-		return carteleraDB;
-	}
 	
 
 }

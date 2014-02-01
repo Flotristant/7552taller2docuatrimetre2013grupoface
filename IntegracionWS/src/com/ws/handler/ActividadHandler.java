@@ -12,24 +12,5 @@ public class ActividadHandler extends Handler {
 				new ActividadParser(), new ActividadSerializer(), new ActividadQueryBuilder());
 	}
 	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		Actividad miObjNegocio = (Actividad)object;
-		ar.fiuba.redsocedu.datalayer.ws.Actividad miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Actividad();
-
-        miObjDB.setId(miObjNegocio.getId());
-        miObjDB.setActividadId(miObjNegocio.getActividadId());
-        miObjDB.setActividadSuperiorId(miObjNegocio.getActividadSuperiorId());
-        miObjDB.setAmbitoSuperiorId(miObjNegocio.getAmbitoSuperiorId());
-        miObjDB.setDescripcion(miObjNegocio.getDescripcion());
-        miObjDB.setFechaFin(miObjNegocio.getFechaFin());
-        miObjDB.setFechaInicio(miObjNegocio.getFechaInicio());
-        miObjDB.setGruposExclusivo(miObjNegocio.getGruposExclusivos());
-        miObjDB.setNombre(miObjNegocio.getNombre());
-        miObjDB.setTipo(miObjNegocio.getTipo());
-        miObjDB.setTipoEscala(miObjNegocio.getTipoEscala());
-
-        return miObjDB;
-	}
 
 }

@@ -11,7 +11,7 @@ import com.db.querys.DBManager;
 public class Chat extends Pojo {
 
 	Long idAmbito;
-	List<Long> mensajesChat;// = new ArrayList<Long>();
+	List<MensajeChat> mensajesChat;// = new ArrayList<Long>();
 	List<MiembroChat> miembrosChat;// = new ArrayList<MiembroChat>();
 	
 	public Chat() {
@@ -19,10 +19,10 @@ public class Chat extends Pojo {
 		this.miembrosChat=null;
 	}
 	
-	public List<Long> getMensajesChat() {
+	public List<MensajeChat> getMensajesChat() {
 		return mensajesChat;
 	}
-	public void setMensajesChat(List<Long> mensajeChat) {
+	public void setMensajesChat(List<MensajeChat> mensajeChat) {
 		mensajesChat = mensajeChat;
 	}
 	public List<MiembroChat> getMiembrosChat() {
@@ -48,24 +48,21 @@ public class Chat extends Pojo {
 		// Administro las listas que puedo recibir del negocio
 		// Agrego al Pojo de DB instancias de Mensajes con los id que recibo
 		if(this.getMensajesChat() != null) {
-			for (Long elem : this.getMensajesChat()) {
-				ar.fiuba.redsocedu.datalayer.ws.MensajeChat unMensaje = new ar.fiuba.redsocedu.datalayer.ws.MensajeChat();
-				unMensaje.setMensajeChatId(elem);
+			for (MensajeChat elem : this.getMensajesChat()) {
+				ar.fiuba.redsocedu.datalayer.ws.MensajeChat unMensaje = (ar.fiuba.redsocedu.datalayer.ws.MensajeChat) elem.getDatabaseEntity();
 				chatDB.getMensajesChat().add(unMensaje);
 			}
-		}
+		} 
 
 		// Agrego al Pojo de DB instancias de Miembros con los id que recibo
 		if(this.getMiembrosChat() != null) {
 			for (com.ws.pojos.MiembroChat miembroNeg : this.getMiembrosChat()) {
 				List<ReturnedObject> objects = null;
 				List<ar.fiuba.redsocedu.datalayer.ws.MiembroChat> miembrosChatDB = new ArrayList<ar.fiuba.redsocedu.datalayer.ws.MiembroChat>();
-	        	ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembro = new ar.fiuba.redsocedu.datalayer.ws.MiembroChat();
-	        	miembro.setNombre(miembroNeg.getNombre());
-	        	miembro.setEstado(miembro.isEstado());
+	        	ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembro = (ar.fiuba.redsocedu.datalayer.ws.MiembroChat) miembroNeg.getDatabaseEntity();
 	        	try {
 	            	if(miembroNeg.getId() == null) {
-	            		Long id = DBManager.guardarObjetos(miembroNeg, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
+	            		Long id = DBManager.guardarObjetos(miembro, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
 	            		miembroNeg.setId(id);
 	            	}
 	            	miembro.setId(miembroNeg.getId());

@@ -245,7 +245,6 @@ public abstract class Handler {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
 
-    public abstract Object toDatabaseEntity(Object object);
     
     public Parser getParser() {
     	return this.parser;

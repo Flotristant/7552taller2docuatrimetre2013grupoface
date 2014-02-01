@@ -13,16 +13,5 @@ public class MensajeChatHandler extends Handler{
 		super("ar.fiuba.redsocedu.datalayer.dtos.MensajeChat", new  MensajeChatParser(), new MensajeChatSerializer(), new MensajeChatQueryBuilder());
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.MensajeChat mensajeChat = (com.ws.pojos.MensajeChat) object;
-		ar.fiuba.redsocedu.datalayer.ws.MensajeChat mensajeChatDb = new ar.fiuba.redsocedu.datalayer.ws.MensajeChat();
-		mensajeChatDb.setContenido(mensajeChat.getContenido());
-		mensajeChatDb.setId(mensajeChat.getId());
-		mensajeChatDb.setMensajeChatId(mensajeChat.getIdChat());
-//		mensajeChatDb.setFecha(XMLCalendarConverter(mensajeChat.getFecha());
-		return mensajeChatDb;
-		
-	}
 
 }
