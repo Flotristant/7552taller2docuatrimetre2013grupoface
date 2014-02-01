@@ -13,16 +13,5 @@ public class GrupoHandler extends Handler{
 		super("ar.fiuba.redsocedu.datalayer.dtos.Grupo", new GrupoParser(), new GrupoSerializer(), new GrupoQueryBuilder());
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		Grupo grupo = (Grupo) object;
-		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = new ar.fiuba.redsocedu.datalayer.ws.Grupo();
-	    
-		grupoDB.setGrupoId(grupo.getGrupoId());
-		grupoDB.setActividadId(grupo.getActividadId());
-		//TODO ver si hay que setearle el username
-		
-		return grupoDB;
-	}
 
 }

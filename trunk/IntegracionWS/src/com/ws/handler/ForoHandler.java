@@ -10,14 +10,4 @@ public class ForoHandler extends Handler{
 		super("ar.fiuba.redsocedu.datalayer.dtos.Foro", new ForoParser(), new ForoSerializer(), new ForoQueryBuilder());
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.Foro foro = (com.ws.pojos.Foro) object;
-		ar.fiuba.redsocedu.datalayer.ws.Foro foroDb = new ar.fiuba.redsocedu.datalayer.ws.Foro();
-		foroDb.setNombre(foro.getNombre());
-		foroDb.setForoId(foro.getId());
-		foroDb.setAmbitoId(foro.getId());
-
-		return foroDb;
-	}
 }

@@ -25,11 +25,6 @@ public class ArchivoHandler extends Handler {
 		this.parserArchivo = new ArchivoMetadataParser();
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	public String guardarArchivo(String xml, byte[] datos){

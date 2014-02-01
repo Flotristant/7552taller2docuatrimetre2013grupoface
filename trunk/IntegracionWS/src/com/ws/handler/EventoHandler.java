@@ -10,9 +10,5 @@ public class EventoHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Evento", new EventoParser(), new EventoSerializer(), new EventoQueryBuilder());
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		return null;
-	}
 
 }

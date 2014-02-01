@@ -11,24 +11,5 @@ public class SubforoHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Subforo", new  SubforoParser(), new SubforoSerializer(), new SubforoQueryBuilder());
 	}
 
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		
-		com.ws.pojos.Subforo subforo = (com.ws.pojos.Subforo) object;
-		ar.fiuba.redsocedu.datalayer.ws.Subforo subforoDb = new ar.fiuba.redsocedu.datalayer.ws.Subforo();
-		subforoDb.setNombre(subforo.getNombre());
-		
-		if(subforo.getId() != null)
-			subforoDb.setId(subforo.getId());
-		
-		if(subforo.getIdSeccion() != null) {
-			subforoDb.setSeccionId(subforo.getIdSeccion());
-		} 
-			
-		if(subforo.getIdSubforoPadre() != null) {
-			subforoDb.setSubforopadreId(subforo.getIdSubforoPadre());		
-		}
-		return subforoDb;
-	}
 
 }

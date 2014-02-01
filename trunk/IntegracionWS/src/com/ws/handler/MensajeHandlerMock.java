@@ -27,15 +27,6 @@ public class MensajeHandlerMock extends Handler {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
 
-    @Override
-	public Object toDatabaseEntity(Object object) {
-        Mensaje mensaje = (Mensaje) object;
-        ar.fiuba.redsocedu.datalayer.ws.Mensaje DBmensaje = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
-        //DBmensaje.setAutor(mensaje.getAutor()); Es un objeto
-        DBmensaje.setContenido(mensaje.getContenido());
-        DBmensaje.setId(mensaje.getId());
-        return DBmensaje;
-    }
 
 //    @Override
 //    public String seleccionarDatos(String xml) {

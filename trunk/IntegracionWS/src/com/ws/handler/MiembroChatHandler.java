@@ -10,14 +10,5 @@ public class MiembroChatHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", new  MiembroChatParser(), new MiembroChatSerializer(), new MiembroChatQueryBuilder());
 	}
 	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.MiembroChat miembroChat = (com.ws.pojos.MiembroChat) object;
-		ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembroChatDb = new ar.fiuba.redsocedu.datalayer.ws.MiembroChat();
-		miembroChatDb.setNombre(miembroChat.getNombre());
-		miembroChatDb.setId(miembroChat.getId());
-		miembroChatDb.setEstado(miembroChat.getEstado());		
-		return miembroChatDb;
-	}
 
 }

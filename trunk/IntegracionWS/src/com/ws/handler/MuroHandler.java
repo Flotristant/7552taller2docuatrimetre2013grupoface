@@ -12,12 +12,4 @@ public class MuroHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Muro", new MuroParser(), new MuroSerializer(), new MuroQueryBuilder());
 	}
 	
-	@Override
-	public Object toDatabaseEntity(Object object) {
-		com.ws.pojos.Muro entidadMuro = (com.ws.pojos.Muro) object;
-		Muro muro = new Muro();
-		muro.setId(entidadMuro.getId());
-		muro.setNombre(muro.getNombre());
-		return muro;	
-	}
 }
