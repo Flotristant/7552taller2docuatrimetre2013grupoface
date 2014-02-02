@@ -8,10 +8,10 @@ import org.junit.Test;
 
 import ar.fiuba.redsocedu.datalayer.ws.Cartelera;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
-import ar.fiuba.redsocedu.datalayer.ws.DataServiceStub.Muro;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.Noticia;
 
+import com.utils.NotificacionFactory;
 import com.ws.parsers.MensajeChatParser;
 import com.ws.services.IntegracionWS;
 
@@ -142,6 +142,7 @@ public class JoinTests {
     	IntegracionWS integracionWS = new IntegracionWS();
     	String resultado = integracionWS.seleccionarDatos(consulta);
     	System.out.println(resultado);
+    	Assert.assertFalse(resultado.contains(NotificacionFactory.Error().getMensaje()));	
     }
     
     @Test
@@ -150,6 +151,7 @@ public class JoinTests {
 	 IntegracionWS integracionWS = new IntegracionWS();
 	 String resultado = integracionWS.seleccionarDatos(consulta_join);
 	 System.out.println(resultado);
+	 Assert.assertFalse(resultado.contains(NotificacionFactory.Error().getMensaje()));	 
     }
     
     @Test
@@ -158,6 +160,7 @@ public class JoinTests {
    	 IntegracionWS integracionWS = new IntegracionWS();
    	 String resultado = integracionWS.seleccionarDatos(consulta_join);
    	 System.out.println(resultado);
+   	 Assert.assertFalse(resultado.contains(NotificacionFactory.Error().getMensaje()));
     }
 
 }

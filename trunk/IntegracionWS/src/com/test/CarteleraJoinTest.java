@@ -2,6 +2,8 @@ package com.test;
 
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.Noticia;
 
+import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
 public class CarteleraJoinTest {
@@ -31,7 +34,6 @@ public class CarteleraJoinTest {
 		cartelera = new Cartelera();
 		cartelera.setNombre("Cartelera 1");
 		Long cartelera_id = TestHelper.guardarDatos(cartelera, "ar.fiuba.redsocedu.datalayer.dtos.Cartelera", service, port);
-		cartelera.setCarteleraId(cartelera_id);
 		cartelera.setId(cartelera_id);
 	}
 	
@@ -41,9 +43,10 @@ public class CarteleraJoinTest {
 			for (Noticia noticia: noticias) {
 				TestHelper.borrarDatos(noticia, "ar.fiuba.redsocedu.datalayer.dtos.Noticia", service, port);	
 			}
-			
 		}
-
+		if (cartelera != null) {
+			TestHelper.borrarDatos(cartelera, "ar.fiuba.redsocedu.datalayer.dtos.Cartelera", service, port);	
+		}
 	}
 	
 	@Test
@@ -53,16 +56,18 @@ public class CarteleraJoinTest {
 		noticia.setContenido("Texto de la noticia 1");
 		noticia.setTitulo("Titulo de la noticia 1");
 		Long noticia_id = TestHelper.guardarDatos(noticia, "ar.fiuba.redsocedu.datalayer.dtos.Noticia", service, port);
-		noticia.setId(noticia_id);
+		noticia.setNoticiaId(noticia_id);
 		noticia = new Noticia();
 		noticia.setCarteleraId(cartelera.getId());
 		noticia.setContenido("Texto de la noticia 1");
 		noticia.setTitulo("Titulo de la noticia 1");
 		noticia_id = TestHelper.guardarDatos(noticia, "ar.fiuba.redsocedu.datalayer.dtos.Noticia", service, port);
-		noticia.setId(noticia_id);
+		noticia.setNoticiaId(noticia_id);
 		
-		String xml = "<WS><Noticia><join><Cartelera><carteleraId>"+ cartelera.getId().toString() + "</carteleraId></Cartelera></join></Noticia></WS>";
+		String xml = "<WS><Noticia><join><Cartelera><id>"+ cartelera.getId().toString() + "</id></Cartelera></join></Noticia></WS>";
+		System.out.println(xml);
 		String rdo = ws.seleccionarDatos(xml);
 		System.err.println(rdo);
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
 	}
 }

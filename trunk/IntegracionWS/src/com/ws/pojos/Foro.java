@@ -22,7 +22,8 @@ public class Foro extends Pojo {
 	@Override
 	public Object getDatabaseEntity() {
         ar.fiuba.redsocedu.datalayer.ws.Foro foroDB = new ar.fiuba.redsocedu.datalayer.ws.Foro();
-        foroDB.setForoId(this.getId());
+        foroDB.setId(this.getId());
+        foroDB.setAmbitoId(this.idAmbito);
         foroDB.setNombre(this.getNombre());
         return foroDB;
 	}

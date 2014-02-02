@@ -19,35 +19,36 @@ import com.ws.serializers.Serializer;
 
 public abstract class Handler {
 
-    QueryBuilder queryBuilder;
+	QueryBuilder queryBuilder;
 
-    DataService service;
+	DataService service;
 
-    IData port;
+	IData port;
 
-    Parser parser;
+	Parser parser;
 
-    Serializer serializer;
+	Serializer serializer;
 
-    protected String databaseEntityPath;
+	protected String databaseEntityPath;
 
-    public Handler(String databaseEntityPath, Parser parser, Serializer serializer, QueryBuilder queryBuilder) {
-        this.databaseEntityPath = databaseEntityPath;
-        this.service = new DataService();
-        this.port = service.getDataPort();
-        this.parser = parser;
-        this.serializer = serializer;
-        this.queryBuilder = queryBuilder;
-    }
+	public Handler(String databaseEntityPath, Parser parser,
+			Serializer serializer, QueryBuilder queryBuilder) {
+		this.databaseEntityPath = databaseEntityPath;
+		this.service = new DataService();
+		this.port = service.getDataPort();
+		this.parser = parser;
+		this.serializer = serializer;
+		this.queryBuilder = queryBuilder;
+	}
 
-    // for mock tests
-    public Handler(Parser parser, Serializer serializer) {
-        this.databaseEntityPath = "";
-        this.service = null;
-        this.port = null;
-        this.parser = parser;
-        this.serializer = serializer;
-    }
+	// for mock tests
+	public Handler(Parser parser, Serializer serializer) {
+		this.databaseEntityPath = "";
+		this.service = null;
+		this.port = null;
+		this.parser = parser;
+		this.serializer = serializer;
+	}
 
     public String guardarDatos(String xml) {
         Long transactionId = IdGenerator.generateTransactionId();
@@ -160,7 +161,7 @@ public abstract class Handler {
     	String endTag = "</"+nombreRelacion+">";
 		int first = xmlJoin.indexOf(initialTag);
 		int last = xmlJoin.indexOf(endTag);
-		if(first > 0 && last > 0 && first < last) {
+		if (first > 0 && last > 0 && first < last) {
 			return xmlJoin.substring(first, last + endTag.length());
 		}
 		return "";
@@ -207,8 +208,9 @@ public abstract class Handler {
         	return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
         }
 
-        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
-    }
+		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory
+				.Exito());
+	}
 
     public String borrarDatos(String xml) {
         this.parser.inicializarCampos(xml);
@@ -252,7 +254,6 @@ public abstract class Handler {
         return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito());
     }
 
-    
     public Parser getParser() {
     	return this.parser;
     }

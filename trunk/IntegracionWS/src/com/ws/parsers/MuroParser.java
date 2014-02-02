@@ -14,7 +14,7 @@ public class MuroParser extends Parser {
 		relaciones_directas = new HashMap<String, String>();
 //		relaciones_directas.put(MuroParser.class.toString(), "muros");
 		relaciones_directas.put(EventoParser.class.toString(), "eventos");
-//		relaciones_directas.put(AmbitoParser.class.toString(), "ambito");
+		relaciones_directas.put(AmbitoParser.class.toString(), "ambito");
 	}
 
 	@Override
