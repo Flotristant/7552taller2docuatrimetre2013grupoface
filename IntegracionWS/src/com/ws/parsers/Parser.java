@@ -22,7 +22,9 @@ import org.xml.sax.SAXException;
 import com.db.querys.QueryBuilder;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
+import com.utils.NotificacionFactory;
 import com.ws.pojos.Nota;
+import com.ws.serializers.NotificacionSerializer;
 
 public abstract class Parser {
 
@@ -87,7 +89,10 @@ public abstract class Parser {
 	}
 	
 	public String createXmlResponse(String data) {
-		return "<?xml version=\"1.0\"?><WS>" + data + "</WS>";
+		if(!"".equals(data)) {
+			return "<?xml version=\"1.0\"?><WS>" + data + "</WS>";	
+		}
+		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 	}
 
 	

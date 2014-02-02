@@ -3,6 +3,8 @@ package com.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +16,7 @@ import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.Foro;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 
+import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
 public class AmbitoJoinTest {
@@ -87,6 +90,7 @@ public class AmbitoJoinTest {
 		String xml = "<WS><Foro><join><Ambito><ambitoId>"+ ambito.getId().toString() + "</ambitoId></Ambito></join></Foro></WS>";
 		String rdo = ws.seleccionarDatos(xml);
 		System.err.println(rdo);
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
 	}
 	
 	@Test
@@ -109,6 +113,7 @@ public class AmbitoJoinTest {
 		String xml = "<WS><Cartelera><join><Ambito><ambitoId>"+ ambito.getId().toString() + "</ambitoId></Ambito></join></Cartelera></WS>";
 		String rdo = ws.seleccionarDatos(xml);
 		System.err.println(rdo);
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
 	}
 	
 }

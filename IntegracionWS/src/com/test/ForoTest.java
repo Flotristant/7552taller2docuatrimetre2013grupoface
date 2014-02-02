@@ -6,9 +6,13 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.Assert;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
+
+import ar.fiuba.redsocedu.datalayer.ws.DataService;
+import ar.fiuba.redsocedu.datalayer.ws.IData;
 
 import com.thoughtworks.xstream.XStream;
 import com.utils.NotificacionFactory;
@@ -19,6 +23,8 @@ import com.ws.services.IntegracionWS;
 
 public class ForoTest {
 
+	DataService service;
+	IData port;
 	String xmlForo;
 	Foro foroNegocio;
 	ar.fiuba.redsocedu.datalayer.ws.Foro foroBD;
@@ -26,10 +32,19 @@ public class ForoTest {
 	
     @Before
     public void setUp() throws Exception {
+		service = new DataService();
+		port = service.getDataPort();    	
     	crearNuevoForoSinAmbito();
     	serializarForoNegocio();
     	integracionWS = new IntegracionWS();
         IntegracionWS.setMockService(false);  
+    }
+    
+    @After
+    public void tearDown() throws Exception {
+    	if (foroBD != null ) {
+    		TestHelper.borrarDatos(foroBD, "ar.fiuba.redsocedu.datalayer.dtos.Foro", service, port);
+    	}
     }
     
     @Test
@@ -43,7 +58,7 @@ public class ForoTest {
         }
     	Assert.assertTrue(foroBD != null);
 	    if(foroBD == null || foroBD.getId() == null) {
-	    	Assert.fail("No se pudo recuperar el usuario");
+	    	Assert.fail("No se pudo recuperar el foro");
 	    }
     	this.foroNegocio.setId(this.foroBD.getId());
     	this.foroNegocio.setNombre(this.foroBD.getNombre());
@@ -51,8 +66,8 @@ public class ForoTest {
     	this.serializarForoNegocio();
     	String message = this.integracionWS.actualizarDatos(xmlForo);
     	Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
-	    String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
-	    String suffix = "</id></Usuario></WS>";
+	    String prefix = "<?xml version=\"1.0\"?><WS><Foro><id>";
+	    String suffix = "</id></Foro></WS>";
 	    String xmlForo = createDeleteForoByIdXML(prefix, suffix, foroBD);
 	    if (xmlForo != "") {
 	        message = integracionWS.eliminarDatos(xmlForo);

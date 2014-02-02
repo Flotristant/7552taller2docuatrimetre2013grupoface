@@ -41,17 +41,20 @@ public class TestIntegracionActividad {
     @Test
     public void testActividad() {
         // guardar actividad
+    	System.out.println("Creando actividad");
         Actividad actividad = crearActividadNegocio();
         String actividadXML = getActividadNegocioXML(actividad);
         String resultadoTransaccion = integracionWS.guardarDatos(actividadXML);
         Assert.assertTrue(resultadoTransaccion.contains("La entidad ha sido almacenada con exito"));
 
         // consultar actividad por props
+        System.out.println("Consultando actividad");
         resultadoTransaccion = integracionWS.seleccionarDatos(actividadXML);
         Actividad actividad_leido = getMessageFromResult(resultadoTransaccion);
         assertActividadsIguales(actividad, actividad_leido);
 
         // consultar actividad por id
+        System.out.println("Consultado actividad por id");
         Actividad actividad_con_solo_id = new Actividad();
         actividad_con_solo_id.setId(actividad_leido.getId());
         String resultadoTransaccion2 = integracionWS.seleccionarDatos(getActividadNegocioXML(actividad_con_solo_id));
@@ -59,6 +62,7 @@ public class TestIntegracionActividad {
         assertActividadsIguales(actividad, actividad_leido2);        
 
         // eliminar actividad por id
+        System.out.println("Eliminando actividad");
         actividad.setId(actividad_leido.getId());
         resultadoTransaccion = integracionWS.eliminarDatos(getActividadNegocioXML(actividad));
         Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), resultadoTransaccion);

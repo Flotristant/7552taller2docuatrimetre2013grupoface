@@ -26,6 +26,8 @@ import ar.fiuba.redsocedu.datalayer.ws.MiembroChat;
 
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import com.ws.services.IntegracionWS;
+import com.ws.tags.ChatTags;
+import com.ws.tags.MiembroChatTags;
 
 public class TestIntegracionChat {
 	private IntegracionWS integracionWS;
@@ -65,11 +67,23 @@ public class TestIntegracionChat {
 		System.err.println(rdo);
     }
     
+    
+    @Test
+    public void chatCreado() {
+        this.chat = new Chat();
+        Long id_chat = TestHelper.guardarDatos(chat, ChatTags.PACKET_AND_CLASS_NAME, service, port);
+        this.chat.setId(id_chat);
+    
+		String consultaChat = "<?xml version=\"1.0\"?><WS><Chat><id>" + id_chat + "</id></Chat></WS>";
+		String rdoSel = integracionWS.seleccionarDatos(consultaChat);
+		System.err.println("\nSELECT: \n" + rdoSel);
+    }
+    
     @Test
     public void chatCreadoConMiembrosNoCreados() {
     	Long randomName = System.currentTimeMillis();
       this.chat = new Chat();
-      Long id_chat = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
+      Long id_chat = TestHelper.guardarDatos(chat, ChatTags.PACKET_AND_CLASS_NAME, service, port);
       this.chat.setId(id_chat);
     	String consulta = "<?xml version=\"1.0\"?><WS><Chat>" +
     			"<id>" + id_chat + "</id>" + 
@@ -84,19 +98,19 @@ public class TestIntegracionChat {
 		System.err.println(rdo);
 		
 		String consultaChat = "<?xml version=\"1.0\"?><WS><Chat><id>" + id_chat + "</id></Chat></WS>";
-		String rdoSel = integracionWS.actualizarDatos(consultaChat);
+		String rdoSel = integracionWS.seleccionarDatos(consultaChat);
 		System.err.println("\nSELECT: \n" + rdoSel);
     }    
 
     @Test
     public void chatCreadoConMiembrosCreados() {
     	this.chat = new Chat();
-	  	Long id_chat = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
+    	Long id_chat = TestHelper.guardarDatos(chat, ChatTags.PACKET_AND_CLASS_NAME, service, port);
 	  	this.chat.setId(id_chat);
 	  
 	  	MiembroChat miembroChat = new MiembroChat();
 	  	miembroChat.setNombre("MiembrosCreados");
-	  	Long id_miembro = TestHelper.guardarDatos(miembroChat, "ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", service, port);
+	  	Long id_miembro = TestHelper.guardarDatos(miembroChat, MiembroChatTags.PACKET_AND_CLASS_NAME, service, port);
 	  	miembroChat.setId(id_miembro);
       
 		String consulta = "<?xml version=\"1.0\"?><WS><Chat>" +

@@ -91,12 +91,8 @@ public class UsuarioTestIntegration {
     	usuarioNegocio.setActivado(true);
     	usuarioNegocio.setHabilitado(true);
     	this.serializarUsuarioNegocio();
-    	String nuevoXml1 = integracionWS.seleccionarDatos(this.xmlUser1);
-    	if(nuevoXml1 == null || nuevoXml1.isEmpty()) {
-    		System.out.println("no se obtuvieron resultados");
-    	} else {
-    		System.out.println(nuevoXml1);
-    	}
+    	String nuevoXml1 = integracionWS.seleccionarDatos(xmlUser1);
+    	Assert.assertNotNull("no se obtuvieron resultados", nuevoXml1);
     }
 
 

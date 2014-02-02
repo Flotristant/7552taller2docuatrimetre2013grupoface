@@ -1,8 +1,11 @@
 package com.test;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
 public class RecursoTest {
@@ -27,14 +30,18 @@ IntegracionWS ws;
 		
 		String xml = "<?xml version=\"1.0\"?><WS><Recurso><id>1007</id><descripcion>pruebaRecursoArchivo3</descripcion><ambitoId>1</ambitoId><tipo>Lala</tipo></Recurso></WS>";
 		
-		System.out.println(ws.actualizarDatos(xml));
+		String rdo = ws.actualizarDatos(xml);
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
+		System.out.println(rdo);
 	
 	}
 	
 	@Test
 	public void recuperarRecurso (){
 		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>pruebaRecursoArchivo2</descripcion></Recurso></WS>";
-		System.out.println(ws.seleccionarDatos(xml));
+		String rdo = ws.seleccionarDatos(xml);
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));		
+		System.out.println(rdo);
 	
 	}
 

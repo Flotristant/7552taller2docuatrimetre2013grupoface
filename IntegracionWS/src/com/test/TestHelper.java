@@ -1,10 +1,9 @@
 package com.test;
 
-
-
 import ar.fiuba.redsocedu.datalayer.ws.DataException;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
+
 import com.utils.IdGenerator;
 
 public class TestHelper {

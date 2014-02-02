@@ -1,5 +1,7 @@
 package com.test;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +12,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Evento;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.Muro;
 
+import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
 public class MuroJoinTest {
@@ -63,16 +66,20 @@ public class MuroJoinTest {
 	 
 	@Test
 	public void getAllEventsFromAMuro() {
+		Assert.assertTrue(muro.getId() > 0);
 		String xml = "<WS><Evento><join><Muro><id>"+ muro.getId().toString() + "</id></Muro></join></Evento></WS>";
-		
+		System.err.println(xml);
 		String rdo = ws.seleccionarDatos(xml);
 		System.err.println(rdo);			
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()) || rdo.contains(xml));
 	}
 	
 	@Test
 	public void getAmbitoDelMuro() {
+		Assert.assertTrue(muro.getId() > 0);
 		String xml = "<WS><Ambito><join><Muro><id>"+ muro.getId().toString() + "</id></Muro></join></Ambito></WS>";
 		String rdo = ws.seleccionarDatos(xml);
-		System.err.println(rdo);			
+		System.err.println(rdo);
+		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()) || rdo.contains(xml));
 	}
 }

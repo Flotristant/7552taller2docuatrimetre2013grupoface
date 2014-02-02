@@ -3,6 +3,8 @@ package com.test;
 import java.util.ArrayList;
 import java.util.List;
 
+import junit.framework.Assert;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,6 +63,7 @@ public class UsuarioJoinTest {
 		String xml = "<WS><Nota><join><Usuario><id>"+ usuario.getId().toString() + "</id></Usuario></join></Nota></WS>";
 		
 		String rdo = ws.seleccionarDatos(xml);
+        Assert.assertTrue(rdo.contains("La entidad ha sido almacenada con exito"));
 		System.err.println(rdo);			
 	}
 }
