@@ -20,7 +20,7 @@ IntegracionWS ws;
 	@Test
 	public void guardarRecurso(){
 		
-		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>pruebaRecursoArchivo2</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>pruebaRecursoArchivoPrueba</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
 		
 		System.out.println(ws.guardarDatos(xml));
 	}
@@ -28,7 +28,7 @@ IntegracionWS ws;
 	@Test 
 	public void actualizarRecurso(){
 		
-		String xml = "<?xml version=\"1.0\"?><WS><Recurso><id>1007</id><descripcion>pruebaRecursoArchivo3</descripcion><ambitoId>1</ambitoId><tipo>Lala</tipo></Recurso></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Recurso><id>1013</id><descripcion>pruebaRecursoArchivoLala</descripcion><ambitoId>1</ambitoId><tipo>Lala</tipo></Recurso></WS>";
 		
 		String rdo = ws.actualizarDatos(xml);
 		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
@@ -38,7 +38,7 @@ IntegracionWS ws;
 	
 	@Test
 	public void recuperarRecurso (){
-		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>pruebaRecursoArchivo2</descripcion></Recurso></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Recurso><id>1013</id></Recurso></WS>";
 		String rdo = ws.seleccionarDatos(xml);
 		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));		
 		System.out.println(rdo);

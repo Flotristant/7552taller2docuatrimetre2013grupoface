@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
+ *         &lt;element name="encuesta" type="{http://ws.datalayer.redsocedu.fiuba.ar/}encuesta" minOccurs="0"/>
  *         &lt;element name="evaluacion" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="preguntasRespondidas" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="recursoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
@@ -30,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "encuestaRespondida", propOrder = {
+    "encuesta",
     "evaluacion",
     "preguntasRespondidas",
     "recursoId",
@@ -39,10 +41,35 @@ public class EncuestaRespondida
     extends ReturnedObject
 {
 
+    protected Encuesta encuesta;
     protected Long evaluacion;
     protected String preguntasRespondidas;
     protected Long recursoId;
     protected Long usuarioId;
+
+    /**
+     * Gets the value of the encuesta property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Encuesta }
+     *     
+     */
+    public Encuesta getEncuesta() {
+        return encuesta;
+    }
+
+    /**
+     * Sets the value of the encuesta property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Encuesta }
+     *     
+     */
+    public void setEncuesta(Encuesta value) {
+        this.encuesta = value;
+    }
 
     /**
      * Gets the value of the evaluacion property.
