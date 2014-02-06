@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="contenido" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *         &lt;element name="nombre" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="recurso" type="{http://ws.datalayer.redsocedu.fiuba.ar/}recurso" minOccurs="0"/>
  *         &lt;element name="recursoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="tamanio" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="tipo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -33,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "archivo", propOrder = {
     "contenido",
     "nombre",
+    "recurso",
     "recursoId",
     "tamanio",
     "tipo"
@@ -43,6 +45,7 @@ public class Archivo
 
     protected byte[] contenido;
     protected String nombre;
+    protected Recurso recurso;
     protected Long recursoId;
     protected Long tamanio;
     protected String tipo;
@@ -91,6 +94,30 @@ public class Archivo
      */
     public void setNombre(String value) {
         this.nombre = value;
+    }
+
+    /**
+     * Gets the value of the recurso property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Recurso }
+     *     
+     */
+    public Recurso getRecurso() {
+        return recurso;
+    }
+
+    /**
+     * Sets the value of the recurso property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Recurso }
+     *     
+     */
+    public void setRecurso(Recurso value) {
+        this.recurso = value;
     }
 
     /**

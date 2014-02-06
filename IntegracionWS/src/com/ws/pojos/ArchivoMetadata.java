@@ -8,6 +8,7 @@ public class ArchivoMetadata extends Pojo {
     private  Long recursoId;
     private  Long tamanio;
     private String tipo;
+    private ar.fiuba.redsocedu.datalayer.ws.Recurso recurso;
 	
     public byte[] getContenido() {
 		return contenido;
@@ -48,6 +49,15 @@ public class ArchivoMetadata extends Pojo {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	public void setRecurso(ar.fiuba.redsocedu.datalayer.ws.Recurso recurso){
+		this.recurso = recurso;
+	}
+	
+	public ar.fiuba.redsocedu.datalayer.ws.Recurso getRecurso(){
+		return this.recurso;
+	}
+
     
     
 	@Override
@@ -56,10 +66,9 @@ public class ArchivoMetadata extends Pojo {
 		DBArchivo.setId(this.getId());
 		DBArchivo.setNombre(this.getNombre());
 		DBArchivo.setTamanio(this.getTamanio());
-		DBArchivo.setRecursoId(this.getRecursoId());
 		DBArchivo.setTipo(this.getTipo());
 		DBArchivo.setContenido(this.getContenido());
-		
+		DBArchivo.setRecurso(this.getRecurso());
 		return DBArchivo;
 	}
 

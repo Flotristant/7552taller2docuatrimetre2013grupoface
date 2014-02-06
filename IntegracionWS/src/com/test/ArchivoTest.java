@@ -32,7 +32,8 @@ public class ArchivoTest {
 			e.printStackTrace();
 		}
 		
-		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>entrada</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1007</recursoId></ArchivoMetadata></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>entradaPrueba1</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1013</recursoId></ArchivoMetadata></WS>";
+		
 		
 		System.out.println(ws.guardarArchivo(xml, bytes));
 		
