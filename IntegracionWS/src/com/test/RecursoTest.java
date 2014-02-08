@@ -20,7 +20,7 @@ IntegracionWS ws;
 	@Test
 	public void guardarRecurso(){
 		
-		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>pruebaRecursoArchivoPrueba</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>recursoParaArchivo</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
 		
 		System.out.println(ws.guardarDatos(xml));
 	}
@@ -38,7 +38,7 @@ IntegracionWS ws;
 	
 	@Test
 	public void recuperarRecurso (){
-		String xml = "<?xml version=\"1.0\"?><WS><Recurso><id>1013</id></Recurso></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Recurso><ambitoId>1</ambitoId></Recurso></WS>";
 		String rdo = ws.seleccionarDatos(xml);
 		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));		
 		System.out.println(rdo);
