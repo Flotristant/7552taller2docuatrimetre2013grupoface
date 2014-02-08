@@ -38,20 +38,20 @@ public class ArchivoHandler extends Handler {
 	
 	
 	public String guardarArchivo(String xml, byte[] datos){
-		 Long transactionId = null;
+		 Long transactionId = IdGenerator.generateTransactionId();
 	     Long idnuevo = null;
 	     Recurso recurso;
 	     
 	     try{
 	     	
-	    	recurso = this.obtenerRecursoById(xml);
+	    	recurso = this.obtenerRecursoById(xml,transactionId);
 	    	 
 	    	if (recurso == null) {
 	        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 	    	}
 	    	 
 	    	Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,recurso);
-	 	    transactionId = IdGenerator.generateTransactionId();
+	 	   
 	    	
 	 	    
 	 	    port.beginTransaction(transactionId);
@@ -91,11 +91,8 @@ public class ArchivoHandler extends Handler {
             if (dbPojos == null || dbPojos.isEmpty() || dbPojos.size() > 1) {
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             }
-            
         
-            recurso = this.obtenerRecursoById(xml);
-            
-            transactionId = IdGenerator.generateTransactionId();
+            recurso = this.obtenerRecursoById(xml,transactionId);
           
             Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,recurso);
             
@@ -157,16 +154,14 @@ public class ArchivoHandler extends Handler {
 	
 	
 	
-	private Recurso obtenerRecursoById(String xml){
+	private Recurso obtenerRecursoById(String xml, Long transactionId){
 		
 		Recurso recurso = null;
-		Long transactionId = null;
 	    String xmlRecurso = this.archivoParser.getXmlRecursoId(xml);
 	    
 	    try{
 	     	
 	    	this.recursoParser.inicializarCampos(xmlRecurso);
-	    	transactionId = IdGenerator.generateTransactionId();
 			Pojo pojo = (Pojo) this.recursoParser.getEntidadNegocio(xmlRecurso);
 	    	String query = this.recursoQueryBuilder.getAllById(pojo.getId());
 	    	List<ReturnedObject> dbPojos = null;
