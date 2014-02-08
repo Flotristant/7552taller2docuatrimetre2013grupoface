@@ -40,32 +40,19 @@ public class ArchivoHandler extends Handler {
 	public String guardarArchivo(String xml, byte[] datos){
 		 Long transactionId = null;
 	     Long idnuevo = null;
-	     Recurso recurso = new Recurso();
-	     String xmlRecurso = this.archivoParser.getXmlRecursoId(xml);
+	     Recurso recurso;
 	     
 	     try{
 	     	
-	    	/*this.recursoParser.inicializarCampos(xmlRecurso);
-	    	transactionId = IdGenerator.generateTransactionId();
-	    	port.beginTransaction(transactionId);
-			Pojo pojo = (Pojo) this.recursoParser.getEntidadNegocio(xmlRecurso);
-	    	String query = this.recursoQueryBuilder.getAllById(pojo.getId());
-	    	List<ReturnedObject> dbPojos = null;
+	    	recurso = this.obtenerRecursoById(xml);
 	    	 
-	    	dbPojos = port.query(transactionId, query);
-	    	port.commit(transactionId);
-	    	 
-	    	if (dbPojos == null || dbPojos.isEmpty() || dbPojos.size() > 1) {
+	    	if (recurso == null) {
 	        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 	    	}
-	    	
-	    	recurso = (Recurso) dbPojos.get(0);*/
-	    	recurso.setDescripcion("PruebaArchivo");
 	    	 
 	    	Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,recurso);
 	 	    transactionId = IdGenerator.generateTransactionId();
 	    	
-	 	    
 	 	    
 	 	    port.beginTransaction(transactionId);
 	 	    idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
@@ -89,8 +76,12 @@ public class ArchivoHandler extends Handler {
 	public String actualizarArchivo(String xml, byte[] datos){
 		this.parser.inicializarCampos(xml);
 	    Long transactionId = IdGenerator.generateTransactionId();
-        try {
-            port.beginTransaction(transactionId);
+	    Recurso recurso = null;
+        
+	    try {
+           
+	    	//Verificamos existencia del archivo en la base de datos
+        	port.beginTransaction(transactionId);
             ArchivoMetadata pojo = (ArchivoMetadata) parser.getEntidadNegocio(xml);
             String query = this.queryBuilder.getAllById(pojo.getId());
             List<ReturnedObject> dbPojos = null;
@@ -101,15 +92,15 @@ public class ArchivoHandler extends Handler {
                 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             }
             
-            // Los pasos previos solo se hacen para verificar que existe el
-            // objeto en la BBDD?? yes.
-            transactionId = IdGenerator.generateTransactionId();
-            port.beginTransaction(transactionId);
-            //Se le setea al pojo de negocio los datos que representan al archivo en si.
-            pojo.setContenido(datos);
+        
+            recurso = this.obtenerRecursoById(xml);
             
-            Object pojoDB = pojo.getDatabaseEntity(); 
-            port.saveOrUpdate(transactionId, this.databaseEntityPath, pojoDB);
+            transactionId = IdGenerator.generateTransactionId();
+          
+            Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,recurso);
+            
+            port.beginTransaction(transactionId);
+            port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
             port.commit(transactionId);
 
         } catch (DataException e) {
@@ -137,23 +128,23 @@ public class ArchivoHandler extends Handler {
         String query = this.queryBuilder.getAllByAttributes(campos);
         
         try {
-        	port.beginTransaction(transactionId);
+        	
         	List<ReturnedObject> objects = null; 
+        	port.beginTransaction(transactionId);
         	objects = port.query(transactionId, query);
+        	port.commit(transactionId);
         	
         	if(objects == null || objects.isEmpty()) {
         		
         		return null;
         	}
-        	
-        	port.commit(transactionId);
-		
+        		
         	return objects;
         }
         catch (DataException e ) {
         	
         	try{
-        		port.rollback(transactionId);//if not
+        		port.rollback(transactionId);
         		return null;
         	}
         	catch(DataException e1){
@@ -163,6 +154,42 @@ public class ArchivoHandler extends Handler {
 		
 		
 	}
+	
+	
+	
+	private Recurso obtenerRecursoById(String xml){
+		
+		Recurso recurso = null;
+		Long transactionId = null;
+	    String xmlRecurso = this.archivoParser.getXmlRecursoId(xml);
+	    
+	    try{
+	     	
+	    	this.recursoParser.inicializarCampos(xmlRecurso);
+	    	transactionId = IdGenerator.generateTransactionId();
+			Pojo pojo = (Pojo) this.recursoParser.getEntidadNegocio(xmlRecurso);
+	    	String query = this.recursoQueryBuilder.getAllById(pojo.getId());
+	    	List<ReturnedObject> dbPojos = null;
+	    	
+	    	port.beginTransaction(transactionId);
+	    	dbPojos = port.query(transactionId, query);
+	    	port.commit(transactionId);
+	    	 
+	    	if (!dbPojos.isEmpty())
+	    		recurso = (Recurso) dbPojos.get(0);
+	    	return recurso;
+	    }
+	    catch (DataException e) {
+	    	 try{
+	    		 port.rollback(transactionId);
+	    		 return recurso;
+	    	 }
+	    	 catch(DataException e1){
+	    		 return recurso;
+	    	 }
+	    }
+	 }
+	    
 	
 
 }

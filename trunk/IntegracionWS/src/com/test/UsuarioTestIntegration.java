@@ -106,7 +106,7 @@ public class UsuarioTestIntegration {
 	private void crearNuevoUsuarioNegocio() {
 		usuarioNegocio = new com.ws.pojos.Usuario();
 		String time = ((Long)System.currentTimeMillis()).toString();
-        usuarioNegocio.setUsername("fl0r3nc1a"+time);
+        usuarioNegocio.setUsername("pupi"+time);
         usuarioNegocio.setPassword("123456");
         usuarioNegocio.setActivado(true);
         usuarioNegocio.setHabilitado(true);

@@ -25,10 +25,8 @@ public class ArchivoMetadataParser extends Parser {
 	}
 	
 	public String getXmlRecursoId(String xml){
-		//ArchivoMetadata archivo = (ArchivoMetadata) getEntidadNegocio(xml);
-		//return "<?xml version=\"1.0\"?><WS><Recurso><id>"+archivo.getRecursoId()+"</id></Recurso></WS>";
-		String xmlLala = "<?xml version=\"1.0\"?><WS><Recurso><id>1013</id></Recurso></WS>"; 
-		return xmlLala;
+		ArchivoMetadata archivo = (ArchivoMetadata) getEntidadNegocio(xml);
+		return "<?xml version=\"1.0\"?><WS><Recurso><id>"+archivo.getRecursoId().toString()+"</id></Recurso></WS>";
 	}
 
 	@Override
