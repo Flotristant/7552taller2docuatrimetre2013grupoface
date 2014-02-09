@@ -34,11 +34,16 @@ public abstract class Handler {
 	public Handler(String databaseEntityPath, Parser parser,
 			Serializer serializer, QueryBuilder queryBuilder) {
 		this.databaseEntityPath = databaseEntityPath;
-		this.service = new DataService();
-		this.port = service.getDataPort();
 		this.parser = parser;
 		this.serializer = serializer;
 		this.queryBuilder = queryBuilder;
+		try {
+			this.service = new DataService();
+			this.port = service.getDataPort();
+		} catch (Exception e) {
+			System.err.println("no se pudo levantar el Data Service o el data Port:");
+			e.printStackTrace();
+		}
 	}
 
 	// for mock tests
