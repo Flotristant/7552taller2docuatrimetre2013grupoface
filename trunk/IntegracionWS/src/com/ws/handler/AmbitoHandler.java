@@ -10,10 +10,4 @@ public class AmbitoHandler extends Handler {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Ambito", new AmbitoParser(), new AmbitoSerializer(), new AmbitoQueryBuilder());
 	}
 
-//	@Override
-//	public Object toDatabaseEntity(Object object) {
-//		com.ws.pojos.Ambito ambito = (com.ws.pojos.Ambito) object;
-//		return (ar.fiuba.redsocedu.datalayer.ws.Ambito) ambito.getDatabaseEntity();
-//	}
-
 }

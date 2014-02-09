@@ -1,10 +1,6 @@
 package com.ws.pojos;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
-
 import com.db.querys.DBManager;
 
 

@@ -1,5 +1,6 @@
 package com.test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Foro;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 
 import com.utils.NotificacionFactory;
+import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
 
 public class AmbitoJoinTest {
@@ -114,6 +116,21 @@ public class AmbitoJoinTest {
 		String rdo = ws.seleccionarDatos(xml);
 		System.err.println(rdo);
 		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
+	}
+	
+	@Test
+	public void getAmbito() throws IOException {
+		String request = "<WS><Ambito><id>"+this.ambito.getId()+"</id></Ambito></WS>";
+		String response = ws.seleccionarDatos(request);
+		System.out.println(response);
+		AssertThereIsOnlyOneAmbient(response);
+	}
+	
+	public void AssertThereIsOnlyOneAmbient(String response) {
+		String searchingString = "<Ambito>";
+		int position = response.indexOf(searchingString);
+		Assert.assertTrue(position >= 0);
+		Assert.assertFalse(response.indexOf(searchingString, position+searchingString.length()) >= 0);
 	}
 	
 }
