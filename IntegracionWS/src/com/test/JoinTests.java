@@ -133,7 +133,7 @@ public class JoinTests {
         String consulta_join = "<WS><Usuario><join><Actividad><id>27</id></Actividad></join></Usuario></WS>";
     	String resultado = integracionWS.seleccionarDatos(consulta_join);
     	System.out.println(resultado);
-    	Assert.assertTrue(resultado.contains("exito"));
+    	Assert.assertTrue(resultado.contains(NotificacionFactory.Exito().getMensaje()));
     }
     
     @Test
