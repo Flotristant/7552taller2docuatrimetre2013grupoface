@@ -49,8 +49,14 @@ public class CarteleraJoinTest {
 		}
 	}
 	
+	
+	/**
+	 * Probado el día 6/02. Cuando falla, lo hace porque no se crea correctamente la cartelera. 
+	 * Se tiene una validación al inicio para ver si se creo o no la cartelera. 
+	 * */
 	@Test
 	public void todasLasNoticiasDeCartelera() {
+		Assert.assertTrue(cartelera.getId() > 0);
 		Noticia noticia = new Noticia();
 		noticia.setCarteleraId(cartelera.getId());
 		noticia.setContenido("Texto de la noticia 1");
