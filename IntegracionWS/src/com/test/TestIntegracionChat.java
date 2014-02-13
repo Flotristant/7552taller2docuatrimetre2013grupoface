@@ -45,7 +45,7 @@ public class TestIntegracionChat extends TestCase {
     }
     
     @Test
-    public void chatNoCreadoConMiembrosNoCreados() {
+    public void testChatNoCreadoConMiembrosNoCreados() {
     	Long randomName = System.currentTimeMillis();
     	String consulta = "<?xml version=\"1.0\"?><WS><Chat>" +
     			"<miembrosChat>" +
@@ -61,7 +61,7 @@ public class TestIntegracionChat extends TestCase {
     
     
     @Test
-    public void chatCreado() {
+    public void testChatCreado() {
         this.chat = new Chat();
         Long id_chat = TestHelper.guardarDatos(chat, ChatTags.PACKET_AND_CLASS_NAME, service, port);
         this.chat.setId(id_chat);
@@ -72,7 +72,7 @@ public class TestIntegracionChat extends TestCase {
     }
     
     @Test
-    public void chatCreadoConMiembrosNoCreados() {
+    public void testChatCreadoConMiembrosNoCreados() {
     	Long randomName = System.currentTimeMillis();
       this.chat = new Chat();
       Long id_chat = TestHelper.guardarDatos(chat, ChatTags.PACKET_AND_CLASS_NAME, service, port);
@@ -95,7 +95,7 @@ public class TestIntegracionChat extends TestCase {
     }    
 
     @Test
-    public void chatCreadoConMiembrosCreados() {
+    public void testChatCreadoConMiembrosCreados() {
     	this.chat = new Chat();
     	Long id_chat = TestHelper.guardarDatos(chat, ChatTags.PACKET_AND_CLASS_NAME, service, port);
 	  	this.chat.setId(id_chat);
@@ -121,7 +121,7 @@ public class TestIntegracionChat extends TestCase {
    }   
     
     @Test
-    public void chatCreadoConMiembrosYMensajesCreados() {
+    public void testChatCreadoConMiembrosYMensajesCreados() {
     	this.chat = new Chat();
 	  	Long id_chat = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
 	  	this.chat.setId(id_chat);

@@ -42,7 +42,7 @@ public class ActividadTest extends TestCase {
 	}
 	
 	@Test
-	public void guardarActividad() throws Exception {
+	public void testGuardarActividad() throws Exception {
 		String xml = "<?xml version=\"1.0\"?><WS><Actividad>" +
 		"<nombre>El mago asesino</nombre>" +
 		"<tipo>Individual</tipo>" +
@@ -58,7 +58,7 @@ public class ActividadTest extends TestCase {
 	}
 	
 	@Test
-	public void actualizarActividad() {			
+	public void testActualizarActividad() {			
 		String xml = "<WS><Actividad><id>"+actividad.getId()+"</id>" +
 		"<nombre>Modifico</nombre>" +
 		"<tipo>Individual</tipo>" +
@@ -72,7 +72,7 @@ public class ActividadTest extends TestCase {
 	}
 
 	@Test
-	public void guardarActividadConAmbito() {
+	public void testGuardarActividadConAmbito() {
 		ambito = new Ambito();
 		Long id_ambito = TestHelper.guardarDatos(ambito, "ar.fiuba.redsocedu.datalayer.dtos.Ambito", service, port);
 		ambito.setAmbitoId(id_ambito);
@@ -88,7 +88,7 @@ public class ActividadTest extends TestCase {
 	} 
 	
 	@Test
-	public void guardarYObtenerActividadConAmbito() {
+	public void testGuardarYObtenerActividadConAmbito() {
 		ambito = new Ambito();
 		Long id_ambito = TestHelper.guardarDatos(ambito, "ar.fiuba.redsocedu.datalayer.dtos.Ambito", service, port);
 		ambito.setAmbitoId(id_ambito);
@@ -99,6 +99,7 @@ public class ActividadTest extends TestCase {
 		
 		String mje = ws.seleccionarDatos("<WS><Actividad><id>"+actividad.getId()+"</id></Actividad></WS>");
 		System.out.println(mje);
+		Assert.assertFalse(mje.contains(NotificacionFactory.Error().getMensaje()));
 	}
 	
 	

@@ -36,7 +36,7 @@ public class UsuarioTestIntegration extends TestCase {
     }
     
     @Test
-    public void CreateQueryUpdateAndDeleteUser() throws SAXException, IOException, ParserConfigurationException {
+    public void testCreateQueryUpdateAndDeleteUser() throws SAXException, IOException, ParserConfigurationException {
         guardarDatos(xmlUser1, integracionWS);        
         System.out.println(xmlUser1);
         String nuevoXml1 = consultarDatos(xmlUser1);
@@ -68,7 +68,7 @@ public class UsuarioTestIntegration extends TestCase {
     }
     
     @Test
-    public void updateUserTest() throws SAXException, IOException, ParserConfigurationException {
+    public void testUpdateUser() throws SAXException, IOException, ParserConfigurationException {
     	guardarDatos(xmlUser1, integracionWS);        
     	System.out.println(xmlUser1);
     	String nuevoXml1 = consultarDatos(xmlUser1);
@@ -88,13 +88,13 @@ public class UsuarioTestIntegration extends TestCase {
     
     
     @Test
-    public void obtenerMasDeUnUsuarioTest() {
+    public void testObtenerMasDeUnUsuarioTest() {
     	usuarioNegocio = new com.ws.pojos.Usuario();
     	usuarioNegocio.setActivado(true);
     	usuarioNegocio.setHabilitado(true);
     	this.serializarUsuarioNegocio();
     	String nuevoXml1 = integracionWS.seleccionarDatos(xmlUser1);
-    	Assert.assertTrue(nuevoXml1, nuevoXml1.contains(NotificacionFactory.sinResultados().getMensaje()));
+    	Assert.assertFalse(nuevoXml1, nuevoXml1.contains(NotificacionFactory.sinResultados().getMensaje()));
     }
 
 

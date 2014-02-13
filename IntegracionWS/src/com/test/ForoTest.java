@@ -49,7 +49,7 @@ public class ForoTest extends TestCase {
     }
     
     @Test
-    public void CreateQueryUpdateAndDeleteForo() throws SAXException, IOException, ParserConfigurationException {
+    public void testCreateQueryUpdateAndDeleteForo() throws SAXException, IOException, ParserConfigurationException {
         guardarDatos(xmlForo, integracionWS);        
         System.out.println("XMl CONSULTA: \n" + xmlForo);
         String nuevoXmlForo = consultarDatos(xmlForo);

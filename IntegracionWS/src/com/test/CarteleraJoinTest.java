@@ -56,7 +56,7 @@ public class CarteleraJoinTest extends TestCase {
 	 * Se tiene una validación al inicio para ver si se creo o no la cartelera. 
 	 * */
 	@Test
-	public void todasLasNoticiasDeCartelera() {
+	public void testTodasLasNoticiasDeCartelera() {
 		Assert.assertTrue(cartelera.getId() > 0);
 		Noticia noticia = new Noticia();
 		noticia.setCarteleraId(cartelera.getId());
