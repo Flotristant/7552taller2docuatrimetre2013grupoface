@@ -1,6 +1,7 @@
 package com.ws.serializers;
 
 import ar.fiuba.redsocedu.datalayer.ws.Tema;
+import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.thoughtworks.xstream.XStream;
 import com.ws.tags.TemaTags;
@@ -17,7 +18,8 @@ public class TemaSerializer extends Serializer {
 		//TODO ver bien porque en bd no estan estos campos
 		//xstream.aliasField(TemaTags.FECHA_TAG, Tema.class, "fecha");
 		//xstream.aliasField(TemaTags.STICKY_TAG, Tema.class, "esSticky");
-		
+		xstream.omitField(Tema.class, "temaId");
+
 		xstream.aliasField(TemaTags.ID_SUBFORO_TAG, Tema.class, "subforoId");
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 	}
