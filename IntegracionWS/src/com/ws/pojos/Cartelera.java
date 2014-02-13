@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Cartelera extends Pojo {
 
-	protected Long id;
 	protected String nombre;
 	protected Long ambitoId;
 	protected List<Noticia> noticias;
@@ -16,14 +15,6 @@ public class Cartelera extends Pojo {
 
 	public void setNoticias(List<Noticia> noticias) {
 		this.noticias = noticias;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Long getAmbitoId() {

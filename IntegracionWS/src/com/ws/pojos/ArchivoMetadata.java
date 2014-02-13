@@ -2,7 +2,6 @@ package com.ws.pojos;
 
 public class ArchivoMetadata extends Pojo {
 
-	
     private byte[] contenido;
 	private String nombre;
     private  Long recursoId;

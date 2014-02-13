@@ -7,7 +7,6 @@ public class Usuario  extends Pojo {
 	//TODO: consultar con seguridad y sesion si pueden pasar a Long en lugar de int, por problemas de compatibilidad 
 	//(Long->int puede no funcionar)
 	private Long idRol;
-	private Long id;
 
 	private String username;
 	private String password; 
@@ -135,13 +134,7 @@ public class Usuario  extends Pojo {
 	public void setIdRol(Long idRol) {
 		this.idRol = idRol;
 	}
-	public Long getId() {
-		return id;
-	}
-	
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 
 	@Override
 	public Object getDatabaseEntity() {

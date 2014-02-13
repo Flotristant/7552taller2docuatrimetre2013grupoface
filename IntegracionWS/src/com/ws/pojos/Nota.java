@@ -2,20 +2,13 @@ package com.ws.pojos;
 
 public class Nota extends Pojo {
 
-	protected Long idNota;
 	protected Long idActividad; 
 	protected Long idGrupo;
 	protected Long idUsuario;
 	protected String nota;
 	protected String observaciones;
 	
-	public Long getIdNota() {
-		return idNota;
-	}
-	public void setIdNota(Long idNota) {
-		this.idNota = idNota;
-	}
-	
+
 	public Long getIdActividad() {
 		return idActividad;
 	}
@@ -51,7 +44,7 @@ public class Nota extends Pojo {
 		ar.fiuba.redsocedu.datalayer.ws.Nota notaDB = new ar.fiuba.redsocedu.datalayer.ws.Nota();
         
         notaDB.setId(this.getId());
-        notaDB.setNotaId(this.getIdNota());
+        notaDB.setNotaId(this.getId());
         notaDB.setActividadId(this.getIdActividad());
         notaDB.setGrupoId(this.getIdGrupo());
         notaDB.setNota(this.getNota());

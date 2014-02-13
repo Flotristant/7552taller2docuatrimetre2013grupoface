@@ -3,7 +3,6 @@ package com.ws.pojos;
 public class Recurso extends Pojo{
 	
 	Long ambitoId;
-	Long recursoId;
 	String descripcion;
 	String tipo;
 
@@ -23,14 +22,6 @@ public class Recurso extends Pojo{
 		this.ambitoId = ambitoId;
 	}
 
-	public Long getRecursoId() {
-		return recursoId;
-	}
-
-	public void setRecursoId(Long idRecurso) {
-		this.recursoId = idRecurso;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -43,7 +34,7 @@ public class Recurso extends Pojo{
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Recurso recursoDB = new ar.fiuba.redsocedu.datalayer.ws.Recurso();
 		recursoDB.setAmbitoId(this.getAmbitoId());
-		recursoDB.setRecursoId(this.getRecursoId());
+		recursoDB.setRecursoId(this.getId());
 		recursoDB.setId(this.getId());
 		recursoDB.setDescripcion(this.getDescripcion());
 		recursoDB.setTipo(this.getTipo());
