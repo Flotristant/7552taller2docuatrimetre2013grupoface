@@ -25,7 +25,7 @@ public class GrupoParser extends Parser  {
 		Grupo grupo = (Grupo) object;
 		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = new ar.fiuba.redsocedu.datalayer.ws.Grupo();
 	    
-		grupoDB.setGrupoId(grupo.getGrupoId());
+		grupoDB.setId(grupo.getId());
 		grupoDB.setActividadId(grupo.getActividadId());
 		return grupoDB;
 	}
