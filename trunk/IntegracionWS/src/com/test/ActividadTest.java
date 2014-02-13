@@ -99,7 +99,8 @@ public class ActividadTest extends TestCase {
 		
 		String mje = ws.seleccionarDatos("<WS><Actividad><id>"+actividad.getId()+"</id></Actividad></WS>");
 		System.out.println(mje);
-		Assert.assertFalse(mje.contains(NotificacionFactory.Error().getMensaje()));
+		Assert.assertFalse(mje.contains(NotificacionFactory.Error().getMensaje()) || 
+				mje.contains(NotificacionFactory.sinResultados().getMensaje()));
 	}
 	
 	
