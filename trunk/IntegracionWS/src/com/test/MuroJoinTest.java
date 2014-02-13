@@ -70,7 +70,7 @@ public class MuroJoinTest extends TestCase {
 	 * 
 	 * */
 	@Test
-	public void getAllEventsFromAMuro() {
+	public void testGetAllEventsFromAMuro() {
 		Assert.assertTrue(muro.getId() > 0);
 		String xml = "<WS><Evento><join><Muro><id>"+ muro.getId().toString() + "</id></Muro></join></Evento></WS>";
 		System.err.println(xml);
@@ -86,7 +86,7 @@ public class MuroJoinTest extends TestCase {
 	 *  Se puede resolver pidiendo primero el muro, se obtiene el ambito y dsp se pide el ambito.
 	 * */
 	// @Test
-	public void getAmbitoDelMuro() {		
+	public void GetAmbitoDelMuro() {		
 		Assert.assertTrue(muro.getId() > 0);
 		String xml = "<WS><Ambito><join><Muro><id>"+ muro.getId().toString() + "</id></Muro></join></Ambito></WS>";
 		String rdo = ws.seleccionarDatos(xml);

@@ -19,31 +19,24 @@ IntegracionWS ws;
 	}
 	
 	@Test
-	public void guardarRecurso(){
-		
+	public void testGuardarRecurso(){
 		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>recursoParaArchivo</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
-		
-		System.out.println(ws.guardarDatos(xml));
+		String rdo = ws.guardarDatos(xml);
+		Assert.assertTrue(rdo, rdo.contains(NotificacionFactory.ExitoGuardado("1").getMensaje()));
 	}
 	
 	@Test 
-	public void actualizarRecurso(){
-		
+	public void testActualizarRecurso(){
 		String xml = "<?xml version=\"1.0\"?><WS><Recurso><id>1013</id><descripcion>pruebaRecursoArchivoLala</descripcion><ambitoId>1</ambitoId><tipo>Lala</tipo></Recurso></WS>";
-		
 		String rdo = ws.actualizarDatos(xml);
-		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));
-		System.out.println(rdo);
-	
+		Assert.assertFalse(rdo, rdo.contains(NotificacionFactory.Error().getMensaje()));
 	}
 	
 	@Test
-	public void recuperarRecurso (){
+	public void testRecuperarRecurso (){
 		String xml = "<?xml version=\"1.0\"?><WS><Recurso><ambitoId>1</ambitoId></Recurso></WS>";
 		String rdo = ws.seleccionarDatos(xml);
-		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));		
-		System.out.println(rdo);
-	
+		Assert.assertFalse(rdo, rdo.contains(NotificacionFactory.Error().getMensaje()));		
 	}
 
 }

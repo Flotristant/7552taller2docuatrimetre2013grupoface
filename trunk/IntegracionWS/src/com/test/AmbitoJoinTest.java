@@ -73,7 +73,7 @@ public class AmbitoJoinTest extends TestCase {
 	}
 	
 	@Test
-	public void todosLosForosDelAmbito() {
+	public void testTodosLosForosDelAmbito() {
 		
 		foros = new ArrayList<Foro>();
 		Foro foro = new Foro();
@@ -96,7 +96,7 @@ public class AmbitoJoinTest extends TestCase {
 	}
 	
 	@Test
-	public void todasLasCartelerasDelAmbito() {
+	public void testTodasLasCartelerasDelAmbito() {
 		
 		carteleras = new ArrayList<Cartelera>();
 		Cartelera cartelera = new Cartelera();
@@ -119,18 +119,17 @@ public class AmbitoJoinTest extends TestCase {
 	}
 	
 	@Test
-	public void getAmbito() throws IOException {
+	public void testGetAmbito() throws IOException {
 		String request = "<WS><Ambito><id>"+this.ambito.getId()+"</id></Ambito></WS>";
 		String response = ws.seleccionarDatos(request);
-		System.out.println(response);
 		AssertThereIsOnlyOneAmbient(response);
 	}
 	
 	public void AssertThereIsOnlyOneAmbient(String response) {
 		String searchingString = "<Ambito>";
 		int position = response.indexOf(searchingString);
-		Assert.assertTrue(position >= 0);
-		Assert.assertFalse(response.indexOf(searchingString, position+searchingString.length()) >= 0);
+		Assert.assertTrue(response, position >= 0);
+		Assert.assertFalse(response, response.indexOf(searchingString, position+searchingString.length()) >= 0);
 	}
 	
 }

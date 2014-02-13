@@ -70,7 +70,7 @@ public class UsuarioJoinTest extends TestCase {
 	}
 	
 	@Test
-	public void obtenerTodasLasNotasDeUnUsuario() {
+	public void testObtenerTodasLasNotasDeUnUsuario() {
 		Assert.assertTrue(usuario.getId() > 0);
 		String xml = "<WS><Nota><join><Usuario><id>"+ usuario.getId().toString() + "</id></Usuario></join></Nota></WS>";
 
