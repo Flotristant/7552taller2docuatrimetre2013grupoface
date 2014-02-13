@@ -9,7 +9,6 @@ import com.ws.parsers.NotaParser;
 
 public class Actividad extends Pojo {
 
-    protected Long actividadId;
     protected Long actividadSuperiorId;
     protected Long ambitoSuperiorId;
     protected String descripcion;
@@ -22,12 +21,6 @@ public class Actividad extends Pojo {
     protected String tipo;
     protected String tipoEscala;
     
-    public Long getActividadId() {
- 		return actividadId;
- 	}
- 	public void setActividadId(Long actividadId) {
- 		this.actividadId = actividadId;
- 	}
  	public Long getActividadSuperiorId() {
  		return actividadSuperiorId;
  	}
@@ -99,7 +92,6 @@ public class Actividad extends Pojo {
 		ar.fiuba.redsocedu.datalayer.ws.Actividad miObjDB = new ar.fiuba.redsocedu.datalayer.ws.Actividad();
 
         miObjDB.setId(this.getId());
-        miObjDB.setActividadId(this.getActividadId());
         miObjDB.setActividadSuperiorId(this.getActividadSuperiorId());
         miObjDB.setAmbitoSuperiorId(this.getAmbitoSuperiorId());
         miObjDB.setDescripcion(this.getDescripcion());

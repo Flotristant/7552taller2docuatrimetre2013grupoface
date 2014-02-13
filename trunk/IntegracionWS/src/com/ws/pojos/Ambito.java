@@ -3,19 +3,10 @@ package com.ws.pojos;
 import java.util.List;
 
 public class Ambito extends Pojo {
-	protected Long ambitoId;
 	protected List<Cartelera> carteleras;
 	protected List<Chat> chats;
 	protected List<Foro> foros;
 	protected List<Muro> muros;
-
-	public Long getAmbitoId() {
-		return ambitoId;
-	}
-
-	public void setAmbitoId(Long ambitoId) {
-		this.ambitoId = ambitoId;
-	}
 
 	public List<Cartelera> getCarteleras() {
 		return carteleras;
