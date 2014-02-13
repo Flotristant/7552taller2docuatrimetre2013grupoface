@@ -3,6 +3,7 @@ package com.test;
 import java.util.Map;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ import com.utils.NotificacionFactory;
 import com.ws.parsers.MensajeChatParser;
 import com.ws.services.IntegracionWS;
 
-public class JoinTests {
+public class JoinTests extends TestCase {
 
     DataService service;
 

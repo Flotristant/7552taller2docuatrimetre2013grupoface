@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +18,7 @@ import com.ws.pojos.Nota;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
 
-public class TestIntegracionActividad {
+public class TestIntegracionActividad extends TestCase {
 	private IntegracionWS integracionWS;
 	
     @Before
@@ -24,18 +26,6 @@ public class TestIntegracionActividad {
     	this.integracionWS = new IntegracionWS();
         IntegracionWS.setMockService(false);
     }	
-	
-    @Test
-    public void problemaIntegracionActividad() {
-    	String consulta = "<?xml version=\"1.0\"?><WS><Actividad>" +
-    			"<nombre>El mago asesino</nombre>" +
-    			"<tipo>Individual</tipo>" +
-    			"<descripcion>nada q ver nada q oler</descripcion>" +
-    			"<fechaInicio>111111</fechaInicio>" +
-    			"<fechaFin>121212</fechaFin>" +
-    			"</Actividad></WS>";
-    	integracionWS.guardarDatos(consulta);
-    }
     
 	//******************************************ACTIVIDAD************************************************\\
     @Test
@@ -78,7 +68,7 @@ public class TestIntegracionActividad {
         
         String actividadXML = getActividadNegocioXML(actividad);
         String resultadoTransaccion = integracionWS.guardarDatos(actividadXML);
-        Assert.assertTrue(resultadoTransaccion.contains("La entidad ha sido almacenada con exito"));
+        Assert.assertTrue(resultadoTransaccion, resultadoTransaccion.contains("La entidad ha sido almacenada con exito"));
         
         // consultar actividad por props
         resultadoTransaccion = integracionWS.seleccionarDatos(actividadXML);
@@ -95,8 +85,6 @@ public class TestIntegracionActividad {
         resultadoTransaccion = integracionWS.seleccionarDatos(actividadXML);
         Actividad actividad_leidoMod = getMessageFromResult(resultadoTransaccion);
         assertActividadsIguales(actividad_leido, actividad_leidoMod);
-        
-
     }
     
     private Actividad getMessageFromResult(String resultadoTransaccion) {

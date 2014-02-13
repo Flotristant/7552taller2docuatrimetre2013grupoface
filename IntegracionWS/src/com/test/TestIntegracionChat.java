@@ -1,18 +1,10 @@
 package com.test;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-import java.util.TimeZone;
-
-import javax.xml.datatype.Duration;
-import javax.xml.datatype.XMLGregorianCalendar;
-import javax.xml.namespace.QName;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +21,7 @@ import com.ws.services.IntegracionWS;
 import com.ws.tags.ChatTags;
 import com.ws.tags.MiembroChatTags;
 
-public class TestIntegracionChat {
+public class TestIntegracionChat extends TestCase {
 	private IntegracionWS integracionWS;
 	
 	private Chat chat;

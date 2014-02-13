@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
 import com.ws.services.IntegracionWS;
 
-public class ArchivoTest {
+public class ArchivoTest extends TestCase {
 
 	IntegracionWS ws;
 	

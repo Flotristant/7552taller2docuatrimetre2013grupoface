@@ -1,6 +1,7 @@
 package com.test;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,7 +9,7 @@ import org.junit.Test;
 import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
-public class RecursoTest {
+public class RecursoTest extends TestCase {
 	
 IntegracionWS ws;
 	

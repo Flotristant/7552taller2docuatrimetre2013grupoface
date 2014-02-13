@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import com.ws.parsers.UsuarioParser;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
 
-public class UsuarioTestIntegration {
+public class UsuarioTestIntegration extends TestCase {
 
 	//ATENCION: el nombre del usuario tiene que ser uno que no exista en la BD si no se corre en modo mock.
 	private static String xmlUser1;
@@ -82,8 +83,9 @@ public class UsuarioTestIntegration {
     	this.usuarioNegocio.setEmail("lalala@gmail.com");
     	this.serializarUsuarioNegocio();
     	String message = this.integracionWS.actualizarDatos(xmlUser1);
-    	Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
+    	Assert.assertEquals(message, NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
     }
+    
     
     @Test
     public void obtenerMasDeUnUsuarioTest() {
@@ -92,7 +94,7 @@ public class UsuarioTestIntegration {
     	usuarioNegocio.setHabilitado(true);
     	this.serializarUsuarioNegocio();
     	String nuevoXml1 = integracionWS.seleccionarDatos(xmlUser1);
-    	Assert.assertNotNull("no se obtuvieron resultados", nuevoXml1);
+    	Assert.assertTrue(nuevoXml1, nuevoXml1.contains(NotificacionFactory.sinResultados().getMensaje()));
     }
 
 

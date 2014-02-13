@@ -1,6 +1,7 @@
 package com.test;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +16,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Muro;
 import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
-public class MuroJoinTest {
+public class MuroJoinTest extends TestCase {
 
 	DataService service;
 	IData port;
@@ -64,6 +65,10 @@ public class MuroJoinTest {
 		
 	}
 	 
+	/**
+	 * Test corrió correctamente el 13/02/2014.
+	 * 
+	 * */
 	@Test
 	public void getAllEventsFromAMuro() {
 		Assert.assertTrue(muro.getId() > 0);

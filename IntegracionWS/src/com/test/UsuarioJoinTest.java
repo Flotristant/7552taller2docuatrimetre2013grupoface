@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,7 +19,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
-public class UsuarioJoinTest {
+public class UsuarioJoinTest extends TestCase {
 	DataService service;
 	IData port;
 	IntegracionWS ws;	

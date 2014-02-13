@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import com.utils.NotificacionFactory;
@@ -18,7 +20,7 @@ import com.utils.XmlGregorianConverter;
 import com.ws.handler.Handler;
 import com.ws.serializers.NotificacionSerializer;
 
-public class TestGenerico {
+public class TestGenerico extends TestCase {
 
 	@Test
 	public void test() {

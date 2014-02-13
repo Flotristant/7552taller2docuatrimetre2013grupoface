@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -18,10 +19,9 @@ import ar.fiuba.redsocedu.datalayer.ws.Foro;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 
 import com.utils.NotificacionFactory;
-import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
 
-public class AmbitoJoinTest {
+public class AmbitoJoinTest extends TestCase {
 
 	Ambito ambito;
 	List<Foro> foros;
