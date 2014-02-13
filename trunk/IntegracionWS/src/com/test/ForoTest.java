@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +22,7 @@ import com.ws.pojos.Foro;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
 
-public class ForoTest {
+public class ForoTest extends TestCase {
 
 	DataService service;
 	IData port;

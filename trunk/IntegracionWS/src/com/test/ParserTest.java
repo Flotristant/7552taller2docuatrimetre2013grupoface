@@ -3,15 +3,13 @@ package com.test;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.w3c.dom.Document;
@@ -28,7 +26,7 @@ import com.ws.pojos.Actividad;
 import com.ws.serializers.UsuarioPojoSerializer;
 import com.ws.serializers.UsuarioSerializer;
 
-public class ParserTest {
+public class ParserTest extends TestCase {
 	
 	@Test
 	public void testParserVsXstream(){
@@ -92,7 +90,7 @@ public class ParserTest {
 		XStream xstream = new XStream();
 		String xml = "<com.ws.pojos.Actividad><ActividadId>1</ActividadId></com.ws.pojos.Actividad>";
 		Actividad actividad = (Actividad) xstream.fromXML(xml);
-		System.out.println(actividad.getActividadId());
+		System.out.println(actividad.getId());
 	}
 	
 	@Test

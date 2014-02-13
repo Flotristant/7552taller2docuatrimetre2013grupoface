@@ -1,6 +1,7 @@
 package com.test;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +11,10 @@ import ar.fiuba.redsocedu.datalayer.ws.Ambito;
 import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 
-import com.sun.org.apache.xml.internal.serialize.SerializerFactory;
 import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
-public class ActividadTest {
+public class ActividadTest extends TestCase {
 	Ambito ambito;
 	
 	DataService service;

@@ -3,6 +3,7 @@ package com.test;
 import java.util.List;
 
 import junit.framework.Assert;
+import junit.framework.TestCase;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,7 +17,7 @@ import ar.fiuba.redsocedu.datalayer.ws.Noticia;
 import com.utils.NotificacionFactory;
 import com.ws.services.IntegracionWS;
 
-public class CarteleraJoinTest {
+public class CarteleraJoinTest extends TestCase {
 
 	DataService service;
 	IData port;
