@@ -4,7 +4,16 @@ public class Link extends Pojo{
 
 	private String nombre;
 	private Long recursoId;
+	private Recurso recurso;
 	
+	public Recurso getRecurso() {
+		return recurso;
+	}
+
+	public void setRecurso(Recurso recurso) {
+		this.recurso = recurso;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -28,6 +37,8 @@ public class Link extends Pojo{
 		linkDB.setId(this.getId());
 		linkDB.setNombre(this.getNombre());
 		linkDB.setRecursoId(this.getRecursoId());
+		if(this.getRecurso() != null)
+			linkDB.setRecurso((ar.fiuba.redsocedu.datalayer.ws.Recurso)this.getRecurso().getDatabaseEntity());
 		return linkDB;
 	}
 

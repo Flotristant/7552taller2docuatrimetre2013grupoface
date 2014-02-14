@@ -1,5 +1,6 @@
 package com.ws.pojos;
 
+
 public class Recurso extends Pojo{
 	
 	Long ambitoId;
@@ -29,7 +30,7 @@ public class Recurso extends Pojo{
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
+	
 	@Override
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Recurso recursoDB = new ar.fiuba.redsocedu.datalayer.ws.Recurso();

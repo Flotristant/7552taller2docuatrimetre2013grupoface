@@ -16,6 +16,7 @@ public class LinkSerializer extends Serializer {
 		xstream.aliasField(LinkTags.ID_TAG,Link.class,"id");
 		xstream.aliasField(LinkTags.ID_RECURSO_TAG,Link.class,"recursoId");
 		xstream.aliasField(LinkTags.NOMBRE_TAG,Link.class,"nombre");
+		xstream.omitField(Link.class, "recurso");
 		
 		xstream.aliasPackage("", "ar.fiuba.redsocedu.datalayer.ws");
 		

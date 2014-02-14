@@ -15,21 +15,20 @@ import com.utils.NotificacionFactory;
 import com.ws.parsers.ArchivoMetadataParser;
 import com.ws.parsers.RecursoParser;
 import com.ws.pojos.ArchivoMetadata;
-import com.ws.pojos.Pojo;
 import com.ws.serializers.ArchivoMetadataSerializer;
 import com.ws.serializers.NotificacionSerializer;
 
 
-public class ArchivoHandler extends Handler {
+public class ArchivoHandler extends MaterialesHandler {
 	
-	ArchivoMetadataParser archivoParser;
 	RecursoParser recursoParser;
 	QueryBuilder recursoQueryBuilder;
+	ArchivoMetadataParser archivoParser;
 
 	public ArchivoHandler() {
 		super("ar.fiuba.redsocedu.datalayer.dtos.Archivo", new ArchivoMetadataParser(),
 				new ArchivoMetadataSerializer(), new ArchivoMetadataQueryBuilder());
-		this.archivoParser = new ArchivoMetadataParser();
+		this.archivoParser = (ArchivoMetadataParser) this.getParser();
 		this.recursoParser = new RecursoParser();
 		this.recursoQueryBuilder = new RecursoQueryBuilder();
 		
@@ -50,7 +49,7 @@ public class ArchivoHandler extends Handler {
 	        return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
 	    	}
 	    	 
-	    	Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,recurso);
+	    	Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,this.archivoParser.getRecursoNegocio(recurso));
 	 	   
 	    	
 	 	    
@@ -94,7 +93,7 @@ public class ArchivoHandler extends Handler {
         
             recurso = this.obtenerRecursoById(xml,transactionId);
           
-            Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,recurso);
+            Object obj = this.archivoParser.getDBArchivoObjectFromBusinessXML(xml,datos,this.archivoParser.getRecursoNegocio(recurso));
             
             port.beginTransaction(transactionId);
             port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
@@ -151,39 +150,6 @@ public class ArchivoHandler extends Handler {
 		
 		
 	}
-	
-	
-	
-	private Recurso obtenerRecursoById(String xml, Long transactionId){
-		
-		Recurso recurso = null;
-	    String xmlRecurso = this.archivoParser.getXmlRecursoId(xml);
-	    
-	    try{
-	     	
-	    	this.recursoParser.inicializarCampos(xmlRecurso);
-			Pojo pojo = (Pojo) this.recursoParser.getEntidadNegocio(xmlRecurso);
-	    	String query = this.recursoQueryBuilder.getAllById(pojo.getId());
-	    	List<ReturnedObject> dbPojos = null;
-	    	
-	    	port.beginTransaction(transactionId);
-	    	dbPojos = port.query(transactionId, query);
-	    	port.commit(transactionId);
-	    	 
-	    	if (!dbPojos.isEmpty())
-	    		recurso = (Recurso) dbPojos.get(0);
-	    	return recurso;
-	    }
-	    catch (DataException e) {
-	    	 try{
-	    		 port.rollback(transactionId);
-	    		 return recurso;
-	    	 }
-	    	 catch(DataException e1){
-	    		 return recurso;
-	    	 }
-	    }
-	 }
 	    
 	
 
