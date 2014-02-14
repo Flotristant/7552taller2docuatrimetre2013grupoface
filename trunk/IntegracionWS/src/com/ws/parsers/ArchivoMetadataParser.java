@@ -1,11 +1,11 @@
 package com.ws.parsers;
 
-import ar.fiuba.redsocedu.datalayer.ws.Recurso;
 
 import com.ws.pojos.ArchivoMetadata;
+import com.ws.pojos.Recurso;
 import com.ws.tags.ArchivoMetadataTags;
 
-public class ArchivoMetadataParser extends Parser {
+public class ArchivoMetadataParser extends MaterialesParser {
 	
 	public ArchivoMetadataParser() {
 		super(ArchivoMetadataTags.CLASS_TAG);
@@ -24,13 +24,21 @@ public class ArchivoMetadataParser extends Parser {
 		return archivo.getDatabaseEntity();
 	}
 	
+	@Override
 	public String getXmlRecursoId(String xml){
 		ArchivoMetadata archivo = (ArchivoMetadata) getEntidadNegocio(xml);
-		return "<?xml version=\"1.0\"?><WS><Recurso><id>"+archivo.getRecursoId().toString()+"</id></Recurso></WS>";
+		return MaterialesParser.getEncabezado().toString()+archivo.getRecursoId().toString()+MaterialesParser.getPie().toString();
+	}
+	
+	
+	@Override
+	protected Boolean validateJoinParser(Parser parser) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	protected Boolean validateJoinParser(Parser parser) {
+	public Object getDBObjectFromBusinessXML(String xml, Recurso recursoDB) {
 		// TODO Auto-generated method stub
 		return null;
 	}
