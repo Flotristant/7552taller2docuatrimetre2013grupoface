@@ -69,7 +69,7 @@ public class Archivo
      *     byte[]
      */
     public void setContenido(byte[] value) {
-        this.contenido = ((byte[]) value);
+        this.contenido = value;
     }
 
     /**
