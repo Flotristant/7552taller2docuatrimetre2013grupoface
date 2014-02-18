@@ -48,7 +48,7 @@ public class Chat extends Pojo {
 				ar.fiuba.redsocedu.datalayer.ws.MensajeChat unMensaje = (ar.fiuba.redsocedu.datalayer.ws.MensajeChat) elem.getDatabaseEntity();
 				try {
 	            	if(elem.getId() == null) {
-	            		Long id = DBManager.guardarObjetos(unMensaje, "ar.fiuba.redsocedu.datalayer.ws.MensajeChat");
+	            		Long id = DBManager.guardarObjetos(unMensaje, "ar.fiuba.redsocedu.datalayer.dtos.MensajeChat");
 	            		elem.setId(id);
 	            	}
 	            	unMensaje.setId(elem.getId());
@@ -65,7 +65,7 @@ public class Chat extends Pojo {
 	        	ar.fiuba.redsocedu.datalayer.ws.MiembroChat miembro = (ar.fiuba.redsocedu.datalayer.ws.MiembroChat) miembroNeg.getDatabaseEntity();
 	        	try {
 	            	if(miembroNeg.getId() == null) {
-	            		Long id = DBManager.guardarObjetos(miembro, "ar.fiuba.redsocedu.datalayer.ws.MiembroChat");
+	            		Long id = DBManager.guardarObjetos(miembro, "ar.fiuba.redsocedu.datalayer.dtos.MiembroChat");
 	            		miembroNeg.setId(id);
 	            	}
 	            	miembro.setId(miembroNeg.getId());

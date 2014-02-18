@@ -165,4 +165,61 @@ public class TestIntegracionChat extends TestCase {
 		System.err.println(rdo);
 		Assert.assertTrue(rdo.contains("exito"));
    }  
+    
+    @Test
+    public void testobtenerChatConDatos() {
+    	this.chat = new Chat();
+	  	Long id_chat = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
+	  	this.chat.setId(id_chat);
+	  
+	  	MiembroChat miembroChat = new MiembroChat();
+	  	miembroChat.setNombre("MiembrosCreados");
+	  	Long id_miembro = TestHelper.guardarDatos(miembroChat, "ar.fiuba.redsocedu.datalayer.dtos.MiembroChat", service, port);
+	  	miembroChat.setId(id_miembro);
+	  	
+	  	MensajeChat mensaje = new MensajeChat();
+	  	mensaje.setChatId(id_chat);
+	  	mensaje.setContenido("HELLOO WOORLD!");
+	  	mensaje.setFecha(XMLGregorianCalendarImpl.createDate(2014, 02, 1, 0));
+	  	mensaje.setMiembroChatId(id_miembro);
+	  	Long id_mensaje = TestHelper.guardarDatos(mensaje, "ar.fiuba.redsocedu.datalayer.dtos.MensajeChat", service, port);
+	  	mensaje.setId(id_mensaje);
+	  	
+	  	Date fecha = new Date();
+	  	SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/mm/yyyy");
+	  	String fecha_mensaje = simpleFormat.format(fecha);
+	  	
+	  	String consulta = "<?xml version=\"1.0\"?><WS><Chat>" +
+				"<id>" + id_chat + "</id>" + 
+				"<miembrosChat>" +
+				"<MiembroChat>" +
+				"<nombre>"+ miembroChat.getNombre() + "</nombre>" +
+				"<estado>"+ miembroChat.isEstado() + "</estado>" +
+				"<id>"+ miembroChat.getId() + "</id>" +
+				"</MiembroChat>" +
+				"</miembrosChat>" +
+				"<mensajesChat>"+
+				"<MensajeChat>" +
+				"<id>"+ mensaje.getId()+ "</id>" +
+				"<contenido>"+mensaje.getContenido()+ "</contenido>" +
+				"<fecha>"+ fecha_mensaje+"</fecha>" +
+				"</MensajeChat>" +
+				"</mensajesChat>"+
+				"</Chat></WS>";
+		
+		String rdo = integracionWS.actualizarDatos(consulta);
+	  	//System.out.println(rdo);
+	  	
+	  	String request = "<WS><Chat><id>"+id_chat+"</id></Chat></WS>";
+	  	String response = integracionWS.seleccionarDatos(request);
+	  	System.out.println(response);
+	  	
+	  	request  = "<WS><MensajeChat><join><Chat><id>"+id_chat+"</id></Chat></join></MensajeChat></WS>";
+	  	response = integracionWS.seleccionarDatos(request);
+	  	System.out.println(response);
+	  	
+	  	request  = "<WS><MiembroChat><join><Chat><id>"+id_chat+"</id></Chat></join></MiembroChat></WS>";
+	  	response = integracionWS.seleccionarDatos(request);
+	  	System.out.println(response);
+    }
 }

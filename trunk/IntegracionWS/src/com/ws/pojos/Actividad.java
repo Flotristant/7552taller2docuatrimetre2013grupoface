@@ -2,13 +2,14 @@ package com.ws.pojos;
 
 import java.util.List;
 
+import com.db.querys.DBManager;
 import com.ws.parsers.GrupoParser;
 import com.ws.parsers.NotaParser;
 
 
 
 public class Actividad extends Pojo {
-
+	
     protected Long actividadSuperiorId;
     protected Long ambitoSuperiorId;
     protected String descripcion;
@@ -99,21 +100,38 @@ public class Actividad extends Pojo {
         miObjDB.setFechaInicio(this.getFechaInicio());
         if (this.getGruposExclusivos()!=null){
         	miObjDB.setGruposExclusivo(this.getGruposExclusivos());
-        }
+        } 
         miObjDB.setNombre(this.getNombre());
         miObjDB.setTipo(this.getTipo());
         miObjDB.setTipoEscala(this.getTipoEscala());
-        NotaParser notaParser = new NotaParser();
         if (this.getNotas() != null){
         	for (Nota nota : this.getNotas()) {
-        		miObjDB.getNotas().add(notaParser.getDBObjectFromBussinessObject(nota));
+        		ar.fiuba.redsocedu.datalayer.ws.Nota notaDB = (ar.fiuba.redsocedu.datalayer.ws.Nota)nota.getDatabaseEntity();
+    			try {
+    				if(notaDB.getId() == null) {
+    					notaDB.setActividadId(this.getId());
+    					Long id = DBManager.guardarObjetos(notaDB, "ar.fiuba.redsocedu.datalayer.dtos.Nota");
+    					notaDB.setId(id);
+    				}        		
+    				miObjDB.getNotas().add(notaDB);
+				} catch (Exception e) {
+					break;
+				}
         	}
         }
-        GrupoParser grupoParser = new GrupoParser();
         
         if (this.getGrupos() != null){
         	for (Grupo grupo : this.getGrupos()) {
-        		miObjDB.getGrupos().add((ar.fiuba.redsocedu.datalayer.ws.Grupo)grupoParser.getDBObjectFromBussinessObject(grupo));
+        		ar.fiuba.redsocedu.datalayer.ws.Grupo grupoDB = (ar.fiuba.redsocedu.datalayer.ws.Grupo)grupo.getDatabaseEntity();
+        		try {
+        			grupoDB.setActividadId(this.getId());
+	        		if(grupoDB.getId() == null) {
+	        			DBManager.guardarObjetos(grupoDB, "ar.fiuba.redsocedu.datalayer.dtos.Grupo");
+	        		}
+	        		miObjDB.getGrupos().add(grupoDB);
+        		} catch (Exception e) {
+        			break;
+        		}
         	}
         }
 
