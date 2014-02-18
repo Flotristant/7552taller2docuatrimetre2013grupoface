@@ -11,4 +11,7 @@
         <operation name="actualizarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
         <operation name="eliminarDatos" mep="http://www.w3.org/2004/08/wsdl/in-out" />
         <operation name="guardarArchivo" mep="http://www.w3.org/2004/08/wsdl/in-out" />
+        <operation name="seleccionarArchivo" mep="http://www.w3.org/2004/08/wsdl/in-out" />
+        <operation name="eliminarArchivo" mep="http://www.w3.org/2004/08/wsdl/in-out" />
+        <operation name="actualizarArchivo" mep="http://www.w3.org/2004/08/wsdl/in-out" />
 </service>
