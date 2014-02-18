@@ -4,12 +4,11 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.List;
 
-import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
-
 import com.utils.NotificacionFactory;
 import com.ws.handler.ArchivoHandler;
 import com.ws.handler.Handler;
 import com.ws.handler.HandlerFactory;
+import com.ws.pojos.ArchivoMetadata;
 import com.ws.serializers.NotificacionSerializer;
 
 public class IntegracionWS {
@@ -127,7 +126,7 @@ public class IntegracionWS {
 	}
 	
 	
-	public List<ReturnedObject> seleccionarArchivo(String xml) {
+	public List<ArchivoMetadata> seleccionarArchivo(String xml) {
 		
 		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
 			//prueba se ivocacion al web service eliminar archivo    

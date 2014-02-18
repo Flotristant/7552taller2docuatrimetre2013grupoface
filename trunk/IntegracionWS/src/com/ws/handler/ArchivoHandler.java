@@ -1,8 +1,10 @@
 package com.ws.handler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import ar.fiuba.redsocedu.datalayer.ws.Archivo;
 import ar.fiuba.redsocedu.datalayer.ws.DataException;
 import ar.fiuba.redsocedu.datalayer.ws.Recurso;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
@@ -116,7 +118,7 @@ public class ArchivoHandler extends MaterialesHandler {
 	}
 	
 	
-	public List<ReturnedObject> seleccionarArchivo(String xml){
+	public List<ArchivoMetadata> seleccionarArchivo(String xml){
 		
 		Map<String, Object> campos = this.parser.inicializarCampos(xml);
 		
@@ -135,7 +137,7 @@ public class ArchivoHandler extends MaterialesHandler {
         		return null;
         	}
         		
-        	return objects;
+        	return this.getArchivoNegocioList(objects);
         }
         catch (DataException e ) {
         	
@@ -149,6 +151,26 @@ public class ArchivoHandler extends MaterialesHandler {
 		}
 		
 		
+	}
+	
+	
+	private List<ArchivoMetadata> getArchivoNegocioList(List<ReturnedObject> archivosBD){
+		
+		List<ArchivoMetadata> listArchivosNegocio = new ArrayList<ArchivoMetadata>();
+		
+		for (int i=0; i < archivosBD.size(); i++){
+			ArchivoMetadata archivoNegocio = new ArchivoMetadata();
+			Archivo archivoBD = (Archivo)archivosBD.get(i);
+			archivoNegocio.setContenido(archivoBD.getContenido());
+			archivoNegocio.setId(archivoBD.getId());
+			archivoNegocio.setNombre(archivoBD.getNombre());
+			archivoNegocio.setRecursoId(archivoBD.getRecursoId());
+			archivoNegocio.setTamanio(archivoBD.getTamanio());
+			archivoNegocio.setTipo(archivoBD.getTipo());
+			listArchivosNegocio.add(archivoNegocio);
+		}
+		
+		return listArchivosNegocio;
 	}
 	    
 	

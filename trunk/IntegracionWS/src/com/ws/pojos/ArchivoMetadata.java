@@ -67,7 +67,8 @@ public class ArchivoMetadata extends Pojo {
 		DBArchivo.setTamanio(this.getTamanio());
 		DBArchivo.setTipo(this.getTipo());
 		DBArchivo.setContenido(this.getContenido());
-		DBArchivo.setRecurso((ar.fiuba.redsocedu.datalayer.ws.Recurso)this.getRecurso().getDatabaseEntity());
+		if(this.getRecurso() != null)
+			DBArchivo.setRecurso((ar.fiuba.redsocedu.datalayer.ws.Recurso)this.getRecurso().getDatabaseEntity());
 		return DBArchivo;
 	}
 
