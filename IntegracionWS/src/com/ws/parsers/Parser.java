@@ -25,6 +25,7 @@ import com.thoughtworks.xstream.converters.basic.DateConverter;
 import com.utils.NotificacionFactory;
 import com.ws.pojos.Nota;
 import com.ws.serializers.NotificacionSerializer;
+import com.ws.serializers.XMLCalendarConverter;
 
 public abstract class Parser {
 
@@ -70,6 +71,7 @@ public abstract class Parser {
 		String timeFormat = "dd-mm-yyyy";
 		String[] acceptableFormats = {timeFormat};
 		xmlReader.registerConverter(new DateConverter(dateFormat, acceptableFormats));
+		xmlReader.registerConverter(new XMLCalendarConverter());
 		Object obj = xmlReader.fromXML(xml);
 		return obj;
 	}

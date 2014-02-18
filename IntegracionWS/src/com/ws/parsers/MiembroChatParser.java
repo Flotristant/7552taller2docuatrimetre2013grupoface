@@ -29,13 +29,20 @@ public class MiembroChatParser extends Parser {
         return null;
     }
     
+    /**
+     * Por favor, mantener los "<" ">" porque sino se confunden Chat con MiembroChat por ejemplo (contiene 'Chat').
+     */
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
-		xml = xml.replace(ChatTags.CLASS_TAG, "com.ws.pojos."
-				+ ChatTags.CLASS_TAG);
-		xml = xml.replace(MensajeChatTags.CLASS_TAG, "com.ws.pojos."
-				+ MensajeChatTags.CLASS_TAG);
+		xml = xml.replace("<"+ChatTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ ChatTags.CLASS_TAG+">");
+		xml = xml.replace("</"+ChatTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ ChatTags.CLASS_TAG+">");
+		xml = xml.replace("<"+MensajeChatTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ MensajeChatTags.CLASS_TAG +">");
+		xml = xml.replace("</"+MensajeChatTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ MensajeChatTags.CLASS_TAG +">");
 		return xml;
 	}
 

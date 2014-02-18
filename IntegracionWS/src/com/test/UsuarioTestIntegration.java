@@ -1,6 +1,7 @@
 package com.test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -11,6 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
+import ar.fiuba.redsocedu.datalayer.ws.Actividad;
+import ar.fiuba.redsocedu.datalayer.ws.DataService;
+import ar.fiuba.redsocedu.datalayer.ws.IData;
 import ar.fiuba.redsocedu.datalayer.ws.Usuario;
 
 import com.thoughtworks.xstream.XStream;
@@ -22,24 +26,32 @@ import com.ws.services.IntegracionWS;
 public class UsuarioTestIntegration extends TestCase {
 
 	//ATENCION: el nombre del usuario tiene que ser uno que no exista en la BD si no se corre en modo mock.
-	private static String xmlUser1;
+	private static String xmlUser;
     private Usuario usuarioBD;
     private com.ws.pojos.Usuario usuarioNegocio;
 	private IntegracionWS integracionWS;
+	private DataService service;
+	private IData port;
 
     @Before
     public void setUp() throws Exception {
     	crearNuevoUsuarioNegocio();
     	serializarUsuarioNegocio();
     	integracionWS = new IntegracionWS();
-        IntegracionWS.setMockService(false);  
+        IntegracionWS.setMockService(false); 
+        try {
+        	this.service = new DataService();
+        	this.port = service.getDataPort();
+        } catch (Exception e) {
+        	Assert.fail("no se pudo crear el puerto y/o el servicio");
+        }
     }
     
     @Test
     public void testCreateQueryUpdateAndDeleteUser() throws SAXException, IOException, ParserConfigurationException {
-        guardarDatos(xmlUser1, integracionWS);        
-        System.out.println(xmlUser1);
-        String nuevoXml1 = consultarDatos(xmlUser1);
+        guardarDatos(xmlUser, integracionWS);        
+        System.out.println(xmlUser);
+        String nuevoXml1 = consultarDatos(xmlUser);
         System.out.println(nuevoXml1);
         if(nuevoXml1 != null) {
         	usuarioBD = obtenerUsuarioBD(nuevoXml1);
@@ -51,10 +63,10 @@ public class UsuarioTestIntegration extends TestCase {
     	this.usuarioNegocio.setId(this.usuarioBD.getId());
     	this.usuarioNegocio.setEmail("lalala@gmail.com");
     	this.serializarUsuarioNegocio();
-    	String message = this.integracionWS.actualizarDatos(xmlUser1);
+    	String message = this.integracionWS.actualizarDatos(xmlUser);
     	Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
     	if(this.integracionWS.isMock()) {
-    		message = integracionWS.eliminarDatos(xmlUser1);
+    		message = integracionWS.eliminarDatos(xmlUser);
     		Assert.assertEquals(NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
     	} else {
     		String prefix = "<?xml version=\"1.0\"?><WS><Usuario><id>";
@@ -69,9 +81,9 @@ public class UsuarioTestIntegration extends TestCase {
     
     @Test
     public void testUpdateUser() throws SAXException, IOException, ParserConfigurationException {
-    	guardarDatos(xmlUser1, integracionWS);        
-    	System.out.println(xmlUser1);
-    	String nuevoXml1 = consultarDatos(xmlUser1);
+    	guardarDatos(xmlUser, integracionWS);        
+    	System.out.println(xmlUser);
+    	String nuevoXml1 = consultarDatos(xmlUser);
     	System.out.println(nuevoXml1);
     	if(nuevoXml1 != null) {
     		usuarioBD = obtenerUsuarioBD(nuevoXml1);
@@ -82,10 +94,64 @@ public class UsuarioTestIntegration extends TestCase {
     	this.usuarioNegocio.setId(this.usuarioBD.getId());
     	this.usuarioNegocio.setEmail("lalala@gmail.com");
     	this.serializarUsuarioNegocio();
-    	String message = this.integracionWS.actualizarDatos(xmlUser1);
+    	String message = this.integracionWS.actualizarDatos(xmlUser);
     	Assert.assertEquals(message, NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Exito()), message);
     }
     
+    
+    @Test
+    public void testguardarUsuarioConActividades() {
+    	com.ws.pojos.Actividad actividad = new com.ws.pojos.Actividad();
+    	Long lal =  System.currentTimeMillis()/1000L;
+    	actividad.setNombre("actividadPrueba" + lal.toString());
+    	actividad.setDescripcion("actividad de prueba con usuario");
+    	actividad.setFechaInicio(111111L);
+    	actividad.setFechaFin(121212L);  
+    	actividad.setTipo("Individual");
+
+    	Actividad actividadDB = (Actividad) actividad.getDatabaseEntity();
+    	Long id_actividad = TestHelper.guardarDatos(actividadDB, "ar.fiuba.redsocedu.datalayer.dtos.Actividad",service , port );
+    	actividad.setId(id_actividad);
+    	System.out.println("id de la actividad asociada: " + id_actividad);
+    	if(id_actividad <= 0) {
+    		Assert.fail("no se pudo guardar la actividad");
+    	}
+    	crearNuevoUsuarioNegocio();   
+    	this.usuarioNegocio.setActividades(new ArrayList<com.ws.pojos.Actividad>());
+    	this.usuarioNegocio.getActividades().add(actividad);
+    	serializarUsuarioNegocio();
+    	xmlUser=xmlUser.replace(" class=\"linked-list\"", "");
+    	
+    	String response =integracionWS.guardarDatos(xmlUser);
+    	System.out.println(response);
+    	Assert.assertTrue(response.contains("exito"));
+    	
+    	Long id = getId(response);
+    	System.out.println(id);
+    	String xml_consulta = "<WS><Usuario><id>"+id+"</id></Usuario></WS>";
+    	response = integracionWS.seleccionarDatos(xml_consulta);
+    	System.out.println(response);
+
+    	xml_consulta = "<WS><Actividad><id>"+id_actividad+"</id></Actividad></WS>";
+    	response = integracionWS.seleccionarDatos(xml_consulta);
+    	System.out.println(response);
+    	
+    	xml_consulta = "<WS><Actividad><join><Usuario><id>"+id+"</id></Usuario></join></Actividad></WS>";
+    	response = integracionWS.seleccionarDatos(xml_consulta);
+    	System.out.println(response);
+    }
+    
+    private Long getId(String response) {
+    	String datos_inicio = "<datos>";
+    	String datos_fin = "</datos>";
+		int init = response.indexOf(datos_inicio);
+		int end = response.indexOf(datos_fin);
+    	if(init < 0 || end < 0) {
+    		return 0L;
+    	}
+    	String value = response.substring(init + datos_inicio.length(), end);
+    	return Long.parseLong(value);    	
+    }
     
     @Test
     public void testObtenerMasDeUnUsuarioTest() {
@@ -93,7 +159,7 @@ public class UsuarioTestIntegration extends TestCase {
     	usuarioNegocio.setActivado(true);
     	usuarioNegocio.setHabilitado(true);
     	this.serializarUsuarioNegocio();
-    	String nuevoXml1 = integracionWS.seleccionarDatos(xmlUser1);
+    	String nuevoXml1 = integracionWS.seleccionarDatos(xmlUser);
     	Assert.assertFalse(nuevoXml1, nuevoXml1.contains(NotificacionFactory.sinResultados().getMensaje()));
     }
 
@@ -101,8 +167,9 @@ public class UsuarioTestIntegration extends TestCase {
 	private void serializarUsuarioNegocio() {
 		XStream xstream = new XStream();
 		xstream.alias("Usuario", Usuario.class);
-        xmlUser1 = xstream.toXML(usuarioNegocio);
-        xmlUser1 = "<WS>"+xmlUser1+"</WS>";
+		//xstream.alias("Actividad", Actividad.class);
+        xmlUser = xstream.toXML(usuarioNegocio);
+        xmlUser = "<WS>"+xmlUser+"</WS>";
 	}
 
 	private void crearNuevoUsuarioNegocio() {

@@ -64,12 +64,13 @@ public abstract class Handler {
 			idnuevo = port.saveOrUpdate(transactionId, this.databaseEntityPath, obj);
 			port.commit(transactionId);
         } catch (DataException e) {
-        	try{
+        	try {
         		port.rollback(transactionId);
-        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
-        			
+        		e.printStackTrace();
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());        			
         	}
-        	catch (DataException e1){
+        	catch (DataException e1) {
+        		e1.printStackTrace();
         		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
         	}
         }
@@ -167,7 +168,7 @@ public abstract class Handler {
 		int first = xmlJoin.indexOf(initialTag);
 		int last = xmlJoin.indexOf(endTag);
 		if (first > 0 && last > 0 && first < last) {
-			return xmlJoin.substring(first, last + endTag.length());
+			return xmlJoin.substring(first+initialTag.length(), last);
 		}
 		return "";
 	}
