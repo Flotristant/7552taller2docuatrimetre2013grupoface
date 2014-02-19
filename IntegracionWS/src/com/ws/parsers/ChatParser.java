@@ -13,7 +13,6 @@ public class ChatParser extends Parser {
         super(ChatTags.CLASS_TAG);
         relaciones_directas.put(MensajeChatParser.class.toString(), "mensajesChat");
         relaciones_directas.put(MiembroChatParser.class.toString(), "miembrosChat");
-       // relaciones_directas.put(ChatParser.class.toString(), "chats");
         
     }
 

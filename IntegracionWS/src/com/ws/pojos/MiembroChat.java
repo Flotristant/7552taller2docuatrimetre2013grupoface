@@ -8,14 +8,8 @@ public class MiembroChat extends Pojo{
 	
 	String nombre;
 	Boolean estado;
-	List<Chat> chats;
+	List<MensajeChat> mensajesChat;
 	
-	public List<Chat> getChats() {
-		return chats;
-	}
-	public void setChats(List<Chat> chats) {
-		this.chats = chats;
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -37,7 +31,18 @@ public class MiembroChat extends Pojo{
 		if(this.getEstado() != null ) {
 			miembroChatDb.setEstado(this.getEstado());	
 		}
+		if(this.mensajesChat != null) {
+			for(MensajeChat mensaje : mensajesChat) {
+				miembroChatDb.getMensajesChat().add((ar.fiuba.redsocedu.datalayer.ws.MensajeChat)mensaje.getDatabaseEntity());
+			}
+		}
 		return miembroChatDb;
+	}
+	public List<MensajeChat> getMensajesChat() {
+		return mensajesChat;
+	}
+	public void setMensajesChat(List<MensajeChat> mensajesChat) {
+		this.mensajesChat = mensajesChat;
 	}
 
 }

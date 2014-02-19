@@ -1,8 +1,5 @@
 package com.ws.parsers;
 
-import ar.fiuba.redsocedu.datalayer.ws.Chat;
-import ar.fiuba.redsocedu.datalayer.ws.MensajeChat;
-
 import com.ws.pojos.MiembroChat;
 import com.ws.tags.ChatTags;
 import com.ws.tags.MensajeChatTags;
@@ -13,8 +10,6 @@ public class MiembroChatParser extends Parser {
     public MiembroChatParser() {
         super(MiembroChatTags.CLASS_TAG);
         this.relaciones_directas.put(MensajeChatParser.class.toString(), "mensajesChat");
-        this.relaciones_directas.put(ChatParser.class.toString(), "chats");
-//        this.relaciones_directas.put(MiembroChatParser.class.toString(), "miembrosChat"); //TODO: chequear nombre
     }
 
     @Override

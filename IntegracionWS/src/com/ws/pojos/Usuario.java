@@ -17,19 +17,9 @@ public class Usuario  extends Pojo {
 	private String fechaNacimiento;
 	private Boolean activado;
 	private Boolean habilitado;  
-	//private List<Actividad> actividades;
 	private List<Nota> notas;
 	private List<Grupo> grupos;
 	
-//  codigo Deprecado por pasar el listado de usuarios a la clase actividad	
-//	
-//	public List<Actividad> getActividades() {
-//		return actividades;
-//	}
-//
-//	public void setActividades(List<Actividad> actividades) {
-//		this.actividades = actividades;
-//	}
 
 	public List<Nota> getNotas() {
 		return notas;
@@ -149,11 +139,6 @@ public class Usuario  extends Pojo {
 		DBUser.setPassword(this.getPassword());
 		DBUser.setPadron(this.getPadron());
 		DBUser.setId(this.getId());
-//		if(actividades != null) {
-//			for(Actividad actividad : actividades) {
-//				DBUser.getActividades().add((ar.fiuba.redsocedu.datalayer.ws.Actividad)actividad.getDatabaseEntity());
-//			}
-//		}
 		if(notas != null) {
 			for(Nota nota : notas) {
 				DBUser.getNotas().add((ar.fiuba.redsocedu.datalayer.ws.Nota)nota.getDatabaseEntity());
