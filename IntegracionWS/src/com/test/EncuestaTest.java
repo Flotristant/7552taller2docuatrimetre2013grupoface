@@ -26,7 +26,7 @@ public class EncuestaTest {
 	
 	@Test
 	public void seleccionarEncuesta(){
-		String xml = "<?xml version=\"1.0\"?><WS><Encuesta><preguntas>preguntas lala otro ejemplo</preguntas></Encuesta></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Encuesta><id>1003</id></Encuesta></WS>";
 		System.out.println(ws.seleccionarDatos(xml));
 		
 	}

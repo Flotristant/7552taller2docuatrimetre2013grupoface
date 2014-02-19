@@ -118,7 +118,7 @@ public class ArchivoHandler extends MaterialesHandler {
 	}
 	
 	
-	public List<ArchivoMetadata> seleccionarArchivo(String xml){
+	public ArchivoMetadata[] seleccionarArchivo(String xml){
 		
 		Map<String, Object> campos = this.parser.inicializarCampos(xml);
 		
@@ -154,10 +154,10 @@ public class ArchivoHandler extends MaterialesHandler {
 	}
 	
 	
-	private List<ArchivoMetadata> getArchivoNegocioList(List<ReturnedObject> archivosBD){
+	private ArchivoMetadata[] getArchivoNegocioList(List<ReturnedObject> archivosBD){
 		
-		List<ArchivoMetadata> listArchivosNegocio = new ArrayList<ArchivoMetadata>();
-		
+		ArchivoMetadata[] arregloArchivos  = new ArchivoMetadata[archivosBD.size()];
+			
 		for (int i=0; i < archivosBD.size(); i++){
 			ArchivoMetadata archivoNegocio = new ArchivoMetadata();
 			Archivo archivoBD = (Archivo)archivosBD.get(i);
@@ -167,10 +167,10 @@ public class ArchivoHandler extends MaterialesHandler {
 			archivoNegocio.setRecursoId(archivoBD.getRecursoId());
 			archivoNegocio.setTamanio(archivoBD.getTamanio());
 			archivoNegocio.setTipo(archivoBD.getTipo());
-			listArchivosNegocio.add(archivoNegocio);
+			arregloArchivos[i] = archivoNegocio;
 		}
-		
-		return listArchivosNegocio;
+	
+		return arregloArchivos ;
 	}
 	    
 	
