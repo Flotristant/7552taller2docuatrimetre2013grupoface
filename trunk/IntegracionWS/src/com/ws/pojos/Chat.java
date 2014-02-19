@@ -7,8 +7,8 @@ import com.db.querys.DBManager;
 public class Chat extends Pojo {
 
 	Long idAmbito;
-	List<MensajeChat> mensajesChat;// = new ArrayList<Long>();
-	List<MiembroChat> miembrosChat;// = new ArrayList<MiembroChat>();
+	List<MensajeChat> mensajesChat;
+	List<MiembroChat> miembrosChat;
 	
 	public Chat() {
 		this.mensajesChat=null;
