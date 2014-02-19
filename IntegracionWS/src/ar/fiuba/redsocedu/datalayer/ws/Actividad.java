@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="notas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}nota" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="tipo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="tipoEscala" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="usuarios" type="{http://ws.datalayer.redsocedu.fiuba.ar/}usuario" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -52,7 +53,8 @@ import javax.xml.bind.annotation.XmlType;
     "nombre",
     "notas",
     "tipo",
-    "tipoEscala"
+    "tipoEscala",
+    "usuarios"
 })
 public class Actividad
     extends ReturnedObject
@@ -72,6 +74,8 @@ public class Actividad
     protected List<Nota> notas;
     protected String tipo;
     protected String tipoEscala;
+    @XmlElement(nillable = true)
+    protected List<Usuario> usuarios;
 
     /**
      * Gets the value of the actividadId property.
@@ -369,6 +373,35 @@ public class Actividad
      */
     public void setTipoEscala(String value) {
         this.tipoEscala = value;
+    }
+
+    /**
+     * Gets the value of the usuarios property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the usuarios property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getUsuarios().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Usuario }
+     * 
+     * 
+     */
+    public List<Usuario> getUsuarios() {
+        if (usuarios == null) {
+            usuarios = new ArrayList<Usuario>();
+        }
+        return this.usuarios;
     }
 
 }

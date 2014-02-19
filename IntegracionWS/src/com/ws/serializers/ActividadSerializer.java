@@ -28,6 +28,7 @@ public class ActividadSerializer extends Serializer {
         xstream.aliasField(ActividadTags.GRUPOSEXCLUSIVO_TAG, Actividad.class, "gruposExclusivo");
         xstream.aliasField(ActividadTags.NOMBRE_TAG, Actividad.class, "nombre");
         xstream.aliasField(ActividadTags.NOTAS_TAG, Actividad.class, "notas");
+        xstream.aliasField(ActividadTags.USUARIOS_TAG, Actividad.class, "usuarios");
         xstream.aliasField(ActividadTags.TIPO_TAG, Actividad.class, "tipo");
         xstream.aliasField(ActividadTags.TIPO_ESCALA_TAG, Actividad.class, "tipoEscala");
 

@@ -6,6 +6,7 @@ import com.ws.pojos.Nota;
 import com.ws.tags.ActividadTags;
 import com.ws.tags.GrupoTags;
 import com.ws.tags.NotaTags;
+import com.ws.tags.UsuarioTags;
 
 public class ActividadParser extends Parser {
 	
@@ -13,6 +14,7 @@ public class ActividadParser extends Parser {
 		super(ActividadTags.CLASS_TAG);
 		relaciones_directas.put(NotaParser.class.toString(), "notas");
 		relaciones_directas.put(GrupoParser.class.toString(), "grupos");
+		relaciones_directas.put(UsuarioParser.class.toString(), "usuarios");
 	}
 
 	@Override
@@ -58,6 +60,9 @@ public class ActividadParser extends Parser {
 				+ NotaTags.CLASS_TAG);
 		xml = xml.replace(GrupoTags.CLASS_TAG, "com.ws.pojos."
 				+ GrupoTags.CLASS_TAG);
+		xml = xml.replace(UsuarioTags.CLASS_TAG, "com.ws.pojos."
+				+ UsuarioTags.CLASS_TAG);
+		
 		return xml;
 	}
 

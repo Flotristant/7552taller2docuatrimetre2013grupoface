@@ -1,7 +1,6 @@
 package com.test;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -117,8 +116,8 @@ public class UsuarioTestIntegration extends TestCase {
     		Assert.fail("no se pudo guardar la actividad");
     	}
     	crearNuevoUsuarioNegocio();   
-    	this.usuarioNegocio.setActividades(new ArrayList<com.ws.pojos.Actividad>());
-    	this.usuarioNegocio.getActividades().add(actividad);
+    	//this.usuarioNegocio.setActividades(new ArrayList<com.ws.pojos.Actividad>());   //el usuario no tiene mas actividades.. las act tienen usuarios
+    	//this.usuarioNegocio.getActividades().add(actividad);
     	serializarUsuarioNegocio();
     	xmlUser=xmlUser.replace(" class=\"linked-list\"", "");
     	

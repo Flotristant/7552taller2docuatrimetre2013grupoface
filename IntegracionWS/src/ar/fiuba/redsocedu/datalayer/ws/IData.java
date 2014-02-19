@@ -78,12 +78,29 @@ public interface IData {
      * @throws DataException
      */
     @WebMethod
-    @RequestWrapper(localName = "commit", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Commit")
-    @ResponseWrapper(localName = "commitResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.CommitResponse")
-    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/commitRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/commitResponse", fault = {
-        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/commit/Fault/DataException")
+    @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
+    @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
+    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/beginTransactionRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/beginTransactionResponse", fault = {
+        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/beginTransaction/Fault/DataException")
     })
-    public void commit(
+    public void beginTransaction(
+        @WebParam(name = "transactionId", targetNamespace = "")
+        Long transactionId)
+        throws DataException
+    ;
+
+    /**
+     * 
+     * @param transactionId
+     * @throws DataException
+     */
+    @WebMethod
+    @RequestWrapper(localName = "rollback", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Rollback")
+    @ResponseWrapper(localName = "rollbackResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.RollbackResponse")
+    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/rollbackRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/rollbackResponse", fault = {
+        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/rollback/Fault/DataException")
+    })
+    public void rollback(
         @WebParam(name = "transactionId", targetNamespace = "")
         Long transactionId)
         throws DataException
@@ -121,29 +138,12 @@ public interface IData {
      * @throws DataException
      */
     @WebMethod
-    @RequestWrapper(localName = "beginTransaction", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransaction")
-    @ResponseWrapper(localName = "beginTransactionResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.BeginTransactionResponse")
-    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/beginTransactionRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/beginTransactionResponse", fault = {
-        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/beginTransaction/Fault/DataException")
+    @RequestWrapper(localName = "commit", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Commit")
+    @ResponseWrapper(localName = "commitResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.CommitResponse")
+    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/commitRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/commitResponse", fault = {
+        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/commit/Fault/DataException")
     })
-    public void beginTransaction(
-        @WebParam(name = "transactionId", targetNamespace = "")
-        Long transactionId)
-        throws DataException
-    ;
-
-    /**
-     * 
-     * @param transactionId
-     * @throws DataException
-     */
-    @WebMethod
-    @RequestWrapper(localName = "rollback", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.Rollback")
-    @ResponseWrapper(localName = "rollbackResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.RollbackResponse")
-    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/rollbackRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/rollbackResponse", fault = {
-        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/rollback/Fault/DataException")
-    })
-    public void rollback(
+    public void commit(
         @WebParam(name = "transactionId", targetNamespace = "")
         Long transactionId)
         throws DataException

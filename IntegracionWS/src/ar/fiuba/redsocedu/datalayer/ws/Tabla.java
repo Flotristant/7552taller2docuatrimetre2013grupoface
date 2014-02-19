@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
+ *         &lt;element name="ambitoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="campos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}campo" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="filas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}fila" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="tablaId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tabla", propOrder = {
+    "ambitoId",
     "campos",
     "filas",
     "tablaId"
@@ -40,11 +42,36 @@ public class Tabla
     extends ReturnedObject
 {
 
+    protected Long ambitoId;
     @XmlElement(nillable = true)
     protected List<Campo> campos;
     @XmlElement(nillable = true)
     protected List<Fila> filas;
     protected Long tablaId;
+
+    /**
+     * Gets the value of the ambitoId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getAmbitoId() {
+        return ambitoId;
+    }
+
+    /**
+     * Sets the value of the ambitoId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setAmbitoId(Long value) {
+        this.ambitoId = value;
+    }
 
     /**
      * Gets the value of the campos property.
