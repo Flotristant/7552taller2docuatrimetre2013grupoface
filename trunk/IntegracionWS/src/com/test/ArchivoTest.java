@@ -1,25 +1,20 @@
 package com.test;
 
-import java.io.FileOutputStream;
+
 import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import junit.framework.Assert;
-import junit.framework.TestCase;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.fiuba.redsocedu.datalayer.ws.Archivo;
-import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
 
+
+import com.ws.pojos.ArchivoMetadata;
 import com.ws.services.IntegracionWS;
 
-public class ArchivoTest extends TestCase {
+public class ArchivoTest {
 
 	IntegracionWS ws;
 	
@@ -50,18 +45,36 @@ public class ArchivoTest extends TestCase {
 	}
 	
 	@Test
+	public void actualizarArchivo(){
+		Path ruta = Paths.get("c:\\entrada.txt");
+		byte[] bytes = null;
+		try {
+			bytes = Files.readAllBytes(ruta);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1030</id><nombre>nuevaPruebaArchivoRecurso1030Actualizacion</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1030</recursoId></ArchivoMetadata></WS>";
+		
+		System.out.println(ws.actualizarArchivo(xml, bytes));
+		
+	}
+	
+	@Test
 	public void seleccionarArchivo(){
 		
-		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><recursoId>1017</recursoId></ArchivoMetadata></WS>";
-		//String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>nuevaPruebaRecursoNuevo</nombre></ArchivoMetadata></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>nuevaPruebaArchivoRecurso1030</nombre></ArchivoMetadata></WS>";
 		
-		/*List<ReturnedObject> archivos  =  ws.seleccionarArchivo(xml);
+		ArchivoMetadata[] archivos  =  ws.seleccionarArchivo(xml);
 		
-		for (int i=0; i < archivos.size() ; i ++){
-			Object objetoArchivo = (Object) archivos.get(i);
-			Archivo archivo = (Archivo) objetoArchivo;
+		for (int i=0; i < archivos.length ; i ++){
+			ArchivoMetadata archivo = (ArchivoMetadata) archivos[i];
 			System.out.println(archivo.getNombre());
-		}	*/	
-		Assert.assertTrue(!ws.seleccionarArchivo(xml).isEmpty());
+			System.out.println(archivo.getTipo());
+			System.out.println(archivo.getRecursoId());
+			System.out.println(archivo.getTamanio());
+			System.out.println(archivo.getId());
+		}	
 	}
 }
