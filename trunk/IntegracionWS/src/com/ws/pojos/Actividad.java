@@ -3,8 +3,6 @@ package com.ws.pojos;
 import java.util.List;
 
 import com.db.querys.DBManager;
-import com.ws.parsers.GrupoParser;
-import com.ws.parsers.NotaParser;
 
 
 
@@ -21,6 +19,7 @@ public class Actividad extends Pojo {
     protected List<Nota> notas;
     protected String tipo;
     protected String tipoEscala;
+    protected List<Usuario> usuarios;
     
  	public Long getActividadSuperiorId() {
  		return actividadSuperiorId;
@@ -76,6 +75,14 @@ public class Actividad extends Pojo {
  	public void setNotas(List<Nota> notas) {
  		this.notas = notas;
  	}
+ 	
+ 	public List<Usuario> getUsuarios() {
+ 		return usuarios;
+ 	}
+ 	public void setUsuarios(List<Usuario> usuarios) {
+ 		this.usuarios = usuarios;
+ 	}
+ 	
  	public String getTipo() {
  		return tipo;
  	}
@@ -134,6 +141,14 @@ public class Actividad extends Pojo {
         		}
         	}
         }
+        
+        //entiendo que no es necesario guardar el usuario si el mismo no existe, no tendria sentido crear un usuario nuevo
+        // apartir de una actividad que hace referencia a él ya que la existencia deberia chequearse mas arriba.
+    	if(this.usuarios != null) {
+			for(Usuario unusuario : usuarios) {
+				miObjDB.getUsuarios().add((ar.fiuba.redsocedu.datalayer.ws.Usuario)unusuario.getDatabaseEntity());
+			}
+		}
 
         return miObjDB;
 	}

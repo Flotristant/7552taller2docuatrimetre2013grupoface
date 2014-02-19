@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="foros" type="{http://ws.datalayer.redsocedu.fiuba.ar/}foro" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="muros" type="{http://ws.datalayer.redsocedu.fiuba.ar/}muro" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="recursos" type="{http://ws.datalayer.redsocedu.fiuba.ar/}recurso" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="tablas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}tabla" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="wikis" type="{http://ws.datalayer.redsocedu.fiuba.ar/}wiki" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -44,6 +45,7 @@ import javax.xml.bind.annotation.XmlType;
     "foros",
     "muros",
     "recursos",
+    "tablas",
     "wikis"
 })
 public class Ambito
@@ -63,6 +65,8 @@ public class Ambito
     protected List<Muro> muros;
     @XmlElement(nillable = true)
     protected List<Recurso> recursos;
+    @XmlElement(nillable = true)
+    protected List<Tabla> tablas;
     @XmlElement(nillable = true)
     protected List<Wiki> wikis;
 
@@ -262,6 +266,35 @@ public class Ambito
             recursos = new ArrayList<Recurso>();
         }
         return this.recursos;
+    }
+
+    /**
+     * Gets the value of the tablas property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the tablas property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTablas().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Tabla }
+     * 
+     * 
+     */
+    public List<Tabla> getTablas() {
+        if (tablas == null) {
+            tablas = new ArrayList<Tabla>();
+        }
+        return this.tablas;
     }
 
     /**

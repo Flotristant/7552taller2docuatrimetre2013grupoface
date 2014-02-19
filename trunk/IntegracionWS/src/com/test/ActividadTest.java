@@ -12,6 +12,8 @@ import ar.fiuba.redsocedu.datalayer.ws.DataService;
 import ar.fiuba.redsocedu.datalayer.ws.IData;
 
 import com.utils.NotificacionFactory;
+import com.ws.parsers.ActividadParser;
+import com.ws.serializers.ActividadSerializer;
 import com.ws.services.IntegracionWS;
 
 public class ActividadTest extends TestCase {
@@ -22,14 +24,14 @@ public class ActividadTest extends TestCase {
 	IntegracionWS ws;
 	Actividad actividad;
 	
-	@Before 
-	public void setUp() {
-		ws = new IntegracionWS();
-		service = new DataService();
-		port = service.getDataPort();
-		crearYguardarActividad();
-	}
-	
+//	@Before 
+//	public void setUp() {
+//		ws = new IntegracionWS();
+//		service = new DataService();
+//		port = service.getDataPort();
+//		crearYguardarActividad();
+//	}
+//	
 	public void crearYguardarActividad() {
 		actividad = new ar.fiuba.redsocedu.datalayer.ws.Actividad();
 		actividad.setNombre("MiActividadParaModificar");
@@ -101,6 +103,46 @@ public class ActividadTest extends TestCase {
 		System.out.println(mje);
 		Assert.assertFalse(mje.contains(NotificacionFactory.Error().getMensaje()) || 
 				mje.contains(NotificacionFactory.sinResultados().getMensaje()));
+	}
+	
+	@Test
+	public void testGuardarActividadConAmbitoyUsuarios() {
+		ambito = new Ambito();
+		Long id_ambito = TestHelper.guardarDatos(ambito, "ar.fiuba.redsocedu.datalayer.dtos.Ambito", service, port);
+		ambito.setAmbitoId(id_ambito);
+		ambito.setId(id_ambito);
+		
+		String xml = "<?xml version=\"1.0\"?><WS><Actividad>" +
+					"<nombre>Actividad con ambito</nombre>" +
+					"<tipo>Individual</tipo><ambitoSuperiorId>" + id_ambito.toString() + "</ambitoSuperiorId>" +
+					"<descripcion>SE prueba guarar una actividad con un ambito superior</descripcion>" +
+					"<fechaInicio>111111</fechaInicio><fechaFin>121212</fechaFin>" +
+					"<usuarios><Usuario><id>60</id></Usuario></usuarios>"+
+					"</Actividad></WS>";
+		String mje = ws.guardarDatos(xml);
+		System.out.println(mje);
+		Assert.assertTrue(mje.contains(NotificacionFactory.ExitoGuardado("").getMensaje()));
+	}
+	
+	@Test
+	public void testSerializacionActividadConUsuario() {
+		
+		String xml = "<?xml version=\"1.0\"?><WS><Actividad>" +
+				"<nombre>Actividad con ambito</nombre>" +
+				"<tipo>Individual</tipo><ambitoSuperiorId>3</ambitoSuperiorId>" +
+				"<descripcion>SE prueba guarar una actividad con un ambito superior</descripcion>" +
+				"<fechaInicio>111111</fechaInicio><fechaFin>121212</fechaFin>" +
+				"<usuarios><Usuario><id>60</id></Usuario></usuarios>"+
+				"</Actividad></WS>";
+		ActividadParser ap = new ActividadParser();
+		
+		Actividad act = (Actividad)ap.getDBObjectFromBusinessXML(xml);
+		
+		ActividadSerializer as = new ActividadSerializer();
+		
+		String salida = as.getXMLfromPojo(act);
+		
+		System.out.println(salida);
 	}
 	
 	

@@ -22,7 +22,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;extension base="{http://ws.datalayer.redsocedu.fiuba.ar/}returnedObject">
  *       &lt;sequence>
  *         &lt;element name="activado" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
- *         &lt;element name="actividades" type="{http://ws.datalayer.redsocedu.fiuba.ar/}actividad" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="apellido" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaNac" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
@@ -45,7 +44,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "usuario", propOrder = {
     "activado",
-    "actividades",
     "apellido",
     "email",
     "fechaNac",
@@ -63,8 +61,6 @@ public class Usuario
 {
 
     protected Boolean activado;
-    @XmlElement(nillable = true)
-    protected List<Actividad> actividades;
     protected String apellido;
     protected String email;
     @XmlSchemaType(name = "dateTime")
@@ -102,35 +98,6 @@ public class Usuario
      */
     public void setActivado(Boolean value) {
         this.activado = value;
-    }
-
-    /**
-     * Gets the value of the actividades property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the actividades property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getActividades().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Actividad }
-     * 
-     * 
-     */
-    public List<Actividad> getActividades() {
-        if (actividades == null) {
-            actividades = new ArrayList<Actividad>();
-        }
-        return this.actividades;
     }
 
     /**

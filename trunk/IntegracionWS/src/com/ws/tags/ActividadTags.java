@@ -16,4 +16,5 @@ public class ActividadTags {
 	public static String NOTAS_TAG = "notas";
 	public static String TIPO_TAG = "tipo";
 	public static String TIPO_ESCALA_TAG = "tipoEscala";
+	public static String USUARIOS_TAG = "usuarios";
 }
