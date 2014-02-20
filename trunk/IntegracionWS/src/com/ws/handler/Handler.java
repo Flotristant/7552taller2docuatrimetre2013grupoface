@@ -132,12 +132,14 @@ public abstract class Handler {
             }
         } catch (DataException e) {
            try{
-        	port.rollback(transactionId);// if not
-        	return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	   e.printStackTrace();
+        	   port.rollback(transactionId);// if not
+        	   return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
             
            }
            catch(DataException e1){
-            return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	   e1.printStackTrace();
+        	   return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
            }
         }
 	}

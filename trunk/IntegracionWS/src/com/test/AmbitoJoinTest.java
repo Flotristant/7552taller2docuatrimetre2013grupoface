@@ -89,7 +89,14 @@ public class AmbitoJoinTest extends TestCase {
 		foro_id = TestHelper.guardarDatos(foro, "ar.fiuba.redsocedu.datalayer.dtos.Foro", service, port);
 		foro.setId(foro_id);
 		
-		String xml = "<WS><Foro><join><Ambito><ambitoId>"+ ambito.getId().toString() + "</ambitoId></Ambito></join></Foro></WS>";
+		for(Foro f : foros) {
+			this.ambito.getForos().add(f);
+		}
+		
+		Long id = TestHelper.guardarDatos(ambito, "ar.fiuba.redsocedu.datalayer.dtos.Ambito", service, port);
+		Assert.assertEquals(this.ambito.getId(), id);
+		
+		String xml = "<WS><Foro><join><Ambito><id>"+ ambito.getId().toString() + "</id></Ambito></join></Foro></WS>";
 		String rdo = ws.seleccionarDatos(xml);
 		System.err.println(rdo);
 		Assert.assertFalse(rdo.contains(NotificacionFactory.Error().getMensaje()));

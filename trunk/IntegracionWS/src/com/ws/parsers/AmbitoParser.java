@@ -19,7 +19,6 @@ public class AmbitoParser extends Parser {
 		relaciones_directas.put(CarteleraParser.class.toString(), "carteleras");
 		relaciones_directas.put(ChatParser.class.toString(), "chats");
 		relaciones_directas.put(ForoParser.class.toString(), "foros");
-//		relaciones_directas.put(AmbitoParser.class.toString(), "ambitos");
 	}
 
 	@Override
@@ -36,14 +35,28 @@ public class AmbitoParser extends Parser {
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
-		xml = xml.replace(MuroTags.CLASS_TAG, "com.ws.pojos."
-				+ MuroTags.CLASS_TAG);
-		xml = xml.replace(ForoTags.CLASS_TAG, "com.ws.pojos."
-				+ ForoTags.CLASS_TAG);
-		xml = xml.replace(ChatTags.CLASS_TAG, "com.ws.pojos."
-				+ ChatTags.CLASS_TAG);
-		xml = xml.replace(CarteleraTags.CLASS_TAG, "com.ws.pojos."
-				+ CarteleraTags.CLASS_TAG);
+
+		xml = xml.replace("<"+MuroTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ MuroTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+MuroTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ MuroTags.CLASS_TAG + ">");
+		
+		
+		xml = xml.replace("<"+ForoTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ ForoTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+ForoTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ ForoTags.CLASS_TAG + ">");
+		
+		xml = xml.replace("<"+ChatTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ ChatTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+ChatTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ ChatTags.CLASS_TAG + ">");
+		
+		xml = xml.replace("<"+CarteleraTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ CarteleraTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+CarteleraTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ CarteleraTags.CLASS_TAG + ">");
+				
 		return xml;
 	}
 

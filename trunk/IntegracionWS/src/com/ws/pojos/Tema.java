@@ -1,5 +1,7 @@
 package com.ws.pojos;
 
+import java.util.List;
+
 public class Tema extends Pojo {
 	
 	String titulo;
@@ -7,6 +9,7 @@ public class Tema extends Pojo {
 	Boolean esSticky;
 	String fecha;
 	Long idSubforo;
+	List<Mensaje> mensajes;
 	
 	public Long getIdSubforo() {
 		return idSubforo;
@@ -38,12 +41,23 @@ public class Tema extends Pojo {
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	public List<Mensaje> getMensajes() {
+		return mensajes;
+	}
+	public void setMensajes(List<Mensaje> mensajes) {
+		this.mensajes = mensajes;
+	}
 	@Override
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Tema temaDB = new ar.fiuba.redsocedu.datalayer.ws.Tema();
 		temaDB.setId(this.getId());
 		temaDB.setSubforoId(this.getIdSubforo());
 		temaDB.setUsername(this.getAutor());
+		if(mensajes != null) {
+			for(Mensaje mens : mensajes) {
+				temaDB.getMensajes().add((ar.fiuba.redsocedu.datalayer.ws.Mensaje) mens.getDatabaseEntity());
+			}
+		}
 		return temaDB;
 	}
 }

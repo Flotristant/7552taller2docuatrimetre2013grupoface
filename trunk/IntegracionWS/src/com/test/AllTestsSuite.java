@@ -12,7 +12,7 @@ public class AllTestsSuite {
 //		suite.addTestSuite(TestIntegracionActividad.class);
 		suite.addTestSuite(UsuarioTestIntegration.class);
 		suite.addTestSuite(MuroJoinTest.class);
-//		suite.addTestSuite(ActividadTest.class);
+		suite.addTestSuite(ActividadTest.class);
 		suite.addTestSuite(UsuarioJoinTest.class);
 		suite.addTestSuite(ForoTest.class);
 		suite.addTestSuite(TestIntegracionChat.class);

@@ -2,6 +2,7 @@ package com.ws.parsers;
 
 import com.ws.pojos.Cartelera;
 import com.ws.tags.CarteleraTags;
+import com.ws.tags.NotaTags;
 import com.ws.tags.NoticiaTags;
 
 public class CarteleraParser extends Parser {
@@ -25,8 +26,10 @@ public class CarteleraParser extends Parser {
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
-		xml = xml.replace(NoticiaTags.CLASS_TAG, "com.ws.pojos."
-				+ NoticiaTags.CLASS_TAG);
+		xml = xml.replace("<"+NoticiaTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ NotaTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+NoticiaTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ NotaTags.CLASS_TAG + ">");
 		return xml;
 	}
 

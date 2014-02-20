@@ -3,10 +3,6 @@ package com.ws.parsers;
 import java.util.HashMap;
 
 import com.ws.pojos.Subforo;
-import com.ws.tags.CarteleraTags;
-import com.ws.tags.ChatTags;
-import com.ws.tags.ForoTags;
-import com.ws.tags.MuroTags;
 import com.ws.tags.SubforoTags;
 import com.ws.tags.TemaTags;
 
@@ -35,8 +31,10 @@ public class SubforoParser extends Parser{
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
-		xml = xml.replace(TemaTags.CLASS_TAG, "com.ws.pojos."
-				+ TemaTags.CLASS_TAG);
+		xml = xml.replace("<"+TemaTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ TemaTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+TemaTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ TemaTags.CLASS_TAG + ">");
 		return xml;
 	}
 }

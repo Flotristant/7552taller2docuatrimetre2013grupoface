@@ -12,7 +12,6 @@ public class TemaParser extends Parser  {
 		super(TemaTags.CLASS_TAG);
 		this.relaciones_directas = new HashMap<String, String>();
 		this.relaciones_directas.put(MensajeParser.class.toString(), "mensajes");
-//		this.relaciones_directas.put(TemaParser.class.toString(), "temas");
 	}
 	
 	@Override
@@ -30,6 +29,12 @@ public class TemaParser extends Parser  {
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
+		xml = xml.replace("<"+MensajeTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ MensajeTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+MensajeTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ MensajeTags.CLASS_TAG + ">");
+		
+		
 		xml = xml.replace(MensajeTags.CLASS_TAG, "com.ws.pojos."
 				+ MensajeTags.CLASS_TAG);
 		return xml;
