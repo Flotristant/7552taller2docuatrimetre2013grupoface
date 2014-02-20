@@ -1,10 +1,8 @@
 package com.ws.handler;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import ar.fiuba.redsocedu.datalayer.ws.Archivo;
 import ar.fiuba.redsocedu.datalayer.ws.DataException;
 import ar.fiuba.redsocedu.datalayer.ws.Recurso;
 import ar.fiuba.redsocedu.datalayer.ws.ReturnedObject;
@@ -118,7 +116,7 @@ public class ArchivoHandler extends MaterialesHandler {
 	}
 	
 	
-	public ArchivoMetadata[] seleccionarArchivo(String xml){
+	public ArchivoMetadata seleccionarArchivo(String xml){
 		
 		Map<String, Object> campos = this.parser.inicializarCampos(xml);
 		
@@ -137,7 +135,7 @@ public class ArchivoHandler extends MaterialesHandler {
         		return null;
         	}
         		
-        	return this.getArchivoNegocioList(objects);
+        	return this.getFiltroArchivoNegocio(objects,xml);
         }
         catch (DataException e ) {
         	
@@ -154,25 +152,45 @@ public class ArchivoHandler extends MaterialesHandler {
 	}
 	
 	
-	private ArchivoMetadata[] getArchivoNegocioList(List<ReturnedObject> archivosBD){
+	private ArchivoMetadata getFiltroArchivoNegocio(List<ReturnedObject> archivosBD,String xml){
 		
-		ArchivoMetadata[] arregloArchivos  = new ArchivoMetadata[archivosBD.size()];
-			
-		for (int i=0; i < archivosBD.size(); i++){
-			ArchivoMetadata archivoNegocio = new ArchivoMetadata();
-			Archivo archivoBD = (Archivo)archivosBD.get(i);
-			archivoNegocio.setContenido(archivoBD.getContenido());
-			archivoNegocio.setId(archivoBD.getId());
-			archivoNegocio.setNombre(archivoBD.getNombre());
-			archivoNegocio.setRecursoId(archivoBD.getRecursoId());
-			archivoNegocio.setTamanio(archivoBD.getTamanio());
-			archivoNegocio.setTipo(archivoBD.getTipo());
-			arregloArchivos[i] = archivoNegocio;
+		ArchivoMetadata archivoNegocio = (ArchivoMetadata)this.parser.getEntidadNegocio(xml);
+		
+		if(archivoNegocio.getRecursoId() != null){
+			//Entonces se recupera por recursoId
+		
+			for (int i=0; i < archivosBD.size(); i++){
+				
+				ar.fiuba.redsocedu.datalayer.ws.Archivo archivoBD = (ar.fiuba.redsocedu.datalayer.ws.Archivo)archivosBD.get(i);
+				if(archivoBD.getRecursoId().equals(archivoNegocio.getRecursoId())){
+					archivoNegocio =  this.getArchivoNegocio(archivoBD);
+					break;
+					
+				}		
+			}
 		}
+		else
+			archivoNegocio = this.getArchivoNegocio((ar.fiuba.redsocedu.datalayer.ws.Archivo) archivosBD.get(0));
+		
+		
+		return archivoNegocio;
+	} 
 	
-		return arregloArchivos ;
+	
+	
+	private ArchivoMetadata getArchivoNegocio(ar.fiuba.redsocedu.datalayer.ws.Archivo archivoBD){
+		
+		ArchivoMetadata archivoNegocio = new ArchivoMetadata();
+		archivoNegocio.setContenido(archivoBD.getContenido());
+		archivoNegocio.setId(archivoBD.getId());
+		archivoNegocio.setNombre(archivoBD.getNombre());
+		archivoNegocio.setRecursoId(archivoBD.getRecursoId());
+		archivoNegocio.setTamanio(archivoBD.getTamanio());
+		archivoNegocio.setTipo(archivoBD.getTipo());
+		
+		return archivoNegocio;
+		
 	}
-	    
 	
 
 }
