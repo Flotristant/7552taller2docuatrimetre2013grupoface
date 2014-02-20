@@ -126,7 +126,7 @@ public class IntegracionWS {
 	}
 	
 	
-	public ArchivoMetadata[] seleccionarArchivo(String xml) {
+	public ArchivoMetadata seleccionarArchivo(String xml) {
 		
 		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
 			//prueba se ivocacion al web service eliminar archivo    
