@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="actividadId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="grupoId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="notas" type="{http://ws.datalayer.redsocedu.fiuba.ar/}nota" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="usuarios" type="{http://ws.datalayer.redsocedu.fiuba.ar/}usuario" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -34,7 +35,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "grupo", propOrder = {
     "actividadId",
     "grupoId",
-    "notas"
+    "notas",
+    "usuarios"
 })
 public class Grupo
     extends ReturnedObject
@@ -44,6 +46,8 @@ public class Grupo
     protected Long grupoId;
     @XmlElement(nillable = true)
     protected List<Nota> notas;
+    @XmlElement(nillable = true)
+    protected List<Usuario> usuarios;
 
     /**
      * Gets the value of the actividadId property.
@@ -120,6 +124,35 @@ public class Grupo
             notas = new ArrayList<Nota>();
         }
         return this.notas;
+    }
+
+    /**
+     * Gets the value of the usuarios property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the usuarios property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getUsuarios().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Usuario }
+     * 
+     * 
+     */
+    public List<Usuario> getUsuarios() {
+        if (usuarios == null) {
+            usuarios = new ArrayList<Usuario>();
+        }
+        return this.usuarios;
     }
 
 }

@@ -75,6 +75,32 @@ public interface IData {
     /**
      * 
      * @param transactionId
+     * @param object
+     * @param entityName
+     * @return
+     *     returns java.lang.Long
+     * @throws DataException
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "saveOrUpdate", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.SaveOrUpdate")
+    @ResponseWrapper(localName = "saveOrUpdateResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.SaveOrUpdateResponse")
+    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/saveOrUpdateRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/saveOrUpdateResponse", fault = {
+        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/saveOrUpdate/Fault/DataException")
+    })
+    public Long saveOrUpdate(
+        @WebParam(name = "transactionId", targetNamespace = "")
+        Long transactionId,
+        @WebParam(name = "entityName", targetNamespace = "")
+        String entityName,
+        @WebParam(name = "object", targetNamespace = "")
+        Object object)
+        throws DataException
+    ;
+
+    /**
+     * 
+     * @param transactionId
      * @throws DataException
      */
     @WebMethod
@@ -103,32 +129,6 @@ public interface IData {
     public void rollback(
         @WebParam(name = "transactionId", targetNamespace = "")
         Long transactionId)
-        throws DataException
-    ;
-
-    /**
-     * 
-     * @param transactionId
-     * @param object
-     * @param entityName
-     * @return
-     *     returns java.lang.Long
-     * @throws DataException
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "saveOrUpdate", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.SaveOrUpdate")
-    @ResponseWrapper(localName = "saveOrUpdateResponse", targetNamespace = "http://ws.datalayer.redsocedu.fiuba.ar/", className = "ar.fiuba.redsocedu.datalayer.ws.SaveOrUpdateResponse")
-    @Action(input = "http://ws.datalayer.redsocedu.fiuba.ar/IData/saveOrUpdateRequest", output = "http://ws.datalayer.redsocedu.fiuba.ar/IData/saveOrUpdateResponse", fault = {
-        @FaultAction(className = DataException.class, value = "http://ws.datalayer.redsocedu.fiuba.ar/IData/saveOrUpdate/Fault/DataException")
-    })
-    public Long saveOrUpdate(
-        @WebParam(name = "transactionId", targetNamespace = "")
-        Long transactionId,
-        @WebParam(name = "entityName", targetNamespace = "")
-        String entityName,
-        @WebParam(name = "object", targetNamespace = "")
-        Object object)
         throws DataException
     ;
 
