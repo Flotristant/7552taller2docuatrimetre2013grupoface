@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,7 +35,7 @@ public class ArchivoTest {
 			e.printStackTrace();
 		}
 		
-		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>nuevaPruebaRecursoNuevo</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1022</recursoId></ArchivoMetadata></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>nuevaPruebaRecursoNuevo7:48am</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1074</recursoId></ArchivoMetadata></WS>";
 		
 		
 		System.out.println(ws.guardarArchivo(xml, bytes));
@@ -55,7 +54,7 @@ public class ArchivoTest {
 			e.printStackTrace();
 		}
 		
-		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1030</id><nombre>nuevaPruebaArchivoRecurso1030Actualizacion</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1030</recursoId></ArchivoMetadata></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1074</id><nombre>nuevaPruebaArchivoRecurso1074Actualizacion</nombre><tamanio>1</tamanio><tipo>txt</tipo><recursoId>1074</recursoId></ArchivoMetadata></WS>";
 		
 		System.out.println(ws.actualizarArchivo(xml, bytes));
 		
@@ -64,17 +63,14 @@ public class ArchivoTest {
 	@Test
 	public void seleccionarArchivo(){
 		
-		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><nombre>nuevaPruebaArchivoRecurso1030</nombre></ArchivoMetadata></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1074</id></ArchivoMetadata></WS>";
 		
-		ArchivoMetadata[] archivos  =  ws.seleccionarArchivo(xml);
+		ArchivoMetadata archivo  =  ws.seleccionarArchivo(xml);
 		
-		for (int i=0; i < archivos.length ; i ++){
-			ArchivoMetadata archivo = (ArchivoMetadata) archivos[i];
-			System.out.println(archivo.getNombre());
-			System.out.println(archivo.getTipo());
-			System.out.println(archivo.getRecursoId());
-			System.out.println(archivo.getTamanio());
-			System.out.println(archivo.getId());
-		}	
-	}
+		System.out.println("Nombre : " + archivo.getNombre());
+		System.out.println("Tipo : " + archivo.getTipo());
+		System.out.println("Recurso Id : " + archivo.getRecursoId());
+		System.out.println("Tamanio : "+ archivo.getTamanio());
+		System.out.println("Id : "+ archivo.getId());
+	}	
 }
