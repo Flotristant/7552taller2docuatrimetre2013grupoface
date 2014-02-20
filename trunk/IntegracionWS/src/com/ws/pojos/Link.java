@@ -36,7 +36,6 @@ public class Link extends Pojo{
 		ar.fiuba.redsocedu.datalayer.ws.Link linkDB = new ar.fiuba.redsocedu.datalayer.ws.Link();
 		linkDB.setId(this.getId());
 		linkDB.setNombre(this.getNombre());
-		linkDB.setRecursoId(this.getRecursoId());
 		if(this.getRecurso() != null)
 			linkDB.setRecurso((ar.fiuba.redsocedu.datalayer.ws.Recurso)this.getRecurso().getDatabaseEntity());
 		return linkDB;

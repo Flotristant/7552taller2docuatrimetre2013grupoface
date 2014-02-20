@@ -46,7 +46,6 @@ public class Encuesta extends Pojo {
 		encuestaDB.setEvaluada(this.getEvaluada());
 		encuestaDB.setId(this.getId());
 		encuestaDB.setPreguntas(this.getPreguntas());
-		encuestaDB.setRecursoId(this.getId());
 		if(this.getRecurso() != null)
 			encuestaDB.setRecurso((ar.fiuba.redsocedu.datalayer.ws.Recurso)this.getRecurso().getDatabaseEntity());
 		
