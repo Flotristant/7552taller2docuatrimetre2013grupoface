@@ -44,7 +44,6 @@ public class Ambito extends Pojo {
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Ambito ambitoDB = new ar.fiuba.redsocedu.datalayer.ws.Ambito();
 		ambitoDB.setId(this.getId());
-		ambitoDB.setAmbitoId(this.getId());
 		if (this.getCarteleras() != null) {
 			for (Cartelera c : this.getCarteleras()) {
 				ar.fiuba.redsocedu.datalayer.ws.Cartelera carteleraBD = (ar.fiuba.redsocedu.datalayer.ws.Cartelera) c

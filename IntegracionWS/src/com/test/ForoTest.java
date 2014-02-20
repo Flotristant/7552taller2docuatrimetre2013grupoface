@@ -1,6 +1,8 @@
 package com.test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -19,8 +21,13 @@ import com.thoughtworks.xstream.XStream;
 import com.utils.NotificacionFactory;
 import com.ws.parsers.ForoParser;
 import com.ws.pojos.Foro;
+import com.ws.pojos.Mensaje;
+import com.ws.pojos.Seccion;
+import com.ws.pojos.Subforo;
+import com.ws.pojos.Tema;
 import com.ws.serializers.NotificacionSerializer;
 import com.ws.services.IntegracionWS;
+import com.ws.tags.ForoTags;
 
 public class ForoTest extends TestCase {
 
@@ -35,8 +42,6 @@ public class ForoTest extends TestCase {
     public void setUp() throws Exception {
 		service = new DataService();
 		port = service.getDataPort();    	
-    	crearNuevoForoSinAmbito();
-    	serializarForoNegocio();
     	integracionWS = new IntegracionWS();
         IntegracionWS.setMockService(false);  
     }
@@ -50,7 +55,10 @@ public class ForoTest extends TestCase {
     
     @Test
     public void testCreateQueryUpdateAndDeleteForo() throws SAXException, IOException, ParserConfigurationException {
-        guardarDatos(xmlForo, integracionWS);        
+    	crearNuevoForoSinAmbito();
+    	serializarForoNegocio();
+
+    	guardarDatos(xmlForo, integracionWS);        
         System.out.println("XMl CONSULTA: \n" + xmlForo);
         String nuevoXmlForo = consultarDatos(xmlForo);
         System.out.println(nuevoXmlForo);
@@ -79,12 +87,81 @@ public class ForoTest extends TestCase {
 	private void crearNuevoForoSinAmbito() {
 		foroNegocio = new Foro();
 		foroNegocio.setNombre("ForoNuevo");
-		
 	}
 	
+	@Test
+	public void testSeccion() {
+		String request = "<WS><Seccion><nombre>mi_seccion</nombre></Seccion></WS>";
+		String response = integracionWS.guardarDatos(request);
+		System.out.println(response);
+		Assert.assertTrue(response.contains("exito"));
+	}
+	@Test
+	public void testForoCompleto() {
+		crearForoCompleto();
+		serializarForoNegocio();
+		String response = this.integracionWS.guardarDatos(xmlForo);
+		Assert.assertTrue(response.contains("exito"));
+	}
+	
+	private void crearForoCompleto() {
+		foroNegocio = new Foro();
+		Seccion seccion = new Seccion();
+		Subforo subforo = new Subforo();
+		Tema tema = new Tema();
+		Mensaje mensaje = new Mensaje();
+		
+		//mensaje
+		mensaje.setContenido("Hellooo!");
+		mensaje.setUsername("flo"+System.currentTimeMillis());
+		Long mensajeId = TestHelper.guardarDatos((ar.fiuba.redsocedu.datalayer.ws.Mensaje)mensaje.getDatabaseEntity(), "ar.fiuba.redsocedu.datalayer.dtos.Mensaje", service, port);
+		assertCorrectlySaved(mensajeId);
+		mensaje.setId(mensajeId);
+		
+		//tema
+		tema.setAutor("pepe" + System.currentTimeMillis());
+		List<com.ws.pojos.Mensaje> mensajes = new ArrayList<com.ws.pojos.Mensaje>(); 
+		mensajes.add(mensaje);
+		tema.setMensajes(mensajes);
+		Long temaId = TestHelper.guardarDatos((ar.fiuba.redsocedu.datalayer.ws.Tema)tema.getDatabaseEntity(), "ar.fiuba.redsocedu.datalayer.pojos.Tema", service, port);
+		assertCorrectlySaved(temaId);
+		tema.setId(temaId);
+		
+		//subforo
+		subforo.setNombre("subforo de flo");
+		ArrayList<Tema> temas = new ArrayList<Tema>();
+		temas.add(tema);
+		subforo.setTemas(temas);
+		Long subforoId = TestHelper.guardarDatos((ar.fiuba.redsocedu.datalayer.ws.Subforo)subforo.getDatabaseEntity(),"ar.fiuba.redsocedu.datalayer.dtos.Subforo", service, port);
+		assertCorrectlySaved(subforoId);
+		subforo.setId(subforoId);
+		
+		//seccion
+		seccion.setNombre("La seccion");
+		ArrayList<Subforo> subforos = new ArrayList<Subforo>();
+		subforos.add(subforo);
+		seccion.setSubforos(subforos);
+		Long seccionId = TestHelper.guardarDatos((ar.fiuba.redsocedu.datalayer.ws.Seccion)seccion.getDatabaseEntity(),"ar.fiuba.redsocedu.datalayer.dtos.Seccion", service, port);
+		assertCorrectlySaved(seccionId);
+		seccion.setId(seccionId);
+		
+		List<Seccion> secciones = new ArrayList<Seccion>();
+		secciones.add(seccion);
+		this.foroNegocio.setSecciones(secciones);
+	}
+
+	private void assertCorrectlySaved(Long id) {
+		if(id <=0) {
+			Assert.fail("no se puede almacenar, id:" + id);
+		}
+	}
 	private void serializarForoNegocio() {
 		XStream xstream = new XStream();
-		xstream.alias("Foro", Foro.class);
+		xstream.alias(ForoTags.CLASS_TAG, Foro.class);
+		xstream.aliasField(ForoTags.ID_TAG, Foro.class, "id");
+		xstream.omitField(Foro.class, "foroId");
+		xstream.aliasField(ForoTags.NOMBRE_TAG, Foro.class, "nombre");
+		xstream.aliasField(ForoTags.ID_AMBITO_TAG, Foro.class, "ambitoId");
 		xmlForo = xstream.toXML(foroNegocio);
 		xmlForo = "<WS>"+xmlForo+"</WS>";
 	}

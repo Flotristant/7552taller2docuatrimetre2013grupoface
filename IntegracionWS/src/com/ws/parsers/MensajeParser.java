@@ -1,7 +1,5 @@
 package com.ws.parsers;
 
-import java.util.Map;
-
 import com.ws.pojos.Mensaje;
 import com.ws.tags.MensajeTags;
 
@@ -9,7 +7,6 @@ public class MensajeParser extends Parser  {
 
 	public MensajeParser() {
 		super(MensajeTags.CLASS_TAG);
-//		this.relaciones_directas.put(MensajeParser.class.toString(), "mensajes");
 	}
 
 	@Override

@@ -3,17 +3,9 @@ package com.ws.pojos;
 public class Mensaje extends Pojo {
 	
 	String contenido;
-	//String autor;
-	//String fecha;
 	Long temaId;
-	Tema tema;
-
-	public Tema getTema() {
-		return tema;
-	}
-	public void setTema(Tema tema) {
-		this.tema = tema;
-	}
+	String username;
+	
 	public Long getTemaId() {
 		return temaId;
 	}
@@ -26,24 +18,21 @@ public class Mensaje extends Pojo {
 	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
-//	public String getAutor() {
-//		return autor;
-//	}
-//	public void setAutor(String autor) {
-//		this.autor = autor;
-//	}
-//	public String getFecha() {
-//		return fecha;
-//	}
-//	public void setFecha(String fecha) {
-//		this.fecha = fecha;
-//	}
+
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	@Override
 	public Object getDatabaseEntity() {
 		ar.fiuba.redsocedu.datalayer.ws.Mensaje mensajeDB = new ar.fiuba.redsocedu.datalayer.ws.Mensaje();
 		mensajeDB.setContenido(this.getContenido());
 		mensajeDB.setId(this.getId());
 		mensajeDB.setTemaId(this.getTemaId());
+		mensajeDB.setUsername(this.getUsername());
+//		mensajeDB.setMensajeId(this.getId());
 		return mensajeDB;
 	}
 }

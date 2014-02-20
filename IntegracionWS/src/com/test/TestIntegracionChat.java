@@ -222,4 +222,32 @@ public class TestIntegracionChat extends TestCase {
 	  	response = integracionWS.seleccionarDatos(request);
 	  	System.out.println(response);
     }
+    
+    @Test
+    public void testChatMiembroChat() {
+    	String request = "<WS><Chat><join><MiembroChat><id>2</id></MiembroChat></join></Chat></WS>";
+    	System.out.println(integracionWS.seleccionarDatos(request));
+    	
+    }
+    
+    @Test
+    public void testChatCompleto() {
+    	String request ="";
+    	
+    	Chat chat = new Chat();
+    	Long chatId = TestHelper.guardarDatos(chat, "ar.fiuba.redsocedu.datalayer.dtos.Chat", service, port);
+    	
+    	request = "<WS><Chat><id>"+chatId+"</id><miembrosChat><MiembroChat><id>2</id></MiembroChat></miembrosChat></Chat></WS>";
+    	System.out.println(integracionWS.actualizarDatos(request));
+    	
+    	request = "<WS><Chat><id>"+chatId+"</id></Chat></WS>";
+    	System.out.println(integracionWS.seleccionarDatos(request));
+
+    	request = "<WS><Chat><id>"+chatId+"</id><miembrosChat></miembrosChat></Chat></WS>";
+    	System.out.println(integracionWS.actualizarDatos(request));
+
+    	request = "<WS><Chat><id>"+chatId+"</id></Chat></WS>";
+    	System.out.println(integracionWS.seleccionarDatos(request));
+    	
+    }
 }

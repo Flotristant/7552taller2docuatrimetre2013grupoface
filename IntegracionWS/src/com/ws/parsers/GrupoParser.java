@@ -11,7 +11,6 @@ public class GrupoParser extends Parser  {
 	public GrupoParser() {
 		super(GrupoTags.CLASS_TAG);
 		this.relaciones_directas.put(NotaParser.class.toString(), "notas");
-//		this.relaciones_directas.put(GrupoParser.class.toString(), "grupos");
 	}
 
 	@Override
@@ -39,8 +38,11 @@ public class GrupoParser extends Parser  {
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
-		xml = xml.replace(NotaTags.CLASS_TAG, "com.ws.pojos."
-				+ NotaTags.CLASS_TAG);
+
+		xml = xml.replace("<"+NotaTags.CLASS_TAG+">", "<com.ws.pojos."
+				+ NotaTags.CLASS_TAG + ">");
+		xml = xml.replace("</"+NotaTags.CLASS_TAG+">", "</com.ws.pojos."
+				+ NotaTags.CLASS_TAG + ">");
 		return xml;
 	}
 

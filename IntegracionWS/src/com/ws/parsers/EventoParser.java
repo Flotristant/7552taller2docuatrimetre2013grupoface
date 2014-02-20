@@ -1,7 +1,5 @@
 package com.ws.parsers;
 
-import java.util.HashMap;
-
 import com.ws.pojos.Evento;
 import com.ws.tags.EventoTags;
 

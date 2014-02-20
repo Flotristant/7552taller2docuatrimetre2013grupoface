@@ -68,10 +68,15 @@ public class UsuarioParser extends Parser {
 	@Override
 	protected String replaceClassTag(String xml) {
 		xml = super.replaceClassTag(xml);
-		xml = xml.replace("<" + NotaTags.CLASS_TAG + ">", "com.ws.pojos."
-				+ NotaTags.CLASS_TAG);
-		xml = xml.replace("<" + GrupoTags.CLASS_TAG + ">", "com.ws.pojos."
-				+ GrupoTags.CLASS_TAG);
+		xml = xml.replace("<" + NotaTags.CLASS_TAG + ">", "<com.ws.pojos."
+				+ NotaTags.CLASS_TAG+">");
+		xml = xml.replace("</" + NotaTags.CLASS_TAG + ">", "</com.ws.pojos."
+				+ NotaTags.CLASS_TAG+">");
+		xml = xml.replace("<" + GrupoTags.CLASS_TAG + ">", "<com.ws.pojos."
+				+ GrupoTags.CLASS_TAG+">");
+		xml = xml.replace("</" + GrupoTags.CLASS_TAG + ">", "</com.ws.pojos."
+				+ GrupoTags.CLASS_TAG+">");
+		
 		return xml;
 	}
 
