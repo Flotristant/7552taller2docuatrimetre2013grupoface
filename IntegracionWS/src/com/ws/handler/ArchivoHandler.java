@@ -116,13 +116,13 @@ public class ArchivoHandler extends MaterialesHandler {
 	}
 	
 	
-	public ArchivoMetadata seleccionarArchivo(String xml){
+	public String seleccionarArchivoMetadata(String xml){
 		
 		Map<String, Object> campos = this.parser.inicializarCampos(xml);
 		
 		Long transactionId = IdGenerator.generateTransactionId();
         String query = this.queryBuilder.getAllByAttributes(campos);
-        
+     
         try {
         	
         	List<ReturnedObject> objects = null; 
@@ -131,11 +131,46 @@ public class ArchivoHandler extends MaterialesHandler {
         	port.commit(transactionId);
         	
         	if(objects == null || objects.isEmpty()) {
-        		
-        		return null;
+        		 return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.sinResultados());	
         	}
+        	
+        	return this.serializer.getXMLfromPojo(objects);
         		
-        	return this.getFiltroArchivoNegocio(objects,xml);
+        }
+        catch (DataException e ) {
+        	
+        	try{
+        		port.rollback(transactionId);
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+        	}
+        	catch(DataException e1){
+        		return NotificacionSerializer.getXMLfromPojo(NotificacionFactory.Error());
+			}
+		}
+		
+		
+	}
+	
+	
+	public byte[] seleccionarBytesArchivo(String xml){
+		Map<String, Object> campos = this.parser.inicializarCampos(xml);
+		
+		Long transactionId = IdGenerator.generateTransactionId();
+        String query = this.queryBuilder.getAllByAttributes(campos);
+     
+        try {
+        	
+        	List<ReturnedObject> objects = null; 
+        	port.beginTransaction(transactionId);
+        	objects = port.query(transactionId, query);
+        	port.commit(transactionId);
+        	
+        	if(objects == null || objects.isEmpty()) {
+        		 return null;	
+        	}
+        	
+        	return this.getBytesArchivo((ar.fiuba.redsocedu.datalayer.ws.Archivo)objects.get(0)); 
+        		
         }
         catch (DataException e ) {
         	
@@ -144,52 +179,14 @@ public class ArchivoHandler extends MaterialesHandler {
         		return null;
         	}
         	catch(DataException e1){
-				return null;
+        		return null;
 			}
 		}
-		
 		
 	}
 	
-	
-	private ArchivoMetadata getFiltroArchivoNegocio(List<ReturnedObject> archivosBD,String xml){
-		
-		ArchivoMetadata archivoNegocio = (ArchivoMetadata)this.parser.getEntidadNegocio(xml);
-		
-		if(archivoNegocio.getRecursoId() != null){
-			//Entonces se recupera por recursoId
-		
-			for (int i=0; i < archivosBD.size(); i++){
-				
-				ar.fiuba.redsocedu.datalayer.ws.Archivo archivoBD = (ar.fiuba.redsocedu.datalayer.ws.Archivo)archivosBD.get(i);
-				if(archivoBD.getRecursoId().equals(archivoNegocio.getRecursoId())){
-					archivoNegocio =  this.getArchivoNegocio(archivoBD);
-					break;
-					
-				}		
-			}
-		}
-		else
-			archivoNegocio = this.getArchivoNegocio((ar.fiuba.redsocedu.datalayer.ws.Archivo) archivosBD.get(0));
-		
-		
-		return archivoNegocio;
-	} 
-	
-	
-	
-	private ArchivoMetadata getArchivoNegocio(ar.fiuba.redsocedu.datalayer.ws.Archivo archivoBD){
-		
-		ArchivoMetadata archivoNegocio = new ArchivoMetadata();
-		archivoNegocio.setContenido(archivoBD.getContenido());
-		archivoNegocio.setId(archivoBD.getId());
-		archivoNegocio.setNombre(archivoBD.getNombre());
-		archivoNegocio.setRecursoId(archivoBD.getRecursoId());
-		archivoNegocio.setTamanio(archivoBD.getTamanio());
-		archivoNegocio.setTipo(archivoBD.getTipo());
-		
-		return archivoNegocio;
-		
+	private byte[] getBytesArchivo(ar.fiuba.redsocedu.datalayer.ws.Archivo archivo){
+		return archivo.getContenido();
 	}
 	
 
