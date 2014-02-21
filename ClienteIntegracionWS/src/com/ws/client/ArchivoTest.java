@@ -25,6 +25,7 @@ public class ArchivoTest extends TestCase {
 	IntegracionStub.SeleccionarArchivo seleccionarArchivoRequest;
 	IntegracionStub.SeleccionarArchivoResponse seleccionarArchivoResponse;
 	
+	
 	public void setUp(){
 		try {
 		archivoStub = new IntegracionStub();
@@ -84,27 +85,25 @@ public class ArchivoTest extends TestCase {
 		
 	
 	public void testSeleccionarArchivo(){
-		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><recursoId>1009</recursoId></ArchivoMetadata></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1074</id></ArchivoMetadata></WS>";
 		
 		try{
 			seleccionarArchivoRequest.setXml(xml);
 			
 			seleccionarArchivoResponse = archivoStub.seleccionarArchivo(seleccionarArchivoRequest);
 			
-			IntegracionStub.ArchivoMetadata [] lista = seleccionarArchivoResponse.get_return();
+			IntegracionStub.ArchivoMetadata archivo = seleccionarArchivoResponse.get_return() [0];
 			
-			for(int i=0; i < lista.length ; i++	)
-			{
-
+		
 				System.out.println("---------------------------------------");
-				System.out.println("Archivo " + lista[i].getId());
-				System.out.println("Nombre " + lista[i].getNombre());
-				System.out.println("Tipo " + lista[i].getTipo());
-				System.out.println("Tamanio " + lista[i].getTamanio());
-				System.out.println("Recurso " + lista[i].getRecursoId());
+				System.out.println("Archivo " + archivo.getId());
+				System.out.println("Nombre " + archivo.getNombre());
+				System.out.println("Tipo " + archivo.getTipo());
+				System.out.println("Tamanio " + archivo.getTamanio());
+				System.out.println("Recurso " + archivo.getRecursoId());
 				System.out.println("---------------------------------------");
 				
-			}
+
 		}
 		catch (Exception e) {
 		e.printStackTrace();
