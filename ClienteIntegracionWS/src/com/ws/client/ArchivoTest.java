@@ -9,6 +9,7 @@ import javax.activation.DataHandler;
 import org.apache.axis2.AxisFault;
 
 import com.ws.services.IntegracionStub;
+import com.ws.services.IntegracionStub.SeleccionarBytesArchivo;
 
 
 import junit.framework.TestCase;
@@ -22,8 +23,10 @@ public class ArchivoTest extends TestCase {
 	IntegracionStub.ActualizarArchivoResponse actualizarArchivoResponse;
 	IntegracionStub.EliminarArchivo eliminarArchivoRequest;
 	IntegracionStub.EliminarArchivoResponse eliminarArchivoResponse;
-	IntegracionStub.SeleccionarArchivo seleccionarArchivoRequest;
-	IntegracionStub.SeleccionarArchivoResponse seleccionarArchivoResponse;
+	IntegracionStub.SeleccionarArchivoMetadata seleccionarArchivoMetadataRequest;
+	IntegracionStub.SeleccionarArchivoMetadataResponse seleccionarArchivoMetadataResponse;
+	IntegracionStub.SeleccionarBytesArchivo seleccionarBytesArchivoRequest;
+	IntegracionStub.SeleccionarBytesArchivoResponse seleccionarBytesArchivoResponse;
 	
 	
 	public void setUp(){
@@ -32,7 +35,8 @@ public class ArchivoTest extends TestCase {
 		guardarArchivoRequest = new IntegracionStub.GuardarArchivo();
 		actualizarArchivoRequest = new IntegracionStub.ActualizarArchivo();
 		eliminarArchivoRequest = new IntegracionStub.EliminarArchivo();
-		seleccionarArchivoRequest = new IntegracionStub.SeleccionarArchivo();
+		seleccionarArchivoMetadataRequest = new IntegracionStub.SeleccionarArchivoMetadata();
+		seleccionarBytesArchivoRequest = new IntegracionStub.SeleccionarBytesArchivo();
 		} catch (AxisFault e) {
 			e.printStackTrace();
 		}
@@ -88,22 +92,19 @@ public class ArchivoTest extends TestCase {
 		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1074</id></ArchivoMetadata></WS>";
 		
 		try{
-			seleccionarArchivoRequest.setXml(xml);
+			seleccionarArchivoMetadataRequest.setXml(xml);
 			
-			seleccionarArchivoResponse = archivoStub.seleccionarArchivo(seleccionarArchivoRequest);
+			seleccionarArchivoMetadataResponse = archivoStub.seleccionarArchivoMetadata(seleccionarArchivoMetadataRequest);
 			
-			IntegracionStub.ArchivoMetadata archivo = seleccionarArchivoResponse.get_return() [0];
+			System.out.println("----------------------Metadata ----------------");
+			System.out.println(seleccionarArchivoMetadataResponse.get_return());
 			
-		
-				System.out.println("---------------------------------------");
-				System.out.println("Archivo " + archivo.getId());
-				System.out.println("Nombre " + archivo.getNombre());
-				System.out.println("Tipo " + archivo.getTipo());
-				System.out.println("Tamanio " + archivo.getTamanio());
-				System.out.println("Recurso " + archivo.getRecursoId());
-				System.out.println("---------------------------------------");
-				
-
+			
+			seleccionarBytesArchivoRequest.setXml(xml);
+			seleccionarBytesArchivoResponse = archivoStub.seleccionarBytesArchivo(seleccionarBytesArchivoRequest);
+			if(seleccionarBytesArchivoResponse.get_return() != null){
+				System.out.println("Bytes no nulos");
+			}
 		}
 		catch (Exception e) {
 		e.printStackTrace();
