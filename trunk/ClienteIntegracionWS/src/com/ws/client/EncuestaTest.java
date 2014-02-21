@@ -9,7 +9,7 @@ public class EncuestaTest extends TestIntegracion{
 	}
 	
 	public void seleccionarEncuesta(){
-		String xml = "<?xml version=\"1.0\"?><WS><Encuesta><recursoId>1029</recursoId></Encuesta></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Encuesta><recursoId>1075</recursoId></Encuesta></WS>";
 		this.seleccionarDatos(xml);
 	}
 

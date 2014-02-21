@@ -5,7 +5,7 @@ public class RecursoTest extends TestIntegracion {
 
 	
 	public void testGuardarRecurso(){
-		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>Recurso prueba para Archivo 11:26 noche</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
+		String xml = "<?xml version=\"1.0\"?><WS><Recurso><descripcion>Recurso prueba para Encuesta mediodia</descripcion><ambitoId>1</ambitoId><tipo>L</tipo></Recurso></WS>";
 		this.guardarDatos(xml);	
 	}
 	
