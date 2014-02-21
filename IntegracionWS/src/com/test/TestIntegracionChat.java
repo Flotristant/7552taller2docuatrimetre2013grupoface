@@ -250,4 +250,13 @@ public class TestIntegracionChat extends TestCase {
     	System.out.println(integracionWS.seleccionarDatos(request));
     	
     }
+    
+    @Test
+    public void testMensajeChat() {
+    	MiembroChat miembro = new MiembroChat();
+    	miembro.setNombre("fl0r3nc1a");
+    	Long miembroId = TestHelper.guardarDatos(miembro, "ar.fiuba.redsocedu.datalayer.pojos.MiembroChat", service, port);
+    	String request = "<WS><MensajeChat><miembroChatId>"+miembroId+"</miembroChatId></MensajeChat></WS>";
+    	System.out.println(integracionWS.guardarDatos(request));
+    }
 }

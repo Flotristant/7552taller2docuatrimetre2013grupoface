@@ -6,5 +6,5 @@ public class MensajeChatTags {
 	public static String ID_TAG = "id";
 	public static String FECHA_TAG = "fecha";
 	public static String CONTENIDO_TAG = "contenido";
-	public static String ID_CHAT_TAG = "idChat";
+	public static String ID_CHAT_TAG = "chatId";
 }
