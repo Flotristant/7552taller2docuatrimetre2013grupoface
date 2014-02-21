@@ -65,12 +65,11 @@ public class ArchivoTest {
 		
 		String xml = "<?xml version=\"1.0\"?><WS><ArchivoMetadata><id>1074</id></ArchivoMetadata></WS>";
 		
-		ArchivoMetadata archivo  =  ws.seleccionarArchivo(xml);
+		String xmlMetadata = ws.seleccionarArchivoMetadata(xml);
+		byte[] bytes = ws.seleccionarBytesArchivo(xml);
 		
-		System.out.println("Nombre : " + archivo.getNombre());
-		System.out.println("Tipo : " + archivo.getTipo());
-		System.out.println("Recurso Id : " + archivo.getRecursoId());
-		System.out.println("Tamanio : "+ archivo.getTamanio());
-		System.out.println("Id : "+ archivo.getId());
-	}	
+		System.out.println(xmlMetadata);
+		if(bytes != null)
+			System.out.println("Los bytes no estan vacíos");
+	}
 }

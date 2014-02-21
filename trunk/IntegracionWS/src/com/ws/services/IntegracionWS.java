@@ -126,7 +126,7 @@ public class IntegracionWS {
 	}
 	
 	
-	public ArchivoMetadata seleccionarArchivo(String xml) {
+	public String seleccionarArchivoMetadata(String xml) {
 		
 		if (HANDLER_SUFIX.equalsIgnoreCase("HandlerMock")){
 			//prueba se ivocacion al web service eliminar archivo    
@@ -134,13 +134,22 @@ public class IntegracionWS {
 		}else{
 			try {
 				ArchivoHandler hand = new ArchivoHandler();
-				return hand.seleccionarArchivo(xml);
+				return hand.seleccionarArchivoMetadata(xml);
 			} catch (Exception e) {
 				return null;
 			}    
 		}
 	
+	}
 	
+	public byte [] seleccionarBytesArchivo(String xml){
+		try {
+			ArchivoHandler hand = new ArchivoHandler();
+			return hand.seleccionarBytesArchivo(xml);
+		} catch (Exception e) {
+			return null;
+		}    
+		
 	}
 		
 }
